@@ -1,12 +1,21 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SectionWrapper } from "@/components/layout/section-wrapper";
 import { AnimatedSection } from "@/components/layout/animated-section";
 import { testimonials } from "@/config/testimonials";
+
+const avatarColors = [
+  "bg-primary/15 text-primary",
+  "bg-foreground/10 text-foreground",
+  "bg-warning/15 text-warning",
+  "bg-primary/15 text-primary",
+  "bg-foreground/10 text-foreground",
+  "bg-warning/15 text-warning",
+];
 
 export function Testimonials() {
   return (
@@ -21,7 +30,7 @@ export function Testimonials() {
           Quem usa, recomenda
         </h2>
         <p className="mt-4 text-lg text-muted-foreground">
-          Veja o que empresas de todo o Brasil falam sobre o Qore.
+          Veja como empresas de todo o Brasil estão vencendo mais licitações com o Qore.
         </p>
       </AnimatedSection>
 
@@ -32,10 +41,10 @@ export function Testimonials() {
         viewport={{ once: true, margin: "-80px" }}
         variants={{
           hidden: {},
-          visible: { transition: { staggerChildren: 0.1 } },
+          visible: { transition: { staggerChildren: 0.08 } },
         }}
       >
-        {testimonials.map((testimonial) => (
+        {testimonials.map((testimonial, i) => (
           <motion.div
             key={testimonial.author}
             variants={{
@@ -44,25 +53,28 @@ export function Testimonials() {
             }}
             transition={{ duration: 0.5 }}
           >
-            <Card className="h-full">
+            <Card className="h-full transition-shadow hover:shadow-md">
               <CardContent className="pt-6">
-                {/* Stars */}
-                <div className="mb-4 flex gap-0.5">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className="size-4 fill-amber-400 text-amber-400"
-                    />
-                  ))}
+                {/* Quote icon + Stars */}
+                <div className="mb-4 flex items-center justify-between">
+                  <Quote className="size-8 text-primary/20" />
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: testimonial.rating }).map((_, j) => (
+                      <Star
+                        key={j}
+                        className="size-4 fill-amber-400 text-amber-400"
+                      />
+                    ))}
+                  </div>
                 </div>
 
                 <blockquote className="text-sm leading-relaxed text-foreground">
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
 
-                <div className="mt-6 flex items-center gap-3">
-                  {/* Avatar placeholder */}
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+                <div className="mt-6 flex items-center gap-3 border-t pt-4">
+                  {/* Avatar */}
+                  <div className={`flex size-11 shrink-0 items-center justify-center rounded-full text-sm font-bold ${avatarColors[i % avatarColors.length]}`}>
                     {testimonial.author
                       .split(" ")
                       .map((n) => n[0])
@@ -71,7 +83,10 @@ export function Testimonials() {
                   <div>
                     <p className="text-sm font-semibold">{testimonial.author}</p>
                     <p className="text-xs text-muted-foreground">
-                      {testimonial.role}, {testimonial.company}
+                      {testimonial.role}
+                    </p>
+                    <p className="text-xs font-medium text-primary">
+                      {testimonial.company}
                     </p>
                   </div>
                 </div>

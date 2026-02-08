@@ -8,6 +8,7 @@ import { Testimonials } from "@/components/sections/testimonials";
 import { Pricing } from "@/components/sections/pricing";
 import { FAQ } from "@/components/sections/faq";
 import { CTASection } from "@/components/sections/cta-section";
+import { Stats } from "@/components/sections/stats";
 import { Footer } from "@/components/sections/footer";
 import { TrustBadges } from "@/components/sections/trust-badges";
 import {
@@ -42,6 +43,7 @@ export default function Home() {
       <main>
         <Hero />
         <SocialProof />
+        <Stats />
         <FeaturesGrid />
         <HowItWorks />
         <FeatureShowcase />

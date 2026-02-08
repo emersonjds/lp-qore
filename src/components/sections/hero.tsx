@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowRight, Users } from "lucide-react";
+import { ArrowRight, Users, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/layout/container";
@@ -99,13 +99,28 @@ export function Hero() {
           style={{ perspective: "2000px" }}
         >
           <div
-            className="transition-transform duration-700"
+            className="relative transition-transform duration-700"
             style={{
               transform: "rotateX(4deg)",
               transformOrigin: "center bottom",
             }}
           >
             <DashboardMockup />
+
+            {/* Play button overlay */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <button
+                className="group flex items-center gap-3 rounded-full bg-white/95 px-6 py-3 shadow-xl backdrop-blur-sm transition-all hover:scale-105 hover:shadow-2xl"
+                aria-label="Ver demo em vídeo"
+              >
+                <div className="flex size-10 items-center justify-center rounded-full bg-primary text-white transition-transform group-hover:scale-110">
+                  <Play className="ml-0.5 size-5 fill-current" />
+                </div>
+                <span className="text-sm font-semibold text-foreground">
+                  Ver demo em 60s
+                </span>
+              </button>
+            </div>
           </div>
 
           {/* Bottom fade to blend into next section */}

@@ -14,6 +14,7 @@ import {
   SheetFooter,
 } from "@/components/ui/sheet";
 import { Container } from "@/components/layout/container";
+import { Logo } from "@/components/ui/logo";
 import { navLinks } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { useScrollPosition } from "@/hooks/use-scroll-position";
@@ -38,7 +39,8 @@ export function Header() {
     >
       <Container>
         <nav className="flex h-16 items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-foreground">
+          <Link href="/" className="flex items-center gap-2 text-xl font-bold text-foreground">
+            <Logo className="size-7" />
             {siteConfig.name}
           </Link>
 
@@ -77,7 +79,8 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right">
               <SheetHeader>
-                <SheetTitle className="text-lg font-bold">
+                <SheetTitle className="flex items-center gap-2 text-lg font-bold">
+                  <Logo className="size-6" />
                   {siteConfig.name}
                 </SheetTitle>
               </SheetHeader>
