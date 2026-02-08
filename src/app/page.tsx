@@ -9,6 +9,7 @@ import { Pricing } from "@/components/sections/pricing";
 import { FAQ } from "@/components/sections/faq";
 import { CTASection } from "@/components/sections/cta-section";
 import { Footer } from "@/components/sections/footer";
+import { TrustBadges } from "@/components/sections/trust-badges";
 import {
   getOrganizationSchema,
   getSoftwareApplicationSchema,
@@ -37,6 +38,7 @@ export default function Home() {
         }}
       />
       <Header />
+      <TrustBadges />
       <main>
         <Hero />
         <SocialProof />
