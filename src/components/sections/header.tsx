@@ -9,7 +9,9 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  SheetHeader,
   SheetTitle,
+  SheetFooter,
 } from "@/components/ui/sheet";
 import { Container } from "@/components/layout/container";
 import { navLinks } from "@/config/navigation";
@@ -73,35 +75,37 @@ export function Header() {
                 <span className="sr-only">Abrir menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-72">
-              <SheetTitle className="text-lg font-bold">
-                {siteConfig.name}
-              </SheetTitle>
-              <div className="mt-6 flex flex-col gap-4">
+            <SheetContent side="right">
+              <SheetHeader>
+                <SheetTitle className="text-lg font-bold">
+                  {siteConfig.name}
+                </SheetTitle>
+              </SheetHeader>
+              <nav className="flex flex-col gap-4 px-4">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {link.label}
                   </Link>
                 ))}
-                <div className="mt-4 flex flex-col gap-2">
-                  <Button variant="outline" asChild>
-                    <Link href="#pricing" onClick={() => setOpen(false)}>
-                      Criar Conta
-                    </Link>
-                  </Button>
-                  <Button className="gap-2" asChild>
-                    <Link href="/login" onClick={() => setOpen(false)}>
-                      <LogIn className="size-4" />
-                      Entrar
-                    </Link>
-                  </Button>
-                </div>
-              </div>
+              </nav>
+              <SheetFooter>
+                <Button variant="outline" className="w-full" asChild>
+                  <Link href="#pricing" onClick={() => setOpen(false)}>
+                    Criar Conta
+                  </Link>
+                </Button>
+                <Button className="w-full gap-2" asChild>
+                  <Link href="/login" onClick={() => setOpen(false)}>
+                    <LogIn className="size-4" />
+                    Entrar
+                  </Link>
+                </Button>
+              </SheetFooter>
             </SheetContent>
           </Sheet>
         </nav>
