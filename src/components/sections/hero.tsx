@@ -6,6 +6,7 @@ import { ArrowRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/layout/container";
+import { DashboardMockup } from "@/components/sections/dashboard-mockup";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -14,10 +15,10 @@ const fadeUp = {
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28">
+    <section className="relative overflow-hidden pt-28 pb-0 md:pt-36">
       {/* Background gradient */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute top-0 left-1/2 h-150 w-225 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
       </div>
 
       <Container>
@@ -78,25 +79,26 @@ export function Hero() {
           </motion.p>
         </motion.div>
 
-        {/* Hero image placeholder */}
+        {/* Product screenshot with perspective */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="mx-auto mt-16 max-w-5xl"
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="relative mx-auto mt-16 max-w-5xl"
+          style={{ perspective: "2000px" }}
         >
-          <div className="aspect-video overflow-hidden rounded-xl border bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 shadow-2xl">
-            <div className="flex h-full items-center justify-center">
-              <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
-                  <Search className="size-8 text-primary" />
-                </div>
-                <p className="text-sm font-medium text-muted-foreground">
-                  Painel de Licitações
-                </p>
-              </div>
-            </div>
+          <div
+            className="transition-transform duration-700"
+            style={{
+              transform: "rotateX(4deg)",
+              transformOrigin: "center bottom",
+            }}
+          >
+            <DashboardMockup />
           </div>
+
+          {/* Bottom fade to blend into next section */}
+          <div className="pointer-events-none absolute right-0 bottom-0 left-0 h-32 bg-linear-to-t from-background to-transparent" />
         </motion.div>
       </Container>
     </section>
