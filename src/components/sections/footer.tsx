@@ -47,7 +47,7 @@ export function Footer() {
             </p>
             <form
               className="mt-6 flex gap-2"
-              onSubmit={(e) => e.preventDefault()}
+              action="#"
             >
               <Input
                 type="email"
