@@ -11,30 +11,29 @@ export function CTASection() {
     <section className="py-20 md:py-28">
       <Container>
         <AnimatedSection>
-          <div className="overflow-hidden rounded-2xl bg-primary px-6 py-16 text-center sm:px-16">
-            <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
+          <div className="overflow-hidden rounded-2xl bg-foreground px-6 py-16 text-center sm:px-16">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Pronto para vencer mais licitações?
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-primary-foreground/80">
+            <p className="mx-auto mt-4 max-w-xl text-lg text-white/70">
               Junte-se a milhares de empresas que já usam o Qore para encontrar
               oportunidades e enviar propostas com confiança.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button
                 size="lg"
-                variant="secondary"
                 className="gap-2"
                 asChild
               >
                 <Link href="/login">
-                  Começar Agora
+                  Buscar Licitações Grátis
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                className="border-white/20 text-white hover:bg-white/10 hover:text-white"
               >
                 Falar com Vendas
               </Button>

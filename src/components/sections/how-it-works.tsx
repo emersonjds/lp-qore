@@ -67,7 +67,7 @@ export function HowItWorks() {
               transition={{ duration: 0.5 }}
               className="relative text-center"
             >
-              <div className="relative z-10 mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">
+              <div className="relative z-10 mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-foreground text-lg font-bold text-white">
                 {step.number}
               </div>
               <h3 className="mt-6 text-xl font-semibold">{step.title}</h3>
