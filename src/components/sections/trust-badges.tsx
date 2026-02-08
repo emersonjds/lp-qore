@@ -11,13 +11,6 @@ const badges = [
     width: 130,
     height: 40,
   },
-  {
-    label: "Recomendado por",
-    src: "/images/badges/tcu.png",
-    alt: "Tribunal de Contas da União",
-    width: 130,
-    height: 28,
-  },
 ];
 
 export function TrustBadges() {
