@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowRight, Search } from "lucide-react";
+import { ArrowRight, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/layout/container";
@@ -30,8 +30,8 @@ export function Hero() {
         >
           <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
             <Badge variant="secondary" className="mb-6 gap-1.5 px-3 py-1.5 text-sm">
-              <Search className="size-3.5" />
-              Plataforma em beta aberto
+              <Users className="size-3.5" />
+              +2.400 empresas já utilizam
             </Badge>
           </motion.div>
 
@@ -40,8 +40,8 @@ export function Hero() {
             transition={{ duration: 0.5 }}
             className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            Licitações públicas,{" "}
-            <span className="text-primary">sem complicação</span>
+            Encontre e vença licitações{" "}
+            <span className="text-primary">antes da concorrência</span>
           </motion.h1>
 
           <motion.p
@@ -49,9 +49,9 @@ export function Hero() {
             transition={{ duration: 0.5 }}
             className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl"
           >
-            O Qore centraliza a busca, análise e gestão de licitações públicas
-            em todo o Brasil — com alertas inteligentes, análise de editais e
-            controle de propostas em uma única plataforma.
+            Pare de perder horas em dezenas de portais. O Qore reúne todas as
+            licitações do Brasil, alerta você sobre as melhores oportunidades e
+            organiza suas propostas — do edital ao contrato.
           </motion.p>
 
           <motion.div
@@ -59,24 +59,35 @@ export function Hero() {
             transition={{ duration: 0.5 }}
             className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
-            <Button size="lg" className="gap-2" asChild>
+            <Button size="lg" className="gap-2 px-8 text-base" asChild>
               <Link href="/login">
-                Começar Agora
+                Buscar Licitações Grátis
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a href="#how-it-works">Como Funciona</a>
+            <Button size="lg" variant="outline" className="text-base" asChild>
+              <a href="#how-it-works">Ver Como Funciona</a>
             </Button>
           </motion.div>
 
-          <motion.p
+          <motion.div
             variants={fadeUp}
             transition={{ duration: 0.5 }}
-            className="mt-4 text-sm text-muted-foreground"
+            className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-sm text-muted-foreground"
           >
-            Grátis para começar. Sem necessidade de cartão de crédito.
-          </motion.p>
+            <span className="flex items-center gap-1.5">
+              <span className="size-1.5 rounded-full bg-emerald-500" />
+              Grátis para começar
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="size-1.5 rounded-full bg-emerald-500" />
+              Sem cartão de crédito
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="size-1.5 rounded-full bg-emerald-500" />
+              Cobertura nacional
+            </span>
+          </motion.div>
         </motion.div>
 
         {/* Product screenshot with perspective */}
