@@ -16,8 +16,8 @@
   --popover: #FFFFFF;
   --popover-foreground: #1A2B48;
 
-  /* Verde Digital — CTAs, acentos */
-  --primary: #00D084;
+  /* Verde Institucional — CTAs, acentos (WCAG AA com branco) */
+  --primary: #059669;
   --primary-foreground: #FFFFFF;
 
   /* Ciano Soft — backgrounds de destaque */
@@ -25,15 +25,17 @@
   --secondary-foreground: #1A2B48;
   --muted: #EEF2F7;
   --muted-foreground: #4A5568;
-  --accent: #E6F7FF;
+  --accent: #ECFDF5;
   --accent-foreground: #1A2B48;
 
   --destructive: #E53E3E;
   --border: #E2E8F0;
   --input: #E2E8F0;
-  --ring: #00D084;
+  --ring: #059669;
+  --warning: #F59E0B;
+  --warning-foreground: #FFFFFF;
 
-  --chart-1: #00D084;
+  --chart-1: #059669;
   --chart-2: #1A2B48;
   --chart-3: #4A5568;
   --chart-4: #38BDF8;
@@ -41,12 +43,12 @@
 
   --sidebar-background: #F1F5F9;
   --sidebar-foreground: #4A5568;
-  --sidebar-primary: #00D084;
+  --sidebar-primary: #059669;
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #E6F7FF;
   --sidebar-accent-foreground: #1A2B48;
   --sidebar-border: #E2E8F0;
-  --sidebar-ring: #00D084;
+  --sidebar-ring: #059669;
 }
 
 @theme inline {
@@ -65,6 +67,8 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
