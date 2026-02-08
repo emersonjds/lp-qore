@@ -32,10 +32,11 @@ export function CTASection() {
               </Button>
               <Button
                 size="lg"
-                variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 hover:text-white"
+                variant="secondary"
+                className="bg-white/10 text-white border border-white/20 hover:bg-white/20"
+                asChild
               >
-                Falar com Vendas
+                <a href="#pricing">Falar com Vendas</a>
               </Button>
             </div>
           </div>

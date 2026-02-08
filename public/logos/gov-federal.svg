@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" fill="none">
+  <circle cx="16" cy="20" r="12" stroke="#94A3B8" stroke-width="1.5"/>
+  <path d="M16 10l2.5 4.5H21l-3.5 3 1.5 5L16 20l-3 2.5 1.5-5L11 14.5h2.5L16 10z" fill="#94A3B8"/>
+  <text x="34" y="24" font-family="system-ui,sans-serif" font-size="13" font-weight="600" fill="#64748B">Governo Federal</text>
+</svg>
