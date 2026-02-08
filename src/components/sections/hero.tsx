@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/layout/container";
@@ -28,8 +29,8 @@ export function Hero() {
         >
           <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
             <Badge variant="secondary" className="mb-6 gap-1.5 px-3 py-1.5 text-sm">
-              <Sparkles className="size-3.5" />
-              Now in public beta
+              <Search className="size-3.5" />
+              Plataforma em beta aberto
             </Badge>
           </motion.div>
 
@@ -38,8 +39,8 @@ export function Hero() {
             transition={{ duration: 0.5 }}
             className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            Ship products faster{" "}
-            <span className="text-primary">with your team</span>
+            Licitações públicas,{" "}
+            <span className="text-primary">sem complicação</span>
           </motion.h1>
 
           <motion.p
@@ -47,9 +48,9 @@ export function Hero() {
             transition={{ duration: 0.5 }}
             className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl"
           >
-            LPQore is the all-in-one platform for teams to plan, build, and
-            deliver products — with workflow automation, real-time analytics, and
-            seamless collaboration built in.
+            O Qore centraliza a busca, análise e gestão de licitações públicas
+            em todo o Brasil — com alertas inteligentes, análise de editais e
+            controle de propostas em uma única plataforma.
           </motion.p>
 
           <motion.div
@@ -58,13 +59,13 @@ export function Hero() {
             className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
             <Button size="lg" className="gap-2" asChild>
-              <a href="#pricing">
-                Start for Free
+              <Link href="/login">
+                Começar Agora
                 <ArrowRight className="size-4" />
-              </a>
+              </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <a href="#how-it-works">See How It Works</a>
+              <a href="#how-it-works">Como Funciona</a>
             </Button>
           </motion.div>
 
@@ -73,7 +74,7 @@ export function Hero() {
             transition={{ duration: 0.5 }}
             className="mt-4 text-sm text-muted-foreground"
           >
-            No credit card required. Free forever for small teams.
+            Grátis para começar. Sem necessidade de cartão de crédito.
           </motion.p>
         </motion.div>
 
@@ -88,10 +89,10 @@ export function Hero() {
             <div className="flex h-full items-center justify-center">
               <div className="text-center">
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
-                  <Sparkles className="size-8 text-primary" />
+                  <Search className="size-8 text-primary" />
                 </div>
                 <p className="text-sm font-medium text-muted-foreground">
-                  Product Dashboard Preview
+                  Painel de Licitações
                 </p>
               </div>
             </div>

@@ -21,12 +21,12 @@ export function Pricing() {
   return (
     <SectionWrapper id="pricing" aria-labelledby="pricing-heading">
       <AnimatedSection className="mx-auto max-w-2xl text-center">
-        <Badge variant="secondary" className="mb-4">Pricing</Badge>
+        <Badge variant="secondary" className="mb-4">Planos</Badge>
         <h2 id="pricing-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Simple, transparent pricing
+          Planos simples e transparentes
         </h2>
         <p className="mt-4 text-lg text-muted-foreground">
-          Start free and scale as you grow. No hidden fees, no surprises.
+          Comece grátis e escale conforme sua necessidade. Sem taxas ocultas.
         </p>
       </AnimatedSection>
 
@@ -59,7 +59,7 @@ export function Pricing() {
               {tier.highlighted && (
                 <div className="absolute -top-3 right-4">
                   <Badge className="bg-primary text-primary-foreground">
-                    Most Popular
+                    Mais Popular
                   </Badge>
                 </div>
               )}
@@ -68,12 +68,12 @@ export function Pricing() {
                 <CardDescription>{tier.description}</CardDescription>
                 <div className="mt-4">
                   <span className="text-4xl font-bold">{tier.price}</span>
-                  {tier.price !== "Custom" && (
+                  {tier.price !== "Sob consulta" && (
                     <span className="ml-1 text-sm text-muted-foreground">
                       /{tier.period}
                     </span>
                   )}
-                  {tier.price === "Custom" && (
+                  {tier.price === "Sob consulta" && (
                     <p className="mt-1 text-sm text-muted-foreground">
                       {tier.period}
                     </p>

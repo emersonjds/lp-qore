@@ -11,13 +11,13 @@ export function FeaturesGrid() {
   return (
     <SectionWrapper id="features" aria-labelledby="features-heading">
       <AnimatedSection className="mx-auto max-w-2xl text-center">
-        <Badge variant="secondary" className="mb-4">Features</Badge>
+        <Badge variant="secondary" className="mb-4">Funcionalidades</Badge>
         <h2 id="features-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Everything you need to ship faster
+          Tudo que você precisa para vencer licitações
         </h2>
         <p className="mt-4 text-lg text-muted-foreground">
-          Powerful features designed to streamline your workflow and keep your
-          team moving forward.
+          Ferramentas poderosas para encontrar oportunidades, preparar propostas
+          e acompanhar resultados.
         </p>
       </AnimatedSection>
 

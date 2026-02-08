@@ -8,36 +8,36 @@ import { Badge } from "@/components/ui/badge";
 
 const showcases = [
   {
-    badge: "Collaboration",
-    title: "Real-time collaboration that actually works",
+    badge: "Busca & Alertas",
+    title: "Encontre as licitações certas para o seu negócio",
     description:
-      "Work together on projects without stepping on each other's toes. See changes instantly, leave contextual comments, and keep everyone aligned.",
+      "O Qore monitora dezenas de portais e publica editais organizados por segmento, região e modalidade. Configure alertas e seja notificado assim que surgir uma oportunidade.",
     points: [
-      "Live cursors and real-time editing",
-      "Threaded comments on any element",
-      "Smart notifications that reduce noise",
+      "Monitoramento de portais federais, estaduais e municipais",
+      "Filtros por CNAE, modalidade, valor e região",
+      "Alertas por e-mail e push em tempo real",
     ],
   },
   {
-    badge: "Automation",
-    title: "Automate the tedious parts of your workflow",
+    badge: "Gestão de Propostas",
+    title: "Monte propostas completas sem perder prazos",
     description:
-      "Build powerful workflows visually and let LPQore handle the repetitive tasks. Free your team to focus on what actually matters.",
+      "Organize documentos, monte checklists de habilitação e controle deadlines de cada licitação. O Qore garante que você nunca perca uma oportunidade por falta de organização.",
     points: [
-      "Visual no-code workflow builder",
-      "200+ integrations out of the box",
-      "Custom triggers and conditions",
+      "Checklist inteligente de documentos exigidos",
+      "Controle de prazos com lembretes automáticos",
+      "Histórico completo de propostas enviadas",
     ],
   },
   {
-    badge: "Analytics",
-    title: "Insights that drive better decisions",
+    badge: "Inteligência",
+    title: "Dados que aumentam sua taxa de aprovação",
     description:
-      "Understand your team's velocity, spot bottlenecks before they slow you down, and make data-driven decisions with confidence.",
+      "Analise seus resultados, identifique padrões de concorrentes e entenda quais licitações oferecem as melhores oportunidades para a sua empresa.",
     points: [
-      "Customizable real-time dashboards",
-      "Automated weekly & monthly reports",
-      "Predictive analytics powered by AI",
+      "Dashboards de desempenho por período e segmento",
+      "Análise de concorrência e histórico de vencedores",
+      "Previsão de oportunidades com base em tendências",
     ],
   },
 ];
@@ -46,13 +46,13 @@ export function FeatureShowcase() {
   return (
     <SectionWrapper>
       <AnimatedSection className="mx-auto max-w-2xl text-center">
-        <Badge variant="secondary" className="mb-4">Deep Dive</Badge>
+        <Badge variant="secondary" className="mb-4">Mergulho Profundo</Badge>
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Built for the way modern teams work
+          Feito para quem leva licitações a sério
         </h2>
         <p className="mt-4 text-lg text-muted-foreground">
-          Every feature is designed to remove friction and help your team do
-          their best work.
+          Cada funcionalidade foi desenhada para remover a burocracia e aumentar
+          suas chances de vencer.
         </p>
       </AnimatedSection>
 
@@ -75,7 +75,7 @@ export function FeatureShowcase() {
                 <div className="aspect-[4/3] overflow-hidden rounded-xl border bg-gradient-to-br from-primary/5 via-muted to-primary/5">
                   <div className="flex h-full items-center justify-center">
                     <p className="text-sm text-muted-foreground">
-                      {item.badge} Preview
+                      {item.badge} — Preview
                     </p>
                   </div>
                 </div>

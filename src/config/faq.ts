@@ -2,33 +2,33 @@ import type { FAQItem } from "@/types";
 
 export const faqItems: FAQItem[] = [
   {
-    question: "What is LPQore?",
+    question: "O que é o Qore?",
     answer:
-      "LPQore is an all-in-one platform that helps teams plan, build, and ship products faster. It combines project management, workflow automation, and real-time analytics into a single, intuitive interface.",
+      "O Qore é uma plataforma que centraliza a busca, análise e acompanhamento de licitações públicas em todo o Brasil. Com o Qore, você encontra editais relevantes, recebe alertas automáticos, gerencia propostas e acompanha resultados — tudo em um único lugar.",
   },
   {
-    question: "How does the free trial work?",
+    question: "Quais modalidades de licitação o Qore cobre?",
     answer:
-      "You can start with our Free plan at no cost, forever. When you're ready to upgrade to Pro, you get a 14-day free trial with full access to all features — no credit card required.",
+      "O Qore cobre todas as principais modalidades: pregão eletrônico, pregão presencial, concorrência, tomada de preços, convite, leilão, concurso e RDC (Regime Diferenciado de Contratações). Também cobrimos dispensas e inexigibilidades.",
   },
   {
-    question: "Can I switch plans at any time?",
+    question: "O plano gratuito realmente não tem custo?",
     answer:
-      "Absolutely. You can upgrade or downgrade your plan at any time. When upgrading, you'll get immediate access to new features. When downgrading, the change takes effect at the end of your billing cycle.",
+      "Sim, o plano Starter é 100% gratuito e sem prazo de expiração. Você pode buscar editais, configurar até 5 alertas e visualizar licitações — sem precisar cadastrar cartão de crédito.",
   },
   {
-    question: "Is my data secure?",
+    question: "Meus dados e propostas estão seguros?",
     answer:
-      "Security is our top priority. LPQore is SOC 2 Type II certified with end-to-end encryption, regular security audits, and GDPR compliance. Enterprise customers also get access to SSO, SAML, and custom data retention policies.",
+      "Segurança é nossa prioridade. O Qore utiliza criptografia de ponta a ponta, está em conformidade com a LGPD e realiza auditorias regulares. Suas propostas, documentos e dados estratégicos são protegidos com os mais altos padrões do mercado.",
   },
   {
-    question: "What integrations do you support?",
+    question: "Quais órgãos e portais estão integrados?",
     answer:
-      "LPQore integrates with 200+ tools including Slack, GitHub, Jira, Figma, Google Workspace, and more. Our API and webhooks also let you build custom integrations.",
+      "O Qore está integrado com o ComprasNet (Governo Federal), portais de compras de 14 estados, BEC/SP, Licitações-e (Banco do Brasil), Portal de Compras Públicas, além de portais de prefeituras de capitais e grandes municípios.",
   },
   {
-    question: "Do you offer on-premise deployment?",
+    question: "Posso gerenciar licitações para múltiplas empresas?",
     answer:
-      "Yes, our Enterprise plan includes the option for on-premise or private cloud deployment. Contact our sales team to discuss your specific infrastructure requirements.",
+      "Sim! O plano Profissional permite gerenciar propostas e documentos de múltiplas empresas ou CNPJs. Ideal para consultorias, escritórios de assessoria e grupos empresariais que participam de licitações com diferentes razões sociais.",
   },
 ];

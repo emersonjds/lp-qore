@@ -8,21 +8,21 @@ import { AnimatedSection } from "@/components/layout/animated-section";
 const steps = [
   {
     number: "1",
-    title: "Connect Your Tools",
+    title: "Configure seus Alertas",
     description:
-      "Integrate your existing stack in minutes. LPQore connects with 200+ tools including GitHub, Slack, Figma, and more.",
+      "Defina palavras-chave, segmentos, órgãos e regiões do seu interesse. O Qore monitora todos os portais de licitação por você.",
   },
   {
     number: "2",
-    title: "Automate Workflows",
+    title: "Analise os Editais",
     description:
-      "Set up powerful automations with our visual workflow builder. No code required — just drag, drop, and deploy.",
+      "Receba editais filtrados e organizados. Visualize prazos, requisitos de habilitação e documentos exigidos de forma clara.",
   },
   {
     number: "3",
-    title: "Ship with Confidence",
+    title: "Envie sua Proposta",
     description:
-      "Track progress in real time with dashboards and analytics. Ship faster knowing your team is always aligned.",
+      "Monte sua proposta com o checklist inteligente, organize documentos e acompanhe o resultado — tudo dentro da plataforma.",
   },
 ];
 
@@ -34,12 +34,12 @@ export function HowItWorks() {
       className="bg-muted/30"
     >
       <AnimatedSection className="mx-auto max-w-2xl text-center">
-        <Badge variant="secondary" className="mb-4">How It Works</Badge>
+        <Badge variant="secondary" className="mb-4">Como Funciona</Badge>
         <h2 id="how-it-works-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Get started in three simple steps
+          Comece a licitar em três passos
         </h2>
         <p className="mt-4 text-lg text-muted-foreground">
-          Go from zero to shipping in minutes, not weeks.
+          Da busca do edital à proposta enviada em minutos, não semanas.
         </p>
       </AnimatedSection>
 

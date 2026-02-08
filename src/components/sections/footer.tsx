@@ -6,28 +6,29 @@ import { Container } from "@/components/layout/container";
 import { siteConfig } from "@/config/site";
 
 const footerLinks = {
-  Product: [
-    { label: "Features", href: "#features" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Integrations", href: "#" },
-    { label: "Changelog", href: "#" },
+  Plataforma: [
+    { label: "Funcionalidades", href: "#features" },
+    { label: "Planos", href: "#pricing" },
+    { label: "Integrações", href: "#" },
+    { label: "Atualizações", href: "#" },
   ],
-  Company: [
-    { label: "About", href: "#" },
+  Empresa: [
+    { label: "Sobre nós", href: "#" },
     { label: "Blog", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Contact", href: "#" },
+    { label: "Carreiras", href: "#" },
+    { label: "Contato", href: "#" },
   ],
-  Resources: [
-    { label: "Documentation", href: "#" },
-    { label: "Help Center", href: "#" },
-    { label: "Community", href: "#" },
+  Recursos: [
+    { label: "Documentação", href: "#" },
+    { label: "Central de Ajuda", href: "#" },
+    { label: "Comunidade", href: "#" },
     { label: "Status", href: "#" },
   ],
   Legal: [
-    { label: "Privacy", href: "#" },
-    { label: "Terms", href: "#" },
-    { label: "Security", href: "#" },
+    { label: "Privacidade", href: "#" },
+    { label: "Termos de Uso", href: "#" },
+    { label: "Segurança", href: "#" },
+    { label: "LGPD", href: "#" },
   ],
 };
 
@@ -42,8 +43,8 @@ export function Footer() {
               {siteConfig.name}
             </Link>
             <p className="mt-3 text-sm text-muted-foreground">
-              The all-in-one platform for teams to plan, build, and ship
-              products faster.
+              A plataforma completa para encontrar, acompanhar e participar de
+              licitações públicas em todo o Brasil.
             </p>
             <form
               className="mt-6 flex gap-2"
@@ -51,11 +52,11 @@ export function Footer() {
             >
               <Input
                 type="email"
-                placeholder="Enter your email"
-                className="max-w-[240px]"
+                placeholder="Seu melhor e-mail"
+                className="max-w-60"
               />
               <Button type="submit" size="sm">
-                Subscribe
+                Inscrever
               </Button>
             </form>
           </div>
@@ -84,8 +85,8 @@ export function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-4 py-6 sm:flex-row">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} {siteConfig.name}. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} {siteConfig.name}. Todos os
+            direitos reservados.
           </p>
           <div className="flex gap-4">
             <Link

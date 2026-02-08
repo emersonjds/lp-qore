@@ -1,12 +1,12 @@
 export const siteConfig = {
-  name: "LPQore",
+  name: "Qore",
   description:
-    "Streamline your workflow with LPQore — the all-in-one platform for teams to plan, build, and ship products faster.",
-  url: "https://lpqore.com",
-  ogImage: "https://lpqore.com/images/og-image.png",
+    "Qore é a plataforma completa para encontrar, acompanhar e participar de licitações públicas em todo o Brasil — com alertas inteligentes, análise de editais e gestão de propostas.",
+  url: "https://qore.com.br",
+  ogImage: "https://qore.com.br/images/og-image.png",
   links: {
-    twitter: "https://twitter.com/lpqore",
-    github: "https://github.com/lpqore",
-    linkedin: "https://linkedin.com/company/lpqore",
+    twitter: "https://twitter.com/qorebr",
+    github: "https://github.com/qorebr",
+    linkedin: "https://linkedin.com/company/qorebr",
   },
 } as const;

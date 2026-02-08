@@ -16,13 +16,12 @@ export function Testimonials() {
       className="bg-muted/30"
     >
       <AnimatedSection className="mx-auto max-w-2xl text-center">
-        <Badge variant="secondary" className="mb-4">Testimonials</Badge>
+        <Badge variant="secondary" className="mb-4">Depoimentos</Badge>
         <h2 id="testimonials-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Loved by teams everywhere
+          Quem usa, recomenda
         </h2>
         <p className="mt-4 text-lg text-muted-foreground">
-          Don&apos;t just take our word for it — hear from the teams that use LPQore
-          every day.
+          Veja o que empresas de todo o Brasil falam sobre o Qore.
         </p>
       </AnimatedSection>
 

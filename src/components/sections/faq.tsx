@@ -21,11 +21,11 @@ export function FAQ() {
       <AnimatedSection className="mx-auto max-w-2xl text-center">
         <Badge variant="secondary" className="mb-4">FAQ</Badge>
         <h2 id="faq-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Frequently asked questions
+          Perguntas frequentes
         </h2>
         <p className="mt-4 text-lg text-muted-foreground">
-          Everything you need to know about LPQore. Can&apos;t find what you&apos;re
-          looking for? Reach out to our team.
+          Tudo que você precisa saber sobre o Qore. Não encontrou sua resposta?
+          Entre em contato com nossa equipe.
         </p>
       </AnimatedSection>
 

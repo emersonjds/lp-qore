@@ -1,48 +1,48 @@
 import {
-  Zap,
+  Search,
   Shield,
   BarChart3,
-  Users,
-  Workflow,
+  Bell,
+  FileText,
   Globe,
 } from "lucide-react";
 import type { Feature } from "@/types";
 
 export const features: Feature[] = [
   {
-    icon: Zap,
-    title: "Lightning Fast",
+    icon: Search,
+    title: "Busca Inteligente de Editais",
     description:
-      "Built for speed from the ground up. Experience sub-second load times and instant interactions that keep your team in flow.",
+      "Encontre licitações relevantes para o seu negócio com filtros avançados por órgão, modalidade, segmento e valor estimado.",
+  },
+  {
+    icon: Bell,
+    title: "Alertas Personalizados",
+    description:
+      "Receba notificações automáticas quando novas licitações do seu interesse forem publicadas. Nunca mais perca uma oportunidade.",
+  },
+  {
+    icon: FileText,
+    title: "Análise de Editais",
+    description:
+      "Visualize editais de forma organizada com destaque para prazos, requisitos de habilitação, critérios de julgamento e documentos exigidos.",
   },
   {
     icon: Shield,
-    title: "Enterprise Security",
+    title: "Gestão de Propostas",
     description:
-      "SOC 2 compliant with end-to-end encryption, SSO, and granular role-based access controls to keep your data safe.",
+      "Crie, organize e envie suas propostas com checklist de documentos, controle de prazos e histórico completo de participações.",
   },
   {
     icon: BarChart3,
-    title: "Advanced Analytics",
+    title: "Painel Analítico",
     description:
-      "Get real-time insights with customizable dashboards, automated reports, and predictive analytics powered by AI.",
-  },
-  {
-    icon: Users,
-    title: "Team Collaboration",
-    description:
-      "Work together seamlessly with shared workspaces, real-time editing, comments, and @mentions that keep everyone aligned.",
-  },
-  {
-    icon: Workflow,
-    title: "Workflow Automation",
-    description:
-      "Automate repetitive tasks with powerful no-code workflows. Connect to 200+ integrations and save hours every week.",
+      "Dashboards com métricas de desempenho: taxa de aprovação, valor total disputado, concorrentes frequentes e tendências de mercado.",
   },
   {
     icon: Globe,
-    title: "Global Scale",
+    title: "Cobertura Nacional",
     description:
-      "Deploy worldwide with edge infrastructure across 50+ regions. 99.99% uptime SLA with automatic failover built in.",
+      "Licitações de todos os estados, municípios e órgãos federais do Brasil. Pregões, concorrências, tomadas de preço e mais — tudo centralizado.",
   },
 ];

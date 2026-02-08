@@ -3,15 +3,25 @@
 import { motion } from "motion/react";
 import { AnimatedSection } from "@/components/layout/animated-section";
 
-const companies = [
-  "Acme Corp",
-  "Globex",
-  "Initech",
-  "Umbrella",
-  "Stark Industries",
-  "Wayne Enterprises",
-  "Cyberdyne",
-  "Oscorp",
+const entities = [
+  "Prefeitura de SP",
+  "Portal da Transparência",
+  "Portal de Licitações BR",
+  "Governo Federal",
+  "Gov. São Paulo",
+  "Gov. Rio de Janeiro",
+  "Gov. Minas Gerais",
+  "Gov. Bahia",
+  "Gov. Paraná",
+  "Gov. Rio Grande do Sul",
+  "Gov. Pernambuco",
+  "Gov. Ceará",
+  "Gov. Goiás",
+  "Gov. Pará",
+  "Gov. Santa Catarina",
+  "Gov. Maranhão",
+  "Gov. Amazonas",
+  "Gov. Espírito Santo",
 ];
 
 function LogoPlaceholder({ name }: { name: string }) {
@@ -26,19 +36,19 @@ function LogoPlaceholder({ name }: { name: string }) {
 }
 
 export function SocialProof() {
-  const doubled = [...companies, ...companies];
+  const doubled = [...entities, ...entities];
 
   return (
     <section className="border-y bg-muted/30 py-12">
       <AnimatedSection>
         <p className="mb-8 text-center text-sm font-medium tracking-wider text-muted-foreground uppercase">
-          Trusted by innovative teams worldwide
+          Integrado com portais e órgãos de todo o Brasil
         </p>
       </AnimatedSection>
       <div className="relative overflow-hidden">
         {/* Fade edges */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-background to-transparent" />
 
         <motion.div
           className="flex w-max gap-12"
@@ -47,7 +57,7 @@ export function SocialProof() {
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 30,
+              duration: 40,
               ease: "linear",
             },
           }}

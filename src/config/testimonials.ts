@@ -3,26 +3,26 @@ import type { Testimonial } from "@/types";
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "LPQore has transformed how our engineering team ships product. We've cut our cycle time by 40% in just three months.",
-    author: "Sarah Chen",
-    role: "VP of Engineering",
-    company: "TechFlow",
+      "Antes do Qore, perdíamos horas procurando editais em dezenas de portais diferentes. Agora recebemos alertas das oportunidades certas e triplicamos nossas participações.",
+    author: "Carlos Eduardo Lima",
+    role: "Diretor Comercial",
+    company: "TechServ Soluções",
     rating: 5,
   },
   {
     quote:
-      "The automation workflows alone saved us 20 hours a week. The analytics give us visibility we never had before.",
-    author: "Marcus Rodriguez",
-    role: "Head of Operations",
-    company: "ScaleUp Inc.",
+      "A gestão de propostas do Qore transformou nosso processo. O checklist de documentos e o controle de prazos eliminaram erros que nos custavam contratos.",
+    author: "Mariana Costa",
+    role: "Gerente de Licitações",
+    company: "Grupo Construir",
     rating: 5,
   },
   {
     quote:
-      "We evaluated a dozen tools before choosing LPQore. The combination of power and simplicity is unmatched.",
-    author: "Emily Nakamura",
-    role: "CTO",
-    company: "BuildRight",
+      "O painel analítico nos dá visibilidade total sobre nosso desempenho em licitações. Identificamos padrões e melhoramos nossa taxa de aprovação em 60%.",
+    author: "Roberto Almeida",
+    role: "CEO",
+    company: "MedSupply Brasil",
     rating: 5,
   },
 ];
