@@ -1,0 +1,12 @@
+export const FORBIDDEN_TERMS: readonly string[] = [
+  "SOC 2",
+  "depoimento",
+  "12.400",
+  "5.600",
+  "98%",
+  "todo o Brasil",
+  "Começar grátis",
+  "R$ 149",
+  "BNCP",
+  "00.000.000",
+];

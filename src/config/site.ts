@@ -1,17 +1,24 @@
 import { resolveSiteUrl } from "@/lib/site-url";
+import type { LegalIdentity } from "@/types";
 
-const siteUrl = resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
+interface SiteConfig {
+  name: string;
+  slogan: string;
+  description: string;
+  url: string;
+  legal: LegalIdentity;
+}
 
-export const siteConfig = {
+export const siteConfig: SiteConfig = {
   name: "Qore",
+  slogan: "A IA lê o edital. Você decide.",
   description:
-    "Qore é a plataforma completa para encontrar, acompanhar e participar de licitações públicas em todo o Brasil — com alertas inteligentes, análise de editais e gestão de propostas.",
-  url: siteUrl,
-  appUrl: "https://app.qore.com.br",
-  ogImage: `${siteUrl}/images/og-image.png`,
-  links: {
-    twitter: "https://twitter.com/qorebr",
-    github: "https://github.com/qorebr",
-    linkedin: "https://linkedin.com/company/qorebr",
+    "Encontre licitações de São Paulo pelo seu CNPJ, entenda o edital com um resumo de IA que cita a página de origem e monte sua proposta com segurança.",
+  url: resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL),
+  legal: {
+    companyName: "",
+    taxId: "",
+    contactEmail: "",
+    dataProtectionOfficer: "",
   },
-} as const;
+};
