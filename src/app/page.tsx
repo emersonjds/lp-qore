@@ -1,3 +1,6 @@
+import { About } from "@/components/sections/about";
+import { Coverage } from "@/components/sections/coverage";
+import { Faq } from "@/components/sections/faq";
 import { Hero } from "@/components/sections/hero";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Personas } from "@/components/sections/personas";
@@ -13,6 +16,9 @@ const HomePage = () => (
     <PlatformTour />
     <ResponsibleAi />
     <Personas />
+    <Coverage />
+    <About />
+    <Faq />
   </main>
 );
 
