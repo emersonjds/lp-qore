@@ -3,7 +3,7 @@ import userEvent, { type UserEvent } from "@testing-library/user-event";
 import { renderToString } from "react-dom/server";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { CONTACT_SUBMIT_ERROR } from "@/lib/contact-form";
-import { ContactForm } from "./contact-form";
+import { ContactForm } from "../contact-form";
 
 const fillValidForm = async (user: UserEvent) => {
   await user.type(screen.getByLabelText(/Nome/), "Maria Souza");

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatBrazilianPhone, isValidBrazilianPhone } from "./phone";
+import { formatBrazilianPhone, isValidBrazilianPhone } from "../phone";
 
 describe("formatBrazilianPhone", () => {
   it.each([

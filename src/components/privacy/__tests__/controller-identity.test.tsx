@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { ControllerIdentity } from "./controller-identity";
+import { ControllerIdentity } from "../controller-identity";
 
 const empty = { companyName: "", taxId: "", contactEmail: "", dataProtectionOfficer: "" };
 

@@ -7,7 +7,7 @@ import {
   submitContact,
   validateContactForm,
   type ContactFormValues,
-} from "./contact-form";
+} from "../contact-form";
 
 const validValues: ContactFormValues = {
   name: "Maria Souza",
