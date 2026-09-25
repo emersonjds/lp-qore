@@ -8,10 +8,7 @@ interface ControllerIdentityProps {
 export const ControllerIdentity = ({ legal }: ControllerIdentityProps) => {
   if (!isLegalIdentityComplete(legal)) {
     return (
-      <p>
-        Os dados do controlador (razão social, CNPJ e canal do encarregado) serão publicados aqui antes da abertura do
-        piloto.
-      </p>
+      <p>Os dados do controlador serão publicados nesta página.</p>
     );
   }
 

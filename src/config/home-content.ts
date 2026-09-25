@@ -2,7 +2,7 @@ import { Files, FileSearch, FileX, Quote, SearchX, Send, SlidersHorizontal } fro
 import type { CoverageRegion, HowItWorksStep, IconCard, MapHub, Persona, PlatformTab, SummaryItem } from "@/types";
 
 export const heroContent = {
-  eyebrow: "Piloto em São Paulo",
+  eyebrow: "Disponível para São Paulo",
   titleLead: "A IA lê o edital.",
   titleEmphasis: "Você decide.",
   subtitle:
@@ -133,22 +133,22 @@ export const responsibleAiContent: { eyebrow: string; title: string; description
   eyebrow: "IA responsável",
   title: "IA com responsabilidade",
   description:
-    "No piloto, a IA vai trabalhar como apoio da sua equipe: ela lê, organiza e aponta a fonte. A decisão continua sua.",
+    "A IA trabalha como apoio da sua equipe: ela lê, organiza e aponta a fonte. A decisão continua sua.",
   commitments: [
     {
       icon: Quote,
       title: "Cita a fonte",
-      description: "Cada ponto do resumo vai indicar a página e o item do edital de onde saiu.",
+      description: "Cada ponto do resumo indica a página e o item do edital de onde saiu.",
     },
     {
       icon: SearchX,
       title: "Diz “não encontrado no edital”",
-      description: "Quando o edital não trouxer a informação, a IA vai dizer isso em vez de preencher a lacuna.",
+      description: "Quando o edital não traz a informação, a IA diz isso em vez de preencher a lacuna.",
     },
     {
       icon: SlidersHorizontal,
       title: "Sugere, e você decide",
-      description: "A IA vai organizar as informações. Participar ou não, e por qual preço, é decisão da sua equipe.",
+      description: "A IA organiza as informações. Participar ou não, e por qual preço, é decisão da sua equipe.",
     },
     {
       icon: Send,
@@ -199,7 +199,7 @@ export const coverageContent: {
   eyebrow: "Cobertura",
   title: "Começamos por São Paulo",
   description:
-    "Nesta fase do piloto, acompanhamos licitações de órgãos estaduais e municipais paulistas. Outros estados vêm depois.",
+    "Licitações de órgãos estaduais e municipais de São Paulo, dos principais portais, em um só lugar. Outros estados em breve.",
   regions: [
     { name: "Grande São Paulo", cities: "Capital, Guarulhos, ABC" },
     { name: "Região de Campinas", cities: "Campinas, Americana, Sumaré" },
@@ -229,6 +229,6 @@ export const contactContent = {
   highlights: [
     "Conversa com quem está construindo o produto",
     "Um olhar sobre editais abertos em São Paulo no seu segmento",
-    "Convite para participar do piloto em São Paulo",
+    "Como a sua proposta sai cerca de 80% pronta",
   ],
 } as const;

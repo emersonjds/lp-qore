@@ -4,12 +4,12 @@ export const faqItems: readonly FAQItem[] = [
   {
     question: "A IA substitui a leitura do edital?",
     answer:
-      "Não. No piloto, a IA vai resumir o edital e indicar a página de origem de cada ponto, para você conferir no texto oficial antes de decidir. Quando algo não estiver no edital, ela vai dizer que não encontrou.",
+      "Não. A IA resume o edital e aponta a página de origem de cada ponto para você conferir no texto oficial. Quando algo não está no edital, ela avisa que não encontrou.",
   },
   {
     question: "Quais licitações o Qore cobre?",
     answer:
-      "Começamos por São Paulo: órgãos estaduais e municipais paulistas. Outros estados vêm depois. Se a sua empresa atua fora de SP, deixe seu contato e avisamos.",
+      "Órgãos estaduais e municipais de São Paulo, publicados nos principais portais. Outros estados em breve.",
   },
   {
     question: "O Qore envia a proposta ao portal?",
@@ -24,6 +24,6 @@ export const faqItems: readonly FAQItem[] = [
   {
     question: "Quanto custa?",
     answer:
-      "Ainda não publicamos preço. Estamos no piloto em São Paulo com um grupo pequeno de empresas. Fale com a gente para saber se a sua empresa pode participar.",
+      "Os planos variam conforme o porte da empresa e o volume de licitações. Fale com a gente para montar o seu.",
   },
 ];

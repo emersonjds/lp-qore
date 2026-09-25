@@ -5,13 +5,9 @@ import { ControllerIdentity } from "../controller-identity";
 const empty = { companyName: "", taxId: "", contactEmail: "", dataProtectionOfficer: "" };
 
 describe("ControllerIdentity", () => {
-  it("promises publication before the pilot while legal data is missing", () => {
+  it("promises publication while legal data is missing", () => {
     render(<ControllerIdentity legal={empty} />);
-    expect(
-      screen.getByText(
-        "Os dados do controlador (razão social, CNPJ e canal do encarregado) serão publicados aqui antes da abertura do piloto.",
-      ),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Os dados do controlador serão publicados nesta página.")).toBeInTheDocument();
   });
 
   it("lists the controller once legal data exists", () => {

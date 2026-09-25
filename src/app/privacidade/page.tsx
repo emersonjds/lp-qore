@@ -19,8 +19,7 @@ const PrivacyPage = () => (
 
       <h2 className={SECTION_TITLE_CLASS}>Para que usamos seus dados</h2>
       <p>
-        Usamos os dados do formulário Fale Conosco apenas para responder o seu contato e conversar sobre o piloto do
-        Qore. Não vendemos seus dados nem os usamos para publicidade.
+        Usamos os dados do formulário Fale Conosco apenas para responder o seu contato e apresentar o Qore. Não vendemos seus dados nem os usamos para publicidade.
       </p>
 
       <h2 className={SECTION_TITLE_CLASS}>Quais dados coletamos</h2>
@@ -42,7 +41,7 @@ const PrivacyPage = () => (
 
       <h2 className={SECTION_TITLE_CLASS}>Por quanto tempo guardamos</h2>
       <p>
-        Guardamos os dados enquanto durar a conversa sobre o piloto e por até 12 meses depois do último contato. Depois
+        Guardamos os dados enquanto durar a conversa com você e por até 12 meses depois do último contato. Depois
         disso, apagamos.
       </p>
 

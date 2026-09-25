@@ -33,7 +33,7 @@ A LP continua em repositório separado (`qore.com.br`), e o painel fica em `app.
 | Domínio | `NEXT_PUBLIC_SITE_URL`, padrão `https://qore.com.br`. A URL canônica, o sitemap, o `robots.txt`, o Open Graph e o JSON-LD derivam dela. `NEXT_PUBLIC_APP_URL`, padrão `https://app.qore.com.br` |
 | Leads | Netlify Forms, com o `<form name="contato" data-netlify="true" netlify-honeypot="bot-field">` presente no HTML exportado. O envio usa `fetch` (POST `application/x-www-form-urlencoded` para `/`), e o estado de sucesso ou erro aparece sem recarregar a página |
 | Dados da empresa | Razão social, CNPJ, fundadores, contato e DPO ainda **não existem** (SPA-478). Nenhum placeholder visível ("Nome do Cofundador", "00.000.000/0001-00"). Quem somos mostra só a missão; o rodapé não tem dados legais |
-| Privacidade | A página `/privacidade` explica a finalidade do formulário, os dados coletados, a base legal (consentimento), a retenção e os direitos do titular. A identificação do controlador vem de `siteConfig.legal`; enquanto estiver vazia, a seção diz que os dados do controlador serão publicados antes da abertura do piloto. **Publicar a LP em produção exige preencher `siteConfig.legal`**, item de go-live |
+| Privacidade | A página `/privacidade` explica a finalidade do formulário, os dados coletados, a base legal (consentimento), a retenção e os direitos do titular. A identificação do controlador vem de `siteConfig.legal`; enquanto estiver vazia, a seção diz que os dados do controlador serão publicados nesta página. **Publicar a LP em produção exige preencher `siteConfig.legal`**, item de go-live |
 | Imagens | Export estático sem otimizador. As screenshots do painel são geradas uma vez, a partir do `qore-web` com os dados de demonstração, e convertidas para AVIF e WebP com `sharp` (devDependency, script em `scripts/`). Servidas com `<picture>`, `width`/`height` explícitos e `loading="lazy"`, exceto acima da dobra |
 | Honestidade | Toda tela de produto e todo número exibido dentro dela leva o selo **"Tela ilustrativa"**. Nenhum número aparece como afirmação da empresa. Painéis que o SPA-426 lista como fabricados (itens do edital, média histórica, recomendação Go/No-Go, concorrentes, win rate) não aparecem |
 
@@ -41,12 +41,14 @@ A LP continua em repositório separado (`qore.com.br`), e o painel fica em `app.
 
 A copy base está no SPA-474, adaptada à referência do Stitch.
 
+**Tom (decisão do dono do produto, 25/09/2026):** a copy fala no presente, como produto em operação. A palavra "piloto" sai de toda a copy (entra na lista de termos proibidos) e o selo do hero passa a ser "Disponível para São Paulo". A cobertura continua restrita a São Paulo, porque é o que é verdade hoje.
+
 1. **Header fixo.**
    - Logo, âncoras (Como funciona, Plataforma, IA responsável, FAQ) e o CTA "Fale com a gente" (`#contato`).
    - No mobile, menu em `Sheet`.
    - Fundo translúcido depois do scroll, só com CSS e um observer pequeno.
 2. **Hero.**
-   - Eyebrow "Piloto em São Paulo" e o H1 "A IA lê o edital. **Você decide.**".
+   - Eyebrow "Disponível para São Paulo" e o H1 "A IA lê o edital. **Você decide.**".
    - Subtítulo: "Encontre licitações de São Paulo pelo seu CNPJ, entenda o edital com um resumo de IA que cita a página de origem e monte sua proposta com segurança."
    - CTAs "Fale com a gente" e "Ver como funciona", com o microcopy "Sem cadastro e sem cartão".
    - À direita, um card HTML/CSS "Resumo Inteligente Qore" com os trechos citados ("pág. 12") e o selo "Tela ilustrativa".

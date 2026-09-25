@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { Coverage } from "../coverage";
 
 describe("Coverage", () => {
-  it("says the pilot starts in São Paulo only", () => {
+  it("says coverage starts in São Paulo only", () => {
     render(<Coverage />);
     expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Começamos por São Paulo");
   });

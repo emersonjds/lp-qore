@@ -20,8 +20,8 @@ describe("ResponsibleAi", () => {
     ).toBeInTheDocument();
   });
 
-  it("speaks about the pilot in the future tense", () => {
+  it("speaks as an operating product, in the present tense", () => {
     render(<ResponsibleAi />);
-    expect(screen.getByText(/No piloto, a IA vai/)).toBeInTheDocument();
+    expect(screen.getByText(/A IA trabalha como apoio da sua equipe/)).toBeInTheDocument();
   });
 });

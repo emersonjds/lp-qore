@@ -9,4 +9,5 @@ export const FORBIDDEN_TERMS: readonly string[] = [
   "R$ 149",
   "BNCP",
   "00.000.000",
+  "piloto",
 ];
