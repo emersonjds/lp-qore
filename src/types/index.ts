@@ -58,11 +58,10 @@ export interface PersonaMetric {
 }
 
 export interface Persona {
-  id: "manager" | "analyst";
+  id: "analyst" | "manager";
   toggleLabel: string;
   title: string;
-  description: string;
-  metrics: readonly PersonaMetric[];
+  features: readonly IconCard[];
 }
 
 export interface CoverageRegion {

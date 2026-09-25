@@ -1,5 +1,34 @@
-import { Files, FileSearch, FileX, Quote, SearchX, Send, SlidersHorizontal } from "lucide-react";
-import type { CoverageRegion, HowItWorksStep, IconCard, MapHub, Persona, PlatformTab, SummaryItem } from "@/types";
+import {
+  BadgeCheck,
+  CalendarClock,
+  ChartPie,
+  FileCheck2,
+  Files,
+  FileSearch,
+  FileX,
+  Gauge,
+  ListChecks,
+  Quote,
+  Radar,
+  SearchCheck,
+  SearchX,
+  Send,
+  SlidersHorizontal,
+  Sparkles,
+  TriangleAlert,
+  UserCog,
+  UsersRound,
+} from "lucide-react";
+import type {
+  CoverageRegion,
+  HowItWorksStep,
+  IconCard,
+  MapHub,
+  Persona,
+  PersonaMetric,
+  PlatformTab,
+  SummaryItem,
+} from "@/types";
 
 export const heroContent = {
   eyebrow: "Disponível para São Paulo",
@@ -162,34 +191,103 @@ export const responsibleAiContent: { eyebrow: string; title: string; description
 
 export const personasContent: { eyebrow: string; title: string; personas: readonly [Persona, Persona] } = {
   eyebrow: "Para cada função",
-  title: "Feito para quem decide e para quem prepara a proposta",
+  title: "Feito para quem prepara a proposta e para quem decide",
   personas: [
     {
-      id: "manager",
-      toggleLabel: "Visão do gestor",
-      title: "Para quem decide",
-      description: "Veja o que está em disputa, os prazos da semana e a carga da equipe sem abrir planilha.",
-      metrics: [
-        { label: "Licitações em análise", value: "12", detail: "3 com sessão nesta semana" },
-        { label: "Valor em disputa", value: "R$ 1,8 mi", detail: "Soma das propostas em andamento" },
-        { label: "Prazos da semana", value: "4", detail: "1 pedido de esclarecimento vence hoje" },
-        { label: "Propostas enviadas no mês", value: "5", detail: "Todas revisadas pela equipe" },
+      id: "analyst",
+      toggleLabel: "Analista de licitações",
+      title: "Seu dia sem planilha nem PDF de 80 páginas",
+      features: [
+        {
+          icon: Radar,
+          title: "Match por CNPJ",
+          description: "A IA cruza CNAE, porte, catálogo e histórico da empresa com cada edital e mostra a aderência.",
+        },
+        {
+          icon: SearchCheck,
+          title: "Busca por termos correlatos",
+          description: "Procure “computador” e encontre também “notebook” e “desktop”.",
+        },
+        {
+          icon: Sparkles,
+          title: "Resumo do edital",
+          description: "O essencial do edital com a página de origem de cada ponto.",
+        },
+        {
+          icon: FileCheck2,
+          title: "Proposta cerca de 80% pronta",
+          description: "Você só completa os preços, e o documento sai com a marca da empresa.",
+        },
+        {
+          icon: TriangleAlert,
+          title: "Alerta de preço inexequível",
+          description: "Aviso quando o preço fica muito abaixo da referência do edital.",
+        },
+        {
+          icon: CalendarClock,
+          title: "Calendário de prazos",
+          description: "Impugnação, esclarecimento, abertura e sessão em um só lugar.",
+        },
+        {
+          icon: ListChecks,
+          title: "Checklist de habilitação",
+          description: "Os documentos exigidos, com as certidões já conferidas.",
+        },
       ],
     },
     {
-      id: "analyst",
-      toggleLabel: "Visão do analista",
-      title: "Para quem prepara a proposta",
-      description: "Saiba o que ler primeiro, quais certidões vencem e o que falta para enviar.",
-      metrics: [
-        { label: "Fila do dia", value: "3 editais", detail: "1 com prazo de impugnação hoje" },
-        { label: "Certidões", value: "1 vence em 10 dias", detail: "CND federal" },
-        { label: "Pontos sem resposta no edital", value: "2", detail: "Marcados como não encontrados" },
-        { label: "Minuta da proposta", value: "Pronta para revisão", detail: "Falta anexar a declaração de ME/EPP" },
+      id: "manager",
+      toggleLabel: "Gestor de licitações",
+      title: "Visão da operação inteira em uma tela",
+      features: [
+        {
+          icon: Gauge,
+          title: "Painel do gestor",
+          description: "Valor ganho, licitações ganhas, taxa de vitória e valor em disputa.",
+        },
+        {
+          icon: CalendarClock,
+          title: "Calendário do mês",
+          description: "Sessões e prazos de todas as licitações da equipe.",
+        },
+        {
+          icon: ChartPie,
+          title: "Distribuição por modalidade",
+          description: "Onde a equipe está disputando: pregão, concorrência, dispensa.",
+        },
+        {
+          icon: UsersRound,
+          title: "Ritmo da equipe",
+          description: "O andamento de cada analista, sem pedir relatório.",
+        },
+        {
+          icon: UserCog,
+          title: "Papéis e permissões",
+          description: "Administrador, Gestor e Analista, cada um com o acesso certo.",
+        },
+        {
+          icon: BadgeCheck,
+          title: "Aprovação de propostas",
+          description: "Nenhuma proposta sai sem a sua revisão antes do envio.",
+        },
       ],
     },
   ],
 };
+
+export const analystMatchExample = {
+  tender: "Pregão eletrônico: aquisição de notebooks",
+  agency: "Prefeitura de Campinas",
+  score: 87,
+  criteria: ["CNAE compatível", "Porte da empresa atendido", "3 itens do catálogo no edital"],
+} as const;
+
+export const managerMetricsExample: readonly PersonaMetric[] = [
+  { label: "Licitações em análise", value: "12", detail: "3 com sessão nesta semana" },
+  { label: "Valor em disputa", value: "R$ 1,8 mi", detail: "Soma das propostas em andamento" },
+  { label: "Prazos da semana", value: "4", detail: "1 pedido de esclarecimento vence hoje" },
+  { label: "Propostas enviadas no mês", value: "5", detail: "Todas revisadas pela equipe" },
+];
 
 export const coverageContent: {
   eyebrow: string;
