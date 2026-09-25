@@ -15,14 +15,14 @@ const ProposalDocumentIllustration = () => (
         className="flex h-14 w-28 shrink-0 flex-col items-center justify-center gap-1 rounded-md border border-dashed border-input text-muted-foreground"
       >
         <ImagePlus aria-hidden="true" className="size-4" />
-        <span className="text-caption">Sua marca</span>
+        <span className="text-caption">{proposalContent.brandSlotLabel}</span>
       </div>
       <Badge variant="outline">Exemplo ilustrativo</Badge>
     </div>
-    <p className="mt-6 font-display text-title-md text-foreground">Proposta comercial</p>
+    <p className="mt-6 font-display text-title-md text-foreground">{proposalContent.documentTitle}</p>
     <div className="mt-4 flex items-center justify-between text-label-md">
       <span id="proposal-progress-label" className="text-muted-foreground">
-        Proposta preenchida
+        {proposalContent.progressLabel}
       </span>
       <span className="font-display text-title-md text-primary tabular-nums">80%</span>
     </div>
@@ -41,7 +41,7 @@ const ProposalDocumentIllustration = () => (
         <li key={step} className="flex items-center gap-3 rounded-md bg-surface-low px-4 py-3 text-body-md">
           <CircleCheck aria-hidden="true" className="size-5 shrink-0 text-primary" />
           <span className="flex-1">{step}</span>
-          <span className="text-label-sm text-primary">Preenchido</span>
+          <span className="text-label-sm text-primary">{proposalContent.completedLabel}</span>
         </li>
       ))}
       <li
@@ -50,7 +50,7 @@ const ProposalDocumentIllustration = () => (
       >
         <Hourglass aria-hidden="true" className="size-5 shrink-0 text-warning-text" />
         <span className="flex-1">{proposalContent.pendingStep}</span>
-        <span className="text-label-sm text-warning-text">Com você</span>
+        <span className="text-label-sm text-warning-text">{proposalContent.pendingLabel}</span>
       </li>
     </ul>
   </figure>

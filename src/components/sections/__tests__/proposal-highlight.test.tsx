@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import { proposalContent } from "@/config/features";
 import { ProposalHighlight } from "../proposal-highlight";
 
 describe("ProposalHighlight", () => {
@@ -23,6 +24,14 @@ describe("ProposalHighlight", () => {
     render(<ProposalHighlight />);
     expect(screen.getByText("Sua marca")).toBeInTheDocument();
     expect(screen.getByText("Exemplo ilustrativo")).toBeInTheDocument();
+  });
+
+  it("takes the document labels from the content config", () => {
+    render(<ProposalHighlight />);
+    expect(screen.getByText(proposalContent.documentTitle)).toBeInTheDocument();
+    expect(screen.getAllByText(proposalContent.completedLabel)).toHaveLength(proposalContent.completedSteps.length);
+    expect(screen.getByText(proposalContent.pendingLabel)).toBeInTheDocument();
+    expect(screen.getByText(proposalContent.brandSlotLabel)).toBeInTheDocument();
   });
 
   it("accepts a real screenshot in place of the drawing", () => {
