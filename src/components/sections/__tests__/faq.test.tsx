@@ -4,13 +4,19 @@ import { faqItems } from "@/config/faq";
 import { Faq } from "../faq";
 
 describe("Faq", () => {
-  it("renders the five questions as native disclosure widgets", () => {
+  it("renders the six questions as native disclosure widgets", () => {
     const { container } = render(<Faq />);
     const disclosures = container.querySelectorAll("details");
-    expect(disclosures).toHaveLength(5);
+    expect(disclosures).toHaveLength(6);
     expect([...container.querySelectorAll("summary")].map((summary) => summary.textContent)).toEqual(
       faqItems.map((item) => item.question),
     );
+  });
+
+  it("explains how the proposal gets about 80% ready", () => {
+    render(<Faq />);
+    expect(screen.getByText("Como a proposta fica pronta?")).toBeInTheDocument();
+    expect(screen.getByText(/chega cerca de 80% pronta/)).toBeInTheDocument();
   });
 
   it("keeps every answer in the HTML for search engines and no-JS readers", () => {
