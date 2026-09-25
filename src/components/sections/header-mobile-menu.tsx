@@ -41,7 +41,7 @@ export const HeaderMobileMenu = ({ links, contactHref }: HeaderMobileMenuProps) 
           </ul>
         </nav>
         <Button asChild size="lg" className="mt-auto w-full">
-          <a href={contactHref} onClick={close}>
+          <a href={contactHref} onClick={close} data-cta="mobile-menu">
             Fale com a gente
           </a>
         </Button>

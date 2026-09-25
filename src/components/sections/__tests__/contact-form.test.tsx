@@ -26,6 +26,15 @@ describe("ContactForm", () => {
     expect(html).toContain('name="form-name" value="contato"');
   });
 
+  it("reassures under the button and tags the submit as the final CTA", () => {
+    render(<ContactForm />);
+    expect(screen.getByText("Resposta em horário comercial. Sem cadastro, sem cartão.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Quero ver a Qore com as minhas licitações" })).toHaveAttribute(
+      "data-cta",
+      "contact-submit",
+    );
+  });
+
   it("keeps consent unchecked by default", () => {
     render(<ContactForm />);
     expect(screen.getByRole("checkbox")).not.toBeChecked();
@@ -35,7 +44,7 @@ describe("ContactForm", () => {
   it("shows every error and focuses the first invalid field", async () => {
     const user = userEvent.setup();
     render(<ContactForm />);
-    await user.click(screen.getByRole("button", { name: "Quero falar com a equipe" }));
+    await user.click(screen.getByRole("button", { name: "Quero ver a Qore com as minhas licitações" }));
     expect(screen.getByText("Informe seu nome.")).toBeInTheDocument();
     expect(screen.getByText("Escolha o seu cargo.")).toBeInTheDocument();
     expect(screen.getByLabelText(/Nome/)).toHaveFocus();
@@ -57,7 +66,7 @@ describe("ContactForm", () => {
     const user = userEvent.setup();
     render(<ContactForm />);
     await fillValidForm(user);
-    await user.click(screen.getByRole("button", { name: "Quero falar com a equipe" }));
+    await user.click(screen.getByRole("button", { name: "Quero ver a Qore com as minhas licitações" }));
     await waitFor(() =>
       expect(screen.getByRole("status")).toHaveTextContent(
         "Recebemos seu contato, Maria Souza. Vamos falar com você pelo e-mail ou WhatsApp informado.",
@@ -72,7 +81,7 @@ describe("ContactForm", () => {
     const user = userEvent.setup();
     render(<ContactForm />);
     await fillValidForm(user);
-    await user.click(screen.getByRole("button", { name: "Quero falar com a equipe" }));
+    await user.click(screen.getByRole("button", { name: "Quero ver a Qore com as minhas licitações" }));
     await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent(CONTACT_SUBMIT_ERROR));
   });
 });

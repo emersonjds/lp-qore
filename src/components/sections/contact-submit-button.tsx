@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/button";
 export type ContactFormStatus = "idle" | "submitting" | "success" | "error";
 
 const LABELS: Record<ContactFormStatus, string> = {
-  idle: "Quero falar com a equipe",
+  idle: "Quero ver a Qore com as minhas licitações",
   submitting: "Enviando…",
   success: "Enviado",
-  error: "Quero falar com a equipe",
+  error: "Quero ver a Qore com as minhas licitações",
 };
 
 interface ContactSubmitButtonProps {
@@ -14,7 +14,13 @@ interface ContactSubmitButtonProps {
 }
 
 export const ContactSubmitButton = ({ status }: ContactSubmitButtonProps) => (
-  <Button type="submit" size="lg" className="w-full" disabled={status === "submitting"}>
+  <Button
+    type="submit"
+    size="lg"
+    data-cta="contact-submit"
+    className="h-auto min-h-12 w-full whitespace-normal py-3 text-center"
+    disabled={status === "submitting"}
+  >
     {LABELS[status]}
   </Button>
 );

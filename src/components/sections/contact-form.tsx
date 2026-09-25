@@ -246,6 +246,9 @@ export const ContactForm = () => {
       </div>
 
       <ContactSubmitButton status={status} />
+      <p className="-mt-2 text-center text-caption text-muted-foreground">
+        Resposta em horário comercial. Sem cadastro, sem cartão.
+      </p>
       <p role="status" aria-live="polite" className="min-h-6 text-body-md text-foreground">
         {feedback}
       </p>

@@ -5,7 +5,7 @@ import { CONTACT_HREF, HOW_IT_WORKS_HREF } from "@/config/navigation";
 import { HeroSummaryCard } from "./hero-summary-card";
 
 export const Hero = () => (
-  <section aria-labelledby="hero-title" className="pt-28 pb-16 md:pt-36 md:pb-24">
+  <section id="inicio" aria-labelledby="hero-title" className="pt-28 pb-16 md:pt-36 md:pb-24">
     <Container className="grid items-center gap-12 lg:grid-cols-2">
       <div className="flex flex-col items-start gap-6">
         <p className="inline-flex items-center gap-2 rounded-full border border-primary-tint-strong bg-primary-tint px-3 py-1 text-label-sm text-primary">
@@ -19,11 +19,15 @@ export const Hero = () => (
         </h1>
         <p className="max-w-xl text-body-lg text-muted-foreground">{heroContent.subtitle}</p>
         <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-          <Button asChild size="lg">
-            <a href={CONTACT_HREF}>Fale com a gente</a>
+          <Button asChild size="lg" className="h-auto min-h-12 whitespace-normal py-3 text-center">
+            <a href={CONTACT_HREF} data-cta="hero-primary">
+              {heroContent.primaryAction}
+            </a>
           </Button>
           <Button asChild size="lg" variant="outline">
-            <a href={HOW_IT_WORKS_HREF}>Ver como funciona</a>
+            <a href={HOW_IT_WORKS_HREF} data-cta="hero-secondary">
+              {heroContent.secondaryAction}
+            </a>
           </Button>
         </div>
         <p className="text-label-md text-muted-foreground">{heroContent.microcopy}</p>

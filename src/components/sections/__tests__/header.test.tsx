@@ -12,6 +12,7 @@ describe("Header", () => {
     expect(within(navigation).getByRole("link", { name: "IA responsável" })).toHaveAttribute("href", "/#ia-responsavel");
     expect(within(navigation).getByRole("link", { name: "FAQ" })).toHaveAttribute("href", "/#faq");
     expect(screen.getByRole("link", { name: "Fale com a gente" })).toHaveAttribute("href", "/#contato");
+    expect(screen.getByRole("link", { name: "Fale com a gente" })).toHaveAttribute("data-cta", "header");
   });
 
   it("opens the mobile menu and closes it after choosing a link", async () => {
