@@ -2,6 +2,7 @@ import { About } from "@/components/sections/about";
 import { Contact } from "@/components/sections/contact";
 import { Coverage } from "@/components/sections/coverage";
 import { Faq } from "@/components/sections/faq";
+import { Features } from "@/components/sections/features";
 import { Hero } from "@/components/sections/hero";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Personas } from "@/components/sections/personas";
@@ -14,6 +15,7 @@ const HomePage = () => (
     <Hero />
     <Problem />
     <HowItWorks />
+    <Features />
     <PlatformTour />
     <ResponsibleAi />
     <Personas />
