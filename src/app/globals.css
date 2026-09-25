@@ -154,6 +154,43 @@
     opacity: 0;
     transform: translateY(16px);
   }
+
+  .coverage-hub {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 200ms ease-out;
+  }
+
+  .coverage-hub:hover {
+    transform: scale(1.4);
+  }
+
+  details[data-faq] > summary {
+    list-style: none;
+  }
+
+  details[data-faq] > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details[data-faq][open] > [data-faq-answer] {
+    animation: faq-open 200ms ease-out;
+  }
+
+  details[data-faq][open] [data-faq-icon] {
+    transform: rotate(180deg);
+  }
+
+  @keyframes faq-open {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

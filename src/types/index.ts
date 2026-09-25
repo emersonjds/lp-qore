@@ -64,3 +64,18 @@ export interface Persona {
   description: string;
   metrics: readonly PersonaMetric[];
 }
+
+export interface CoverageRegion {
+  name: string;
+  cities: string;
+}
+
+export interface MapHub {
+  name: string;
+  centerX: number;
+  centerY: number;
+  radius: number;
+  labelX: number;
+  labelY: number;
+  labelAnchor: "start" | "end";
+}

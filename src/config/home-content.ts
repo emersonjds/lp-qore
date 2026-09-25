@@ -1,5 +1,5 @@
 import { Files, FileSearch, FileX, Quote, SearchX, Send, SlidersHorizontal } from "lucide-react";
-import type { HowItWorksStep, IconCard, Persona, PlatformTab, SummaryItem } from "@/types";
+import type { CoverageRegion, HowItWorksStep, IconCard, MapHub, Persona, PlatformTab, SummaryItem } from "@/types";
 
 export const heroContent = {
   eyebrow: "Piloto em São Paulo",
@@ -188,3 +188,36 @@ export const personasContent: { eyebrow: string; title: string; personas: readon
     },
   ],
 };
+
+export const coverageContent: {
+  eyebrow: string;
+  title: string;
+  description: string;
+  regions: readonly CoverageRegion[];
+  hubs: readonly MapHub[];
+} = {
+  eyebrow: "Cobertura",
+  title: "Começamos por São Paulo",
+  description:
+    "Nesta fase do piloto, acompanhamos licitações de órgãos estaduais e municipais paulistas. Outros estados vêm depois.",
+  regions: [
+    { name: "Grande São Paulo", cities: "Capital, Guarulhos, ABC" },
+    { name: "Região de Campinas", cities: "Campinas, Americana, Sumaré" },
+    { name: "Vale do Paraíba", cities: "São José dos Campos, Taubaté" },
+    { name: "Interior e Litoral", cities: "Ribeirão Preto, Santos, Sorocaba" },
+  ],
+  hubs: [
+    { name: "São Paulo", centerX: 260, centerY: 190, radius: 6, labelX: 272, labelY: 194, labelAnchor: "start" },
+    { name: "Campinas", centerX: 230, centerY: 160, radius: 5, labelX: 222, labelY: 152, labelAnchor: "end" },
+    { name: "Santos", centerX: 275, centerY: 215, radius: 4, labelX: 285, labelY: 222, labelAnchor: "start" },
+    { name: "Ribeirão Preto", centerX: 190, centerY: 90, radius: 4, labelX: 182, labelY: 86, labelAnchor: "end" },
+    { name: "S. José dos Campos", centerX: 295, centerY: 170, radius: 4, labelX: 395, labelY: 160, labelAnchor: "end" },
+  ],
+};
+
+export const aboutContent = {
+  eyebrow: "Quem somos",
+  title: "Licitação pública ao alcance de quem hoje fica de fora",
+  mission:
+    "O Qore nasceu para tornar a licitação pública acessível às empresas que hoje ficam de fora por falta de tempo e de estrutura. Começamos por São Paulo, ouvindo quem disputa licitações no dia a dia.",
+} as const;
