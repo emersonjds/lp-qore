@@ -36,3 +36,17 @@ export interface MarketNumber {
   source: string;
   date: string;
 }
+
+export interface HowItWorksStep {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface PlatformTab {
+  id: string;
+  label: string;
+  caption: string;
+  image: string;
+  alt: string;
+}
