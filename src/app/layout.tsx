@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Hanken_Grotesk, Inter } from "next/font/google";
+import { RevealObserver } from "@/components/layout/reveal-observer";
+import { Footer } from "@/components/sections/footer";
+import { Header } from "@/components/sections/header";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -30,7 +33,19 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children }: RootLayoutProps) => (
   <html lang="pt-BR" className={`${inter.variable} ${hankenGrotesk.variable}`}>
-    <body className="min-h-dvh bg-background font-sans text-foreground antialiased">{children}</body>
+    <body className="relative min-h-dvh bg-background font-sans text-foreground antialiased">
+      <div id="top-sentinel" aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-6" />
+      <a
+        href="#conteudo"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-md focus:bg-card focus:px-4 focus:py-3 focus:shadow-lg"
+      >
+        Pular para o conteúdo
+      </a>
+      <Header />
+      {children}
+      <Footer />
+      <RevealObserver />
+    </body>
   </html>
 );
 
