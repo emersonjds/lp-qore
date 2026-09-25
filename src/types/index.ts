@@ -13,6 +13,7 @@ export interface PricingTier {
   period: string;
   features: string[];
   cta: string;
+  ctaMicro?: string;
   highlighted: boolean;
 }
 
@@ -22,6 +23,7 @@ export interface Testimonial {
   role: string;
   company: string;
   rating: number;
+  metric?: string;
 }
 
 export interface FAQItem {

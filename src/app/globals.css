@@ -49,6 +49,25 @@
   --sidebar-accent-foreground: #1A2B48;
   --sidebar-border: #E2E8F0;
   --sidebar-ring: #059669;
+
+  /* Acentos vibrantes — usados em gradient mesh, glows e detalhes "premium" */
+  --accent-cyan: #06B6D4;
+  --accent-violet: #8B5CF6;
+  --accent-emerald: #10B981;
+  --accent-magenta: #EC4899;
+
+  /* Superfícies semânticas */
+  --surface-deep: #0F1C2E;
+  --surface-raised: #FFFFFF;
+  --surface-tinted: #F0FDF9;
+
+  /* Sombras de card */
+  --shadow-card: 0 2px 8px -2px rgba(15,23,42,0.06), 0 12px 32px -8px rgba(15,23,42,0.08);
+  --shadow-card-hover: 0 4px 16px -4px rgba(15,23,42,0.10), 0 24px 48px -12px rgba(15,23,42,0.14);
+
+  /* Gradients semânticos */
+  --gradient-section-dark: linear-gradient(160deg, #0F1C2E 0%, #1A2B48 100%);
+  --gradient-number: linear-gradient(135deg, #10B981 0%, #059669 60%, #1A2B48 100%);
 }
 
 @theme inline {
@@ -85,14 +104,218 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-emerald: var(--accent-emerald);
+  --color-accent-magenta: var(--accent-magenta);
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-3xl: calc(var(--radius) + 20px);
   --font-sans: var(--font-inter);
+  --breakpoint-3xl: 1920px;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Superfícies semânticas
+   ────────────────────────────────────────────────────────────────────── */
+
+.bg-surface-tinted {
+  background-color: var(--surface-tinted);
+}
+
+.bg-surface-deep {
+  background: var(--gradient-section-dark);
+}
+
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-card-hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Número display com gradient de marca */
+.text-gradient-number {
+  background: var(--gradient-number);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Type scale display */
+.text-display-2xl {
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.text-display-xl {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+}
+
+.text-display-l {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.text-eyebrow {
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Utilitários "cinematográficos" — grain, gradient mesh, glow, displays
+   ────────────────────────────────────────────────────────────────────── */
+
+/* Tipografia display: tracking apertado e leading colado, estilo Linear/Cursor */
+.font-display {
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  font-feature-settings: "ss01", "cv11";
+}
+
+/* Tracking utilitários extras */
+.tracking-tightest {
+  letter-spacing: -0.05em;
+}
+
+/* Grain (noise) sutil — usado por cima de gradients */
+.bg-grain {
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 220px 220px;
+}
+
+/* Gradient mesh — multicor saturado, posições em diagonal */
+.bg-mesh-hero {
+  background-color: #F8FAFC;
+  background-image:
+    radial-gradient(at 12% 8%, rgba(16, 185, 129, 0.22) 0px, transparent 55%),
+    radial-gradient(at 88% 12%, rgba(5, 150, 105, 0.16) 0px, transparent 50%),
+    radial-gradient(at 70% 75%, rgba(16, 185, 129, 0.14) 0px, transparent 55%),
+    radial-gradient(at 25% 90%, rgba(5, 150, 105, 0.18) 0px, transparent 50%);
+}
+
+.bg-mesh-soft {
+  background-image:
+    radial-gradient(at 25% 25%, rgba(16, 185, 129, 0.10) 0px, transparent 50%),
+    radial-gradient(at 75% 75%, rgba(5, 150, 105, 0.08) 0px, transparent 50%);
+}
+
+.bg-mesh-cta {
+  background-color: #042F2A;
+  background-image:
+    radial-gradient(at 14% 18%, rgba(16, 185, 129, 0.55) 0px, transparent 50%),
+    radial-gradient(at 86% 22%, rgba(5, 150, 105, 0.55) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.45) 0px, transparent 55%);
+}
+
+/* Borda em gradient — verde institucional em duas intensidades */
+.gradient-border {
+  position: relative;
+  isolation: isolate;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #10B981 0%, #059669 50%, #047857 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Glow utilities */
+.glow-primary {
+  box-shadow:
+    0 0 0 1px rgba(5, 150, 105, 0.15),
+    0 8px 24px -8px rgba(5, 150, 105, 0.45),
+    0 24px 64px -12px rgba(5, 150, 105, 0.25);
+}
+.glow-violet {
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.15),
+    0 8px 24px -8px rgba(139, 92, 246, 0.45);
+}
+.glow-cyan {
+  box-shadow:
+    0 0 0 1px rgba(6, 182, 212, 0.15),
+    0 8px 24px -8px rgba(6, 182, 212, 0.45);
+}
+
+/* Sombra "elevada" estilo Stripe/Linear */
+.shadow-elevated {
+  box-shadow:
+    0 1px 0 0 rgba(15, 23, 42, 0.04),
+    0 4px 12px -2px rgba(15, 23, 42, 0.08),
+    0 24px 48px -12px rgba(15, 23, 42, 0.12);
+}
+
+/* Scroll-marquee infinito (logos) */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Pulso lento para badges "live" */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.6; transform: scale(1.15); }
+}
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* Float sutil para elementos orbitando o hero */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.animate-float-y {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+/* Gradient brand: tons de verde institucional (verde claro → verde escuro). */
+.text-gradient-brand {
+  background: linear-gradient(120deg, #10B981 0%, #059669 55%, #065F46 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-pulse-soft,
+  .animate-float-y {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
