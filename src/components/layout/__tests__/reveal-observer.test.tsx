@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { IntersectionObserverMock } from "@/test-utils/browser-mocks";
-import { RevealObserver } from "./reveal-observer";
+import { RevealObserver } from "../reveal-observer";
 
 describe("RevealObserver", () => {
   it("enables reveal styling only after JavaScript runs", () => {

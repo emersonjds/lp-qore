@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { Button } from "./button";
-import { Input } from "./input";
+import { Button } from "../button";
+import { Input } from "../input";
 
 describe("Button", () => {
   it("is at least 44px tall by default", () => {

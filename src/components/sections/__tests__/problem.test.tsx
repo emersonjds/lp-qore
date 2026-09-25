@@ -1,6 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { Problem } from "./problem";
+import { Problem } from "../problem";
 
 describe("Problem", () => {
   it("lists three pains, each revealed on scroll", () => {

@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { platformTabs } from "@/config/home-content";
-import { PlatformTourTabs } from "./platform-tour-tabs";
+import { PlatformTourTabs } from "../platform-tour-tabs";
 
 describe("PlatformTourTabs", () => {
   it("shows the first screen and hides the others after hydration", () => {

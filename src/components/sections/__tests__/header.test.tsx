@@ -1,7 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
-import { Header } from "./header";
+import { Header } from "../header";
 
 describe("Header", () => {
   it("links to every section anchor and to the contact form", () => {

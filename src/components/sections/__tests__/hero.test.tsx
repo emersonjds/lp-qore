@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { Hero } from "./hero";
+import { Hero } from "../hero";
 
 describe("Hero", () => {
   it("states the slogan as the only level-one heading", () => {

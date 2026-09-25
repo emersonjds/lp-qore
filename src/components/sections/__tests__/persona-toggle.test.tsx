@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { personasContent } from "@/config/home-content";
-import { PersonaToggle } from "./persona-toggle";
+import { PersonaToggle } from "../persona-toggle";
 
 describe("PersonaToggle", () => {
   it("starts on the manager view", () => {

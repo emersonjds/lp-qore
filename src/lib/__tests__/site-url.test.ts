@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { absoluteUrl, resolveSiteUrl } from "./site-url";
+import { absoluteUrl, resolveSiteUrl } from "../site-url";
 
 describe("resolveSiteUrl", () => {
   it("falls back to the production domain when the variable is missing", () => {

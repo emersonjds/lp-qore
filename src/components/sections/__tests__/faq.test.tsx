@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { faqItems } from "@/config/faq";
-import { Faq } from "./faq";
+import { Faq } from "../faq";
 
 describe("Faq", () => {
   it("renders the five questions as native disclosure widgets", () => {

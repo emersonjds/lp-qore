@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { Logo } from "./logo";
+import { Logo } from "../logo";
 
 describe("Logo", () => {
   it("reads as the Qore wordmark with an emerald dot", () => {

@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { IntersectionObserverMock } from "@/test-utils/browser-mocks";
-import { ScrollStateObserver } from "./scroll-state-observer";
+import { ScrollStateObserver } from "../scroll-state-observer";
 
 const renderWithTargets = () =>
   render(

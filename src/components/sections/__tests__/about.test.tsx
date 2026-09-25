@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { About } from "./about";
+import { About } from "../about";
 
 describe("About", () => {
   it("states the mission without names or photos", () => {

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { ResponsibleAi } from "./responsible-ai";
+import { ResponsibleAi } from "../responsible-ai";
 
 describe("ResponsibleAi", () => {
   it("lists the four commitments", () => {

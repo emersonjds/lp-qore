@@ -1,6 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { HowItWorks } from "./how-it-works";
+import { HowItWorks } from "../how-it-works";
 
 describe("HowItWorks", () => {
   it("lists the three steps in order", () => {

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { Coverage } from "./coverage";
+import { Coverage } from "../coverage";
 
 describe("Coverage", () => {
   it("says the pilot starts in São Paulo only", () => {
