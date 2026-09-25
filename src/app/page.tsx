@@ -7,6 +7,7 @@ import { Faq } from "@/components/sections/faq";
 import { Features } from "@/components/sections/features";
 import { Hero } from "@/components/sections/hero";
 import { HowItWorks } from "@/components/sections/how-it-works";
+import { Integrations } from "@/components/sections/integrations";
 import { MobileCtaBar } from "@/components/sections/mobile-cta-bar";
 import { Personas } from "@/components/sections/personas";
 import { PlatformTour } from "@/components/sections/platform-tour";
@@ -29,6 +30,8 @@ const HomePage = () => (
     <ResponsibleAi />
     <Personas />
     <TimeSaved />
+    <Integrations />
+    <CtaBanner {...ctaBanners.afterIntegrations} />
     <Coverage />
     <About />
     <Faq />
