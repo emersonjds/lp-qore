@@ -1,6 +1,10 @@
+import { Hero } from "@/components/sections/hero";
+import { Problem } from "@/components/sections/problem";
+
 const HomePage = () => (
   <main id="conteudo" tabIndex={-1}>
-    <h1>A IA lê o edital. Você decide.</h1>
+    <Hero />
+    <Problem />
   </main>
 );
 
