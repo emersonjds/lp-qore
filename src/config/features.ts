@@ -1,48 +1,48 @@
 import {
+  BrainCircuit,
   Search,
-  Shield,
-  BarChart3,
-  Bell,
-  FileText,
-  Globe,
+  ListChecks,
+  ShieldCheck,
+  PackageSearch,
+  Plug,
 } from "lucide-react";
 import type { Feature } from "@/types";
 
 export const features: Feature[] = [
   {
+    icon: BrainCircuit,
+    title: "Análise de Compatibilidade com IA",
+    description:
+      "Cruzamos seu catálogo com cada edital e mostramos o % de match. Você só investe tempo em licitação que faz sentido para o seu negócio.",
+  },
+  {
     icon: Search,
-    title: "Busca Inteligente de Editais",
+    title: "Busca contextual com IA",
     description:
-      "Encontre licitações relevantes para o seu negócio com filtros avançados por órgão, modalidade, segmento e valor estimado.",
+      "Digite o que vende e a IA expande o vocabulário do seu segmento. Encontre editais que keyword puro perderia.",
   },
   {
-    icon: Bell,
-    title: "Alertas Personalizados",
+    icon: ListChecks,
+    title: "Wizard de proposta em 6 etapas",
     description:
-      "Receba notificações automáticas quando novas licitações do seu interesse forem publicadas. Nunca mais perca uma oportunidade.",
+      "Identificação, Itens, Precificação, Condições, Documentos, Revisão. Cada etapa guiada, sem ficar perdido em planilha.",
   },
   {
-    icon: FileText,
-    title: "Análise de Editais",
+    icon: ShieldCheck,
+    title: "Validação automática de documentos",
     description:
-      "Visualize editais de forma organizada com destaque para prazos, requisitos de habilitação, critérios de julgamento e documentos exigidos.",
+      "Receita Federal, PGFN, SERPRO e Cartórios validam suas certidões em segundo plano. Status com data de vencimento de cada CND.",
   },
   {
-    icon: Shield,
-    title: "Gestão de Propostas",
+    icon: PackageSearch,
+    title: "Catálogo + matching automático",
     description:
-      "Crie, organize e envie suas propostas com checklist de documentos, controle de prazos e histórico completo de participações.",
+      "Cadastre seus produtos uma vez. Sistema cruza com todo edital novo e aponta os itens onde você é elegível.",
   },
   {
-    icon: BarChart3,
-    title: "Painel Analítico",
+    icon: Plug,
+    title: "30+ integrações já conectadas",
     description:
-      "Dashboards com métricas de desempenho: taxa de aprovação, valor total disputado, concorrentes frequentes e tendências de mercado.",
-  },
-  {
-    icon: Globe,
-    title: "Cobertura Nacional",
-    description:
-      "Licitações de todos os estados, municípios e órgãos federais do Brasil. Pregões, concorrências, tomadas de preço e mais — tudo centralizado.",
+      "PNCP, Compras.gov.br, BEC/SP, BLL, BNCP, Licitar Digital, TCU, CNJ. Plug-and-play, sem TI.",
   },
 ];

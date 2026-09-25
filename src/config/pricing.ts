@@ -3,7 +3,7 @@ import type { PricingTier } from "@/types";
 export const pricingTiers: PricingTier[] = [
   {
     name: "Starter",
-    description: "Para micro e pequenas empresas começando em licitações.",
+    description: "Para testar o mercado público sem custo.",
     price: "R$ 0",
     period: "para sempre",
     features: [
@@ -13,12 +13,13 @@ export const pricingTiers: PricingTier[] = [
       "Histórico dos últimos 30 dias",
       "Suporte via central de ajuda",
     ],
-    cta: "Criar Conta Grátis",
+    cta: "Criar conta grátis",
+    ctaMicro: "Sem cartão de crédito",
     highlighted: false,
   },
   {
     name: "Profissional",
-    description: "Para empresas que participam ativamente de licitações.",
+    description: "Para empresas que participam ativamente de pregões.",
     price: "R$ 149",
     period: "por mês",
     features: [
@@ -30,12 +31,13 @@ export const pricingTiers: PricingTier[] = [
       "Suporte prioritário",
       "API de integração",
     ],
-    cta: "Iniciar Teste Grátis",
+    cta: "Começar teste grátis",
+    ctaMicro: "14 dias grátis, cancele antes sem cobrança",
     highlighted: true,
   },
   {
     name: "Enterprise",
-    description: "Para grandes empresas e grupos com alto volume.",
+    description: "Para grupos e consultorias com alto volume de propostas.",
     price: "Sob consulta",
     period: "personalizado para sua equipe",
     features: [
@@ -47,7 +49,8 @@ export const pricingTiers: PricingTier[] = [
       "Treinamento da equipe",
       "Análise de concorrência avançada",
     ],
-    cta: "Falar com Vendas",
+    cta: "Falar com vendas",
+    ctaMicro: "Resposta em até 1 dia útil",
     highlighted: false,
   },
 ];
