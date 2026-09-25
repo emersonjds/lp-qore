@@ -1,4 +1,5 @@
 import { About } from "@/components/sections/about";
+import { Contact } from "@/components/sections/contact";
 import { Coverage } from "@/components/sections/coverage";
 import { Faq } from "@/components/sections/faq";
 import { Hero } from "@/components/sections/hero";
@@ -19,6 +20,7 @@ const HomePage = () => (
     <Coverage />
     <About />
     <Faq />
+    <Contact />
   </main>
 );
 

@@ -221,3 +221,14 @@ export const aboutContent = {
   mission:
     "O Qore nasceu para tornar a licitação pública acessível às empresas que hoje ficam de fora por falta de tempo e de estrutura. Começamos por São Paulo, ouvindo quem disputa licitações no dia a dia.",
 } as const;
+
+export const contactContent = {
+  eyebrow: "Fale com a gente",
+  title: "Quer ver o Qore com as licitações da sua empresa?",
+  description: "Conte um pouco sobre a sua empresa. A gente responde pelo e-mail ou WhatsApp que você informar.",
+  highlights: [
+    "Conversa com quem está construindo o produto",
+    "Um olhar sobre editais abertos em São Paulo no seu segmento",
+    "Convite para participar do piloto em São Paulo",
+  ],
+} as const;
