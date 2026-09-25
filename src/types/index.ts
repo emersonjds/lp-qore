@@ -29,3 +29,10 @@ export interface SummaryItem {
   summary: string;
   isRisk: boolean;
 }
+
+export interface MarketNumber {
+  value: string;
+  label: string;
+  source: string;
+  date: string;
+}
