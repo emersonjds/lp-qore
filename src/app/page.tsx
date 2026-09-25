@@ -2,6 +2,7 @@ import { About } from "@/components/sections/about";
 import { Contact } from "@/components/sections/contact";
 import { CtaBanner } from "@/components/sections/cta-banner";
 import { Coverage } from "@/components/sections/coverage";
+import { Documents } from "@/components/sections/documents";
 import { Faq } from "@/components/sections/faq";
 import { Features } from "@/components/sections/features";
 import { Hero } from "@/components/sections/hero";
@@ -22,6 +23,7 @@ const HomePage = () => (
     <Features />
     <ProposalHighlight />
     <CtaBanner {...ctaBanners.afterFeatures} />
+    <Documents />
     <PlatformTour />
     <ResponsibleAi />
     <Personas />

@@ -79,3 +79,12 @@ export interface MapHub {
   labelY: number;
   labelAnchor: "start" | "end";
 }
+
+export type CertificateStatus = "valid" | "expiring" | "expired";
+
+export interface Certificate {
+  name: string;
+  issuer: string;
+  status: CertificateStatus;
+  statusLabel: string;
+}
