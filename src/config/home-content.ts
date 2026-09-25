@@ -1,5 +1,5 @@
-import { Files, FileSearch, FileX } from "lucide-react";
-import type { HowItWorksStep, IconCard, PlatformTab, SummaryItem } from "@/types";
+import { Files, FileSearch, FileX, Quote, SearchX, Send, SlidersHorizontal } from "lucide-react";
+import type { HowItWorksStep, IconCard, Persona, PlatformTab, SummaryItem } from "@/types";
 
 export const heroContent = {
   eyebrow: "Piloto em São Paulo",
@@ -128,3 +128,63 @@ export const platformTabs: readonly PlatformTab[] = [
     alt: "Calendário mensal com sessões e prazos de licitações, com dados de demonstração",
   },
 ];
+
+export const responsibleAiContent: { eyebrow: string; title: string; description: string; commitments: readonly IconCard[] } = {
+  eyebrow: "IA responsável",
+  title: "IA com responsabilidade",
+  description:
+    "No piloto, a IA vai trabalhar como apoio da sua equipe: ela lê, organiza e aponta a fonte. A decisão continua sua.",
+  commitments: [
+    {
+      icon: Quote,
+      title: "Cita a fonte",
+      description: "Cada ponto do resumo vai indicar a página e o item do edital de onde saiu.",
+    },
+    {
+      icon: SearchX,
+      title: "Diz “não encontrado no edital”",
+      description: "Quando o edital não trouxer a informação, a IA vai dizer isso em vez de preencher a lacuna.",
+    },
+    {
+      icon: SlidersHorizontal,
+      title: "Sugere, e você decide",
+      description: "A IA vai organizar as informações. Participar ou não, e por qual preço, é decisão da sua equipe.",
+    },
+    {
+      icon: Send,
+      title: "Você envia a proposta, não a IA",
+      description: "O Qore não envia proposta nem dá lance. O envio ao portal continua com a sua empresa.",
+    },
+  ],
+};
+
+export const personasContent: { eyebrow: string; title: string; personas: readonly [Persona, Persona] } = {
+  eyebrow: "Para cada função",
+  title: "Feito para quem decide e para quem prepara a proposta",
+  personas: [
+    {
+      id: "manager",
+      toggleLabel: "Visão do gestor",
+      title: "Para quem decide",
+      description: "Veja o que está em disputa, os prazos da semana e a carga da equipe sem abrir planilha.",
+      metrics: [
+        { label: "Licitações em análise", value: "12", detail: "3 com sessão nesta semana" },
+        { label: "Valor em disputa", value: "R$ 1,8 mi", detail: "Soma das propostas em andamento" },
+        { label: "Prazos da semana", value: "4", detail: "1 pedido de esclarecimento vence hoje" },
+        { label: "Propostas enviadas no mês", value: "5", detail: "Todas revisadas pela equipe" },
+      ],
+    },
+    {
+      id: "analyst",
+      toggleLabel: "Visão do analista",
+      title: "Para quem prepara a proposta",
+      description: "Saiba o que ler primeiro, quais certidões vencem e o que falta para enviar.",
+      metrics: [
+        { label: "Fila do dia", value: "3 editais", detail: "1 com prazo de impugnação hoje" },
+        { label: "Certidões", value: "1 vence em 10 dias", detail: "CND federal" },
+        { label: "Pontos sem resposta no edital", value: "2", detail: "Marcados como não encontrados" },
+        { label: "Minuta da proposta", value: "Pronta para revisão", detail: "Falta anexar a declaração de ME/EPP" },
+      ],
+    },
+  ],
+};

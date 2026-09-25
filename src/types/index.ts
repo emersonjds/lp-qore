@@ -50,3 +50,17 @@ export interface PlatformTab {
   image: string;
   alt: string;
 }
+
+export interface PersonaMetric {
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface Persona {
+  id: "manager" | "analyst";
+  toggleLabel: string;
+  title: string;
+  description: string;
+  metrics: readonly PersonaMetric[];
+}
