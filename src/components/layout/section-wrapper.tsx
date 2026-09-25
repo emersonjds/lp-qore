@@ -11,7 +11,7 @@ export function SectionWrapper({
   ...props
 }: SectionWrapperProps) {
   return (
-    <section className={cn("py-20 md:py-28", className)} {...props}>
+    <section className={cn("py-16 md:py-24 2xl:py-28", className)} {...props}>
       <Container>{children}</Container>
     </section>
   );

@@ -29,11 +29,12 @@ export function Header() {
       className="fixed top-0 right-0 left-0 z-50 transition-colors duration-300"
       style={{
         backgroundColor: isScrolled
-          ? "rgba(255, 255, 255, 0.85)"
+          ? "rgba(248, 250, 252, 0.88)"
           : "transparent",
-        backdropFilter: isScrolled ? "blur(12px)" : "none",
+        backdropFilter: isScrolled ? "blur(16px) saturate(180%)" : "none",
+        WebkitBackdropFilter: isScrolled ? "blur(16px) saturate(180%)" : "none",
         boxShadow: isScrolled
-          ? "0 1px 3px 0 rgb(0 0 0 / 0.05)"
+          ? "0 1px 0 0 rgba(15,23,42,0.06), 0 4px 12px -2px rgba(15,23,42,0.04)"
           : "none",
       }}
     >
@@ -59,13 +60,17 @@ export function Header() {
 
           <div className="hidden items-center gap-3 md:flex">
             <Button variant="ghost" size="sm" asChild>
-              <Link href="#pricing">Criar Conta</Link>
+              <a href={`${siteConfig.appUrl}/signup`}>Criar Conta</a>
             </Button>
-            <Button size="sm" className="gap-2" asChild>
-              <Link href="/login">
+            <Button
+              size="sm"
+              className="gap-2 glow-primary transition-shadow duration-300"
+              asChild
+            >
+              <a href={`${siteConfig.appUrl}/login`}>
                 <LogIn className="size-4" />
                 Entrar
-              </Link>
+              </a>
             </Button>
           </div>
 
