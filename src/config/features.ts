@@ -87,3 +87,14 @@ export const features: readonly IconCard[] = [
       "Papéis de Administrador, Gestor e Analista, e um painel com valor ganho, taxa de vitória e prazos da equipe.",
   },
 ];
+
+export const proposalContent = {
+  eyebrow: "Proposta",
+  title: "Sua proposta chega cerca de 80% pronta",
+  description:
+    "A plataforma cruza os dados da empresa, do edital e os documentos de habilitação, e você só completa os preços e revisa.",
+  brand:
+    "Suba o logo e o documento final sai com a identidade da empresa. Sem marca, sai com um modelo padrão profissional.",
+  completedSteps: ["Dados da empresa", "Dados do edital", "Documentos de habilitação"],
+  pendingStep: "Preços",
+} as const;

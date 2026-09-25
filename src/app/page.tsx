@@ -7,6 +7,7 @@ import { Hero } from "@/components/sections/hero";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Personas } from "@/components/sections/personas";
 import { PlatformTour } from "@/components/sections/platform-tour";
+import { ProposalHighlight } from "@/components/sections/proposal-highlight";
 import { Problem } from "@/components/sections/problem";
 import { ResponsibleAi } from "@/components/sections/responsible-ai";
 
@@ -16,6 +17,7 @@ const HomePage = () => (
     <Problem />
     <HowItWorks />
     <Features />
+    <ProposalHighlight />
     <PlatformTour />
     <ResponsibleAi />
     <Personas />
