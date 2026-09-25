@@ -19,6 +19,14 @@ describe("Header", () => {
     expect(screen.getByRole("link", { name: "Fale com a gente" })).toHaveAttribute("data-cta", "header");
   });
 
+  it("switches between the desktop nav with CTA and the mobile menu at the same breakpoint", () => {
+    render(<Header />);
+    expect(screen.getByRole("navigation", { name: "Principal" })).toHaveClass("hidden", "lg:block");
+    expect(screen.getByRole("link", { name: "Fale com a gente" })).toHaveClass("hidden", "lg:inline-flex");
+    expect(screen.getByRole("link", { name: "Fale com a gente" })).not.toHaveClass("md:inline-flex");
+    expect(screen.getByRole("button", { name: "Abrir menu" })).toHaveClass("lg:hidden");
+  });
+
   it("opens the mobile menu and closes it after choosing a link", async () => {
     const user = userEvent.setup();
     render(<Header />);

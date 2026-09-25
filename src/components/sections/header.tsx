@@ -29,7 +29,7 @@ export const Header = () => (
           </ul>
         </nav>
         <div className="flex items-center gap-2">
-          <Button asChild className="hidden md:inline-flex">
+          <Button asChild className="hidden lg:inline-flex">
             <a href={CONTACT_HREF} data-cta="header">
               Fale com a gente
             </a>
