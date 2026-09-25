@@ -12,6 +12,14 @@ describe("Footer", () => {
     render(<Footer year={2026} />);
     const navigation = screen.getByRole("navigation", { name: "Rodapé" });
     const hrefs = within(navigation).getAllByRole("link").map((link) => link.getAttribute("href"));
-    expect(hrefs).toEqual(["/#como-funciona", "/#faq", "/#contato", "/privacidade"]);
+    expect(hrefs).toEqual([
+      "/#como-funciona",
+      "/#funcionalidades",
+      "/#integracoes",
+      "/#ia-responsavel",
+      "/#faq",
+      "/#contato",
+      "/privacidade",
+    ]);
   });
 });

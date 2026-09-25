@@ -8,9 +8,13 @@ describe("Header", () => {
     render(<Header />);
     const navigation = screen.getByRole("navigation", { name: "Principal" });
     expect(within(navigation).getByRole("link", { name: "Como funciona" })).toHaveAttribute("href", "/#como-funciona");
-    expect(within(navigation).getByRole("link", { name: "Plataforma" })).toHaveAttribute("href", "/#plataforma");
-    expect(within(navigation).getByRole("link", { name: "IA responsável" })).toHaveAttribute("href", "/#ia-responsavel");
-    expect(within(navigation).getByRole("link", { name: "FAQ" })).toHaveAttribute("href", "/#faq");
+    expect(within(navigation).getAllByRole("link").map((link) => [link.textContent, link.getAttribute("href")])).toEqual([
+      ["Como funciona", "/#como-funciona"],
+      ["Funcionalidades", "/#funcionalidades"],
+      ["Integrações", "/#integracoes"],
+      ["IA responsável", "/#ia-responsavel"],
+      ["FAQ", "/#faq"],
+    ]);
     expect(screen.getByRole("link", { name: "Fale com a gente" })).toHaveAttribute("href", "/#contato");
     expect(screen.getByRole("link", { name: "Fale com a gente" })).toHaveAttribute("data-cta", "header");
   });

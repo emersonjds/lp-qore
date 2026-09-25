@@ -1,7 +1,7 @@
 import { About } from "@/components/sections/about";
 import { Contact } from "@/components/sections/contact";
-import { CtaBanner } from "@/components/sections/cta-banner";
 import { Coverage } from "@/components/sections/coverage";
+import { CtaBanner } from "@/components/sections/cta-banner";
 import { Documents } from "@/components/sections/documents";
 import { Faq } from "@/components/sections/faq";
 import { Features } from "@/components/sections/features";
@@ -11,9 +11,10 @@ import { Integrations } from "@/components/sections/integrations";
 import { MobileCtaBar } from "@/components/sections/mobile-cta-bar";
 import { Personas } from "@/components/sections/personas";
 import { PlatformTour } from "@/components/sections/platform-tour";
-import { ProposalHighlight } from "@/components/sections/proposal-highlight";
 import { Problem } from "@/components/sections/problem";
+import { ProposalHighlight } from "@/components/sections/proposal-highlight";
 import { ResponsibleAi } from "@/components/sections/responsible-ai";
+import { Testimonials } from "@/components/sections/testimonials";
 import { TimeSaved } from "@/components/sections/time-saved";
 import { ctaBanners } from "@/config/home-content";
 
@@ -27,13 +28,14 @@ const HomePage = () => (
     <CtaBanner {...ctaBanners.afterFeatures} />
     <Documents />
     <PlatformTour />
-    <ResponsibleAi />
     <Personas />
     <TimeSaved />
     <Integrations />
     <CtaBanner {...ctaBanners.afterIntegrations} />
+    <ResponsibleAi />
     <Coverage />
     <About />
+    <Testimonials />
     <Faq />
     <Contact />
     <MobileCtaBar />

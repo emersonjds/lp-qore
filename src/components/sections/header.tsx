@@ -14,7 +14,7 @@ export const Header = () => (
         <Link href="/" aria-label="Qore, página inicial" className="inline-flex min-h-11 items-center rounded-md">
           <Logo />
         </Link>
-        <nav aria-label="Principal" className="hidden md:block">
+        <nav aria-label="Principal" className="hidden lg:block">
           <ul className="flex items-center gap-1">
             {primaryNavigation.map((link) => (
               <li key={link.href}>

@@ -18,7 +18,7 @@ export const HeaderMobileMenu = ({ links, contactHref }: HeaderMobileMenuProps) 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden" aria-label="Abrir menu">
+        <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Abrir menu">
           <Menu aria-hidden="true" className="size-6" />
         </Button>
       </SheetTrigger>
