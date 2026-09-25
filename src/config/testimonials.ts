@@ -1,10 +1,8 @@
-export interface Testimonial {
-  quote: string;
-  name: string;
-  role: string;
-  company: string;
-  logoSrc?: string;
-  authorizedAt: string;
-}
+import type { Testimonial } from "@/types";
+
+export const testimonialsContent = {
+  eyebrow: "Clientes",
+  title: "Quem já usa a Qore",
+} as const;
 
 export const testimonials: readonly Testimonial[] = [];

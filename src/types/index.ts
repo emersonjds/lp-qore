@@ -79,6 +79,15 @@ export interface MapHub {
   labelAnchor: "start" | "end";
 }
 
+export interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+  logoSrc?: string;
+  authorizedAt: string;
+}
+
 export type CertificateStatus = "valid" | "expiring" | "expired";
 
 export interface Certificate {

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { testimonials } from "@/config/testimonials";
+import { testimonials, testimonialsContent } from "@/config/testimonials";
 import { Testimonials } from "../testimonials";
 
 describe("Testimonials", () => {
@@ -27,7 +27,8 @@ describe("Testimonials", () => {
         ]}
       />,
     );
-    expect(screen.getByRole("heading", { level: 2 })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(testimonialsContent.title);
+    expect(screen.getByText(testimonialsContent.eyebrow)).toBeInTheDocument();
     expect(screen.getByText("Texto de teste.")).toBeInTheDocument();
     expect(screen.getByText("Pessoa de Teste")).toBeInTheDocument();
     expect(screen.getByText("Cargo de teste, Empresa de Teste")).toBeInTheDocument();
