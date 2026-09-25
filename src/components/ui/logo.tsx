@@ -1,23 +1,27 @@
-export function Logo({ className = "size-8" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
-      {/* Shield shape */}
-      <path
-        d="M16 2L4 7v9c0 7.73 5.12 14.48 12 16 6.88-1.52 12-8.27 12-16V7L16 2z"
-        fill="currentColor"
-        className="text-foreground"
-      />
-      {/* Inner Q */}
-      <path
-        d="M16 8a7 7 0 1 0 3.5 13.06l1.5 1.5 1.8-1.8-1.3-1.3A7 7 0 0 0 16 8zm0 2.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z"
-        fill="currentColor"
-        className="text-primary"
-      />
-    </svg>
-  );
+import { cn } from "@/lib/utils";
+
+interface LogoMarkProps {
+  className?: string;
 }
+
+export const LogoMark = ({ className }: LogoMarkProps) => (
+  <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" className={cn("size-8", className)}>
+    <rect width="48" height="48" rx="12" fill="#047857" />
+    <circle cx="23" cy="24" r="10" fill="none" stroke="#ffffff" strokeWidth="5" />
+    <path d="M28 29 L34 35" stroke="#ffffff" strokeWidth="5" strokeLinecap="round" />
+    <circle cx="33" cy="14" r="4" fill="#34d399" />
+  </svg>
+);
+
+interface LogoProps {
+  className?: string;
+}
+
+export const Logo = ({ className }: LogoProps) => (
+  <span className={cn("inline-flex items-center gap-2", className)}>
+    <LogoMark />
+    <span className="font-display text-title-md font-bold text-foreground">
+      Qore<span className="text-primary">.</span>
+    </span>
+  </span>
+);
