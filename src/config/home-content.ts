@@ -8,6 +8,8 @@ export const heroContent = {
   subtitle:
     "Encontre licitações de São Paulo pelo seu CNPJ, entenda o edital com um resumo de IA que cita a página de origem e monte sua proposta com segurança.",
   microcopy: "Sem cadastro e sem cartão",
+  primaryAction: "Quero ver a Qore com as minhas licitações",
+  secondaryAction: "Ver como funciona",
 } as const;
 
 export const heroSummaryItems: readonly SummaryItem[] = [
@@ -224,11 +226,24 @@ export const aboutContent = {
 
 export const contactContent = {
   eyebrow: "Fale com a gente",
-  title: "Quer ver o Qore com as licitações da sua empresa?",
+  title: "Receba uma demonstração com as licitações do seu segmento",
   description: "Conte um pouco sobre a sua empresa. A gente responde pelo e-mail ou WhatsApp que você informar.",
   highlights: [
     "Conversa com quem está construindo o produto",
     "Um olhar sobre editais abertos em São Paulo no seu segmento",
     "Como a sua proposta sai cerca de 80% pronta",
   ],
+} as const;
+
+export const ctaBanners = {
+  afterFeatures: {
+    location: "after-features",
+    title: "Sua próxima proposta pode sair 80% pronta",
+    actionLabel: "Falar com um especialista",
+  },
+  afterIntegrations: {
+    location: "after-integrations",
+    title: "Veja os editais de SP compatíveis com o seu CNPJ",
+    actionLabel: "Quero uma demonstração",
+  },
 } as const;
