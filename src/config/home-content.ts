@@ -345,3 +345,15 @@ export const ctaBanners = {
     actionLabel: "Quero uma demonstração",
   },
 } as const;
+
+export const timeSavedContent = {
+  eyebrow: "Resultados",
+  title: "Tempo que volta para a equipe",
+  description: "O trabalho repetitivo sai da mesa da equipe, e sobra tempo para decidir e disputar mais.",
+  comparisons: [
+    { task: "Leitura do edital", before: "Horas de leitura", after: "Minutos, com o resumo citado" },
+    { task: "Busca de oportunidades", before: "Vários portais abertos", after: "Um radar só" },
+    { task: "Montagem da proposta", before: "Do zero", after: "Cerca de 80% pronta" },
+    { task: "Certidões", before: "Conferência manual", after: "Alerta antes de vencer" },
+  ],
+} as const;

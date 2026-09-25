@@ -13,6 +13,7 @@ import { PlatformTour } from "@/components/sections/platform-tour";
 import { ProposalHighlight } from "@/components/sections/proposal-highlight";
 import { Problem } from "@/components/sections/problem";
 import { ResponsibleAi } from "@/components/sections/responsible-ai";
+import { TimeSaved } from "@/components/sections/time-saved";
 import { ctaBanners } from "@/config/home-content";
 
 const HomePage = () => (
@@ -27,6 +28,7 @@ const HomePage = () => (
     <PlatformTour />
     <ResponsibleAi />
     <Personas />
+    <TimeSaved />
     <Coverage />
     <About />
     <Faq />
