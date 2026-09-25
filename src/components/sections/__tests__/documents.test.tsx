@@ -1,5 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import { documentsContent } from "@/config/documents";
 import { Documents } from "../documents";
 
 describe("Documents", () => {
@@ -30,6 +31,12 @@ describe("Documents", () => {
     expect(screen.getAllByText("Válida")[0]).toHaveClass("bg-primary-tint", "text-primary");
     expect(screen.getByText("Vence em 12 dias")).toHaveClass("bg-warning-tint", "text-warning-text");
     expect(screen.getByText("Vencida")).toHaveClass("bg-destructive-tint", "text-destructive-text");
+  });
+
+  it("takes the list labels from the content config", () => {
+    render(<Documents />);
+    expect(screen.getByText(documentsContent.listTitle)).toBeInTheDocument();
+    expect(screen.getByRole("list", { name: documentsContent.listLabel })).toBeInTheDocument();
   });
 
   it("seals the list as an illustrative example", () => {

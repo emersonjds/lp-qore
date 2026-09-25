@@ -15,10 +15,10 @@ const STATUS_CHIP_CLASS: Record<CertificateStatus, string> = {
 const CertificateList = () => (
   <div className="rounded-lg border border-border bg-card p-4 shadow-lg md:p-6">
     <div className="flex items-center justify-between gap-4 px-2 pb-4">
-      <p className="font-display text-title-md text-foreground">Certidões</p>
+      <p className="font-display text-title-md text-foreground">{documentsContent.listTitle}</p>
       <Badge variant="outline">Exemplo ilustrativo</Badge>
     </div>
-    <ul aria-label="Certidões da empresa" className="flex flex-col divide-y divide-border">
+    <ul aria-label={documentsContent.listLabel} className="flex flex-col divide-y divide-border">
       {certificates.map((certificate) => (
         <li key={certificate.name} className="flex items-center gap-3 px-2 py-3">
           <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-surface-low text-muted-foreground">
