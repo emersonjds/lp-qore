@@ -94,6 +94,13 @@
   --shadow-lg: 0 10px 25px -3px rgb(15 23 42 / 0.08), 0 4px 10px -2px rgb(4 120 87 / 0.06);
 
   --animate-hero-enter: hero-enter 600ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-tab-progress: tab-progress 5s linear;
+
+  @keyframes tab-progress {
+    from {
+      transform: scaleX(0);
+    }
+  }
 
   @keyframes hero-enter {
     from {
@@ -288,6 +295,14 @@
 
   [data-coverage-map][data-revealed] [data-hub-ring] {
     animation: hub-ring 1300ms cubic-bezier(0.2, 0.8, 0.2, 1) 1900ms backwards;
+  }
+
+  [data-screen-active] [data-bar] {
+    animation: grow-x 900ms cubic-bezier(0.33, 1, 0.68, 1) calc(200ms + var(--order) * 120ms) backwards;
+  }
+
+  [data-screen-active] [data-day-lit] {
+    animation: pop-in 450ms cubic-bezier(0.34, 1.56, 0.64, 1) calc(350ms + var(--order) * 90ms) backwards;
   }
 
   [data-hero-glow] {

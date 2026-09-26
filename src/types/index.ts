@@ -42,12 +42,11 @@ export interface HowItWorksStep {
   description: string;
 }
 
+export type PlatformScreenId = "painel" | "radar" | "resumo" | "precificacao" | "calendario";
+
 export interface PlatformTab {
-  id: string;
+  id: PlatformScreenId;
   label: string;
-  caption: string;
-  image: string;
-  alt: string;
 }
 
 export interface Persona {

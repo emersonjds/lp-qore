@@ -9,19 +9,12 @@ describe("ProposalHighlight", () => {
     expect(screen.getByText(/você só completa os preços/)).toBeInTheDocument();
   });
 
-  it("shows the real pricing step without an illustrative seal", () => {
+  it("simulates the pricing step as an illustrative window instead of a screenshot", () => {
     render(<ProposalHighlight />);
-    expect(screen.getByRole("figure", { name: "Precificação" })).not.toHaveTextContent("Tela ilustrativa");
-    expect(screen.getByRole("img", { name: /Etapa de precificação/ })).toHaveAttribute(
-      "src",
-      "/screenshots/pricing-1280.webp",
-    );
-  });
-
-  it("keeps no drawn mock of the proposal document", () => {
-    render(<ProposalHighlight />);
+    const window = screen.getByRole("figure", { name: "Exemplo ilustrativo: Precificação inteligente" });
+    expect(window).toHaveTextContent("Exemplo ilustrativo");
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
     expect(screen.queryByRole("progressbar")).not.toBeInTheDocument();
-    expect(screen.queryByText("Exemplo ilustrativo")).not.toBeInTheDocument();
   });
 
   it("overlays a progress chip that fills to 80% and then shows only the price is missing", () => {

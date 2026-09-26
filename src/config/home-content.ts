@@ -102,41 +102,11 @@ export const howItWorksContent: {
 };
 
 export const platformTabs: readonly PlatformTab[] = [
-  {
-    id: "painel",
-    label: "Painel do gestor",
-    caption: "Valor em disputa, sessões do mês e a carga de cada pessoa da equipe.",
-    image: "manager-dashboard",
-    alt: "Painel do gestor com indicadores do mês, calendário de sessões e equipe, com dados de demonstração",
-  },
-  {
-    id: "radar",
-    label: "Radar",
-    caption: "Licitações abertas que combinam com o seu CNPJ.",
-    image: "radar",
-    alt: "Radar de licitações com filtros e lista de oportunidades, com dados de demonstração",
-  },
-  {
-    id: "busca",
-    label: "Busca",
-    caption: "Busque por objeto, órgão ou modalidade.",
-    image: "search",
-    alt: "Tela de busca de licitações com campo de pesquisa e resultados, com dados de demonstração",
-  },
-  {
-    id: "precificacao",
-    label: "Precificação",
-    caption: "Preencha os preços da proposta e veja quando um valor merece revisão.",
-    image: "pricing",
-    alt: "Etapa de precificação da proposta com preços por item, com dados de demonstração",
-  },
-  {
-    id: "calendario",
-    label: "Calendário",
-    caption: "Sessões e prazos das licitações que você acompanha.",
-    image: "calendar",
-    alt: "Calendário mensal com sessões e prazos de licitações, com dados de demonstração",
-  },
+  { id: "painel", label: "Painel do gestor" },
+  { id: "radar", label: "Radar de oportunidades" },
+  { id: "resumo", label: "Resumo do edital com IA" },
+  { id: "precificacao", label: "Precificação inteligente" },
+  { id: "calendario", label: "Calendário de prazos" },
 ];
 
 export const responsibleAiContent: { eyebrow: string; title: string; description: string; commitments: readonly IconCard[] } = {

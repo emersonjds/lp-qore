@@ -1,14 +1,11 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type KeyboardEvent, type TouchEvent } from "react";
-import { useNearViewport } from "@/hooks/use-near-viewport";
-import { loadScrollTrigger } from "@/lib/load-scroll-trigger";
-import { isDesktopViewport, prefersReducedMotion } from "@/lib/motion-preferences";
+import { platformScreens } from "@/components/simulated-screens/platform-screens";
+import { prefersReducedMotion } from "@/lib/motion-preferences";
 import { cn } from "@/lib/utils";
 import type { PlatformTab } from "@/types";
-import { ScreenshotPicture } from "./panel-screenshot";
 
-const IMAGE_SIZES = "(min-width: 1024px) 56rem, 100vw";
 const SWIPE_DISTANCE = 48;
 
 interface PlatformTourTabsProps {
@@ -18,44 +15,39 @@ interface PlatformTourTabsProps {
 export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isEnhanced, setIsEnhanced] = useState(false);
+  const [isAutoplayAllowed, setIsAutoplayAllowed] = useState(false);
+  const [isOnScreen, setIsOnScreen] = useState<boolean | null>(null);
+  const [isPageVisible, setIsPageVisible] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const baseId = useId();
   const tourRef = useRef<HTMLDivElement>(null);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
-  const isNear = useNearViewport(tourRef);
 
-  useEffect(() => setIsEnhanced(true), []);
+  useEffect(() => {
+    setIsEnhanced(true);
+    setIsAutoplayAllowed(!prefersReducedMotion());
+  }, []);
 
   useEffect(() => {
     const tour = tourRef.current;
-    if (!isNear || !tour || prefersReducedMotion() || !isDesktopViewport()) return;
+    if (!tour || !isAutoplayAllowed) return;
 
-    let isCancelled = false;
-    let kill = () => {};
-
-    void loadScrollTrigger().then(({ ScrollTrigger }) => {
-      if (isCancelled) return;
-      let scrolledIndex = 0;
-      const trigger = ScrollTrigger.create({
-        trigger: tour,
-        pin: true,
-        start: "top 88px",
-        end: `+=${tabs.length * 60}%`,
-        onUpdate: (self: { progress: number }) => {
-          const nextIndex = Math.min(tabs.length - 1, Math.floor(self.progress * tabs.length));
-          if (nextIndex === scrolledIndex) return;
-          scrolledIndex = nextIndex;
-          setActiveIndex(nextIndex);
-        },
-      });
-      kill = () => trigger.kill();
-    });
-
+    const observer = new IntersectionObserver(([entry]) => setIsOnScreen(entry?.isIntersecting ?? false));
+    observer.observe(tour);
+    const handleVisibilityChange = () => setIsPageVisible(document.visibilityState === "visible");
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     return () => {
-      isCancelled = true;
-      kill();
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [isNear, tabs.length]);
+  }, [isAutoplayAllowed]);
+
+  const selectByVisitor = (index: number) => {
+    setIsAutoplayAllowed(false);
+    setActiveIndex((index + tabs.length) % tabs.length);
+  };
 
   const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
     const touch = event.changedTouches[0];
@@ -68,13 +60,7 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
     if (!start || !touch) return;
     const distanceX = touch.clientX - start.x;
     if (Math.abs(distanceX) < SWIPE_DISTANCE || Math.abs(distanceX) < Math.abs(touch.clientY - start.y)) return;
-    setActiveIndex((index) => Math.min(tabs.length - 1, Math.max(0, index + (distanceX < 0 ? 1 : -1))));
-  };
-
-  const focusTab = (index: number) => {
-    const nextIndex = (index + tabs.length) % tabs.length;
-    setActiveIndex(nextIndex);
-    tabRefs.current[nextIndex]?.focus();
+    selectByVisitor(Math.min(tabs.length - 1, Math.max(0, activeIndex + (distanceX < 0 ? 1 : -1))));
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
@@ -86,15 +72,27 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
     }[event.key];
     if (targetIndex === undefined) return;
     event.preventDefault();
-    focusTab(targetIndex);
+    const nextIndex = (targetIndex + tabs.length) % tabs.length;
+    selectByVisitor(nextIndex);
+    tabRefs.current[nextIndex]?.focus();
   };
 
+  const showsProgress = isEnhanced && isAutoplayAllowed && isOnScreen !== null;
+  const isProgressRunning = Boolean(isOnScreen) && isPageVisible && !isHovered && !isFocused;
+
   return (
-    <div ref={tourRef} data-platform-tour className="mt-10 lg:mx-auto lg:max-w-4xl">
+    <div
+      ref={tourRef}
+      data-platform-tour
+      onPointerEnter={() => setIsHovered(true)}
+      onPointerLeave={() => setIsHovered(false)}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
+    >
       <div
         role="tablist"
         aria-label="Telas da plataforma"
-        className={cn("flex flex-wrap gap-2", !isEnhanced && "hidden")}
+        className={cn("-mx-4 flex gap-2 overflow-x-auto px-4 pb-4 md:mx-0 md:px-0", !isEnhanced && "hidden")}
       >
         {tabs.map((tab, index) => (
           <button
@@ -108,16 +106,24 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
             aria-selected={index === activeIndex}
             aria-controls={`${baseId}-panel-${tab.id}`}
             tabIndex={index === activeIndex ? 0 : -1}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => selectByVisitor(index)}
             onKeyDown={(event) => handleKeyDown(event, index)}
             className={cn(
-              "min-h-11 rounded-md border px-4 text-label-md",
-              index === activeIndex
-                ? "border-primary bg-primary text-primary-foreground"
-                : "border-border bg-card text-foreground hover:bg-accent",
+              "relative min-h-11 shrink-0 overflow-hidden rounded-md px-4 py-2 text-label-md shadow-sm",
+              index === activeIndex ? "bg-primary text-primary-foreground" : "bg-card text-foreground hover:bg-surface-container",
             )}
           >
             {tab.label}
+            {showsProgress && index === activeIndex && (
+              <span
+                key={activeIndex}
+                aria-hidden="true"
+                data-tab-progress
+                onAnimationEnd={() => setActiveIndex((current) => (current + 1) % tabs.length)}
+                style={{ animationPlayState: isProgressRunning ? "running" : "paused" }}
+                className="animate-tab-progress absolute inset-x-0 bottom-0 h-0.5 origin-left bg-primary-foreground/80"
+              />
+            )}
           </button>
         ))}
       </div>
@@ -125,32 +131,29 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
         data-tour-panels
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        className={cn("mt-6", isEnhanced ? "grid" : "flex flex-col gap-10")}
+        className={cn("mt-4", isEnhanced ? "grid" : "flex flex-col gap-10")}
       >
-        {tabs.map((tab, index) => (
-          <figure
-            key={tab.id}
-            id={`${baseId}-panel-${tab.id}`}
-            role={isEnhanced ? "tabpanel" : undefined}
-            aria-labelledby={isEnhanced ? `${baseId}-tab-${tab.id}` : undefined}
-            className={cn(
-              "transition-[opacity,scale,visibility] duration-500 ease-out motion-reduce:transition-none",
-              isEnhanced && "col-start-1 row-start-1",
-              isEnhanced && index !== activeIndex && "invisible scale-[0.98] opacity-0",
-            )}
-          >
-            <figcaption className="text-body-md text-muted-foreground">
-              {!isEnhanced && <strong className="font-display text-title-md text-foreground">{tab.label}: </strong>}
-              {tab.caption}
-            </figcaption>
-            <ScreenshotPicture
-              image={tab.image}
-              alt={tab.alt}
-              sizes={IMAGE_SIZES}
-              className="mt-4 rounded-lg border border-border shadow-md"
-            />
-          </figure>
-        ))}
+        {tabs.map((tab, index) => {
+          const Screen = platformScreens[tab.id];
+          const isActive = isEnhanced && index === activeIndex;
+          return (
+            <div
+              key={tab.id}
+              id={`${baseId}-panel-${tab.id}`}
+              role={isEnhanced ? "tabpanel" : undefined}
+              aria-labelledby={isEnhanced ? `${baseId}-tab-${tab.id}` : undefined}
+              data-screen-active={isActive ? "" : undefined}
+              className={cn(
+                "min-w-0 transition-[opacity,scale,visibility] duration-500 ease-out motion-reduce:transition-none",
+                isEnhanced && "col-start-1 row-start-1",
+                isEnhanced && !isActive && "invisible scale-[0.98] opacity-0",
+              )}
+            >
+              {!isEnhanced && <p className="mb-3 font-display text-title-md text-foreground">{tab.label}</p>}
+              <Screen key={isActive ? "active" : "idle"} label={`Exemplo ilustrativo: ${tab.label}`} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

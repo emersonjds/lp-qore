@@ -2,7 +2,6 @@
 import { join } from "node:path";
 import sharp from "sharp";
 import { describe, expect, it } from "vitest";
-import { platformTabs } from "@/config/home-content";
 import { mobileScreenshots } from "@/config/screenshots";
 
 const FORMATS = [
@@ -10,10 +9,10 @@ const FORMATS = [
   ["webp", "webp"],
 ] as const;
 
-const desktopCases = platformTabs.flatMap((tab) =>
+const desktopCases = ["manager-dashboard", "radar", "search", "pricing", "calendar"].flatMap((image) =>
   [640, 1280].flatMap((width) =>
     FORMATS.map(([extension, format]) => ({
-      file: `${tab.image}-${width}.${extension}`,
+      file: `${image}-${width}.${extension}`,
       width,
       height: (width * 10) / 16,
       format,
