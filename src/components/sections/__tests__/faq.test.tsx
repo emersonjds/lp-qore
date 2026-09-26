@@ -13,6 +13,13 @@ describe("Faq", () => {
     );
   });
 
+  it("opens with the Stitch eyebrow and answers the price question in subscription terms", () => {
+    render(<Faq />);
+    expect(screen.getByText("Tire suas dúvidas")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Perguntas frequentes");
+    expect(screen.getByText(/A assinatura varia conforme o porte da empresa/)).toBeInTheDocument();
+  });
+
   it("explains how the proposal gets about 80% ready", () => {
     render(<Faq />);
     expect(screen.getByText("Como a proposta fica pronta?")).toBeInTheDocument();

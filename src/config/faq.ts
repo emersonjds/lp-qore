@@ -29,6 +29,6 @@ export const faqItems: readonly FAQItem[] = [
   {
     question: "Quanto custa?",
     answer:
-      "Os planos variam conforme o porte da empresa e o volume de licitações. Fale com a gente para montar o seu.",
+      "A assinatura varia conforme o porte da empresa e o volume de licitações. Deixe seu contato e montamos a assinatura certa para a sua operação.",
   },
 ];
