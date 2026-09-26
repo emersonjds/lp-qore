@@ -8,8 +8,11 @@ import { gzipSync } from "node:zlib";
  * @returns {string[]}
  */
 export const listInitialScripts = (html) =>
-  [...html.matchAll(/<script[^>]*\ssrc="([^"]+)"/g)]
-    .map((match) => (match[1] ?? "").split("?")[0] ?? "")
+  html
+    .split("<script")
+    .slice(1)
+    .map((tag) => tag.slice(0, tag.indexOf(">")).split(' src="')[1]?.split('"')[0] ?? "")
+    .map((source) => source.split("?")[0] ?? "")
     .filter((source) => source.startsWith("/_next/"));
 
 /**
