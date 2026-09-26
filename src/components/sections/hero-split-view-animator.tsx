@@ -38,44 +38,62 @@ interface CycleParts {
   alert: Element;
 }
 
-const startCycle = ({ frame, traveler, clause, firstCard, chips, alert }: CycleParts): Animation[] => {
+const startLoop = ({ frame, traveler, clause, firstCard, chips, alert }: CycleParts): Animation[] => {
   const travelStart = CLAUSE_PULSE_START + CLAUSE_PULSE_MS * CLAUSE_PULSES;
-  const chipsStart = travelStart + TRAVEL_MS + TRAVELER_FADE_MS / 2;
+  const travelEnd = travelStart + TRAVEL_MS;
+  const chipsStart = travelEnd + TRAVELER_FADE_MS / 2;
   const alertStart = chipsStart + Math.max(chips.length - 1, 0) * CHIP_STAGGER_MS + CHIP_MS + ALERT_DELAY_MS;
   const fadeOutStart = alertStart + ALERT_MS + HOLD_MS;
+  const loopMs = fadeOutStart + FADE_OUT_MS + CYCLE_GAP_MS;
+  const at = (ms: number) => ms / loopMs;
+  const loop: KeyframeAnimationOptions = { duration: loopMs, iterations: Infinity };
   const from = pointOf(frame, clause, "end");
   const to = pointOf(frame, firstCard, "start");
 
-  const hiddenChip = { opacity: 0, transform: "scale(0.4)" };
-  const shownChip = { opacity: 1, transform: "scale(1)" };
-  const hiddenAlert = { opacity: 0, transform: "translateX(24px)" };
-  const shownAlert = { opacity: 1, transform: "none" };
-  const cycleEnd = fadeOutStart + FADE_OUT_MS + CYCLE_GAP_MS;
-  const timed = (delay: number, duration: number) => ({ delay, duration, endDelay: cycleEnd - delay - duration, fill: "both" as const });
+  const pulses = Array.from({ length: CLAUSE_PULSES + 1 }, (_, index) => ({
+    transform: index % 2 === 0 ? "scale(1)" : "scale(1.03)",
+    offset: at(CLAUSE_PULSE_START + index * CLAUSE_PULSE_MS),
+    easing: EASE_OUT,
+  }));
+
+  const revealLoop = (start: number, duration: number, hidden: Keyframe, shown: Keyframe, easing: string): Keyframe[] => [
+    { ...hidden, offset: 0 },
+    { ...hidden, offset: at(start), easing },
+    { ...shown, offset: at(start + duration) },
+    { ...shown, offset: at(fadeOutStart), easing: EASE_OUT },
+    { ...shown, opacity: 0, offset: at(fadeOutStart + FADE_OUT_MS) },
+    { ...shown, opacity: 0, offset: 1 },
+  ];
 
   return [
-    clause.animate([{ transform: "scale(1)" }, { transform: "scale(1.03)" }], {
-      delay: CLAUSE_PULSE_START,
-      duration: CLAUSE_PULSE_MS,
-      iterations: CLAUSE_PULSES,
-      direction: "alternate",
-      easing: EASE_OUT,
-    }),
+    clause.animate([{ transform: "scale(1)", offset: 0 }, ...pulses, { transform: "scale(1)", offset: 1 }], loop),
     traveler.animate(
       [
         { opacity: 0, transform: translate(from, 1), offset: 0 },
-        { opacity: 1, transform: translate(from, 1), offset: 0.01 },
-        { opacity: 1, transform: translate(to, 1), offset: TRAVEL_MS / (TRAVEL_MS + TRAVELER_FADE_MS), easing: EASE_IN_OUT },
+        { opacity: 0, transform: translate(from, 1), offset: at(travelStart) },
+        { opacity: 1, transform: translate(from, 1), offset: at(travelStart + 10), easing: EASE_IN_OUT },
+        { opacity: 1, transform: translate(to, 1), offset: at(travelEnd) },
+        { opacity: 0, transform: translate(to, 0.4), offset: at(travelEnd + TRAVELER_FADE_MS) },
         { opacity: 0, transform: translate(to, 0.4), offset: 1 },
       ],
-      timed(travelStart, TRAVEL_MS + TRAVELER_FADE_MS),
+      loop,
     ),
-    ...chips.flatMap((chip, index) => [
-      chip.animate([hiddenChip, shownChip], { ...timed(chipsStart + index * CHIP_STAGGER_MS, CHIP_MS), easing: EASE_BACK_OUT, endDelay: 0, fill: "backwards" }),
-      chip.animate([shownChip, { opacity: 0, transform: "scale(1)" }], { ...timed(fadeOutStart, FADE_OUT_MS), fill: "forwards" }),
-    ]),
-    alert.animate([hiddenAlert, shownAlert], { ...timed(alertStart, ALERT_MS), easing: EASE_OUT, endDelay: 0, fill: "backwards" }),
-    alert.animate([shownAlert, { opacity: 0, transform: "none" }], { ...timed(fadeOutStart, FADE_OUT_MS), fill: "forwards" }),
+    ...chips.map((chip, index) =>
+      chip.animate(
+        revealLoop(
+          chipsStart + index * CHIP_STAGGER_MS,
+          CHIP_MS,
+          { opacity: 0, transform: "scale(0.4)" },
+          { opacity: 1, transform: "scale(1)" },
+          EASE_BACK_OUT,
+        ),
+        loop,
+      ),
+    ),
+    alert.animate(
+      revealLoop(alertStart, ALERT_MS, { opacity: 0, transform: "translateX(24px)" }, { opacity: 1, transform: "none" }, EASE_OUT),
+      loop,
+    ),
   ];
 };
 
@@ -97,21 +115,10 @@ export const HeroSplitViewAnimator = () => {
 
     let animations: Animation[] = [];
     let isOnScreen = false;
-    let isDisposed = false;
-
-    const run = () => {
-      animations = startCycle(parts);
-      const last = animations.at(-1);
-      void last?.finished.then(() => {
-        if (isDisposed || last !== animations.at(-1)) return;
-        animations.forEach((animation) => animation.cancel());
-        run();
-      });
-    };
 
     const sync = () => {
       const shouldPlay = isOnScreen && document.visibilityState === "visible";
-      if (shouldPlay && animations.length === 0) run();
+      if (shouldPlay && animations.length === 0) animations = startLoop(parts);
       else animations.forEach((animation) => (shouldPlay ? animation.play() : animation.pause()));
     };
 
@@ -123,7 +130,6 @@ export const HeroSplitViewAnimator = () => {
     document.addEventListener("visibilitychange", sync);
 
     return () => {
-      isDisposed = true;
       observer.disconnect();
       document.removeEventListener("visibilitychange", sync);
       animations.forEach((animation) => animation.cancel());

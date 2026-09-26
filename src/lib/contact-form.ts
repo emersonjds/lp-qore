@@ -1,5 +1,6 @@
 import { companySizes, contactRoles, monthlyTenderRanges } from "@/config/contact-form";
 import { isValidBrazilianPhone } from "./phone";
+import { toSpreadsheetSafe } from "./spreadsheet-safe";
 
 export interface ContactFormValues {
   name: string;
@@ -60,14 +61,14 @@ export const firstInvalidField = (errors: ContactFormErrors): ContactFieldName |
 export const encodeContactSubmission = (values: ContactFormValues): string =>
   new URLSearchParams({
     "form-name": CONTACT_FORM_NAME,
-    name: values.name.trim(),
-    email: values.email.trim(),
+    name: toSpreadsheetSafe(values.name.trim()),
+    email: toSpreadsheetSafe(values.email.trim()),
     phone: values.phone,
     role: values.role,
     companySize: values.companySize,
     monthlyTenders: values.monthlyTenders,
-    company: values.company.trim(),
-    message: values.message.trim(),
+    company: toSpreadsheetSafe(values.company.trim()),
+    message: toSpreadsheetSafe(values.message.trim()),
     consent: values.consent ? "sim" : "nao",
     "bot-field": "",
   }).toString();

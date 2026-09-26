@@ -151,10 +151,11 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
               role={isEnhanced ? "tabpanel" : undefined}
               aria-labelledby={isEnhanced ? `${baseId}-tab-${tab.id}` : undefined}
               data-screen-active={isActive ? "" : undefined}
+              inert={isEnhanced && !isActive}
               className={cn(
-                "min-w-0 transition-[opacity,translate,visibility] duration-500 ease-out motion-reduce:transition-none",
+                "min-w-0 transition-[opacity,translate] duration-500 ease-out motion-reduce:transition-none",
                 isEnhanced && "col-start-1 row-start-1",
-                isEnhanced && !isActive && "invisible translate-y-3 opacity-0",
+                isEnhanced && !isActive && "pointer-events-none translate-y-3 opacity-0",
               )}
             >
               {!isEnhanced && <p className="mb-3 font-display text-title-md text-foreground">{tab.label}</p>}
