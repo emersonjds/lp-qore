@@ -6,15 +6,15 @@ describe("Audience", () => {
   it("anchors the section at #para-quem-e with the approved heading and lead", () => {
     const { container } = render(<Audience />);
     expect(container.querySelector("section#para-quem-e")).not.toBeNull();
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Para cada lado da licitação em São Paulo");
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Para quem vende a órgãos de São Paulo");
     expect(
       screen.getByText(
-        "Fornecedoras, equipes de licitação, consultorias e órgãos públicos usam a mesma base de editais, preços e prazos.",
+        "Fornecedoras, consultorias e equipes de licitação trabalham na mesma base de editais, preços e prazos.",
       ),
     ).toBeInTheDocument();
   });
 
-  it("describes the four audiences in the decided order", () => {
+  it("describes the three supplier audiences in the decided order", () => {
     render(<Audience />);
     const cards = within(screen.getByRole("list", { name: "Para quem é a Qore" })).getAllByRole("listitem");
     expect(
@@ -34,10 +34,6 @@ describe("Audience", () => {
       [
         "Equipes de licitação",
         "Analista e gestor com visões próprias, aprovação de propostas e prazos da equipe em um painel.",
-      ],
-      [
-        "Prefeituras e órgãos públicos",
-        "Pesquisa de preços a partir de licitações semelhantes e visão dos fornecedores ativos na região, para editais mais bem estimados.",
       ],
     ]);
     expect(screen.queryByText(/Modo Consultor/)).not.toBeInTheDocument();

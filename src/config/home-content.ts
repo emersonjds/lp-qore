@@ -1,7 +1,6 @@
 import {
   Briefcase,
   Building2,
-  Landmark,
   Users,
   ShieldCheck,
 } from "lucide-react";
@@ -82,9 +81,9 @@ export const audienceContent: {
   actionLabel: string;
 } = {
   eyebrow: "Para quem é",
-  title: "Para cada lado da licitação em São Paulo",
+  title: "Para quem vende a órgãos de São Paulo",
   description:
-    "Fornecedoras, equipes de licitação, consultorias e órgãos públicos usam a mesma base de editais, preços e prazos.",
+    "Fornecedoras, consultorias e equipes de licitação trabalham na mesma base de editais, preços e prazos.",
   audiences: [
     {
       icon: Building2,
@@ -102,12 +101,6 @@ export const audienceContent: {
       icon: Users,
       title: "Equipes de licitação",
       description: "Analista e gestor com visões próprias, aprovação de propostas e prazos da equipe em um painel.",
-    },
-    {
-      icon: Landmark,
-      title: "Prefeituras e órgãos públicos",
-      description:
-        "Pesquisa de preços a partir de licitações semelhantes e visão dos fornecedores ativos na região, para editais mais bem estimados.",
     },
   ],
   actionLabel: "Falar com um especialista sobre o meu caso",

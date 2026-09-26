@@ -11,7 +11,7 @@ export const Audience = () => (
       {audienceContent.title}
     </h2>
     <p className="mt-3 max-w-2xl text-body-lg text-muted-foreground">{audienceContent.description}</p>
-    <ul aria-label={accessibleLabels.audienceList} className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+    <ul aria-label={accessibleLabels.audienceList} className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
       {audienceContent.audiences.map(({ icon: Icon, title, description }) => (
         <li key={title} data-reveal className="flex flex-col gap-3 rounded-xl bg-card p-6 shadow-sm">
           <span className="mb-1 flex size-10 items-center justify-center rounded-lg bg-surface-container text-primary">
