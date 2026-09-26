@@ -1,5 +1,6 @@
 import { SectionWrapper } from "@/components/layout/section-wrapper";
 import { features, featuresContent } from "@/config/features";
+import { accessibleLabels } from "@/config/accessible-labels";
 
 export const Features = () => (
   <SectionWrapper id="funcionalidades" aria-labelledby="features-title">
@@ -8,7 +9,7 @@ export const Features = () => (
       {featuresContent.title}
     </h2>
     <p className="mt-3 max-w-2xl text-body-lg text-muted-foreground">{featuresContent.description}</p>
-    <ul aria-label="Funcionalidades da Qore" className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <ul aria-label={accessibleLabels.featuresList} className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {features.map(({ icon: Icon, title, description }) => (
         <li
           key={title}

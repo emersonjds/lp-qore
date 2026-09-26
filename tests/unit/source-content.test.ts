@@ -28,6 +28,18 @@ describe("source content", () => {
     expect(readFileSync(join(root, "README.md"), "utf8")).not.toContain("screenshots");
   });
 
+  it("keeps accessible labels and screen-reader copy in src/config, not inline", () => {
+    const inlineCopy = /aria-label="[^"]|className="sr-only[^"]*">\s*[^\s<{]/;
+    const offenders = listSourceFiles().filter(
+      (file) =>
+        file.endsWith(".tsx") &&
+        !file.includes("__tests__") &&
+        !file.includes(join("components", "ui")) &&
+        inlineCopy.test(readFileSync(file, "utf8")),
+    );
+    expect(offenders).toEqual([]);
+  });
+
   it("has no /login route", () => {
     expect(existsSync(join(SOURCE_DIRECTORY, "app", "login"))).toBe(false);
   });

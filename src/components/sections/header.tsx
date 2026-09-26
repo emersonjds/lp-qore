@@ -5,16 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
 import { CONTACT_HREF, primaryNavigation, CONTACT_SPECIALIST_LABEL } from "@/config/navigation";
 import { HeaderMobileMenu } from "./header-mobile-menu";
+import { accessibleLabels } from "@/config/accessible-labels";
 
 export const Header = () => (
   <header id="site-header" className="site-header fixed inset-x-0 top-0 z-50 isolate">
     <ScrollStateObserver targetId="site-header" sentinelId="top-sentinel" />
     <Container>
       <div className="flex h-16 items-center justify-between gap-4">
-        <Link href="/" aria-label="Qore, página inicial" className="inline-flex min-h-11 items-center rounded-md">
+        <Link href="/" aria-label={accessibleLabels.homeLink} className="inline-flex min-h-11 items-center rounded-md">
           <Logo />
         </Link>
-        <nav aria-label="Principal" className="hidden lg:block">
+        <nav aria-label={accessibleLabels.primaryNavigation} className="hidden lg:block">
           <ul className="flex items-center gap-1">
             {primaryNavigation.map((link) => (
               <li key={link.href}>

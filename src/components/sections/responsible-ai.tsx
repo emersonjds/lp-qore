@@ -1,6 +1,7 @@
 import { SectionWrapper } from "@/components/layout/section-wrapper";
 import { responsibleAiContent } from "@/config/home-content";
 import { AuditCard } from "./audit-card";
+import { accessibleLabels } from "@/config/accessible-labels";
 
 export const ResponsibleAi = () => (
   <SectionWrapper id="ia-responsavel" aria-labelledby="responsible-ai-title" className="bg-surface-low">
@@ -16,7 +17,7 @@ export const ResponsibleAi = () => (
         <AuditCard />
       </div>
     </div>
-    <ul aria-label="Compromissos da IA" className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+    <ul aria-label={accessibleLabels.responsibleAiList} className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
       {responsibleAiContent.commitments.map(({ icon: Icon, title, description }) => (
         <li key={title} data-reveal className="rounded-xl bg-card p-6 shadow-sm">
           <span className="mb-4 flex size-10 items-center justify-center rounded-lg bg-surface-container text-primary">

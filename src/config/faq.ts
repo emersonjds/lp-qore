@@ -32,3 +32,10 @@ export const faqItems: readonly FAQItem[] = [
       "O valor varia conforme o porte da empresa e o volume de licitações. Na demonstração, um especialista apresenta o plano certo para a sua operação.",
   },
 ];
+
+export const faqContent = {
+  eyebrow: "Tire suas dúvidas",
+  title: "Perguntas frequentes",
+  contactPrompt: "Não achou sua dúvida?",
+  contactLabel: "Fale com a gente",
+} as const;

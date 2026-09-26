@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { SectionWrapper } from "@/components/layout/section-wrapper";
 import { timeSavedContent } from "@/config/home-content";
 import { staggerStyle } from "@/lib/stagger-style";
+import { accessibleLabels } from "@/config/accessible-labels";
 
 export const TimeSaved = () => (
   <SectionWrapper id="resultados" aria-labelledby="time-saved-title">
@@ -21,7 +22,7 @@ export const TimeSaved = () => (
         >
           <h3 className="text-title-md text-foreground">{comparison.task}</h3>
           <p data-before className="text-body-md text-muted-foreground line-through decoration-input">
-            <span className="sr-only">Antes: </span>
+            <span className="sr-only">{accessibleLabels.before}</span>
             {comparison.before}
           </p>
           <ArrowRight aria-hidden="true" className="hidden size-5 text-primary md:block" />
@@ -29,7 +30,7 @@ export const TimeSaved = () => (
             data-after
             className="relative isolate inline-flex w-fit items-center rounded-full px-3 py-1 text-label-md font-semibold text-primary before:absolute before:inset-0 before:-z-10 before:origin-left before:rounded-full before:bg-primary-tint-strong"
           >
-            <span className="sr-only">Com a Qore: </span>
+            <span className="sr-only">{accessibleLabels.withQore}</span>
             {comparison.after}
           </p>
         </li>

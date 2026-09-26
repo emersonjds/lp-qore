@@ -1,13 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { contactFormCopy } from "@/config/contact-form";
 
 export type ContactFormStatus = "idle" | "submitting" | "success" | "error";
-
-const LABELS: Record<ContactFormStatus, string> = {
-  idle: "Solicitar demonstração",
-  submitting: "Enviando…",
-  success: "Enviado",
-  error: "Solicitar demonstração",
-};
 
 interface ContactSubmitButtonProps {
   status: ContactFormStatus;
@@ -22,7 +16,7 @@ export const ContactSubmitButton = ({ status }: ContactSubmitButtonProps) => (
     disabled={status === "submitting"}
   >
     <span key={status} data-motion-label>
-      {LABELS[status]}
+      {contactFormCopy.submit[status]}
     </span>
   </Button>
 );

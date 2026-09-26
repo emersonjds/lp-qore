@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { NavLink } from "@/types";
+import { accessibleLabels } from "@/config/accessible-labels";
 
 const HeaderMobileSheet = dynamic(() => import("./header-mobile-sheet").then((module) => module.HeaderMobileSheet), {
   ssr: false,
@@ -32,7 +33,7 @@ export const HeaderMobileMenu = ({ links, contactHref }: HeaderMobileMenuProps) 
         variant="ghost"
         size="icon"
         className="lg:hidden"
-        aria-label="Abrir menu"
+        aria-label={accessibleLabels.openMenu}
         aria-haspopup="dialog"
         aria-expanded={isOpen}
         onClick={open}

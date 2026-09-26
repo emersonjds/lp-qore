@@ -4,6 +4,7 @@ import { DocumentsScreen } from "@/components/simulated-screens/platform-screens
 import { documentsContent } from "@/config/documents";
 import { staggerStyle } from "@/lib/stagger-style";
 import { cn } from "@/lib/utils";
+import { accessibleLabels } from "@/config/accessible-labels";
 
 export const Documents = () => (
   <SectionWrapper id="documentos" aria-labelledby="documents-title" className="bg-surface-low">
@@ -18,7 +19,7 @@ export const Documents = () => (
       <div data-reveal data-certificates className="relative mx-auto w-full max-w-md">
         <DocumentsScreen label="Documentos" />
         <div className="relative mt-4 sm:ml-8 sm:w-72">
-          <ul aria-label="Verificação de certidões" className="flex flex-col gap-2">
+          <ul aria-label={accessibleLabels.certificatesList} className="flex flex-col gap-2">
             {documentsContent.certificateChecks.map((check, index) => (
               <li
                 key={check.name}

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet";
 import { CONTACT_SPECIALIST_LABEL } from "@/config/navigation";
 import type { NavLink } from "@/types";
+import { accessibleLabels } from "@/config/accessible-labels";
 
 interface HeaderMobileSheetProps {
   links: readonly NavLink[];
@@ -28,8 +29,8 @@ export const HeaderMobileSheet = ({ links, contactHref, isOpen, onOpenChange, tr
         }}
       >
         <SheetTitle className="font-display text-title-md">Menu</SheetTitle>
-        <SheetDescription className="sr-only">Navegação principal do site</SheetDescription>
-        <nav aria-label="Principal no celular">
+        <SheetDescription className="sr-only">{accessibleLabels.mobileNavigationDescription}</SheetDescription>
+        <nav aria-label={accessibleLabels.mobileNavigation}>
           <ul className="flex flex-col gap-1">
             {links.map((link) => (
               <li key={link.href}>

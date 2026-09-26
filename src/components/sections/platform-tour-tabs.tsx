@@ -5,6 +5,7 @@ import { platformScreens } from "@/components/simulated-screens/platform-screens
 import { prefersReducedMotion } from "@/lib/motion-preferences";
 import { cn } from "@/lib/utils";
 import type { PlatformTab } from "@/types";
+import { accessibleLabels } from "@/config/accessible-labels";
 
 const SWIPE_DISTANCE = 48;
 const RESUME_AFTER_MILLISECONDS = 10_000;
@@ -94,7 +95,7 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
     >
       <div
         role="tablist"
-        aria-label="Telas da plataforma"
+        aria-label={accessibleLabels.platformScreens}
         onPointerEnter={() => setIsHovered(true)}
         onPointerLeave={() => setIsHovered(false)}
         onFocus={(event) => setIsFocused(event.target.matches(":focus-visible"))}

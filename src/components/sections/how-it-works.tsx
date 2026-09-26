@@ -2,6 +2,7 @@ import { SectionWrapper } from "@/components/layout/section-wrapper";
 import { howItWorksContent } from "@/config/home-content";
 import { cn } from "@/lib/utils";
 import { HowItWorksLineAnimator } from "./how-it-works-line-animator";
+import { accessibleLabels } from "@/config/accessible-labels";
 
 export const HowItWorks = () => (
   <SectionWrapper id="como-funciona" aria-labelledby="how-it-works-title" className="relative">
@@ -36,7 +37,7 @@ export const HowItWorks = () => (
               {step.number}
             </span>
             <h3 className="mb-3 text-title-md text-foreground">
-              <span className="sr-only">Passo {step.number}: </span>
+              <span className="sr-only">{`${accessibleLabels.stepPrefix} ${step.number}: `}</span>
               {step.title}
             </h3>
             <p className="text-body-md text-muted-foreground">{step.description}</p>

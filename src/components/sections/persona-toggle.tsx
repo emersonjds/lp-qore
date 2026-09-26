@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import type { Persona } from "@/types";
+import { accessibleLabels } from "@/config/accessible-labels";
 
 export interface PersonaView extends Pick<Persona, "id" | "toggleLabel" | "title"> {
   features: ReactNode;
@@ -26,7 +27,7 @@ export const PersonaToggle = ({ heading, personas }: PersonaToggleProps) => {
         {heading}
         <div
           role="group"
-          aria-label="Escolha a função"
+          aria-label={accessibleLabels.personaChoice}
           className={cn(
             "flex w-full shrink-0 gap-1 self-start rounded-xl bg-surface-container p-1.5 shadow-xs sm:inline-flex sm:w-auto md:self-auto",
             !isEnhanced && "hidden",

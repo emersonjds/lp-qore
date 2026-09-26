@@ -4,6 +4,7 @@ import { footerNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { hasFooterLegalLine } from "@/lib/legal";
 import type { LegalIdentity } from "@/types";
+import { accessibleLabels } from "@/config/accessible-labels";
 
 interface FooterProps {
   year?: number;
@@ -24,7 +25,7 @@ export const Footer = ({ year = new Date().getFullYear(), legal = siteConfig.leg
           </p>
         ) : null}
       </div>
-      <nav aria-label="Rodapé">
+      <nav aria-label={accessibleLabels.footerNavigation}>
         <ul className="flex flex-wrap gap-x-2 gap-y-1">
           {footerNavigation.map((link) => (
             <li key={link.href}>

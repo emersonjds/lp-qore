@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { Input } from "@/components/ui/input";
-import { companySizes, contactRoles, monthlyTenderRanges } from "@/config/contact-form";
+import { companySizes, contactFormCopy, contactRoles, monthlyTenderRanges } from "@/config/contact-form";
 import {
   CONTACT_FORM_NAME,
   buildSuccessMessage,
@@ -51,7 +51,7 @@ const FieldShell = ({ id, label, isRequired, error, children }: FieldShellProps)
           *
         </span>
       ) : (
-        <span className="text-muted-foreground"> (opcional)</span>
+        <span className="text-muted-foreground">{contactFormCopy.optionalSuffix}</span>
       )}
     </label>
     {children}
@@ -95,7 +95,7 @@ export const ContactForm = () => {
         className={`${CONTROL_CLASS} h-11`}
       >
         <option value="" disabled>
-          Selecione
+          {contactFormCopy.selectPlaceholder}
         </option>
         {options.map((option) => (
           <option key={option} value={option}>
@@ -114,13 +114,13 @@ export const ContactForm = () => {
     const invalidField = firstInvalidField(validationErrors);
     if (invalidField) {
       setStatus("idle");
-      setFeedback("Revise os campos destacados.");
+      setFeedback(contactFormCopy.reviewFields);
       formRef.current?.querySelector<HTMLElement>(`[name="${invalidField}"]`)?.focus();
       return;
     }
 
     setStatus("submitting");
-    setFeedback("Enviando seu contato…");
+    setFeedback(contactFormCopy.sending);
     const result = await submitContact(values);
     if (result.status === "error") {
       setStatus("error");
@@ -147,12 +147,13 @@ export const ContactForm = () => {
       <input type="hidden" name="form-name" value={CONTACT_FORM_NAME} />
       <p className="hidden">
         <label>
-          Não preencha este campo: <input name="bot-field" tabIndex={-1} autoComplete="off" />
+          {contactFormCopy.honeypotLabel}
+          <input name="bot-field" tabIndex={-1} autoComplete="off" />
         </label>
       </p>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <FieldShell id="contact-name" label="Nome" isRequired error={errors.name}>
+        <FieldShell id="contact-name" label={contactFormCopy.labels.name} isRequired error={errors.name}>
           <Input
             id="contact-name"
             name="name"
@@ -164,7 +165,7 @@ export const ContactForm = () => {
             aria-describedby={describedBy("name", "contact-name")}
           />
         </FieldShell>
-        <FieldShell id="contact-email" label="E-mail corporativo" isRequired error={errors.email}>
+        <FieldShell id="contact-email" label={contactFormCopy.labels.email} isRequired error={errors.email}>
           <Input
             id="contact-email"
             name="email"
@@ -177,14 +178,14 @@ export const ContactForm = () => {
             aria-describedby={describedBy("email", "contact-email")}
           />
         </FieldShell>
-        <FieldShell id="contact-phone" label="Telefone ou WhatsApp" isRequired error={errors.phone}>
+        <FieldShell id="contact-phone" label={contactFormCopy.labels.phone} isRequired error={errors.phone}>
           <Input
             id="contact-phone"
             name="phone"
             type="tel"
             inputMode="tel"
             autoComplete="tel"
-            placeholder="(11) 98765-4321"
+            placeholder={contactFormCopy.phonePlaceholder}
             required
             value={values.phone}
             onChange={(event) => setTextField("phone", event.target.value)}
@@ -192,11 +193,11 @@ export const ContactForm = () => {
             aria-describedby={describedBy("phone", "contact-phone")}
           />
         </FieldShell>
-        {renderSelect("role", "contact-role", "Cargo", contactRoles)}
-        {renderSelect("companySize", "contact-company-size", "Porte da empresa", companySizes)}
-        {renderSelect("monthlyTenders", "contact-monthly-tenders", "Licitações por mês", monthlyTenderRanges)}
+        {renderSelect("role", "contact-role", contactFormCopy.labels.role, contactRoles)}
+        {renderSelect("companySize", "contact-company-size", contactFormCopy.labels.companySize, companySizes)}
+        {renderSelect("monthlyTenders", "contact-monthly-tenders", contactFormCopy.labels.monthlyTenders, monthlyTenderRanges)}
         <div className="sm:col-span-2">
-          <FieldShell id="contact-company" label="Empresa ou CNPJ" isRequired={false}>
+          <FieldShell id="contact-company" label={contactFormCopy.labels.company} isRequired={false}>
             <Input
               id="contact-company"
               name="company"
@@ -208,7 +209,7 @@ export const ContactForm = () => {
         </div>
       </div>
 
-      <FieldShell id="contact-message" label="Mensagem" isRequired={false}>
+      <FieldShell id="contact-message" label={contactFormCopy.labels.message} isRequired={false}>
         <textarea
           id="contact-message"
           name="message"
@@ -237,9 +238,9 @@ export const ContactForm = () => {
           />
           <label htmlFor="contact-consent" className="flex min-h-11 items-center text-label-md text-foreground">
             <span>
-              Autorizo a Qore a usar meus dados para responder este contato, conforme a{" "}
+              {contactFormCopy.consentLead}{" "}
               <a href="/privacidade" className="font-medium text-primary underline underline-offset-4">
-                Política de Privacidade
+                {contactFormCopy.privacyPolicyLabel}
               </a>
               .
             </span>
@@ -254,7 +255,7 @@ export const ContactForm = () => {
 
       <ContactSubmitButton status={status} />
       <p className="-mt-2 text-center text-caption text-muted-foreground">
-        Um especialista entra em contato em horário comercial.
+        {contactFormCopy.responseTime}
       </p>
       <p role="status" aria-live="polite" className="min-h-6 text-body-md text-foreground">
         {feedback}

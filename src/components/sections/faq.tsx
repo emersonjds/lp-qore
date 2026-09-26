@@ -1,14 +1,14 @@
 import { ChevronDown } from "lucide-react";
 import { SectionWrapper } from "@/components/layout/section-wrapper";
-import { faqItems } from "@/config/faq";
+import { faqContent, faqItems } from "@/config/faq";
 import { CONTACT_HREF } from "@/config/navigation";
 
 export const Faq = () => (
   <SectionWrapper id="faq" aria-labelledby="faq-title">
     <div className="mb-12 max-w-2xl">
-      <p className="text-label-sm uppercase tracking-wider text-primary">Tire suas dúvidas</p>
+      <p className="text-label-sm uppercase tracking-wider text-primary">{faqContent.eyebrow}</p>
       <h2 id="faq-title" className="mt-2 text-headline-lg-mobile md:text-headline-lg">
-        Perguntas frequentes
+        {faqContent.title}
       </h2>
     </div>
     <div className="flex max-w-3xl flex-col gap-4">
@@ -29,9 +29,9 @@ export const Faq = () => (
       ))}
     </div>
     <p className="mt-8 text-body-md text-muted-foreground">
-      Não achou sua dúvida?{" "}
+      {faqContent.contactPrompt}{" "}
       <a href={CONTACT_HREF} className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">
-        Fale com a gente
+        {faqContent.contactLabel}
       </a>
     </p>
   </SectionWrapper>
