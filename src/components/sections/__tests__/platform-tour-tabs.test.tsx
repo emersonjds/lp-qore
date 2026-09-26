@@ -20,8 +20,8 @@ describe("PlatformTourTabs", () => {
   it("shows the first screen and hides the others after hydration", () => {
     render(<PlatformTourTabs tabs={platformTabs} />);
     expect(screen.getByRole("tab", { name: "Painel do gestor" })).toHaveAttribute("aria-selected", "true");
-    expect(screen.getByRole("tabpanel", { name: "Painel do gestor" })).not.toHaveClass("invisible");
-    expect(screen.getByRole("tabpanel", { name: "Radar de oportunidades", hidden: true })).toHaveClass("invisible");
+    expect(screen.getByRole("tabpanel", { name: "Painel do gestor" })).not.toHaveAttribute("inert");
+    expect(screen.getByRole("tabpanel", { name: "Radar de oportunidades", hidden: true })).toHaveAttribute("inert");
   });
 
   it("switches screens on click", async () => {

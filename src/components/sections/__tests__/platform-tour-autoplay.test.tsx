@@ -73,7 +73,9 @@ describe("PlatformTourTabs auto-advance", () => {
     const firstCounter = managerPanel.querySelector("[data-count-up]");
     finishProgress(container);
     expect(managerPanel).toHaveClass("opacity-0", "translate-y-3");
-    expect(managerPanel.className).toMatch(/transition-\[opacity,translate,visibility\]/);
+    expect(managerPanel.className).toMatch(/transition-\[opacity,translate\] /);
+    expect(managerPanel.className).not.toMatch(/visibility|invisible/);
+    expect(managerPanel).toHaveAttribute("inert");
     expect(screen.getByRole("tabpanel", { name: "Radar de oportunidades" })).not.toHaveClass("opacity-0", "translate-y-3");
     platformTabs.slice(1).forEach(() => finishProgress(container));
     expect(managerPanel).toHaveAttribute("data-screen-active");
