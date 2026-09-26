@@ -6,17 +6,15 @@ export const PLATFORM_HREF = "/#plataforma";
 export const CONTACT_SPECIALIST_LABEL = "Fale com um especialista";
 
 export const primaryNavigation: readonly NavLink[] = [
+  { label: "Radar grátis", href: "/#radar" },
   { label: "Como funciona", href: HOW_IT_WORKS_HREF },
   { label: "Plataforma", href: PLATFORM_HREF },
-  { label: "Funcionalidades", href: "/#funcionalidades" },
-  { label: "Integrações", href: "/#integracoes" },
-  { label: "IA responsável", href: "/#ia-responsavel" },
+  { label: "Para quem é", href: "/#para-quem-e" },
   { label: "FAQ", href: "/#faq" },
 ];
 
 export const footerNavigation: readonly NavLink[] = [
   ...primaryNavigation,
-  { label: "Para quem é", href: "/#para-quem-e" },
   { label: "Contato", href: CONTACT_HREF },
   { label: "Privacidade", href: "/privacidade" },
 ];
