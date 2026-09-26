@@ -1,3 +1,16 @@
+/*
+ * Captures the real qore-web panel for the landing page (public/screenshots/).
+ *
+ * Prerequisites: qore-web on branch `developer`, `npm run dev` running there (MSW demo data is on by
+ * default). The onboarding cookie `qore_onboarding_done=1` is set here, as in qore-web/tests/e2e/manager-dashboard.spec.ts.
+ * Next 16 `next dev` may append an agent-rules block to qore-web/CLAUDE.md: restore it with `git checkout -- CLAUDE.md`.
+ *
+ * Env: QORE_WEB_URL (default http://localhost:3000), SCREENSHOTS_RAW_DIRECTORY (optional folder for the full PNGs to inspect).
+ * Rerun: `QORE_WEB_URL=http://localhost:3000 pnpm screenshots:capture`, then `pnpm test tests/unit/screenshots.test.ts`.
+ *
+ * Temporary: /search shows national coverage copy ("todo o Brasil", "SP e RS") that the landing may not show.
+ * The script hides it until Linear SPA-504 fixes the qore-web copy; delete hideNationalCoverageNotes then.
+ */
 import { mkdir, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
@@ -20,6 +33,19 @@ const LAYOUTS = {
     widths: [390, 780],
   },
 };
+
+const DEV_SWITCHER_NAMES = [/^Template da home ativo/, /^Papel de demonstração ativo/];
+
+/** @param {import("playwright").Page} page */
+const devSwitchers = (page) => DEV_SWITCHER_NAMES.map((name) => page.getByRole("button", { name }));
+
+/** @param {import("playwright").Page} page */
+const hideDevSwitchers = (page) =>
+  Promise.all(
+    devSwitchers(page).map((switcher) =>
+      switcher.evaluateAll((elements) => elements.forEach((element) => (element.style.display = "none"))),
+    ),
+  );
 
 /** @param {import("playwright").Page} page */
 const settle = async (page) => {
@@ -78,6 +104,9 @@ const assertCleanScreen = async (page, name) => {
   if ((await page.getByText(FABRICATED_PANEL_TERMS).filter({ visible: true }).count()) > 0) {
     throw new Error(`${name}: a fabricated panel is visible`);
   }
+  for (const switcher of devSwitchers(page)) {
+    if ((await switcher.filter({ visible: true }).count()) > 0) throw new Error(`${name}: a dev switcher is visible`);
+  }
   if ((await page.getByRole("alert").filter({ hasText: /erro|error|falha/i }).count()) > 0) {
     throw new Error(`${name}: an error message is visible`);
   }
@@ -115,6 +144,7 @@ try {
       await page.goto(new URL(screen.path, baseUrl).toString(), { waitUntil: "networkidle" });
       await page.addStyleTag({ content: DEV_OVERLAY_STYLE });
       await screen.prepare(page);
+      await hideDevSwitchers(page);
       await assertCleanScreen(page, screen.name);
       const fileName = `${screen.name}${layout.suffix}`;
       const png = await page.screenshot({ type: "png", clip: layout.clip });
