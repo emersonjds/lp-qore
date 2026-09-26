@@ -9,9 +9,9 @@ describe("ProposalHighlight", () => {
     expect(screen.getByText(/você só completa os preços/)).toBeInTheDocument();
   });
 
-  it("shows the real pricing step sealed as an illustrative screen", () => {
+  it("shows the real pricing step without an illustrative seal", () => {
     render(<ProposalHighlight />);
-    expect(screen.getByRole("figure", { name: "Precificação" })).toHaveTextContent("Tela ilustrativa");
+    expect(screen.getByRole("figure", { name: "Precificação" })).not.toHaveTextContent("Tela ilustrativa");
     expect(screen.getByRole("img", { name: /Etapa de precificação/ })).toHaveAttribute(
       "src",
       "/screenshots/pricing-1280.webp",

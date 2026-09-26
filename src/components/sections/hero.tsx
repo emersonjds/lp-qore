@@ -4,7 +4,7 @@ import { heroContent, platformTabs } from "@/config/home-content";
 import { CONTACT_HREF, HOW_IT_WORKS_HREF } from "@/config/navigation";
 import { PanelScreenshot } from "./panel-screenshot";
 
-const [managerDashboard] = platformTabs;
+const managerDashboard = platformTabs.find((tab) => tab.image === "manager-dashboard");
 
 export const Hero = () => (
   <section id="inicio" aria-labelledby="hero-title" className="pt-28 pb-16 md:pt-36 md:pb-24">
@@ -34,14 +34,16 @@ export const Hero = () => (
         </div>
         <p className="text-label-md text-muted-foreground">{heroContent.microcopy}</p>
       </div>
-      <PanelScreenshot
-        title={managerDashboard.label}
-        image={managerDashboard.image}
-        alt={managerDashboard.alt}
-        sizes="(min-width: 1024px) 36rem, 100vw"
-        loading="eager"
-        className="animate-hero-enter w-full lg:max-w-xl lg:justify-self-end"
-      />
+      {managerDashboard && (
+        <PanelScreenshot
+          title={managerDashboard.label}
+          image={managerDashboard.image}
+          alt={managerDashboard.alt}
+          sizes="(min-width: 1024px) 36rem, 100vw"
+          loading="eager"
+          className="animate-hero-enter w-full lg:max-w-xl lg:justify-self-end"
+        />
+      )}
     </Container>
   </section>
 );

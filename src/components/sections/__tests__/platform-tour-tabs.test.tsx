@@ -35,9 +35,9 @@ describe("PlatformTourTabs", () => {
     expect(screen.getByRole("tab", { name: "Painel do gestor" })).toHaveAttribute("aria-selected", "true");
   });
 
-  it("seals every screen as illustrative and reserves its size", () => {
+  it("shows the real screens without an illustrative seal and reserves their size", () => {
     render(<PlatformTourTabs tabs={platformTabs} />);
-    expect(screen.getAllByText("Tela ilustrativa", { exact: true })).toHaveLength(5);
+    expect(screen.queryByText("Tela ilustrativa")).not.toBeInTheDocument();
     const image = screen.getByAltText(platformTabs[0]?.alt ?? "");
     expect(image).toHaveAttribute("width", "1280");
     expect(image).toHaveAttribute("height", "800");

@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 type Device = "desktop" | "mobile";
@@ -57,10 +56,7 @@ export const PanelScreenshot = ({ title, device = "desktop", className, ...pictu
         <div className="overflow-hidden rounded-[2rem] border-8 border-slate-900 bg-slate-900 shadow-lg">
           <ScreenshotPicture device="mobile" {...pictureProps} />
         </div>
-        <figcaption className="mt-3 flex items-center justify-center gap-2 text-caption text-muted-foreground">
-          {title}
-          <Badge variant="outline">Tela ilustrativa</Badge>
-        </figcaption>
+        <figcaption className="mt-3 text-center text-caption text-muted-foreground">{title}</figcaption>
       </figure>
     );
   }
@@ -76,7 +72,6 @@ export const PanelScreenshot = ({ title, device = "desktop", className, ...pictu
         <span className="min-w-0 flex-1 truncate rounded-sm bg-card px-2 py-0.5 text-caption text-muted-foreground">
           {title}
         </span>
-        <Badge variant="outline">Tela ilustrativa</Badge>
       </figcaption>
       <ScreenshotPicture {...pictureProps} />
     </figure>

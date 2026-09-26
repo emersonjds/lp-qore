@@ -10,9 +10,9 @@ describe("Documents", () => {
     expect(screen.getByText(/avisa antes de vencer/)).toBeInTheDocument();
   });
 
-  it("shows the real documents screen on a phone, sealed as an illustrative screen", () => {
+  it("shows the real documents screen on a phone without an illustrative seal", () => {
     render(<Documents />);
-    expect(screen.getByRole("figure", { name: "Documentos" })).toHaveTextContent("Tela ilustrativa");
+    expect(screen.getByRole("figure", { name: "Documentos" })).not.toHaveTextContent("Tela ilustrativa");
     expect(screen.getByRole("img", { name: /Tela de documentos/ })).toHaveAttribute(
       "src",
       "/screenshots/documents-mobile-780.webp",

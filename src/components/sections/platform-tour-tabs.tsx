@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { PlatformTab } from "@/types";
 import { ScreenshotPicture } from "./panel-screenshot";
@@ -83,13 +82,10 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
               isEnhanced && index !== activeIndex && "invisible opacity-0",
             )}
           >
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <figcaption className="text-body-md text-muted-foreground">
-                {!isEnhanced && <strong className="font-display text-title-md text-foreground">{tab.label}: </strong>}
-                {tab.caption}
-              </figcaption>
-              <Badge variant="outline">Tela ilustrativa</Badge>
-            </div>
+            <figcaption className="text-body-md text-muted-foreground">
+              {!isEnhanced && <strong className="font-display text-title-md text-foreground">{tab.label}: </strong>}
+              {tab.caption}
+            </figcaption>
             <ScreenshotPicture
               image={tab.image}
               alt={tab.alt}

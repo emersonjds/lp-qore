@@ -29,10 +29,10 @@ describe("Hero", () => {
     expect(container.querySelector("section#inicio")).not.toBeNull();
   });
 
-  it("shows the real manager dashboard screenshot sealed as an illustrative screen", () => {
+  it("shows the real manager dashboard screenshot without an illustrative seal", () => {
     render(<Hero />);
     const frame = screen.getByRole("figure", { name: /Painel do gestor/ });
-    expect(frame).toHaveTextContent("Tela ilustrativa");
+    expect(frame).not.toHaveTextContent("Tela ilustrativa");
     const image = screen.getByRole("img", { name: /Painel do gestor/ });
     expect(image).toHaveAttribute("src", "/screenshots/manager-dashboard-1280.webp");
     expect(image).toHaveAttribute("width", "1280");

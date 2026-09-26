@@ -16,7 +16,7 @@ describe("Personas", () => {
     expect(managerFeatures).toContain("Aprovação de propostas");
   });
 
-  it("frames a real phone screen for each role, sealed as illustrative", () => {
+  it("frames a real phone screen for each role, without an illustrative seal", () => {
     render(<Personas />);
     const analyst = screen.getByRole("article", { name: "Seu dia sem planilha nem PDF de 80 páginas" });
     expect(within(analyst).getByRole("img", { name: /Radar de licitações/ })).toHaveAttribute(
@@ -28,7 +28,7 @@ describe("Personas", () => {
       "src",
       "/screenshots/manager-dashboard-mobile-780.webp",
     );
-    expect(screen.getAllByText("Tela ilustrativa")).toHaveLength(2);
+    expect(screen.queryByText("Tela ilustrativa")).not.toBeInTheDocument();
   });
 
   it("keeps no drawn mini panels", () => {
