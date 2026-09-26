@@ -25,7 +25,7 @@ describe("Hero", () => {
   it("says the product is available in São Paulo and backs it with honest trust points", () => {
     render(<Hero />);
     expect(screen.getByText("Disponível para São Paulo")).toBeInTheDocument();
-    expect(screen.getByText("Citação direta de artigos e páginas")).toBeInTheDocument();
+    expect(screen.queryByText("Citação direta de artigos e páginas")).not.toBeInTheDocument();
     expect(screen.getByText("Alinhado à Lei 14.133/2021")).toBeInTheDocument();
   });
 

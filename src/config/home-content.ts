@@ -41,7 +41,6 @@ export const heroContent = {
   subtitle:
     "Encontre licitações de São Paulo pelo seu CNPJ, entenda o edital com um resumo de IA que cita a página de origem e monte sua proposta com segurança.",
   trustPoints: [
-    { icon: BadgeCheck, label: "Citação direta de artigos e páginas" },
     { icon: ShieldCheck, label: "Alinhado à Lei 14.133/2021" },
   ],
   primaryAction: "Quero assinar a Qore",
