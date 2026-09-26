@@ -123,3 +123,14 @@ describe("buildSuccessMessage", () => {
     );
   });
 });
+
+describe("encodeContactSubmission spreadsheet safety", () => {
+  it("neutralizes formula-like text before it reaches the Netlify CSV export", () => {
+    const body = new URLSearchParams(
+      encodeContactSubmission({ ...validValues, name: "=cmd", company: "@evil", message: "+1" }),
+    );
+    expect(body.get("name")).toBe("'=cmd");
+    expect(body.get("company")).toBe("'@evil");
+    expect(body.get("message")).toBe("'+1");
+  });
+});

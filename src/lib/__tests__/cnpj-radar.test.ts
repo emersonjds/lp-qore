@@ -146,3 +146,13 @@ describe("encodeRadarLead", () => {
     });
   });
 });
+
+describe("encodeRadarLead spreadsheet safety", () => {
+  it("neutralizes formula-like names before they reach the Netlify CSV export", () => {
+    const body = new URLSearchParams(
+      encodeRadarLead({ name: "=cmd", email: "a@b.co", cnpj: "33.000.167/0001-01", activity: "-x", matchCount: 0 }),
+    );
+    expect(body.get("name")).toBe("'=cmd");
+    expect(body.get("activity")).toBe("'-x");
+  });
+});

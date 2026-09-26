@@ -1,5 +1,6 @@
 import { extractCnpjDigits } from "./cnpj";
 import { isValidEmail } from "./contact-form";
+import { toSpreadsheetSafe } from "./spreadsheet-safe";
 
 export interface RadarCompany {
   name: string;
@@ -173,10 +174,10 @@ export const runRadar = async (cnpj: string, fetcher: Fetcher = fetch, now: Date
 export const encodeRadarLead = (lead: RadarLead): string =>
   new URLSearchParams({
     "form-name": RADAR_FORM_NAME,
-    name: lead.name.trim(),
-    email: lead.email.trim(),
+    name: toSpreadsheetSafe(lead.name.trim()),
+    email: toSpreadsheetSafe(lead.email.trim()),
     cnpj: lead.cnpj,
-    activity: lead.activity,
+    activity: toSpreadsheetSafe(lead.activity),
     matchCount: String(lead.matchCount),
     consent: "sim",
     "bot-field": "",
