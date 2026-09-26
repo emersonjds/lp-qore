@@ -18,6 +18,8 @@ export const siteConfig: SiteConfig = {
   legal: {
     companyName: "",
     taxId: "",
+    city: "",
+    state: "",
     contactEmail: "",
     dataProtectionOfficer: "",
   },

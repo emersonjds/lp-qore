@@ -13,6 +13,8 @@ export interface NavLink {
 export interface LegalIdentity {
   companyName: string;
   taxId: string;
+  city: string;
+  state: string;
   contactEmail: string;
   dataProtectionOfficer: string;
 }

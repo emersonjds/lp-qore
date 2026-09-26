@@ -2,19 +2,27 @@ import { Container } from "@/components/layout/container";
 import { Logo } from "@/components/ui/logo";
 import { footerNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
+import { isLegalIdentityComplete } from "@/lib/legal";
+import type { LegalIdentity } from "@/types";
 
 interface FooterProps {
   year?: number;
+  legal?: LegalIdentity;
 }
 
-export const Footer = ({ year = new Date().getFullYear() }: FooterProps) => (
+export const Footer = ({ year = new Date().getFullYear(), legal = siteConfig.legal }: FooterProps) => (
   <footer className="border-t border-border bg-card">
     <Container className="flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between">
       <div className="flex flex-col gap-2">
         <Logo />
         <p className="text-caption text-muted-foreground">
-          © {year} {siteConfig.name}
+          © {year} {siteConfig.name}. Todos os direitos reservados.
         </p>
+        {isLegalIdentityComplete(legal) ? (
+          <p className="text-caption text-muted-foreground">
+            {legal.companyName} · CNPJ {legal.taxId} · {legal.city}/{legal.state}
+          </p>
+        ) : null}
       </div>
       <nav aria-label="Rodapé">
         <ul className="flex flex-wrap gap-x-2 gap-y-1">

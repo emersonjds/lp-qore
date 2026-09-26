@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { ControllerIdentity } from "../controller-identity";
 
-const empty = { companyName: "", taxId: "", contactEmail: "", dataProtectionOfficer: "" };
+const empty = { companyName: "", taxId: "", city: "", state: "", contactEmail: "", dataProtectionOfficer: "" };
 
 describe("ControllerIdentity", () => {
   it("promises publication while legal data is missing", () => {
@@ -16,6 +16,8 @@ describe("ControllerIdentity", () => {
         legal={{
           companyName: "Qore Tecnologia Ltda.",
           taxId: "11.222.333/0001-81",
+  city: "São Paulo",
+  state: "SP",
           contactEmail: "privacidade@qore.com.br",
           dataProtectionOfficer: "Ana Lima",
         }}

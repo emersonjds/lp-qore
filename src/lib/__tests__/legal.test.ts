@@ -4,6 +4,8 @@ import { isLegalIdentityComplete } from "../legal";
 const complete = {
   companyName: "Qore Tecnologia Ltda.",
   taxId: "11.222.333/0001-81",
+  city: "São Paulo",
+  state: "SP",
   contactEmail: "privacidade@qore.com.br",
   dataProtectionOfficer: "Encarregado de dados",
 };
