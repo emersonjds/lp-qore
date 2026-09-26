@@ -5,13 +5,13 @@ import { Contact } from "../contact";
 describe("Contact", () => {
   it("invites the visitor to a demo with their own tenders", () => {
     render(<Contact />);
-    expect(screen.getByText("Demonstração")).toBeInTheDocument();
+    expect(screen.getByText("Diagnóstico sem compromisso")).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
-      "Veja a Qore com as licitações da sua empresa",
+      "Descubra quais licitações de São Paulo a sua empresa pode vencer",
     );
     expect(
       screen.getByText(
-        "Conte um pouco sobre a sua empresa e um especialista mostra as licitações abertas em São Paulo para o seu segmento.",
+        "Leva 1 minuto. Um especialista cruza o seu CNPJ com os editais abertos em São Paulo e apresenta as oportunidades do seu segmento.",
       ),
     ).toBeInTheDocument();
   });

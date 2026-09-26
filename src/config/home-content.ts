@@ -411,10 +411,10 @@ export const aboutContent = {
 } as const;
 
 export const contactContent = {
-  eyebrow: "Demonstração",
-  title: "Veja a Qore com as licitações da sua empresa",
+  eyebrow: "Diagnóstico sem compromisso",
+  title: "Descubra quais licitações de São Paulo a sua empresa pode vencer",
   description:
-    "Conte um pouco sobre a sua empresa e um especialista mostra as licitações abertas em São Paulo para o seu segmento.",
+    "Leva 1 minuto. Um especialista cruza o seu CNPJ com os editais abertos em São Paulo e apresenta as oportunidades do seu segmento.",
   highlights: [
     "Radar montado a partir do CNPJ da sua empresa",
     "Editais abertos em São Paulo no seu segmento",
