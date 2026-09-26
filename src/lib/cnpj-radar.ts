@@ -1,4 +1,5 @@
 import { extractCnpjDigits } from "./cnpj";
+import { isValidEmail } from "./contact-form";
 
 export interface RadarCompany {
   name: string;
@@ -182,3 +183,19 @@ export const encodeRadarLead = (lead: RadarLead): string =>
     consent: "sim",
     "bot-field": "",
   }).toString();
+
+export interface RadarLeadValues {
+  name: string;
+  email: string;
+  consent: boolean;
+}
+
+export type RadarLeadErrors = Partial<Record<keyof RadarLeadValues, string>>;
+
+export const validateRadarLead = (values: RadarLeadValues): RadarLeadErrors => {
+  const errors: RadarLeadErrors = {};
+  if (values.name.trim().length < 2) errors.name = "Informe seu nome.";
+  if (!isValidEmail(values.email)) errors.email = "Informe um e-mail válido, como nome@empresa.com.br.";
+  if (!values.consent) errors.consent = "Para enviar, autorize o uso dos seus dados para este contato.";
+  return errors;
+};
