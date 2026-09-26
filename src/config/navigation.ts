@@ -13,6 +13,7 @@ export const primaryNavigation: readonly NavLink[] = [
 
 export const footerNavigation: readonly NavLink[] = [
   ...primaryNavigation,
+  { label: "Para quem é", href: "/#para-quem-e" },
   { label: "Contato", href: CONTACT_HREF },
   { label: "Privacidade", href: "/privacidade" },
 ];

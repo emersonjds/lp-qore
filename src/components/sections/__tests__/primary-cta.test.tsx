@@ -1,6 +1,7 @@
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { ctaBanners } from "@/config/home-content";
+import { Audience } from "../audience";
 import { Contact } from "../contact";
 import { CtaBanner } from "../cta-banner";
 import { Header } from "../header";
@@ -18,13 +19,14 @@ describe("Primary CTAs", () => {
         <Hero />
         <CtaBanner {...ctaBanners.afterFeatures} />
         <CtaBanner {...ctaBanners.afterIntegrations} />
+        <Audience />
         <Contact />
         <MobileCtaBar />
       </>,
     );
     const primaryButtons = [...container.querySelectorAll('[data-slot="button"][data-variant="default"]')];
     expect(primaryButtons.map((button) => button.getAttribute("data-cta"))).toEqual(
-      expect.arrayContaining(["header", "hero-primary", "after-features", "after-integrations", "contact-submit", "mobile-sticky"]),
+      expect.arrayContaining(["header", "hero-primary", "after-features", "after-integrations", "audience", "contact-submit", "mobile-sticky"]),
     );
     primaryButtons.forEach((button) => {
       expect(button).toHaveClass("bg-primary", "text-primary-foreground");

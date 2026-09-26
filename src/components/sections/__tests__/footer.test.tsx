@@ -18,6 +18,7 @@ describe("Footer", () => {
       "/#integracoes",
       "/#ia-responsavel",
       "/#faq",
+      "/#para-quem-e",
       "/#contato",
       "/privacidade",
     ]);

@@ -16,6 +16,7 @@ describe("HomePage", () => {
       "documentos",
       "plataforma",
       "funcoes",
+      "para-quem-e",
       "resultados",
       "integracoes",
       "ia-responsavel",

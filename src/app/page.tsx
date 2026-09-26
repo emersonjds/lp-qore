@@ -1,4 +1,5 @@
 import { About } from "@/components/sections/about";
+import { Audience } from "@/components/sections/audience";
 import { Contact } from "@/components/sections/contact";
 import { Coverage } from "@/components/sections/coverage";
 import { CtaBanner } from "@/components/sections/cta-banner";
@@ -29,6 +30,7 @@ const HomePage = () => (
     <Documents />
     <PlatformTour />
     <Personas />
+    <Audience />
     <TimeSaved />
     <Integrations />
     <CtaBanner {...ctaBanners.afterIntegrations} />

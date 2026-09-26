@@ -1,4 +1,8 @@
 import {
+  Briefcase,
+  Building2,
+  Landmark,
+  Users,
   BadgeCheck,
   CalendarClock,
   ChartPie,
@@ -244,6 +248,39 @@ export const personasContent: { eyebrow: string; title: string; personas: readon
       ],
     },
   ],
+};
+
+export const audienceContent: {
+  title: string;
+  audiences: readonly IconCard[];
+  actionLabel: string;
+} = {
+  title: "A Qore se encaixa na sua operação",
+  audiences: [
+    {
+      icon: Building2,
+      title: "Empresas fornecedoras",
+      description:
+        "Da PME à grande empresa: radar de oportunidades, proposta cerca de 80% pronta e certidões em dia.",
+    },
+    {
+      icon: Briefcase,
+      title: "Consultores e assessorias de licitação",
+      description:
+        "Vários CNPJs em uma só conta (Modo Consultor), com uma proposta por cliente e a marca de cada um.",
+    },
+    {
+      icon: Users,
+      title: "Equipes de licitação",
+      description: "Papéis de Analista e Gestor, aprovação de propostas e painel do gestor.",
+    },
+    {
+      icon: Landmark,
+      title: "Prefeituras e órgãos públicos",
+      description: "Visão do mercado fornecedor da região e dos preços praticados em licitações semelhantes.",
+    },
+  ],
+  actionLabel: "Fale com a gente sobre o seu caso",
 };
 
 export const coverageContent: {
