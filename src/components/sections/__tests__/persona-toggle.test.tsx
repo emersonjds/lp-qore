@@ -56,4 +56,16 @@ describe("PersonaToggle", () => {
     expect(html).toContain("Seu dia sem planilha nem PDF de 80 páginas");
     expect(html).toContain("Visão da operação inteira em uma tela");
   });
+
+  it("crossfades between the two views with opacity and a short lift", async () => {
+    renderToggle();
+    await userEvent.click(screen.getByRole("button", { name: "Gestor de licitações" }));
+    expect(screen.getByRole("article", { name: "Seu dia sem planilha nem PDF de 80 páginas", hidden: true })).toHaveClass(
+      "opacity-0",
+      "translate-y-2",
+    );
+    const manager = screen.getByRole("article", { name: "Visão da operação inteira em uma tela" });
+    expect(manager).toHaveClass("transition-[opacity,translate,visibility]");
+    expect(manager).not.toHaveClass("opacity-0");
+  });
 });

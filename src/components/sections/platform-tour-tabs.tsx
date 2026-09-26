@@ -134,7 +134,7 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
             role={isEnhanced ? "tabpanel" : undefined}
             aria-labelledby={isEnhanced ? `${baseId}-tab-${tab.id}` : undefined}
             className={cn(
-              "transition-[opacity,transform,visibility] duration-500 ease-out motion-reduce:transition-none",
+              "transition-[opacity,scale,visibility] duration-500 ease-out motion-reduce:transition-none",
               isEnhanced && "col-start-1 row-start-1",
               isEnhanced && index !== activeIndex && "invisible scale-[0.98] opacity-0",
             )}

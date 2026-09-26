@@ -47,9 +47,9 @@ export const PersonaToggle = ({ personas }: PersonaToggleProps) => {
             key={persona.id}
             aria-labelledby={`persona-${persona.id}-title`}
             className={cn(
-              "grid items-start gap-10 rounded-xl border border-border bg-card p-6 shadow-sm md:p-10 lg:grid-cols-2 lg:gap-16",
+              "grid items-start gap-10 rounded-xl border border-border bg-card p-6 shadow-sm transition-[opacity,translate,visibility] duration-300 ease-out md:p-10 lg:grid-cols-2 lg:gap-16",
               isEnhanced && "col-start-1 row-start-1",
-              isEnhanced && persona.id !== activeId && "invisible",
+              isEnhanced && persona.id !== activeId && "invisible translate-y-2 opacity-0",
             )}
           >
             <div>
