@@ -17,10 +17,26 @@ import { ProposalHighlight } from "@/components/sections/proposal-highlight";
 import { ResponsibleAi } from "@/components/sections/responsible-ai";
 import { Testimonials } from "@/components/sections/testimonials";
 import { TimeSaved } from "@/components/sections/time-saved";
+import { faqItems } from "@/config/faq";
 import { ctaBanners } from "@/config/home-content";
+import { siteConfig } from "@/config/site";
+import { buildStructuredData, serializeJsonLd } from "@/lib/structured-data";
 
 const HomePage = () => (
   <main id="conteudo" tabIndex={-1}>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: serializeJsonLd(
+          buildStructuredData({
+            siteName: siteConfig.name,
+            siteUrl: siteConfig.url,
+            description: siteConfig.description,
+            faqItems,
+          }),
+        ),
+      }}
+    />
     <Hero />
     <Problem />
     <HowItWorks />
