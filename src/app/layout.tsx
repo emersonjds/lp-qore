@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Hanken_Grotesk, Inter } from "next/font/google";
 import { RevealObserver } from "@/components/layout/reveal-observer";
 import { Footer } from "@/components/sections/footer";
 import { Header } from "@/components/sections/header";
 import { siteConfig } from "@/config/site";
+import { buildRootMetadata } from "@/lib/site-metadata";
 import "./globals.css";
 
 const inter = Inter({
@@ -21,11 +22,14 @@ const hankenGrotesk = Hanken_Grotesk({
   variable: "--font-hanken-grotesk",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-  title: `${siteConfig.name} | ${siteConfig.slogan}`,
+export const metadata: Metadata = buildRootMetadata({
+  siteName: siteConfig.name,
+  slogan: siteConfig.slogan,
   description: siteConfig.description,
-};
+  siteUrl: siteConfig.url,
+});
+
+export const viewport: Viewport = { themeColor: "#047857" };
 
 interface RootLayoutProps {
   children: ReactNode;
