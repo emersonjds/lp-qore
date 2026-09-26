@@ -25,7 +25,6 @@ import type {
   IconCard,
   MapHub,
   Persona,
-  PersonaMetric,
   PlatformTab,
 } from "@/types";
 
@@ -246,20 +245,6 @@ export const personasContent: { eyebrow: string; title: string; personas: readon
     },
   ],
 };
-
-export const analystMatchExample = {
-  tender: "Pregão eletrônico: aquisição de notebooks",
-  agency: "Prefeitura de Campinas",
-  score: 87,
-  criteria: ["CNAE compatível", "Porte da empresa atendido", "3 itens do catálogo no edital"],
-} as const;
-
-export const managerMetricsExample: readonly PersonaMetric[] = [
-  { label: "Licitações em análise", value: "12", detail: "3 com sessão nesta semana" },
-  { label: "Valor em disputa", value: "R$ 1,8 mi", detail: "Soma das propostas em andamento" },
-  { label: "Prazos da semana", value: "4", detail: "1 pedido de esclarecimento vence hoje" },
-  { label: "Propostas enviadas no mês", value: "5", detail: "Todas revisadas pela equipe" },
-];
 
 export const coverageContent: {
   eyebrow: string;

@@ -3,7 +3,7 @@ import { join } from "node:path";
 import sharp from "sharp";
 import { describe, expect, it } from "vitest";
 import { platformTabs } from "@/config/home-content";
-import { MOBILE_SCREENSHOTS } from "@/config/screenshots";
+import { mobileScreenshots } from "@/config/screenshots";
 
 const FORMATS = [
   ["avif", "heif"],
@@ -21,10 +21,10 @@ const desktopCases = platformTabs.flatMap((tab) =>
   ),
 );
 
-const mobileCases = MOBILE_SCREENSHOTS.flatMap((name) =>
+const mobileCases = Object.values(mobileScreenshots).flatMap(({ image }) =>
   [390, 780].flatMap((width) =>
     FORMATS.map(([extension, format]) => ({
-      file: `${name}-mobile-${width}.${extension}`,
+      file: `${image}-mobile-${width}.${extension}`,
       width,
       height: (width * 844) / 390,
       format,

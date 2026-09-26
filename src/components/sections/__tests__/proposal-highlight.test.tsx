@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { proposalContent } from "@/config/features";
 import { ProposalHighlight } from "../proposal-highlight";
 
 describe("ProposalHighlight", () => {
@@ -10,33 +9,18 @@ describe("ProposalHighlight", () => {
     expect(screen.getByText(/você só completa os preços/)).toBeInTheDocument();
   });
 
-  it("draws the document at 80% with prices as the only pending step", () => {
-    const { container } = render(<ProposalHighlight />);
-    const progress = screen.getByRole("progressbar", { name: "Proposta preenchida" });
-    expect(progress).toHaveAttribute("aria-valuenow", "80");
-    expect(progress.querySelector("[data-proposal-progress]")).not.toBeNull();
-    const pendingSteps = container.querySelectorAll("[data-pending-step]");
-    expect(pendingSteps).toHaveLength(1);
-    expect(pendingSteps[0]).toHaveTextContent("Preços");
-  });
-
-  it("reserves a slot for the company brand and seals the drawing as an example", () => {
+  it("shows the real pricing step sealed as an illustrative screen", () => {
     render(<ProposalHighlight />);
-    expect(screen.getByText("Sua marca")).toBeInTheDocument();
-    expect(screen.getByText("Exemplo ilustrativo")).toBeInTheDocument();
+    expect(screen.getByRole("figure", { name: "Precificação" })).toHaveTextContent("Tela ilustrativa");
+    expect(screen.getByRole("img", { name: /Etapa de precificação/ })).toHaveAttribute(
+      "src",
+      "/screenshots/pricing-1280.webp",
+    );
   });
 
-  it("takes the document labels from the content config", () => {
+  it("keeps no drawn mock of the proposal document", () => {
     render(<ProposalHighlight />);
-    expect(screen.getByText(proposalContent.documentTitle)).toBeInTheDocument();
-    expect(screen.getAllByText(proposalContent.completedLabel)).toHaveLength(proposalContent.completedSteps.length);
-    expect(screen.getByText(proposalContent.pendingLabel)).toBeInTheDocument();
-    expect(screen.getByText(proposalContent.brandSlotLabel)).toBeInTheDocument();
-  });
-
-  it("accepts a real screenshot in place of the drawing", () => {
-    render(<ProposalHighlight visual={<img src="/screenshots/pricing.webp" alt="Etapa de precificação" />} />);
-    expect(screen.getByRole("img", { name: "Etapa de precificação" })).toBeInTheDocument();
     expect(screen.queryByRole("progressbar")).not.toBeInTheDocument();
+    expect(screen.queryByText("Exemplo ilustrativo")).not.toBeInTheDocument();
   });
 });

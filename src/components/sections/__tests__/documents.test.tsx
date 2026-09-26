@@ -1,6 +1,5 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { documentsContent } from "@/config/documents";
 import { Documents } from "../documents";
 
 describe("Documents", () => {
@@ -11,42 +10,17 @@ describe("Documents", () => {
     expect(screen.getByText(/avisa antes de vencer/)).toBeInTheDocument();
   });
 
-  it("lists the six certificates with a status chip each", () => {
+  it("shows the real documents screen on a phone, sealed as an illustrative screen", () => {
     render(<Documents />);
-    const list = screen.getByRole("list", { name: "Certidões da empresa" });
-    const rows = within(list).getAllByRole("listitem");
-    expect(rows.map((row) => row.querySelector("[data-certificate-name]")?.textContent)).toEqual([
-      "CND Federal",
-      "CRF/FGTS",
-      "CNDT",
-      "CEIS/CNEP",
-      "Certidão estadual",
-      "SICAF",
-    ]);
-    rows.forEach((row) => expect(row.querySelector("[data-certificate-status]")).not.toBeNull());
+    expect(screen.getByRole("figure", { name: "Documentos" })).toHaveTextContent("Tela ilustrativa");
+    expect(screen.getByRole("img", { name: /Tela de documentos/ })).toHaveAttribute(
+      "src",
+      "/screenshots/documents-mobile-780.webp",
+    );
   });
 
-  it("colours the chips by status from the design system", () => {
+  it("keeps no drawn mock of the certificate list", () => {
     render(<Documents />);
-    expect(screen.getAllByText("Válida")[0]).toHaveClass("bg-primary-tint", "text-primary");
-    expect(screen.getByText("Vence em 12 dias")).toHaveClass("bg-warning-tint", "text-warning-text");
-    expect(screen.getByText("Vencida")).toHaveClass("bg-destructive-tint", "text-destructive-text");
-  });
-
-  it("takes the list labels from the content config", () => {
-    render(<Documents />);
-    expect(screen.getByText(documentsContent.listTitle)).toBeInTheDocument();
-    expect(screen.getByRole("list", { name: documentsContent.listLabel })).toBeInTheDocument();
-  });
-
-  it("seals the list as an illustrative example", () => {
-    render(<Documents />);
-    expect(screen.getByText("Exemplo ilustrativo")).toBeInTheDocument();
-  });
-
-  it("accepts a real screenshot in place of the list", () => {
-    render(<Documents visual={<img src="/screenshots/documents.webp" alt="Tela de documentos" />} />);
-    expect(screen.getByRole("img", { name: "Tela de documentos" })).toBeInTheDocument();
     expect(screen.queryByRole("list", { name: "Certidões da empresa" })).not.toBeInTheDocument();
   });
 });

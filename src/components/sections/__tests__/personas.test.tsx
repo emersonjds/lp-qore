@@ -16,22 +16,24 @@ describe("Personas", () => {
     expect(managerFeatures).toContain("Aprovação de propostas");
   });
 
-  it("shows an illustrative CNPJ match score for the analyst", () => {
-    const { container } = render(<Personas />);
-    const score = container.querySelector("[data-match-score]");
-    expect(score).not.toBeNull();
-    expect(score).toHaveAttribute("data-match-score", "87");
-  });
-
-  it("seals both role panels as illustrative examples", () => {
+  it("frames a real phone screen for each role, sealed as illustrative", () => {
     render(<Personas />);
-    expect(screen.getAllByText("Exemplo ilustrativo")).toHaveLength(2);
-  });
-
-  it("shows no win rate number on the manager panel", () => {
-    render(<Personas />);
+    const analyst = screen.getByRole("article", { name: "Seu dia sem planilha nem PDF de 80 páginas" });
+    expect(within(analyst).getByRole("img", { name: /Radar de licitações/ })).toHaveAttribute(
+      "src",
+      "/screenshots/radar-mobile-780.webp",
+    );
     const manager = screen.getByRole("article", { name: "Visão da operação inteira em uma tela" });
-    const panel = within(manager).getByRole("figure");
-    expect(panel.textContent).not.toMatch(/%/);
+    expect(within(manager).getByRole("img", { name: /Painel do gestor/ })).toHaveAttribute(
+      "src",
+      "/screenshots/manager-dashboard-mobile-780.webp",
+    );
+    expect(screen.getAllByText("Tela ilustrativa")).toHaveLength(2);
+  });
+
+  it("keeps no drawn mini panels", () => {
+    const { container } = render(<Personas />);
+    expect(container.querySelector("[data-match-score]")).toBeNull();
+    expect(screen.queryByText("Exemplo ilustrativo")).not.toBeInTheDocument();
   });
 });

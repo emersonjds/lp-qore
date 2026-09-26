@@ -44,12 +44,6 @@ export interface PlatformTab {
   alt: string;
 }
 
-export interface PersonaMetric {
-  label: string;
-  value: string;
-  detail: string;
-}
-
 export interface Persona {
   id: "analyst" | "manager";
   toggleLabel: string;
@@ -81,11 +75,3 @@ export interface Testimonial {
   authorizedAt: string;
 }
 
-export type CertificateStatus = "valid" | "expiring" | "expired";
-
-export interface Certificate {
-  name: string;
-  issuer: string;
-  status: CertificateStatus;
-  statusLabel: string;
-}
