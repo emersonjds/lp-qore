@@ -7,7 +7,7 @@ export const HowItWorks = () => (
   <SectionWrapper id="como-funciona" aria-labelledby="how-it-works-title" className="relative">
     <HowItWorksLineAnimator sectionId="como-funciona" />
     <div className="max-w-2xl">
-      <p className="text-label-sm uppercase text-primary">{howItWorksContent.eyebrow}</p>
+      <p className="text-label-sm uppercase tracking-wider text-primary">{howItWorksContent.eyebrow}</p>
       <h2 id="how-it-works-title" className="mt-2 text-headline-lg-mobile md:text-headline-lg">
         {howItWorksContent.title}
       </h2>

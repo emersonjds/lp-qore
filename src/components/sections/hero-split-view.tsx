@@ -65,7 +65,7 @@ export const HeroSplitView = () => (
             {summary.items.map((item, index) => (
               <li key={item.label} data-summary-card={index} className="rounded-md bg-card p-3 shadow-sm">
                 <p className="mb-1 flex items-center justify-between gap-2">
-                  <span className="text-label-sm uppercase text-primary">{item.label}</span>
+                  <span className="text-label-sm uppercase tracking-wider text-primary">{item.label}</span>
                   <span data-page-chip className={pageChipClass}>
                     {item.page}
                   </span>

@@ -6,7 +6,7 @@ import { marketNumbers } from "@/config/market-numbers";
 
 export const Problem = () => (
   <SectionWrapper id="problema" aria-labelledby="problem-title" className="bg-surface-low">
-    <p className="text-label-sm uppercase text-primary">{problemContent.eyebrow}</p>
+    <p className="text-label-sm uppercase tracking-wider text-primary">{problemContent.eyebrow}</p>
     <h2 id="problem-title" className="mt-2 max-w-2xl text-headline-lg-mobile md:text-headline-lg">
       {problemContent.title}
     </h2>

@@ -21,7 +21,7 @@ export const Coverage = () => (
     <div className="rounded-lg bg-card p-6 shadow-md md:p-12">
       <div className="grid items-center gap-10 lg:grid-cols-2">
         <div className="min-w-0">
-          <p className="text-label-sm uppercase text-primary">{coverageContent.eyebrow}</p>
+          <p className="text-label-sm uppercase tracking-wider text-primary">{coverageContent.eyebrow}</p>
           <h2 id="coverage-title" className="mt-2 text-headline-lg-mobile md:text-headline-lg">
             {coverageContent.title}
           </h2>

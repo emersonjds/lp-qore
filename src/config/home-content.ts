@@ -310,10 +310,12 @@ export const personasContent: { eyebrow: string; title: string; personas: readon
 };
 
 export const audienceContent: {
+  eyebrow: string;
   title: string;
   audiences: readonly IconCard[];
   actionLabel: string;
 } = {
+  eyebrow: "Para quem é",
   title: "A Qore se encaixa na sua operação",
   audiences: [
     {

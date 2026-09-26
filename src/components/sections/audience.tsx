@@ -4,14 +4,15 @@ import { audienceContent } from "@/config/home-content";
 import { CONTACT_HREF } from "@/config/navigation";
 
 export const Audience = () => (
-  <SectionWrapper id="para-quem-e" aria-labelledby="audience-title">
-    <h2 id="audience-title" className="max-w-3xl text-headline-lg-mobile md:text-headline-lg">
+  <SectionWrapper id="para-quem-e" aria-labelledby="audience-title" className="bg-surface-low">
+    <p className="text-label-sm uppercase tracking-wider text-primary">{audienceContent.eyebrow}</p>
+    <h2 id="audience-title" className="mt-2 max-w-3xl text-headline-lg-mobile md:text-headline-lg">
       {audienceContent.title}
     </h2>
-    <ul aria-label="Para quem é a Qore" className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <ul aria-label="Para quem é a Qore" className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
       {audienceContent.audiences.map(({ icon: Icon, title, description }) => (
-        <li key={title} data-reveal className="flex flex-col gap-3 rounded-lg border border-border bg-card p-6 shadow-sm">
-          <span className="flex size-11 items-center justify-center rounded-md bg-primary-tint text-primary">
+        <li key={title} data-reveal className="flex flex-col gap-3 rounded-xl bg-card p-6 shadow-sm">
+          <span className="mb-1 flex size-10 items-center justify-center rounded-lg bg-surface-container text-primary">
             <Icon aria-hidden="true" className="size-5" />
           </span>
           <h3 className="text-title-md">{title}</h3>

@@ -7,7 +7,7 @@ export const ProposalHighlight = () => (
   <SectionWrapper id="proposta" aria-labelledby="proposal-title" className="pt-0 md:pt-0 2xl:pt-0">
     <div className="grid items-center gap-10 overflow-hidden rounded-xl bg-primary-tint p-6 md:p-12 lg:grid-cols-2 lg:gap-16">
       <div>
-        <p className="text-label-sm uppercase text-primary">{proposalContent.eyebrow}</p>
+        <p className="text-label-sm uppercase tracking-wider text-primary">{proposalContent.eyebrow}</p>
         <h2 id="proposal-title" className="mt-2 text-headline-lg-mobile md:text-headline-lg">
           {proposalContent.title}
         </h2>

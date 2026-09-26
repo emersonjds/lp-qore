@@ -7,7 +7,7 @@ export const Contact = () => (
   <SectionWrapper id="contato" aria-labelledby="contact-title" className="bg-surface-low">
     <div className="grid gap-10 lg:grid-cols-2">
       <div>
-        <p className="text-label-sm uppercase text-primary">{contactContent.eyebrow}</p>
+        <p className="text-label-sm uppercase tracking-wider text-primary">{contactContent.eyebrow}</p>
         <h2 id="contact-title" className="mt-2 text-headline-lg-mobile md:text-headline-lg">
           {contactContent.title}
         </h2>

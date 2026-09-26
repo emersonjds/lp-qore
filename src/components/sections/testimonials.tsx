@@ -11,7 +11,7 @@ export const Testimonials = ({ items = testimonials }: TestimonialsProps) => {
 
   return (
     <SectionWrapper id="clientes" aria-labelledby="testimonials-title">
-      <p className="text-label-sm uppercase text-primary">{testimonialsContent.eyebrow}</p>
+      <p className="text-label-sm uppercase tracking-wider text-primary">{testimonialsContent.eyebrow}</p>
       <h2 id="testimonials-title" className="mt-2 max-w-3xl text-headline-lg-mobile md:text-headline-lg">
         {testimonialsContent.title}
       </h2>

@@ -4,7 +4,7 @@ import { aboutContent } from "@/config/home-content";
 export const About = () => (
   <SectionWrapper id="quem-somos" aria-labelledby="about-title" className="bg-surface-low">
     <div className="max-w-3xl">
-      <p className="text-label-sm uppercase text-primary">{aboutContent.eyebrow}</p>
+      <p className="text-label-sm uppercase tracking-wider text-primary">{aboutContent.eyebrow}</p>
       <h2 id="about-title" className="mt-2 text-headline-lg-mobile md:text-headline-lg">
         {aboutContent.title}
       </h2>

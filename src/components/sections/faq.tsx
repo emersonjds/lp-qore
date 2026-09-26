@@ -7,7 +7,7 @@ export const Faq = () => (
   <SectionWrapper id="faq" aria-labelledby="faq-title">
     <div className="grid gap-10 lg:grid-cols-3">
       <div>
-        <p className="text-label-sm uppercase text-primary">FAQ</p>
+        <p className="text-label-sm uppercase tracking-wider text-primary">FAQ</p>
         <h2 id="faq-title" className="mt-2 text-headline-lg-mobile md:text-headline-lg">
           Perguntas frequentes
         </h2>

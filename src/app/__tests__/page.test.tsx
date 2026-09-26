@@ -27,6 +27,23 @@ describe("HomePage", () => {
     ]);
   });
 
+  it("alternates the surface and surface-low backgrounds like the Stitch reference", () => {
+    const { container } = render(<HomePage />);
+    const lowSections = [...container.querySelectorAll("main > section[id]")]
+      .filter((section) => section.classList.contains("bg-surface-low"))
+      .map((section) => section.id);
+    expect(lowSections).toEqual([
+      "problema",
+      "plataforma",
+      "documentos",
+      "para-quem-e",
+      "integracoes",
+      "ia-responsavel",
+      "quem-somos",
+      "contato",
+    ]);
+  });
+
   it("points every menu and footer anchor to a real section", () => {
     const { container } = render(<HomePage />);
     [...primaryNavigation, ...footerNavigation]
