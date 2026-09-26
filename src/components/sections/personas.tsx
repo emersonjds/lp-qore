@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { SectionWrapper } from "@/components/layout/section-wrapper";
+import { CountUp } from "@/components/motion/count-up";
 import { personasContent } from "@/config/home-content";
 import { mobileScreenshots } from "@/config/screenshots";
 import type { Persona } from "@/types";
@@ -7,7 +8,22 @@ import { PanelScreenshot } from "./panel-screenshot";
 import { PersonaToggle, type PersonaView } from "./persona-toggle";
 
 const visuals: Record<Persona["id"], ReactNode> = {
-  analyst: <PanelScreenshot device="mobile" sizes="18rem" {...mobileScreenshots.radar} />,
+  analyst: (
+    <div className="relative mx-auto w-full max-w-72">
+      <PanelScreenshot device="mobile" sizes="18rem" {...mobileScreenshots.radar} />
+      <div
+        data-testid="match-chip"
+        data-reveal
+        className="absolute top-28 -right-2 rounded-lg bg-card px-4 py-3 shadow-lg ring-1 ring-primary-tint-strong sm:-right-10"
+      >
+        <p className="flex items-center gap-2 text-caption text-muted-foreground">
+          Aderência
+          <span className="rounded-full bg-surface-low px-1.5 text-caption">Exemplo</span>
+        </p>
+        <CountUp value="87%" className="font-display text-headline-md text-primary" />
+      </div>
+    </div>
+  ),
   manager: <PanelScreenshot device="mobile" sizes="18rem" {...mobileScreenshots.managerDashboard} />,
 };
 

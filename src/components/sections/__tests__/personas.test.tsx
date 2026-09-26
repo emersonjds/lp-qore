@@ -36,4 +36,12 @@ describe("Personas", () => {
     expect(container.querySelector("[data-match-score]")).toBeNull();
     expect(screen.queryByText("Exemplo ilustrativo")).not.toBeInTheDocument();
   });
+
+  it("shows the analyst an example match chip that counts up to 87%", () => {
+    render(<Personas />);
+    const chip = screen.getByTestId("match-chip");
+    expect(chip).toHaveTextContent("Aderência");
+    expect(chip).toHaveTextContent("Exemplo");
+    expect(chip.querySelector("[data-count-up]")).toHaveTextContent("87%");
+  });
 });
