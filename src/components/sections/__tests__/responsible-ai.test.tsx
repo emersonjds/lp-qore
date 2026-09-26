@@ -1,44 +1,59 @@
 import { render, screen, within } from "@testing-library/react";
+import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { ResponsibleAi } from "../responsible-ai";
 
+const EXCERPT = "“Exige-se índice de liquidez corrente superior a 1,25.”";
+
+const auditCard = () => screen.getByRole("figure", { name: "Exemplo ilustrativo: Auditoria em Tempo Real" });
+
 describe("ResponsibleAi", () => {
-  it("lists the four commitments", () => {
+  it("presents the AI as institutional governance, citing the source instead of promising no hallucinations", () => {
+    const { container } = render(<ResponsibleAi />);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("IA com responsabilidade institucional");
+    expect(screen.getByText("Governança e transparência")).toBeInTheDocument();
+    expect(screen.getByText(/fonte citada em cada ponto/i)).toBeInTheDocument();
+    expect(container.textContent).not.toMatch(/alucina|100%/i);
+  });
+
+  it("lists the four commitments as cards", () => {
     render(<ResponsibleAi />);
-    expect(screen.getAllByRole("heading", { level: 3 }).map((heading) => heading.textContent)).toEqual([
-      "Cita a fonte",
-      "Diz “não encontrado no edital”",
-      "Sugere, e você decide",
+    const commitments = screen.getByRole("list", { name: "Compromissos da IA" });
+    expect(within(commitments).getAllByRole("heading", { level: 3 }).map((heading) => heading.textContent)).toEqual([
+      "Cita a fonte de cada afirmação",
+      "Diz quando o edital não informa",
+      "Sugere, você decide",
       "Você envia a proposta, não a IA",
     ]);
   });
 
-  it("shows a legible edital excerpt next to the AI summary, each point citing its page", () => {
+  it("audits an extracted clause with the file and page it came from, as an illustrative example", () => {
     render(<ResponsibleAi />);
-    const excerpt = screen.getByRole("figure", { name: "Exemplo ilustrativo: trecho do edital e resumo da IA" });
-    expect(within(excerpt).getByText("Objeto:")).toBeInTheDocument();
-    expect(within(excerpt).getByText("Prazo da proposta:")).toBeInTheDocument();
-    expect(within(excerpt).getByText("Habilitação:")).toBeInTheDocument();
-    expect(within(excerpt).getByText("Resumo da IA")).toBeInTheDocument();
-    expect(within(excerpt).getAllByText(/^pág\. \d+$/).map((chip) => chip.textContent)).toEqual([
-      "pág. 12",
-      "pág. 31",
-      "pág. 44",
-      "pág. 12",
-      "pág. 31",
-      "pág. 44",
-    ]);
+    const card = auditCard();
+    expect(within(card).getByText("Trecho extraído:")).toBeInTheDocument();
+    expect(within(card).getByText(EXCERPT)).toBeInTheDocument();
+    expect(within(card).getByText("Edital_SP_Item_8.4.pdf • pág. 31")).toBeInTheDocument();
+    expect(within(card).getByText("Não encontrado no edital")).toBeInTheDocument();
+    expect(within(card).getByText("Exemplo ilustrativo")).toBeInTheDocument();
   });
 
-  it("keeps the commitments in the text column beside the illustration", () => {
+  it("types the clause one character at a time and pops the source chip only after the last one", () => {
     render(<ResponsibleAi />);
-    const title = screen.getByRole("heading", { level: 2 });
-    const commitments = screen.getByRole("list", { name: "Compromissos da IA" });
-    expect(title.parentElement).toContainElement(commitments);
+    const card = auditCard();
+    expect(card).toHaveAttribute("data-reveal");
+    const characters = [...card.querySelectorAll<HTMLElement>("[data-typed-char]")];
+    expect(characters.map((character) => character.textContent).join("")).toBe(EXCERPT);
+    expect(characters[0]?.closest("[aria-hidden='true']")).not.toBeNull();
+    expect(characters.map((character) => character.style.getPropertyValue("--order"))).toEqual(
+      characters.map((_, index) => String(index)),
+    );
+    const chip = card.querySelector<HTMLElement>("[data-source-chip]");
+    expect(chip?.style.getPropertyValue("--order")).toBe(String(EXCERPT.length));
   });
 
-  it("speaks as an operating product, in the present tense", () => {
-    render(<ResponsibleAi />);
-    expect(screen.getByText(/A IA trabalha como apoio da sua equipe/)).toBeInTheDocument();
+  it("renders the whole clause before JavaScript runs", () => {
+    const html = renderToString(<ResponsibleAi />);
+    expect(html).toContain("Edital_SP_Item_8.4.pdf");
+    expect(html).not.toContain("opacity:0");
   });
 });

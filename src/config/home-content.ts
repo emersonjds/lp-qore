@@ -15,9 +15,9 @@ import {
   Quote,
   Radar,
   SearchCheck,
-  SearchX,
+  CircleHelp,
   ShieldCheck,
-  Send,
+  PenLine,
   SlidersHorizontal,
   Sparkles,
   TriangleAlert,
@@ -114,58 +114,45 @@ export const platformTabs: readonly PlatformTab[] = [
 ];
 
 export const responsibleAiContent: { eyebrow: string; title: string; description: string; commitments: readonly IconCard[] } = {
-  eyebrow: "IA responsável",
-  title: "IA com responsabilidade",
+  eyebrow: "Governança e transparência",
+  title: "IA com responsabilidade institucional",
   description:
-    "A IA trabalha como apoio da sua equipe: ela lê, organiza e aponta a fonte. A decisão continua sua.",
+    "Controle e transparência para o time de licitação: fonte citada em cada ponto, nenhuma ação automática e cada resumo rastreável até o edital.",
   commitments: [
     {
       icon: Quote,
-      title: "Cita a fonte",
-      description: "Cada ponto do resumo indica a página e o item do edital de onde saiu.",
+      title: "Cita a fonte de cada afirmação",
+      description: "Cada ponto do resumo indica a página e o item do edital de onde saiu, para você conferir no texto oficial.",
     },
     {
-      icon: SearchX,
-      title: "Diz “não encontrado no edital”",
-      description: "Quando o edital não traz a informação, a IA diz isso em vez de preencher a lacuna.",
+      icon: CircleHelp,
+      title: "Diz quando o edital não informa",
+      description:
+        "Se uma regra não está explícita no edital, a IA aponta a omissão para você pedir esclarecimento ao pregoeiro.",
     },
     {
       icon: SlidersHorizontal,
-      title: "Sugere, e você decide",
+      title: "Sugere, você decide",
       description: "A IA organiza as informações. Participar ou não, e por qual preço, é decisão da sua equipe.",
     },
     {
-      icon: Send,
+      icon: PenLine,
       title: "Você envia a proposta, não a IA",
-      description: "O Qore não envia proposta nem dá lance. O envio ao portal continua com a sua empresa.",
+      description: "O Qore não envia proposta nem dá lance. O envio ao portal e a assinatura continuam com a sua empresa.",
     },
   ],
 };
 
-export const aiReadingExample = {
-  label: "Exemplo ilustrativo: trecho do edital e resumo da IA",
-  documentTitle: "Edital de pregão eletrônico",
-  summaryTitle: "Resumo da IA",
-  excerpts: [
-    {
-      label: "Objeto:",
-      text: "aquisição de material de escritório para as unidades da Secretaria.",
-      page: 12,
-      summary: "Compra de material de escritório",
-    },
-    {
-      label: "Prazo da proposta:",
-      text: "as propostas serão recebidas até as 9h do dia da sessão pública.",
-      page: 31,
-      summary: "Enviar a proposta até as 9h do dia da sessão",
-    },
-    {
-      label: "Habilitação:",
-      text: "certidões de regularidade fiscal e trabalhista válidas na data da sessão.",
-      page: 44,
-      summary: "Certidões fiscal e trabalhista válidas na sessão",
-    },
-  ],
+export const auditExample = {
+  label: "Exemplo ilustrativo: Auditoria em Tempo Real",
+  title: "Auditoria em Tempo Real",
+  caption: "Cada trecho com a página de origem",
+  excerptLabel: "Trecho extraído:",
+  excerpt: "“Exige-se índice de liquidez corrente superior a 1,25.”",
+  source: "Edital_SP_Item_8.4.pdf • pág. 31",
+  missingLabel: "Garantia contratual:",
+  missingText: "Não encontrado no edital",
+  missingAction: "Sugestão: pedir esclarecimento",
 } as const;
 
 export const personasContent: { eyebrow: string; title: string; personas: readonly [Persona, Persona] } = {
