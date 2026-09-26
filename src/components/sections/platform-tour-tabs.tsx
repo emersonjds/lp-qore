@@ -1,11 +1,15 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type KeyboardEvent, type TouchEvent } from "react";
+import { useNearViewport } from "@/hooks/use-near-viewport";
+import { loadScrollTrigger } from "@/lib/load-scroll-trigger";
+import { isDesktopViewport, prefersReducedMotion } from "@/lib/motion-preferences";
 import { cn } from "@/lib/utils";
 import type { PlatformTab } from "@/types";
 import { ScreenshotPicture } from "./panel-screenshot";
 
 const IMAGE_SIZES = "(min-width: 1024px) 56rem, 100vw";
+const SWIPE_DISTANCE = 48;
 
 interface PlatformTourTabsProps {
   tabs: readonly PlatformTab[];
@@ -16,8 +20,56 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
   const [isEnhanced, setIsEnhanced] = useState(false);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const baseId = useId();
+  const tourRef = useRef<HTMLDivElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const isNear = useNearViewport(tourRef);
 
   useEffect(() => setIsEnhanced(true), []);
+
+  useEffect(() => {
+    const tour = tourRef.current;
+    if (!isNear || !tour || prefersReducedMotion() || !isDesktopViewport()) return;
+
+    let isCancelled = false;
+    let kill = () => {};
+
+    void loadScrollTrigger().then(({ ScrollTrigger }) => {
+      if (isCancelled) return;
+      let scrolledIndex = 0;
+      const trigger = ScrollTrigger.create({
+        trigger: tour,
+        pin: true,
+        start: "top 88px",
+        end: `+=${tabs.length * 60}%`,
+        onUpdate: (self: { progress: number }) => {
+          const nextIndex = Math.min(tabs.length - 1, Math.floor(self.progress * tabs.length));
+          if (nextIndex === scrolledIndex) return;
+          scrolledIndex = nextIndex;
+          setActiveIndex(nextIndex);
+        },
+      });
+      kill = () => trigger.kill();
+    });
+
+    return () => {
+      isCancelled = true;
+      kill();
+    };
+  }, [isNear, tabs.length]);
+
+  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    const touch = event.changedTouches[0];
+    touchStartRef.current = touch ? { x: touch.clientX, y: touch.clientY } : null;
+  };
+
+  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    const start = touchStartRef.current;
+    const touch = event.changedTouches[0];
+    if (!start || !touch) return;
+    const distanceX = touch.clientX - start.x;
+    if (Math.abs(distanceX) < SWIPE_DISTANCE || Math.abs(distanceX) < Math.abs(touch.clientY - start.y)) return;
+    setActiveIndex((index) => Math.min(tabs.length - 1, Math.max(0, index + (distanceX < 0 ? 1 : -1))));
+  };
 
   const focusTab = (index: number) => {
     const nextIndex = (index + tabs.length) % tabs.length;
@@ -38,7 +90,7 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
   };
 
   return (
-    <div className="mt-10 lg:mx-auto lg:max-w-4xl">
+    <div ref={tourRef} data-platform-tour className="mt-10 lg:mx-auto lg:max-w-4xl">
       <div
         role="tablist"
         aria-label="Telas da plataforma"
@@ -69,7 +121,12 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
           </button>
         ))}
       </div>
-      <div className={cn("mt-6", isEnhanced ? "grid" : "flex flex-col gap-10")}>
+      <div
+        data-tour-panels
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        className={cn("mt-6", isEnhanced ? "grid" : "flex flex-col gap-10")}
+      >
         {tabs.map((tab, index) => (
           <figure
             key={tab.id}
@@ -77,9 +134,9 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
             role={isEnhanced ? "tabpanel" : undefined}
             aria-labelledby={isEnhanced ? `${baseId}-tab-${tab.id}` : undefined}
             className={cn(
-              "transition-opacity duration-300 motion-reduce:transition-none",
+              "transition-[opacity,transform,visibility] duration-500 ease-out motion-reduce:transition-none",
               isEnhanced && "col-start-1 row-start-1",
-              isEnhanced && index !== activeIndex && "invisible opacity-0",
+              isEnhanced && index !== activeIndex && "invisible scale-[0.98] opacity-0",
             )}
           >
             <figcaption className="text-body-md text-muted-foreground">
