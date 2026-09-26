@@ -2,11 +2,12 @@ import type { NavLink } from "@/types";
 
 export const CONTACT_HREF = "/#contato";
 export const HOW_IT_WORKS_HREF = "/#como-funciona";
+export const PLATFORM_HREF = "/#plataforma";
 export const CONTACT_SPECIALIST_LABEL = "Fale com um especialista";
 
 export const primaryNavigation: readonly NavLink[] = [
   { label: "Como funciona", href: HOW_IT_WORKS_HREF },
-  { label: "Plataforma", href: "/#plataforma" },
+  { label: "Plataforma", href: PLATFORM_HREF },
   { label: "Funcionalidades", href: "/#funcionalidades" },
   { label: "Integrações", href: "/#integracoes" },
   { label: "IA responsável", href: "/#ia-responsavel" },

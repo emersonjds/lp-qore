@@ -19,9 +19,9 @@ const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"
   <rect y="598" width="1200" height="32" fill="#047857"/>
   ${positionedIcon}
   <text x="212" y="156" font-family="${FONT_STACK}" font-size="56" font-weight="700" fill="#0b1c30">Qore<tspan fill="#047857">.</tspan></text>
-  <text x="96" y="340" font-family="${FONT_STACK}" font-size="80" font-weight="700" letter-spacing="-2" fill="#0b1c30">A IA lê o edital.</text>
-  <text x="96" y="436" font-family="${FONT_STACK}" font-size="80" font-weight="700" letter-spacing="-2" fill="#047857">Você decide.</text>
-  <text x="96" y="520" font-family="${FONT_STACK}" font-size="32" fill="#475569">Licitações de São Paulo pelo seu CNPJ</text>
+  <text x="96" y="340" font-family="${FONT_STACK}" font-size="80" font-weight="700" letter-spacing="-2" fill="#0b1c30">Do radar à</text>
+  <text x="96" y="436" font-family="${FONT_STACK}" font-size="80" font-weight="700" letter-spacing="-2" fill="#047857">proposta pronta.</text>
+  <text x="96" y="520" font-family="${FONT_STACK}" font-size="32" fill="#475569">Licitações dos 645 municípios de SP e do estado</text>
 </svg>`;
 
 await sharp(Buffer.from(ogSvg)).png().toFile(ogImagePath);

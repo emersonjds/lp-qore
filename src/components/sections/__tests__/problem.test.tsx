@@ -3,6 +3,14 @@ import { describe, expect, it } from "vitest";
 import { Problem } from "../problem";
 
 describe("Problem", () => {
+  it("positions the section with the approved heading and lead", () => {
+    render(<Problem />);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Onde a licitação se perde: portal, edital e prazo");
+    expect(
+      screen.getByText("Edital em portal que ninguém abriu, 80 páginas lidas na véspera, proposta desclassificada por preço ou certidão vencida."),
+    ).toBeInTheDocument();
+  });
+
   it("lists three pains, each revealed on scroll", () => {
     render(<Problem />);
     const items = within(screen.getByRole("list")).getAllByRole("listitem");

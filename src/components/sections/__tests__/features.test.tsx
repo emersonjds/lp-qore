@@ -3,12 +3,14 @@ import { describe, expect, it } from "vitest";
 import { Features } from "../features";
 
 describe("Features", () => {
+  it("positions the section with the approved heading and lead", () => {
+    render(<Features />);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Doze ferramentas, uma operação de licitação");
+  });
+
   it("anchors the section at #funcionalidades with the owner's title", () => {
     const { container } = render(<Features />);
     expect(container.querySelector("section#funcionalidades")).not.toBeNull();
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
-      "Tudo o que sua equipe precisa para disputar licitações",
-    );
   });
 
   it("lists the twelve features in the decided order", () => {

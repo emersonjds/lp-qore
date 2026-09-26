@@ -3,17 +3,17 @@ import { describe, expect, it } from "vitest";
 import { Contact } from "../contact";
 
 describe("Contact", () => {
+  it("positions the section with the approved heading and lead", () => {
+    render(<Contact />);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Veja as licitações abertas para o seu CNPJ");
+    expect(
+      screen.getByText("Conte o porte da empresa e quantas licitações disputa por mês. A equipe da Qore retorna com uma demonstração no seu cenário."),
+    ).toBeInTheDocument();
+  });
+
   it("invites the visitor to a demo with their own tenders", () => {
     render(<Contact />);
     expect(screen.getByText("Diagnóstico sem compromisso")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
-      "Descubra quais licitações de São Paulo a sua empresa pode vencer",
-    );
-    expect(
-      screen.getByText(
-        "Leva 1 minuto. Um especialista cruza o seu CNPJ com os editais abertos em São Paulo e apresenta as oportunidades do seu segmento.",
-      ),
-    ).toBeInTheDocument();
   });
 
   it("lists what the demo brings, without waitlist promises", () => {

@@ -35,21 +35,29 @@ import type {
 } from "@/types";
 
 export const heroContent = {
-  eyebrow: "Disponível para São Paulo",
-  titleLead: "A IA lê o edital.",
-  titleEmphasis: "Você decide.",
+  eyebrow: "Para quem vende ao governo em São Paulo",
+  titleLead: "Licitações de São Paulo,",
+  titleEmphasis: "do radar à proposta pronta.",
   subtitle:
-    "Encontre licitações de São Paulo pelo seu CNPJ, entenda o edital com um resumo de IA que cita a página de origem e monte sua proposta com segurança.",
+    "A Qore encontra os editais que combinam com o seu CNPJ, resume cada um citando a página, entrega a proposta cerca de 80% pronta e avisa antes de uma certidão vencer.",
+  rotatingLines: [
+    "Editais que combinam com o seu CNPJ",
+    "Resumo do edital com a página citada",
+    "Proposta cerca de 80% pronta, com sua marca",
+    "Certidões com aviso antes de vencer",
+  ],
   trustPoints: [
     { icon: ShieldCheck, label: "Alinhado à Lei 14.133/2021" },
   ],
-  primaryAction: "Quero uma demonstração",
-  secondaryAction: "Ver como funciona",
+  primaryAction: "Agendar demonstração",
+  secondaryAction: "Ver a plataforma",
 } as const;
 
-export const problemContent: { eyebrow: string; title: string; items: readonly ProblemCard[] } = {
+export const problemContent: { eyebrow: string; title: string; description: string; items: readonly ProblemCard[] } = {
   eyebrow: "O desafio da contratação pública",
-  title: "Os gargalos de quem disputa licitações todos os dias",
+  title: "Onde a licitação se perde: portal, edital e prazo",
+  description:
+    "Edital em portal que ninguém abriu, 80 páginas lidas na véspera, proposta desclassificada por preço ou certidão vencida.",
   items: [
     {
       icon: LayoutGrid,
@@ -82,8 +90,9 @@ export const howItWorksContent: {
   steps: readonly HowItWorksStep[];
 } = {
   eyebrow: "Fluxo integrado",
-  title: "Como funciona",
-  description: "Três etapas conectam a sua empresa aos editais certos, com a decisão sempre nas mãos da sua equipe.",
+  title: "Do CNPJ à proposta em três etapas",
+  description:
+    "Informe o CNPJ, receba o radar e responda com o edital resumido e a proposta encaminhada. A decisão continua com a sua equipe.",
   steps: [
     {
       number: "01",
@@ -104,6 +113,12 @@ export const howItWorksContent: {
   ],
 };
 
+export const platformContent = {
+  eyebrow: "Recursos e módulos",
+  title: "Uma tela para cada etapa da licitação",
+  description: "Painel do gestor, radar, resumo com IA, precificação e calendário, todos com os mesmos dados da empresa.",
+} as const;
+
 export const platformTabs: readonly PlatformTab[] = [
   { id: "painel", label: "Painel do gestor" },
   { id: "radar", label: "Radar de oportunidades" },
@@ -114,9 +129,9 @@ export const platformTabs: readonly PlatformTab[] = [
 
 export const responsibleAiContent: { eyebrow: string; title: string; description: string; commitments: readonly IconCard[] } = {
   eyebrow: "Governança e transparência",
-  title: "IA com responsabilidade institucional",
+  title: "IA que mostra a fonte e deixa a decisão com você",
   description:
-    "Controle e transparência para o time de licitação: fonte citada em cada ponto, nenhuma ação automática e cada resumo rastreável até o edital.",
+    "Cada ponto cita a página do edital, o que o edital não informa aparece como lacuna e o envio ao portal é sempre da sua empresa.",
   commitments: [
     {
       icon: Quote,
@@ -154,9 +169,16 @@ export const auditExample = {
   missingAction: "Sugestão: pedir esclarecimento",
 } as const;
 
-export const personasContent: { eyebrow: string; title: string; personas: readonly [Persona, Persona] } = {
+export const personasContent: {
+  eyebrow: string;
+  title: string;
+  description: string;
+  personas: readonly [Persona, Persona];
+} = {
   eyebrow: "Interface sob medida",
-  title: "Construído para cada função na equipe de licitações",
+  title: "Uma visão para o analista, outra para o gestor",
+  description:
+    "O analista trabalha a fila do dia; o gestor acompanha valor ganho, taxa de vitória e prazos da equipe.",
   personas: [
     {
       id: "manager",
@@ -311,36 +333,40 @@ export const personasContent: { eyebrow: string; title: string; personas: readon
 export const audienceContent: {
   eyebrow: string;
   title: string;
+  description: string;
   audiences: readonly IconCard[];
   actionLabel: string;
 } = {
   eyebrow: "Para quem é",
-  title: "A Qore se encaixa na sua operação",
+  title: "Para cada lado da licitação em São Paulo",
+  description:
+    "Fornecedoras, equipes de licitação, consultorias e órgãos públicos usam a mesma base de editais, preços e prazos.",
   audiences: [
     {
       icon: Building2,
       title: "Empresas fornecedoras",
       description:
-        "Da PME à grande empresa: radar de oportunidades, proposta cerca de 80% pronta e certidões em dia.",
+        "Da PME à grande empresa: radar pelo CNPJ, proposta cerca de 80% pronta e certidões sempre em dia.",
     },
     {
       icon: Briefcase,
       title: "Consultores e assessorias de licitação",
       description:
-        "Vários CNPJs em uma só conta (Modo Consultor), com uma proposta por cliente e a marca de cada um.",
+        "Vários CNPJs em uma só conta, com uma proposta por cliente e a marca de cada um.",
     },
     {
       icon: Users,
       title: "Equipes de licitação",
-      description: "Papéis de Analista e Gestor, aprovação de propostas e painel do gestor.",
+      description: "Analista e gestor com visões próprias, aprovação de propostas e prazos da equipe em um painel.",
     },
     {
       icon: Landmark,
       title: "Prefeituras e órgãos públicos",
-      description: "Visão do mercado fornecedor da região e dos preços praticados em licitações semelhantes.",
+      description:
+        "Pesquisa de preços a partir de licitações semelhantes e visão dos fornecedores ativos na região, para editais mais bem estimados.",
     },
   ],
-  actionLabel: "Fale com a gente sobre o seu caso",
+  actionLabel: "Falar com um especialista sobre o meu caso",
 };
 
 export const coverageContent: {
@@ -354,7 +380,7 @@ export const coverageContent: {
   eyebrow: "Território de atuação",
   title: "Todo o estado de São Paulo, da capital ao interior",
   description:
-    "Licitações dos 645 municípios paulistas, do governo do estado, de autarquias e empresas públicas, reunidas dos principais portais.",
+    "Os 645 municípios paulistas e os órgãos do estado no mesmo radar.",
   mapCaption: "Os 645 municípios paulistas cobertos.",
   clusters: [
     {
@@ -412,9 +438,9 @@ export const aboutContent = {
 
 export const contactContent = {
   eyebrow: "Diagnóstico sem compromisso",
-  title: "Descubra quais licitações de São Paulo a sua empresa pode vencer",
+  title: "Veja as licitações abertas para o seu CNPJ",
   description:
-    "Leva 1 minuto. Um especialista cruza o seu CNPJ com os editais abertos em São Paulo e apresenta as oportunidades do seu segmento.",
+    "Conte o porte da empresa e quantas licitações disputa por mês. A equipe da Qore retorna com uma demonstração no seu cenário.",
   highlights: [
     "Radar montado a partir do CNPJ da sua empresa",
     "Editais abertos em São Paulo no seu segmento",
@@ -436,13 +462,22 @@ export const ctaBanners = {
 } as const;
 
 export const timeSavedContent = {
-  eyebrow: "Resultados",
-  title: "Tempo que volta para a equipe",
-  description: "O trabalho repetitivo sai da mesa da equipe, e sobra tempo para decidir e disputar mais.",
+  eyebrow: "Antes e depois",
+  title: "Menos tempo caçando edital, mais tempo ganhando licitação",
+  description:
+    "A Qore assume o trabalho braçal da licitação. Sua equipe fica com o que decide contrato: estratégia, preço e relacionamento com o órgão.",
+  beforeLabel: "Sem a Qore",
+  afterLabel: "Com a Qore",
   comparisons: [
-    { task: "Leitura do edital", before: "Horas de leitura", after: "Minutos, com o resumo citado" },
-    { task: "Busca de oportunidades", before: "Vários portais abertos", after: "Um radar só" },
-    { task: "Montagem da proposta", before: "Do zero", after: "Cerca de 80% pronta" },
-    { task: "Certidões", before: "Conferência manual", after: "Alerta antes de vencer" },
+    { task: "Encontrar editais", before: "Oito portais abertos todo dia", after: "Um radar filtrado pelo seu CNPJ" },
+    { task: "Ler o edital", before: "Horas no PDF, na véspera do prazo", after: "Resumo em minutos, com a página citada" },
+    {
+      task: "Montar a proposta",
+      before: "Planilha e documento do zero",
+      after: "Proposta cerca de 80% pronta, com a sua marca",
+    },
+    { task: "Certidões", before: "Conferência manual e susto na habilitação", after: "Aviso antes de cada certidão vencer" },
+    { task: "Prazos", before: "Datas espalhadas em e-mails e agendas", after: "Um calendário para a equipe inteira" },
+    { task: "Gestão", before: "Resultado só no fim do mês", after: "Valor ganho e taxa de vitória sempre no painel" },
   ],
 } as const;

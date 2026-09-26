@@ -9,8 +9,9 @@ interface IntegrationGroup {
 
 export const integrationsContent = {
   eyebrow: "Integrações",
-  title: "Os maiores portais de compras públicas em um só lugar",
-  description: "Licitações de órgãos estaduais e municipais de São Paulo, dos principais portais, em um só lugar.",
+  title: "PNCP, BEC/SP e mais seis portais em um só radar",
+  description:
+    "Compras.gov.br, BLL, BNC, Licitações-e, Portal de Compras Públicas e Licitar Digital também entram na busca.",
 } as const;
 
 export const integrationGroups: readonly IntegrationGroup[] = [

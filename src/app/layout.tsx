@@ -24,8 +24,10 @@ const hankenGrotesk = localFont({
 
 export const metadata: Metadata = buildRootMetadata({
   siteName: siteConfig.name,
-  slogan: siteConfig.slogan,
+  title: siteConfig.title,
   description: siteConfig.description,
+  ogTitle: siteConfig.ogTitle,
+  ogDescription: siteConfig.ogDescription,
   siteUrl: siteConfig.url,
 });
 

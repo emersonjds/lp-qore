@@ -30,7 +30,7 @@ describe("motion styles", () => {
     expect(properties.filter((property) => property !== "opacity" && property !== "transform")).toEqual([]);
   });
 
-  it.each(["[data-proposal-progress][data-revealed]", "[data-certificates][data-revealed]", "[data-before-after][data-revealed] [data-after]::before", "[data-coverage-map][data-revealed]", "[data-hero-glow]", '[data-slot="button"][data-variant="default"]:hover::after', "[data-mobile-cta]", "[data-motion-label]", '[data-cta="hero-primary"]', "[data-screen-active] [data-bar]", "[data-screen-active] [data-day-lit]", "[data-audit-card][data-revealed] [data-typed-char]", "[data-audit-card][data-revealed] [data-source-chip]"])(
+  it.each(["[data-proposal-progress][data-revealed]", "[data-certificates][data-revealed]", "[data-before-after][data-revealed] [data-after]::before", "[data-coverage-map][data-revealed]", "[data-hero-glow]", '[data-slot="button"][data-variant="default"]:hover::after', "[data-mobile-cta]", "[data-motion-label]", '[data-cta="hero-primary"]', "[data-screen-active] [data-bar]", "[data-screen-active] [data-day-lit]", "[data-audit-card][data-revealed] [data-typed-char]", "[data-audit-card][data-revealed] [data-source-chip]", "[data-hero-rotator]"])(
     "runs the %s entrance only for users who accept motion",
     (selector) => {
       expect(motionAllowedBlocks).toContain(selector);

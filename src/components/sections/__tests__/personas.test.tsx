@@ -9,11 +9,16 @@ const kpiLabels = (view: HTMLElement) =>
   [...view.querySelectorAll("[data-role-kpi] [data-kpi-label]")].map((label) => label.textContent);
 
 describe("Personas", () => {
+  it("positions the section with the approved heading and lead", () => {
+    render(<Personas />);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Uma visão para o analista, outra para o gestor");
+    expect(
+      screen.getByText("O analista trabalha a fila do dia; o gestor acompanha valor ganho, taxa de vitória e prazos da equipe."),
+    ).toBeInTheDocument();
+  });
+
   it("builds the section for each role in the team, starting with the manager", () => {
     render(<Personas />);
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
-      "Construído para cada função na equipe de licitações",
-    );
     expect(screen.getByText("Interface sob medida")).toBeInTheDocument();
     expect(screen.getAllByRole("button").map((button) => button.textContent)).toEqual([
       "Visão do Gestor",

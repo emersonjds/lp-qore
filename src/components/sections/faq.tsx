@@ -10,6 +10,7 @@ export const Faq = () => (
       <h2 id="faq-title" className="mt-2 text-headline-lg-mobile md:text-headline-lg">
         {faqContent.title}
       </h2>
+      <p className="mt-3 text-body-lg text-muted-foreground">{faqContent.description}</p>
     </div>
     <div className="flex max-w-3xl flex-col gap-4">
       {faqItems.map((item) => (

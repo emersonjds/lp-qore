@@ -101,7 +101,7 @@ src/
 │   └── globals.css         # Tokens do design system e animações em CSS
 ├── components/
 │   ├── sections/           # Uma seção da página por arquivo (hero, FAQ, contato…)
-│   ├── simulated-screens/  # Telas simuladas do produto (HTML, sem screenshots)
+│   ├── simulated-screens/  # Telas simuladas do produto (HTML, sem capturas de tela)
 │   ├── motion/             # Componentes de animação (contagem de números etc.)
 │   ├── layout/             # Container, wrappers de seção, observers
 │   ├── privacy/            # Blocos da página de privacidade
@@ -200,7 +200,7 @@ O piso de 0,96 em performance mobile foi medido e aceito. A simulação de mobil
 
 | Variável | Padrão | Para que serve |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | `https://qore.com.br` | URL canônica, sitemap, robots, Open Graph e JSON-LD. Troque se o domínio de produção for outro |
+| `NEXT_PUBLIC_SITE_URL` | `https://qore.com.br` | URL canônica, sitemap, robots, Open Graph e JSON-LD. O `netlify.toml` fixa `https://qoreapp.netlify.app` até o domínio próprio entrar no ar |
 
 Não há segredos no projeto: o site é estático e o formulário é tratado pelo Netlify.
 
@@ -268,7 +268,7 @@ git push origin main                 # publica
 ## Checklist de go-live
 
 - [ ] **Dados legais:** preencher `siteConfig.legal` em `src/config/site.ts` (razão social, CNPJ, cidade/UF, e-mail de contato e encarregado de dados). Enquanto estiverem vazios, o rodapé não mostra CNPJ e a política de privacidade exibe um aviso no lugar dos dados do controlador. **Não publique em produção sem isso.**
-- [ ] **Domínio:** apontar o DNS de `qore.com.br` para o Netlify, ativar HTTPS e ajustar `NEXT_PUBLIC_SITE_URL` se o domínio for outro.
+- [ ] **Domínio:** apontar o DNS de `qore.com.br` para o Netlify, ativar HTTPS e trocar `NEXT_PUBLIC_SITE_URL` em `netlify.toml` (hoje `https://qoreapp.netlify.app`, provisório) para `https://qore.com.br`.
 - [ ] **Formulário:** notificações do Netlify Forms configuradas e testadas com um envio real.
 - [ ] **Números do mercado:** revisar os dados do PNCP em `market-numbers.ts` e atualizar a data da consulta.
 - [ ] **`pnpm verify`** verde no commit publicado.

@@ -10,6 +10,7 @@ export const Problem = () => (
     <h2 id="problem-title" className="mt-2 max-w-2xl text-headline-lg-mobile md:text-headline-lg">
       {problemContent.title}
     </h2>
+    <p className="mt-3 max-w-2xl text-body-lg text-muted-foreground">{problemContent.description}</p>
     <ul className="mt-12 grid gap-6 md:grid-cols-3">
       {problemContent.items.map(({ icon: Icon, title, description, footnote }) => (
         <li key={title} data-reveal className="flex flex-col justify-between rounded-lg bg-card p-6 shadow-sm">

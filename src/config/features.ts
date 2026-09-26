@@ -16,7 +16,7 @@ import type { IconCard } from "@/types";
 
 export const featuresContent = {
   eyebrow: "Funcionalidades",
-  title: "Tudo o que sua equipe precisa para disputar licitações",
+  title: "Doze ferramentas, uma operação de licitação",
   description: "Do cadastro pelo CNPJ à proposta com a sua marca, cada etapa da licitação em uma plataforma só.",
 } as const;
 

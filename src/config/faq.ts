@@ -36,6 +36,7 @@ export const faqItems: readonly FAQItem[] = [
 export const faqContent = {
   eyebrow: "Tire suas dúvidas",
   title: "Perguntas frequentes",
+  description: "O que a Qore faz, o que ela não faz e como começar.",
   contactPrompt: "Não achou sua dúvida?",
   contactLabel: "Fale com a gente",
 } as const;

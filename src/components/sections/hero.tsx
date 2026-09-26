@@ -1,7 +1,9 @@
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { heroContent } from "@/config/home-content";
-import { CONTACT_HREF, HOW_IT_WORKS_HREF } from "@/config/navigation";
+import { accessibleLabels } from "@/config/accessible-labels";
+import { CONTACT_HREF, PLATFORM_HREF } from "@/config/navigation";
+import { staggerStyle } from "@/lib/stagger-style";
 import { HeroParallax } from "./hero-parallax";
 import { HeroSplitView } from "./hero-split-view";
 
@@ -26,6 +28,17 @@ export const Hero = () => (
           <span className="text-primary">{heroContent.titleEmphasis}</span>
         </h1>
         <p className="max-w-xl text-body-lg text-muted-foreground">{heroContent.subtitle}</p>
+        <ul
+          aria-label={accessibleLabels.heroOutcomes}
+          data-hero-rotator
+          className="flex flex-col gap-1 text-title-md text-primary-deep"
+        >
+          {heroContent.rotatingLines.map((line, index) => (
+            <li key={line} style={staggerStyle(index)}>
+              {line}
+            </li>
+          ))}
+        </ul>
         <div className="flex w-full flex-col gap-2 pt-2 sm:w-auto sm:flex-row">
           <Button asChild size="lg" className="h-auto min-h-12 whitespace-normal py-3 text-center shadow-md">
             <a href={CONTACT_HREF} data-cta="hero-primary">
@@ -33,7 +46,7 @@ export const Hero = () => (
             </a>
           </Button>
           <Button asChild size="lg" variant="outline">
-            <a href={HOW_IT_WORKS_HREF} data-cta="hero-secondary">
+            <a href={PLATFORM_HREF} data-cta="hero-secondary">
               {heroContent.secondaryAction}
             </a>
           </Button>
