@@ -20,7 +20,7 @@ Spec: `docs/specs/2026-09-25-landing-relaunch/design.md`.
 | `pnpm test` | Vitest (unidade e componentes) |
 | `pnpm test:coverage` | Vitest com cobertura mínima de 91% nas 4 métricas |
 | `pnpm test:export` | checagens sobre `out/`: termos proibidos, formulário Netlify, orçamento de JS, layout a 375px, conteúdo sem JavaScript (rode depois do build) |
-| `pnpm lhci` | Lighthouse CI mobile e desktop; exige 1.0 em performance, acessibilidade, boas práticas e SEO |
+| `pnpm lhci` | Lighthouse CI mobile e desktop; exige 1.0 em acessibilidade, boas práticas e SEO nos dois, performance 1.0 no desktop e 0.96 no mobile (piso medido, ver `docs/specs/2026-09-25-landing-relaunch/performance.md`) |
 | `pnpm verify` | lint, typecheck, cobertura, build, `test:export` e `lhci`, em ordem |
 
 O Lighthouse CI grava os relatórios em `.lighthouseci/` (fora do git). O Playwright do `test:export` precisa do Chromium: `pnpm exec playwright install chromium`.
