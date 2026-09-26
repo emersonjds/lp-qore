@@ -21,6 +21,8 @@ export const ContactSubmitButton = ({ status }: ContactSubmitButtonProps) => (
     className="h-auto min-h-12 w-full whitespace-normal py-3 text-center"
     disabled={status === "submitting"}
   >
-    {LABELS[status]}
+    <span key={status} data-motion-label>
+      {LABELS[status]}
+    </span>
   </Button>
 );
