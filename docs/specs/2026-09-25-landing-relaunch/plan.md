@@ -1,5 +1,7 @@
 # Landing Relaunch Implementation Plan
 
+**Status:** Implementado (26/09/2026). A página entregue está descrita em `design.md`; este plano é o registro histórico da execução.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Relaunch `qore-lp` as an honest, São Paulo–only pilot landing page ("A IA lê o edital. Você decide.") in the Institutional Clarity design, with a Netlify Forms lead form, a privacy page, lazy animation islands and Lighthouse 1.0 in all four categories on mobile and desktop.
