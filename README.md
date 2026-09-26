@@ -15,7 +15,7 @@ Spec: `docs/specs/2026-09-25-landing-relaunch/design.md`.
 | Comando | O que faz |
 | --- | --- |
 | `pnpm dev` | servidor de desenvolvimento |
-| `pnpm build` | export estático em `out/`; em seguida `scripts/defer-hydration.mjs` adia os chunks do Next para depois do primeiro paint |
+| `pnpm build` | export estático em `out/` |
 | `pnpm lint` / `pnpm typecheck` | ESLint e `tsc --noEmit` |
 | `pnpm test` | Vitest (unidade e componentes) |
 | `pnpm test:coverage` | Vitest com cobertura mínima de 91% nas 4 métricas |

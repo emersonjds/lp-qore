@@ -52,13 +52,6 @@ describe("exported HTML", () => {
     expect(gzipBytes - baseline.gzipBytes).toBeLessThanOrEqual(APP_JAVASCRIPT_BUDGET_BYTES);
   });
 
-  it.each(["index.html", "privacidade.html"])("lets %s paint before the Next chunks are fetched", (file) => {
-    const html = readOut(file);
-    expect(html).not.toMatch(/<script[^>]*\ssrc="\/_next\/static\/chunks\/[^"]+"[^>]*async/);
-    expect(html).not.toMatch(/<link[^>]*rel="preload"[^>]*as="script"/);
-    expect(html).toContain("first-contentful-paint");
-  });
-
   it("keeps GSAP out of the initial chunks", () => {
     const { files } = measureInitialJavaScript(OUT_DIRECTORY);
     const initialCode = files.map((file) => readFileSync(join(OUT_DIRECTORY, file), "utf8")).join("\n");
