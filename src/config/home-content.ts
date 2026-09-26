@@ -463,12 +463,13 @@ export const ctaBanners = {
 
 export const timeSavedContent = {
   eyebrow: "Antes e depois",
-  title: "Menos tempo caçando edital, mais tempo ganhando licitação",
+  title: "Quem tem processo ganha contrato. Quem não tem, perde prazo.",
   description:
-    "A Qore assume o trabalho braçal da licitação. Sua equipe fica com o que decide contrato: estratégia, preço e relacionamento com o órgão.",
+    "São 7.650 pregões eletrônicos em São Paulo a cada 30 dias. Ninguém lê isso na mão: a Qore filtra, resume e prepara a proposta para a sua equipe disputar mais e melhor.",
   beforeLabel: "Sem a Qore",
   afterLabel: "Com a Qore",
   comparisons: [
+    { task: "Oportunidades", before: "Descobertas quando o prazo já fechou", after: "Avisadas no dia da publicação" },
     { task: "Encontrar editais", before: "Oito portais abertos todo dia", after: "Um radar filtrado pelo seu CNPJ" },
     { task: "Ler o edital", before: "Horas no PDF, na véspera do prazo", after: "Resumo em minutos, com a página citada" },
     {
