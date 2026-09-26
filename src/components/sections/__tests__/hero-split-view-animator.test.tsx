@@ -32,6 +32,22 @@ describe("Hero split view animation", () => {
     );
   });
 
+  it("runs one infinite loop per element with no delays, so the browser can composite every effect", () => {
+    const { animate } = installAnimateMock({ finishes: false });
+    const { container } = render(<Hero />);
+    act(() => IntersectionObserverMock.trigger(markerOf(container), true));
+
+    const targets = animate.mock.contexts;
+    expect(new Set(targets).size).toBe(targets.length);
+    const durations = new Set(animate.mock.calls.map(([, options]) => options?.duration));
+    expect(durations.size).toBe(1);
+    animate.mock.calls.forEach(([, options]) => {
+      expect(options).toMatchObject({ iterations: Infinity });
+      expect(options?.delay ?? 0).toBe(0);
+      expect(options?.endDelay ?? 0).toBe(0);
+    });
+  });
+
   it("pauses off screen or in a hidden tab and resumes when both are back", () => {
     const { animations } = installAnimateMock({ finishes: false });
     setVisibility("visible");
