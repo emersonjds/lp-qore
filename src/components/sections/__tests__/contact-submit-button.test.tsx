@@ -4,10 +4,10 @@ import { ContactSubmitButton } from "../contact-submit-button";
 
 describe("ContactSubmitButton", () => {
   it.each([
-    ["idle", "Quero ver a Qore com as minhas licitações"],
+    ["idle", "Quero assinar"],
     ["submitting", "Enviando…"],
     ["success", "Enviado"],
-    ["error", "Quero ver a Qore com as minhas licitações"],
+    ["error", "Quero assinar"],
   ] as const)("labels the %s state", (status, label) => {
     render(<ContactSubmitButton status={status} />);
     expect(screen.getByRole("button", { name: label })).toBeInTheDocument();

@@ -412,13 +412,14 @@ export const aboutContent = {
 } as const;
 
 export const contactContent = {
-  eyebrow: "Fale com a gente",
-  title: "Receba uma demonstração com as licitações do seu segmento",
-  description: "Conte um pouco sobre a sua empresa. A gente responde pelo e-mail ou WhatsApp que você informar.",
+  eyebrow: "Assinatura",
+  title: "Assine a Qore e veja suas licitações",
+  description:
+    "Conte um pouco sobre a sua empresa e mostramos as licitações abertas em São Paulo para o seu segmento. Respondemos pelo e-mail ou WhatsApp que você informar.",
   highlights: [
-    "Conversa com quem está construindo o produto",
-    "Um olhar sobre editais abertos em São Paulo no seu segmento",
-    "Como a sua proposta sai cerca de 80% pronta",
+    "Radar montado a partir do CNPJ da sua empresa",
+    "Editais abertos em São Paulo no seu segmento",
+    "Proposta cerca de 80% pronta desde a primeira licitação",
   ],
 } as const;
 

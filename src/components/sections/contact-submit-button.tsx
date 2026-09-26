@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/button";
 export type ContactFormStatus = "idle" | "submitting" | "success" | "error";
 
 const LABELS: Record<ContactFormStatus, string> = {
-  idle: "Quero ver a Qore com as minhas licitações",
+  idle: "Quero assinar",
   submitting: "Enviando…",
   success: "Enviado",
-  error: "Quero ver a Qore com as minhas licitações",
+  error: "Quero assinar",
 };
 
 interface ContactSubmitButtonProps {
