@@ -15,6 +15,7 @@ export default defineConfig({
       provider: "v8",
       include: ["src/lib/**", "src/components/**", "src/hooks/**"],
       exclude: ["src/components/ui/**", "**/*.test.{ts,tsx}", "src/**/__tests__/**"],
+      thresholds: { statements: 91, branches: 91, functions: 91, lines: 91 },
     },
   },
 });
