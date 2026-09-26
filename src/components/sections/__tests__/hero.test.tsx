@@ -8,7 +8,7 @@ describe("Hero", () => {
   it("states the positioning as the only level-one heading, never animated", () => {
     render(<Hero />);
     const heading = screen.getByRole("heading", { level: 1 });
-    expect(heading).toHaveTextContent("Licitações de São Paulo, do radar à proposta pronta.");
+    expect(heading).toHaveTextContent("Licitações, do radar à proposta pronta.");
     expect(heading.className).not.toMatch(/animate/);
   });
 
@@ -33,7 +33,7 @@ describe("Hero", () => {
 
   it("speaks to who sells to the government in São Paulo and backs it with honest trust points", () => {
     render(<Hero />);
-    expect(screen.getByText("Para quem vende ao governo em São Paulo")).toBeInTheDocument();
+    expect(screen.getByText("Para quem vende ao governo")).toBeInTheDocument();
     expect(screen.queryByText("Citação direta de artigos e páginas")).not.toBeInTheDocument();
     expect(screen.getByText("Alinhado à Lei 14.133/2021")).toBeInTheDocument();
   });
