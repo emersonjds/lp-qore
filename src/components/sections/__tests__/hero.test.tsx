@@ -29,10 +29,25 @@ describe("Hero", () => {
     expect(container.querySelector("section#inicio")).not.toBeNull();
   });
 
-  it("marks the summary card as an illustrative screen with page citations", () => {
+  it("shows the real manager dashboard screenshot sealed as an illustrative screen", () => {
     render(<Hero />);
-    const card = screen.getByRole("figure", { name: "Resumo Inteligente Qore" });
-    expect(card).toHaveTextContent("Tela ilustrativa");
-    expect(card).toHaveTextContent("pág. 12");
+    const frame = screen.getByRole("figure", { name: /Painel do gestor/ });
+    expect(frame).toHaveTextContent("Tela ilustrativa");
+    const image = screen.getByRole("img", { name: /Painel do gestor/ });
+    expect(image).toHaveAttribute("src", "/screenshots/manager-dashboard-1280.webp");
+    expect(image).toHaveAttribute("width", "1280");
+    expect(image).toHaveAttribute("height", "800");
+  });
+
+  it("loads the screenshot eagerly without competing with the heading for priority", () => {
+    render(<Hero />);
+    const image = screen.getByRole("img", { name: /Painel do gestor/ });
+    expect(image).toHaveAttribute("loading", "eager");
+    expect(image).not.toHaveAttribute("fetchpriority");
+  });
+
+  it("keeps no drawn mock of the product", () => {
+    render(<Hero />);
+    expect(screen.queryByText("Resumo Inteligente Qore")).not.toBeInTheDocument();
   });
 });

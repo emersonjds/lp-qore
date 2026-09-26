@@ -23,13 +23,6 @@ export interface IconCard {
   description: string;
 }
 
-export interface SummaryItem {
-  title: string;
-  citation: string;
-  summary: string;
-  isRisk: boolean;
-}
-
 export interface MarketNumber {
   value: string;
   label: string;

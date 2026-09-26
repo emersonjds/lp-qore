@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { PlatformTab } from "@/types";
+import { ScreenshotPicture } from "./panel-screenshot";
 
 const IMAGE_SIZES = "(min-width: 1024px) 56rem, 100vw";
 
@@ -89,27 +90,12 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
               </figcaption>
               <Badge variant="outline">Tela ilustrativa</Badge>
             </div>
-            <picture>
-              <source
-                type="image/avif"
-                srcSet={`/screenshots/${tab.image}-640.avif 640w, /screenshots/${tab.image}-1280.avif 1280w`}
-                sizes={IMAGE_SIZES}
-              />
-              <source
-                type="image/webp"
-                srcSet={`/screenshots/${tab.image}-640.webp 640w, /screenshots/${tab.image}-1280.webp 1280w`}
-                sizes={IMAGE_SIZES}
-              />
-              <img
-                src={`/screenshots/${tab.image}-1280.webp`}
-                alt={tab.alt}
-                width={1280}
-                height={800}
-                loading="lazy"
-                decoding="async"
-                className="mt-4 h-auto w-full rounded-lg border border-border shadow-md"
-              />
-            </picture>
+            <ScreenshotPicture
+              image={tab.image}
+              alt={tab.alt}
+              sizes={IMAGE_SIZES}
+              className="mt-4 rounded-lg border border-border shadow-md"
+            />
           </figure>
         ))}
       </div>
