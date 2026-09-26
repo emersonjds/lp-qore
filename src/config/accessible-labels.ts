@@ -1,0 +1,17 @@
+export const accessibleLabels = {
+  homeLink: "Qore, página inicial",
+  primaryNavigation: "Principal",
+  mobileNavigation: "Principal no celular",
+  mobileNavigationDescription: "Navegação principal do site",
+  openMenu: "Abrir menu",
+  footerNavigation: "Rodapé",
+  featuresList: "Funcionalidades da Qore",
+  audienceList: "Para quem é a Qore",
+  responsibleAiList: "Compromissos da IA",
+  certificatesList: "Verificação de certidões",
+  personaChoice: "Escolha a função",
+  platformScreens: "Telas da plataforma",
+  stepPrefix: "Passo",
+  before: "Antes: ",
+  withQore: "Com a Qore: ",
+} as const;

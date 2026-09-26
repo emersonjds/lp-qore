@@ -1,7 +1,21 @@
-export const navLinks = [
-  { label: "Funcionalidades", href: "#features" },
-  { label: "Como Funciona", href: "#how-it-works" },
-  { label: "Depoimentos", href: "#testimonials" },
-  { label: "Planos", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
-] as const;
+import type { NavLink } from "@/types";
+
+export const CONTACT_HREF = "/#contato";
+export const HOW_IT_WORKS_HREF = "/#como-funciona";
+export const CONTACT_SPECIALIST_LABEL = "Fale com um especialista";
+
+export const primaryNavigation: readonly NavLink[] = [
+  { label: "Como funciona", href: HOW_IT_WORKS_HREF },
+  { label: "Plataforma", href: "/#plataforma" },
+  { label: "Funcionalidades", href: "/#funcionalidades" },
+  { label: "Integrações", href: "/#integracoes" },
+  { label: "IA responsável", href: "/#ia-responsavel" },
+  { label: "FAQ", href: "/#faq" },
+];
+
+export const footerNavigation: readonly NavLink[] = [
+  ...primaryNavigation,
+  { label: "Para quem é", href: "/#para-quem-e" },
+  { label: "Contato", href: CONTACT_HREF },
+  { label: "Privacidade", href: "/privacidade" },
+];

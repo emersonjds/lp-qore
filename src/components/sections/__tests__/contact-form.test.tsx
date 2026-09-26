@@ -1,0 +1,135 @@
+import { render, screen, waitFor, within } from "@testing-library/react";
+import userEvent, { type UserEvent } from "@testing-library/user-event";
+import { renderToString } from "react-dom/server";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { CONTACT_SUBMIT_ERROR } from "@/lib/contact-form";
+import { ContactForm } from "../contact-form";
+
+const fillValidForm = async (user: UserEvent) => {
+  await user.type(screen.getByLabelText(/Nome/), "Maria Souza");
+  await user.type(screen.getByLabelText(/E-mail corporativo/), "maria@empresa.com.br");
+  await user.type(screen.getByLabelText(/Telefone ou WhatsApp/), "11987654321");
+  await user.selectOptions(screen.getByLabelText(/Cargo/), "Gestor comercial");
+  await user.selectOptions(screen.getByLabelText(/Porte da empresa/), "MEI/ME/EPP");
+  await user.selectOptions(screen.getByLabelText(/Licitações por mês/), "6 a 20");
+  await user.click(screen.getByRole("checkbox"));
+};
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
+
+describe("ContactForm", () => {
+  it("is detectable by Netlify Forms in the exported HTML", () => {
+    const html = renderToString(<ContactForm />);
+    expect(html).toContain('name="contato"');
+    expect(html).toContain('data-netlify="true"');
+    expect(html).toContain('netlify-honeypot="bot-field"');
+    expect(html).toContain('name="form-name" value="contato"');
+  });
+
+  it("reassures under the button and tags the submit as the final CTA", () => {
+    render(<ContactForm />);
+    expect(screen.getByText("Um especialista entra em contato em horário comercial.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Solicitar demonstração" })).toHaveAttribute(
+      "data-cta",
+      "contact-submit",
+    );
+  });
+
+  it("offers no secondary sales link, only the demo request", () => {
+    render(<ContactForm />);
+    expect(screen.queryByRole("link", { name: /vendas/ })).not.toBeInTheDocument();
+  });
+
+  it("qualifies the lead with required size and monthly volume, in the agreed order", () => {
+    const { container } = render(<ContactForm />);
+    const size = screen.getByLabelText(/Porte da empresa/);
+    const volume = screen.getByLabelText(/Licitações por mês/);
+    expect(size).toBeRequired();
+    expect(size).toHaveAttribute("name", "companySize");
+    expect(volume).toBeRequired();
+    expect(volume).toHaveAttribute("name", "monthlyTenders");
+    expect(within(size).getAllByRole("option").map((option) => option.textContent)).toEqual([
+      "Selecione",
+      "MEI/ME/EPP",
+      "Média empresa",
+      "Grande empresa",
+      "Consultoria/assessoria",
+    ]);
+    expect(within(volume).getAllByRole("option").map((option) => option.textContent)).toEqual([
+      "Selecione",
+      "Ainda não participo",
+      "1 a 5",
+      "6 a 20",
+      "Mais de 20",
+    ]);
+    const fieldNames = [...container.querySelectorAll("input:not([type=hidden]), select, textarea")]
+      .map((field) => field.getAttribute("name"))
+      .filter((name) => name !== "bot-field");
+    expect(fieldNames).toEqual([
+      "name",
+      "email",
+      "phone",
+      "role",
+      "companySize",
+      "monthlyTenders",
+      "company",
+      "message",
+      "consent",
+    ]);
+  });
+
+  it("keeps consent unchecked by default", () => {
+    render(<ContactForm />);
+    expect(screen.getByRole("checkbox")).not.toBeChecked();
+    expect(screen.getByRole("link", { name: "Política de Privacidade" })).toHaveAttribute("href", "/privacidade");
+  });
+
+  it("shows every error and focuses the first invalid field", async () => {
+    const user = userEvent.setup();
+    render(<ContactForm />);
+    await user.click(screen.getByRole("button", { name: "Solicitar demonstração" }));
+    expect(screen.getByText("Informe seu nome.")).toBeInTheDocument();
+    expect(screen.getByText("Escolha o seu cargo.")).toBeInTheDocument();
+    expect(screen.getByLabelText(/Nome/)).toHaveFocus();
+    expect(screen.getByLabelText(/Nome/)).toHaveAttribute("aria-invalid", "true");
+    expect(screen.getByRole("status")).toHaveTextContent("Revise os campos destacados.");
+  });
+
+  it("masks the phone while typing", async () => {
+    const user = userEvent.setup();
+    render(<ContactForm />);
+    const phone = screen.getByLabelText(/Telefone ou WhatsApp/);
+    await user.type(phone, "11987654321");
+    expect(phone).toHaveValue("(11) 98765-4321");
+  });
+
+  it("sends the lead and confirms without reloading", async () => {
+    const fetcher = vi.fn<typeof fetch>().mockResolvedValue(new Response(null, { status: 200 }));
+    vi.stubGlobal("fetch", fetcher);
+    const user = userEvent.setup();
+    render(<ContactForm />);
+    await fillValidForm(user);
+    await user.click(screen.getByRole("button", { name: "Solicitar demonstração" }));
+    await waitFor(() =>
+      expect(screen.getByRole("status")).toHaveTextContent(
+        "Recebemos seu contato, Maria Souza. Vamos falar com você pelo e-mail ou WhatsApp informado.",
+      ),
+    );
+    expect(fetcher).toHaveBeenCalledTimes(1);
+    const body = new URLSearchParams(String(fetcher.mock.calls[0]?.[1]?.body));
+    expect(body.get("form-name")).toBe("contato");
+    expect(body.get("companySize")).toBe("MEI/ME/EPP");
+    expect(body.get("monthlyTenders")).toBe("6 a 20");
+  });
+
+  it("shows our fixed error text when sending fails", async () => {
+    vi.stubGlobal("fetch", vi.fn<typeof fetch>().mockRejectedValue(new TypeError("Failed to fetch")));
+    const user = userEvent.setup();
+    render(<ContactForm />);
+    await fillValidForm(user);
+    await user.click(screen.getByRole("button", { name: "Solicitar demonstração" }));
+    await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent(CONTACT_SUBMIT_ERROR));
+  });
+});

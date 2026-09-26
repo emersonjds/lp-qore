@@ -1,58 +1,63 @@
-import { Header } from "@/components/sections/header";
+import { About } from "@/components/sections/about";
+import { Audience } from "@/components/sections/audience";
+import { Contact } from "@/components/sections/contact";
+import { Coverage } from "@/components/sections/coverage";
+import { CtaBanner } from "@/components/sections/cta-banner";
+import { Documents } from "@/components/sections/documents";
+import { Faq } from "@/components/sections/faq";
+import { Features } from "@/components/sections/features";
 import { Hero } from "@/components/sections/hero";
-import { SocialProof } from "@/components/sections/social-proof";
-import { FeaturesGrid } from "@/components/sections/features-grid";
 import { HowItWorks } from "@/components/sections/how-it-works";
-import { FeatureShowcase } from "@/components/sections/feature-showcase";
+import { Integrations } from "@/components/sections/integrations";
+import { MobileCtaBar } from "@/components/sections/mobile-cta-bar";
+import { Personas } from "@/components/sections/personas";
+import { PlatformTour } from "@/components/sections/platform-tour";
+import { Problem } from "@/components/sections/problem";
+import { ProposalHighlight } from "@/components/sections/proposal-highlight";
+import { ResponsibleAi } from "@/components/sections/responsible-ai";
 import { Testimonials } from "@/components/sections/testimonials";
-import { Pricing } from "@/components/sections/pricing";
-import { FAQ } from "@/components/sections/faq";
-import { CTASection } from "@/components/sections/cta-section";
-import { Stats } from "@/components/sections/stats";
-import { Footer } from "@/components/sections/footer";
-import { TrustBadges } from "@/components/sections/trust-badges";
-import {
-  getOrganizationSchema,
-  getSoftwareApplicationSchema,
-  getFAQSchema,
-} from "@/lib/structured-data";
+import { TimeSaved } from "@/components/sections/time-saved";
+import { faqItems } from "@/config/faq";
+import { ctaBanners } from "@/config/home-content";
+import { siteConfig } from "@/config/site";
+import { buildStructuredData, serializeJsonLd } from "@/lib/structured-data";
 
-export default function Home() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(getOrganizationSchema()),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(getSoftwareApplicationSchema()),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(getFAQSchema()),
-        }}
-      />
-      <Header />
-      <TrustBadges />
-      <main>
-        <Hero />
-        <SocialProof />
-        <Stats />
-        <FeaturesGrid />
-        <HowItWorks />
-        <FeatureShowcase />
-        <Testimonials />
-        <Pricing />
-        <FAQ />
-        <CTASection />
-      </main>
-      <Footer />
-    </>
-  );
-}
+const HomePage = () => (
+  <main id="conteudo" tabIndex={-1}>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: serializeJsonLd(
+          buildStructuredData({
+            siteName: siteConfig.name,
+            siteUrl: siteConfig.url,
+            description: siteConfig.description,
+            faqItems,
+          }),
+        ),
+      }}
+    />
+    <Hero />
+    <Problem />
+    <HowItWorks />
+    <PlatformTour />
+    <Features />
+    <ProposalHighlight />
+    <CtaBanner {...ctaBanners.afterFeatures} />
+    <Documents />
+    <Personas />
+    <Audience />
+    <TimeSaved />
+    <Integrations />
+    <CtaBanner {...ctaBanners.afterIntegrations} />
+    <ResponsibleAi />
+    <Coverage />
+    <About />
+    <Testimonials />
+    <Faq />
+    <Contact />
+    <MobileCtaBar />
+  </main>
+);
+
+export default HomePage;

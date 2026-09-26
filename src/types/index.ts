@@ -1,31 +1,5 @@
 import type { LucideIcon } from "lucide-react";
 
-export interface Feature {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-}
-
-export interface PricingTier {
-  name: string;
-  description: string;
-  price: string;
-  period: string;
-  features: string[];
-  cta: string;
-  ctaMicro?: string;
-  highlighted: boolean;
-}
-
-export interface Testimonial {
-  quote: string;
-  author: string;
-  role: string;
-  company: string;
-  rating: number;
-  metric?: string;
-}
-
 export interface FAQItem {
   question: string;
   answer: string;
@@ -35,3 +9,85 @@ export interface NavLink {
   label: string;
   href: string;
 }
+
+export interface LegalIdentity {
+  companyName: string;
+  taxId: string;
+  city: string;
+  state: string;
+  contactEmail: string;
+  dataProtectionOfficer: string;
+}
+
+export interface IconCard {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+export interface ProblemCard extends IconCard {
+  footnote: string;
+}
+
+export interface MarketNumber {
+  value: string;
+  label: string;
+  source: string;
+  date: string;
+}
+
+export interface HowItWorksStep {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export type PlatformScreenId = "painel" | "radar" | "resumo" | "precificacao" | "calendario";
+
+export interface PlatformTab {
+  id: PlatformScreenId;
+  label: string;
+}
+
+export interface RoleKpi {
+  label: string;
+  value: string;
+  isCounted: boolean;
+  caption: string;
+  footnote: string;
+  tone: "neutral" | "positive" | "urgent";
+}
+
+export interface Persona {
+  id: "analyst" | "manager";
+  toggleLabel: string;
+  title: string;
+  kpis: readonly RoleKpi[];
+  features: readonly IconCard[];
+}
+
+export interface CoverageRegion {
+  name: string;
+  cities?: string;
+}
+
+export interface CoverageCluster {
+  name: string;
+  regions: readonly CoverageRegion[];
+}
+
+export interface MapHub {
+  name: string;
+  longitude: number;
+  latitude: number;
+}
+
+export interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+  logoSrc?: string;
+  authorizedAt: string;
+}
+

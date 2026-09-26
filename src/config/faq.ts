@@ -1,34 +1,41 @@
 import type { FAQItem } from "@/types";
 
-export const faqItems: FAQItem[] = [
+export const faqItems: readonly FAQItem[] = [
   {
-    question: "Quanto tempo leva para começar?",
+    question: "A IA substitui a leitura do edital?",
     answer:
-      "Cerca de 5 minutos. Você informa o CNPJ, a plataforma busca os dados automaticamente na Receita Federal, você envia o certificado digital eCNPJ/eCPF e o sistema já configura os primeiros alertas de licitações compatíveis com o seu perfil — tudo no mesmo cadastro.",
+      "Não. A IA resume o edital e aponta a página de origem de cada ponto para você conferir no texto oficial. Quando algo não está no edital, ela avisa que não encontrou.",
   },
   {
-    question: "Como funciona a Análise de Compatibilidade?",
+    question: "Quais licitações a Qore cobre?",
     answer:
-      "A IA cruza os itens do edital com o seu catálogo de produtos e serviços e gera um percentual de match (ex.: 87%). Você vê quais itens do edital estão no seu catálogo, as palavras-chave encontradas e um resumo de compatibilidade antes de decidir participar.",
+      "Órgãos estaduais e municipais de São Paulo, publicados nos principais portais. Outros estados em breve.",
   },
   {
-    question: "Quais portais e validações estão integrados?",
+    question: "A Qore envia a proposta ao portal?",
     answer:
-      "São 30+ integrações: portais PNCP, Compras.gov.br, BEC/SP, Licitações-e (BB), BLL Compras, BNCP, Licitar Digital e Portal de Compras Públicas. Validação documental automática via Receita Federal (CNPJ), PGFN, SERPRO, Cartórios Eletrônicos (SERTI), TCU e CNJ Federal.",
+      "Não. A Qore ajuda a entender o edital e a montar a proposta. O envio ao portal de compras e os lances na sessão continuam com a sua empresa.",
   },
   {
-    question: "O Qore atende à Lei 14.133/2021?",
+    question: "Como a proposta fica pronta?",
     answer:
-      "Sim. A plataforma está alinhada com a nova Lei de Licitações. Os checklists de habilitação e os alertas de modalidade (pregão eletrônico, concorrência, diálogo competitivo) seguem as regras da 14.133 e da regulamentação federal vigente.",
+      "A plataforma liga os dados da empresa, do edital e da habilitação, e a proposta chega cerca de 80% pronta. Você preenche os preços e revisa. O documento final sai com o logo da sua empresa ou, sem logo, com um modelo padrão profissional.",
   },
   {
-    question: "O catálogo de produtos é obrigatório?",
+    question: "Como funciona o alerta de preço inexequível?",
     answer:
-      "Não é obrigatório para usar a plataforma, mas sem catálogo a Análise de Compatibilidade não roda. Sem ele, você visualiza editais apenas por filtro (UF, modalidade, valor). Com o catálogo, cada licitação nova ganha um % de match automático e lista os itens onde você é elegível.",
+      "A plataforma compara o seu preço com o valor de referência do edital e sinaliza risco quando ele fica muito abaixo. Para obras e serviços de engenharia, a Lei 14.133/2021 (art. 59, §4º) considera inexequível a proposta abaixo de 75% do valor orçado pela administração. É um sinal para você revisar, não uma garantia.",
   },
   {
-    question: "O wizard de proposta gera PDF?",
+    question: "Quanto custa?",
     answer:
-      "Sim. Na etapa 6 (Revisão) você pré-visualiza o PDF final da proposta antes do envio. Após a revisão, a plataforma encaminha o documento para o portal correto — PNCP, Compras.gov.br ou o portal estadual integrado.",
+      "O valor varia conforme o porte da empresa e o volume de licitações. Na demonstração, um especialista apresenta o plano certo para a sua operação.",
   },
 ];
+
+export const faqContent = {
+  eyebrow: "Tire suas dúvidas",
+  title: "Perguntas frequentes",
+  contactPrompt: "Não achou sua dúvida?",
+  contactLabel: "Fale com a gente",
+} as const;
