@@ -5,6 +5,7 @@ export const accessibleLabels = {
   mobileNavigationDescription: "Navegação principal do site",
   openMenu: "Abrir menu",
   footerNavigation: "Rodapé",
+  heroOutcomes: "O que a Qore entrega",
   featuresList: "Funcionalidades da Qore",
   audienceList: "Para quem é a Qore",
   responsibleAiList: "Compromissos da IA",

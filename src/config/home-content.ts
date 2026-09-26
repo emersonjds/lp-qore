@@ -35,16 +35,22 @@ import type {
 } from "@/types";
 
 export const heroContent = {
-  eyebrow: "Disponível para São Paulo",
-  titleLead: "A IA lê o edital.",
-  titleEmphasis: "Você decide.",
+  eyebrow: "Para quem vende ao governo em São Paulo",
+  titleLead: "Licitações de São Paulo,",
+  titleEmphasis: "do radar à proposta pronta.",
   subtitle:
-    "Encontre licitações de São Paulo pelo seu CNPJ, entenda o edital com um resumo de IA que cita a página de origem e monte sua proposta com segurança.",
+    "A Qore encontra os editais que combinam com o seu CNPJ, resume cada um citando a página, entrega a proposta cerca de 80% pronta e avisa antes de uma certidão vencer.",
+  rotatingLines: [
+    "Editais que combinam com o seu CNPJ",
+    "Resumo do edital com a página citada",
+    "Proposta cerca de 80% pronta, com sua marca",
+    "Certidões com aviso antes de vencer",
+  ],
   trustPoints: [
     { icon: ShieldCheck, label: "Alinhado à Lei 14.133/2021" },
   ],
-  primaryAction: "Quero uma demonstração",
-  secondaryAction: "Ver como funciona",
+  primaryAction: "Agendar demonstração",
+  secondaryAction: "Ver a plataforma",
 } as const;
 
 export const problemContent: { eyebrow: string; title: string; items: readonly ProblemCard[] } = {

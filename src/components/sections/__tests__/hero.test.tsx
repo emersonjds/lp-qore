@@ -5,28 +5,50 @@ import { Hero } from "../hero";
 const splitView = () => screen.getByRole("figure", { name: /Edital original ao lado do resumo/ });
 
 describe("Hero", () => {
-  it("states the slogan as the only level-one heading, never animated", () => {
+  it("states the positioning as the only level-one heading, never animated", () => {
     render(<Hero />);
     const heading = screen.getByRole("heading", { level: 1 });
-    expect(heading).toHaveTextContent("A IA lê o edital. Você decide.");
+    expect(heading).toHaveTextContent("Licitações de São Paulo, do radar à proposta pronta.");
     expect(heading.className).not.toMatch(/animate/);
   });
 
-  it("invites to a demo and to see how it works", () => {
+  it("explains what the Qore does for the supplier", () => {
     render(<Hero />);
-    const primary = screen.getByRole("link", { name: "Quero uma demonstração" });
+    expect(
+      screen.getByText(
+        "A Qore encontra os editais que combinam com o seu CNPJ, resume cada um citando a página, entrega a proposta cerca de 80% pronta e avisa antes de uma certidão vencer.",
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it("invites to a demo and to see the platform", () => {
+    render(<Hero />);
+    const primary = screen.getByRole("link", { name: "Agendar demonstração" });
     expect(primary).toHaveAttribute("href", "/#contato");
     expect(primary).toHaveAttribute("data-cta", "hero-primary");
-    const secondary = screen.getByRole("link", { name: "Ver como funciona" });
-    expect(secondary).toHaveAttribute("href", "/#como-funciona");
+    const secondary = screen.getByRole("link", { name: "Ver a plataforma" });
+    expect(secondary).toHaveAttribute("href", "/#plataforma");
     expect(secondary).toHaveAttribute("data-cta", "hero-secondary");
   });
 
-  it("says the product is available in São Paulo and backs it with honest trust points", () => {
+  it("speaks to who sells to the government in São Paulo and backs it with honest trust points", () => {
     render(<Hero />);
-    expect(screen.getByText("Disponível para São Paulo")).toBeInTheDocument();
+    expect(screen.getByText("Para quem vende ao governo em São Paulo")).toBeInTheDocument();
     expect(screen.queryByText("Citação direta de artigos e páginas")).not.toBeInTheDocument();
     expect(screen.getByText("Alinhado à Lei 14.133/2021")).toBeInTheDocument();
+  });
+
+  it("rotates the four outcomes as a list every reader gets in full", () => {
+    render(<Hero />);
+    const list = screen.getByRole("list", { name: "O que a Qore entrega" });
+    const lines = within(list).getAllByRole("listitem");
+    expect(lines.map((line) => line.textContent)).toEqual([
+      "Editais que combinam com o seu CNPJ",
+      "Resumo do edital com a página citada",
+      "Proposta cerca de 80% pronta, com sua marca",
+      "Certidões com aviso antes de vencer",
+    ]);
+    expect(lines.map((line) => line.style.getPropertyValue("--order"))).toEqual(["0", "1", "2", "3"]);
   });
 
   it("gives the sticky mobile bar a hero to watch", () => {
