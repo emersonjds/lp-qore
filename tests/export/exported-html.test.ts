@@ -46,6 +46,8 @@ describe("exported HTML", () => {
     expect(home).toContain('name="contato"');
     expect(home).toContain('data-netlify="true"');
     expect(home).toContain('netlify-honeypot="bot-field"');
+    expect(home).toContain('name="companySize"');
+    expect(home).toContain('name="monthlyTenders"');
   });
 
   it("has no dead links or login route", () => {

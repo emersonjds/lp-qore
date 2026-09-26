@@ -14,6 +14,8 @@ const validValues: ContactFormValues = {
   email: "maria@empresa.com.br",
   phone: "(11) 98765-4321",
   role: "Gestor comercial",
+  companySize: "Média empresa",
+  monthlyTenders: "1 a 5",
   company: "",
   message: "",
   consent: true,
@@ -30,6 +32,8 @@ describe("validateContactForm", () => {
       email: "",
       phone: "",
       role: "",
+      companySize: "",
+      monthlyTenders: "",
       company: "",
       message: "",
       consent: false,
@@ -39,6 +43,8 @@ describe("validateContactForm", () => {
       email: "Informe seu e-mail.",
       phone: "Informe seu telefone ou WhatsApp.",
       role: "Escolha o seu cargo.",
+      companySize: "Escolha o porte da empresa.",
+      monthlyTenders: "Escolha quantas licitações a empresa disputa por mês.",
       consent: "Para enviar, autorize o uso dos seus dados para este contato.",
     });
   });
@@ -52,11 +58,19 @@ describe("validateContactForm", () => {
   it("rejects a role outside the list", () => {
     expect(validateContactForm({ ...validValues, role: "Estagiário" }).role).toBe("Escolha o seu cargo.");
   });
+
+  it("rejects a company size or monthly volume outside the lists", () => {
+    const errors = validateContactForm({ ...validValues, companySize: "Multinacional", monthlyTenders: "100" });
+    expect(errors.companySize).toBe("Escolha o porte da empresa.");
+    expect(errors.monthlyTenders).toBe("Escolha quantas licitações a empresa disputa por mês.");
+  });
 });
 
 describe("firstInvalidField", () => {
   it("follows the visual order of the form", () => {
     expect(firstInvalidField({ consent: "x", phone: "y" })).toBe("phone");
+    expect(firstInvalidField({ consent: "x", monthlyTenders: "y", companySize: "z" })).toBe("companySize");
+    expect(firstInvalidField({ consent: "x", monthlyTenders: "y" })).toBe("monthlyTenders");
     expect(firstInvalidField({})).toBeUndefined();
   });
 });
@@ -67,6 +81,8 @@ describe("encodeContactSubmission", () => {
     expect(body.get("form-name")).toBe("contato");
     expect(body.get("name")).toBe("Maria Souza");
     expect(body.get("phone")).toBe("(11) 98765-4321");
+    expect(body.get("companySize")).toBe("Média empresa");
+    expect(body.get("monthlyTenders")).toBe("1 a 5");
     expect(body.get("consent")).toBe("sim");
     expect(body.get("bot-field")).toBe("");
   });

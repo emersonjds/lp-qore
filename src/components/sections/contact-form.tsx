@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { Input } from "@/components/ui/input";
+import { companySizes, contactRoles, monthlyTenderRanges } from "@/config/contact-form";
 import {
   CONTACT_FORM_NAME,
   buildSuccessMessage,
-  contactRoles,
   firstInvalidField,
   submitContact,
   validateContactForm,
@@ -15,13 +15,16 @@ import {
 import { formatBrazilianPhone } from "@/lib/phone";
 import { ContactSubmitButton, type ContactFormStatus } from "./contact-submit-button";
 
-type TextField = "name" | "email" | "phone" | "role" | "company" | "message";
+type TextField = "name" | "email" | "phone" | "role" | "companySize" | "monthlyTenders" | "company" | "message";
+type SelectField = "role" | "companySize" | "monthlyTenders";
 
 const INITIAL_VALUES: ContactFormValues = {
   name: "",
   email: "",
   phone: "",
   role: "",
+  companySize: "",
+  monthlyTenders: "",
   company: "",
   message: "",
   consent: false,
@@ -79,6 +82,30 @@ export const ContactForm = () => {
 
   const describedBy = (field: keyof ContactFormErrors, id: string) => (errors[field] ? `${id}-error` : undefined);
 
+  const renderSelect = (field: SelectField, id: string, label: string, options: readonly string[]) => (
+    <FieldShell id={id} label={label} isRequired error={errors[field]}>
+      <select
+        id={id}
+        name={field}
+        required
+        value={values[field]}
+        onChange={(event) => setTextField(field, event.target.value)}
+        aria-invalid={Boolean(errors[field])}
+        aria-describedby={describedBy(field, id)}
+        className={`${CONTROL_CLASS} h-11`}
+      >
+        <option value="" disabled>
+          Selecione
+        </option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </FieldShell>
+  );
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const validationErrors = validateContactForm(values);
@@ -124,20 +151,19 @@ export const ContactForm = () => {
         </label>
       </p>
 
-      <FieldShell id="contact-name" label="Nome" isRequired error={errors.name}>
-        <Input
-          id="contact-name"
-          name="name"
-          autoComplete="name"
-          required
-          value={values.name}
-          onChange={(event) => setTextField("name", event.target.value)}
-          aria-invalid={Boolean(errors.name)}
-          aria-describedby={describedBy("name", "contact-name")}
-        />
-      </FieldShell>
-
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <FieldShell id="contact-name" label="Nome" isRequired error={errors.name}>
+          <Input
+            id="contact-name"
+            name="name"
+            autoComplete="name"
+            required
+            value={values.name}
+            onChange={(event) => setTextField("name", event.target.value)}
+            aria-invalid={Boolean(errors.name)}
+            aria-describedby={describedBy("name", "contact-name")}
+          />
+        </FieldShell>
         <FieldShell id="contact-email" label="E-mail corporativo" isRequired error={errors.email}>
           <Input
             id="contact-email"
@@ -166,39 +192,20 @@ export const ContactForm = () => {
             aria-describedby={describedBy("phone", "contact-phone")}
           />
         </FieldShell>
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <FieldShell id="contact-role" label="Cargo" isRequired error={errors.role}>
-          <select
-            id="contact-role"
-            name="role"
-            required
-            value={values.role}
-            onChange={(event) => setTextField("role", event.target.value)}
-            aria-invalid={Boolean(errors.role)}
-            aria-describedby={describedBy("role", "contact-role")}
-            className={`${CONTROL_CLASS} h-11`}
-          >
-            <option value="" disabled>
-              Selecione
-            </option>
-            {contactRoles.map((role) => (
-              <option key={role} value={role}>
-                {role}
-              </option>
-            ))}
-          </select>
-        </FieldShell>
-        <FieldShell id="contact-company" label="Empresa ou CNPJ" isRequired={false}>
-          <Input
-            id="contact-company"
-            name="company"
-            autoComplete="organization"
-            value={values.company}
-            onChange={(event) => setTextField("company", event.target.value)}
-          />
-        </FieldShell>
+        {renderSelect("role", "contact-role", "Cargo", contactRoles)}
+        {renderSelect("companySize", "contact-company-size", "Porte da empresa", companySizes)}
+        {renderSelect("monthlyTenders", "contact-monthly-tenders", "Licitações por mês", monthlyTenderRanges)}
+        <div className="sm:col-span-2">
+          <FieldShell id="contact-company" label="Empresa ou CNPJ" isRequired={false}>
+            <Input
+              id="contact-company"
+              name="company"
+              autoComplete="organization"
+              value={values.company}
+              onChange={(event) => setTextField("company", event.target.value)}
+            />
+          </FieldShell>
+        </div>
       </div>
 
       <FieldShell id="contact-message" label="Mensagem" isRequired={false}>
