@@ -12,6 +12,7 @@ describe("HomePage", () => {
     const sectionIds = [...container.querySelectorAll("main > section[id]")].map((section) => section.id);
     expect(sectionIds).toEqual([
       "inicio",
+      "radar",
       "problema",
       "como-funciona",
       "plataforma",

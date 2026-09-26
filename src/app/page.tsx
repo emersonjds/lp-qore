@@ -1,5 +1,6 @@
 import { About } from "@/components/sections/about";
 import { Audience } from "@/components/sections/audience";
+import { CnpjRadar } from "@/components/sections/cnpj-radar";
 import { Contact } from "@/components/sections/contact";
 import { Coverage } from "@/components/sections/coverage";
 import { CtaBanner } from "@/components/sections/cta-banner";
@@ -38,6 +39,7 @@ const HomePage = () => (
       }}
     />
     <Hero />
+    <CnpjRadar />
     <Problem />
     <HowItWorks />
     <PlatformTour />
