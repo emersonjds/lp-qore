@@ -62,6 +62,31 @@ describe("Coverage", () => {
     );
   });
 
+  it("keeps every state outline and its stroke inside the map frame", () => {
+    const { container } = render(<Coverage />);
+    const [minX, minY, width, height] = (container.querySelector("svg")?.getAttribute("viewBox") ?? "").split(" ").map(Number);
+    const xs: number[] = [];
+    const ys: number[] = [];
+    container.querySelectorAll("path[data-uf]").forEach((state) => {
+      let x = 0;
+      let y = 0;
+      (state.getAttribute("d")?.match(/[Ml][^MlZ]*/g) ?? []).forEach((command) => {
+        const values = command.slice(1).trim().split(/[\s,]+/).filter(Boolean).map(Number);
+        for (let index = 0; index < values.length; index += 2) {
+          x = command[0] === "M" ? values[index] : x + values[index];
+          y = command[0] === "M" ? values[index + 1] : y + values[index + 1];
+          xs.push(x);
+          ys.push(y);
+        }
+      });
+    });
+    const strokeMargin = 2;
+    expect(Math.min(...xs)).toBeGreaterThanOrEqual(minX + strokeMargin);
+    expect(Math.min(...ys)).toBeGreaterThanOrEqual(minY + strokeMargin);
+    expect(Math.max(...xs)).toBeLessThanOrEqual(minX + width - strokeMargin);
+    expect(Math.max(...ys)).toBeLessThanOrEqual(minY + height - strokeMargin);
+  });
+
   it("explains the colours and credits the IBGE mesh", () => {
     render(<Coverage />);
     expect(screen.getByText("Disponível")).toBeInTheDocument();
