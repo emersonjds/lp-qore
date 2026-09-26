@@ -451,13 +451,15 @@ export const contactContent = {
 export const ctaBanners = {
   afterFeatures: {
     location: "after-features",
-    title: "Sua próxima proposta pode sair cerca de 80% pronta",
-    actionLabel: "Agendar demonstração",
+    title: "O Estado de São Paulo compra R$ 33 bilhões por ano. Veja quanto disso combina com o seu CNPJ.",
+    source: "Fonte: Portal de Compras do Governo de SP",
+    actionLabel: "Ver as licitações do meu CNPJ",
   },
   afterIntegrations: {
     location: "after-integrations",
-    title: "Licitações de São Paulo que combinam com o que a sua empresa vende",
-    actionLabel: "Ver as licitações do meu CNPJ",
+    title: "Pequenos negócios venderam R$ 42,4 bilhões ao governo em 2022. A Qore coloca a sua empresa nessa conta.",
+    source: "Fonte: Agência Sebrae de Notícias, 2023",
+    actionLabel: "Agendar demonstração",
   },
 } as const;
 
