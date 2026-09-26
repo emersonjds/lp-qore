@@ -1,12 +1,9 @@
-import { BadgeCheck, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { heroContent } from "@/config/home-content";
 import { CONTACT_HREF, HOW_IT_WORKS_HREF } from "@/config/navigation";
 import { HeroParallax } from "./hero-parallax";
 import { HeroSplitView } from "./hero-split-view";
-
-const trustIcons = [BadgeCheck, ShieldCheck] as const;
 
 export const Hero = () => (
   <section id="inicio" aria-labelledby="hero-title" className="relative isolate overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
@@ -42,15 +39,12 @@ export const Hero = () => (
           </Button>
         </div>
         <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-4 text-caption text-muted-foreground">
-          {heroContent.trustPoints.map((point, index) => {
-            const Icon = trustIcons[index] ?? BadgeCheck;
-            return (
-              <li key={point} className="flex items-center gap-1.5">
-                <Icon aria-hidden="true" className="size-[18px] text-primary" />
-                {point}
-              </li>
-            );
-          })}
+          {heroContent.trustPoints.map(({ icon: Icon, label }) => (
+            <li key={label} className="flex items-center gap-1.5">
+              <Icon aria-hidden="true" className="size-[18px] text-primary" />
+              {label}
+            </li>
+          ))}
         </ul>
       </div>
       <div className="relative isolate w-full lg:col-span-6">

@@ -16,6 +16,7 @@ import {
   Radar,
   SearchCheck,
   SearchX,
+  ShieldCheck,
   Send,
   SlidersHorizontal,
   Sparkles,
@@ -39,7 +40,10 @@ export const heroContent = {
   titleEmphasis: "Você decide.",
   subtitle:
     "Encontre licitações de São Paulo pelo seu CNPJ, entenda o edital com um resumo de IA que cita a página de origem e monte sua proposta com segurança.",
-  trustPoints: ["Citação direta de artigos e páginas", "Alinhado à Lei 14.133/2021"],
+  trustPoints: [
+    { icon: BadgeCheck, label: "Citação direta de artigos e páginas" },
+    { icon: ShieldCheck, label: "Alinhado à Lei 14.133/2021" },
+  ],
   primaryAction: "Quero assinar a Qore",
   secondaryAction: "Ver como funciona",
 } as const;
