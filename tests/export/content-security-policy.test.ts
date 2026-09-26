@@ -5,8 +5,8 @@ import { chromium, type Browser, type Page } from "playwright";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { startStaticServer } from "./static-server";
 
-const netlifyConfig = readFileSync(join(process.cwd(), "netlify.toml"), "utf8");
-const contentSecurityPolicy = /Content-Security-Policy = "([^"\n]*)"/.exec(netlifyConfig)?.[1] ?? "";
+const generatedHeaders = readFileSync(join(process.cwd(), "out", "_headers"), "utf8");
+const contentSecurityPolicy = /Content-Security-Policy: (.*)/.exec(generatedHeaders)?.[1] ?? "";
 
 let browser: Browser;
 let server: Server;
