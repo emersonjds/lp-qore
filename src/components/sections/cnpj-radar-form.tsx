@@ -21,7 +21,7 @@ type FoundResult = Extract<RadarResult, { status: "found" }>;
 type LeadStatus = "idle" | "submitting" | "success" | "error";
 
 const PREVIEW_LIMIT = 3;
-const LEAD_FIELDS = ["name", "email", "cnpj", "companyName", "activity", "matchCount", "consent", "bot-field"] as const;
+const LEAD_FIELDS = ["name", "email", "cnpj", "activity", "matchCount", "consent", "bot-field"] as const;
 const INITIAL_LEAD: RadarLeadValues = { name: "", email: "", consent: false };
 const closingDateFormat = new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "2-digit" });
 const totalFormat = new Intl.NumberFormat("pt-BR");
@@ -62,7 +62,6 @@ const LeadGate = ({ cnpj, result }: LeadGateProps) => {
         name: values.name,
         email: values.email,
         cnpj,
-        companyName: result.company.name,
         activity: result.company.activity,
         matchCount: result.matches.length,
       }),

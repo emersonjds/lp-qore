@@ -25,7 +25,6 @@ export interface RadarLead {
   name: string;
   email: string;
   cnpj: string;
-  companyName: string;
   activity: string;
   matchCount: number;
 }
@@ -177,7 +176,6 @@ export const encodeRadarLead = (lead: RadarLead): string =>
     name: lead.name.trim(),
     email: lead.email.trim(),
     cnpj: lead.cnpj,
-    companyName: lead.companyName,
     activity: lead.activity,
     matchCount: String(lead.matchCount),
     consent: "sim",
