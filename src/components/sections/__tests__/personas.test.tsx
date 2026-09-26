@@ -34,7 +34,6 @@ describe("Personas", () => {
     const counted = [...view.querySelectorAll("[data-role-kpi] [data-count-up]")].map((counter) => counter.textContent);
     expect(counted).toEqual(["R$ 4,2M", "34,8%"]);
     expect(within(view).getByText("Mais editais triados")).toBeInTheDocument();
-    expect(within(view).getByText("Exemplo ilustrativo")).toBeInTheDocument();
   });
 
   it("simulates the analyst's day, flagging the urgent deadline", () => {
@@ -47,7 +46,6 @@ describe("Personas", () => {
       "Proposta em montagem",
     ]);
     expect(within(view).getByText("Urgente: DAEE até 18h")).toBeInTheDocument();
-    expect(within(view).getByText("Exemplo ilustrativo")).toBeInTheDocument();
   });
 
   it("keeps unbacked comparisons out of the example cards", () => {

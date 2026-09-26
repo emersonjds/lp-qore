@@ -2,7 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { Hero } from "../hero";
 
-const splitView = () => screen.getByRole("figure", { name: /Exemplo ilustrativo/ });
+const splitView = () => screen.getByRole("figure", { name: /Edital original ao lado do resumo/ });
 
 describe("Hero", () => {
   it("states the slogan as the only level-one heading, never animated", () => {

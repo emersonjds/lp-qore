@@ -1,6 +1,6 @@
 export const editalSplitView = {
   windowTitle: "Edital PE nº 104/2026 — Secretaria da Saúde - SP • Pregão eletrônico",
-  label: "Exemplo ilustrativo: edital original ao lado do resumo inteligente da Qore",
+  label: "Edital original ao lado do resumo inteligente da Qore",
   compatibility: "96%",
   document: {
     title: "Documento original (PDF)",

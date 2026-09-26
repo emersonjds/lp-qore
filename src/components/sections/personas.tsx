@@ -38,7 +38,6 @@ const KpiCards = ({ kpis }: { kpis: Persona["kpis"] }) => (
         </li>
       ))}
     </ul>
-    <p className="mt-3 text-right text-caption text-muted-foreground">Exemplo ilustrativo</p>
   </div>
 );
 

@@ -15,7 +15,7 @@ export const ProposalHighlight = () => (
         <p className="mt-4 text-body-md text-foreground">{proposalContent.brand}</p>
       </div>
       <div className="relative min-w-0 pt-4 pb-10">
-        <PricingScreen label="Exemplo ilustrativo: Precificação inteligente" />
+        <PricingScreen label="Precificação inteligente" />
         <div
           data-reveal
           data-proposal-progress

@@ -150,7 +150,7 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
               )}
             >
               {!isEnhanced && <p className="mb-3 font-display text-title-md text-foreground">{tab.label}</p>}
-              <Screen key={isActive ? "active" : "idle"} label={`Exemplo ilustrativo: ${tab.label}`} />
+              <Screen key={isActive ? "active" : "idle"} label={tab.label} />
             </div>
           );
         })}

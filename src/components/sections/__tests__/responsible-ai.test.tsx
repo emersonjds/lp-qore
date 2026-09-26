@@ -5,7 +5,7 @@ import { ResponsibleAi } from "../responsible-ai";
 
 const EXCERPT = "“Exige-se índice de liquidez corrente superior a 1,25.”";
 
-const auditCard = () => screen.getByRole("figure", { name: "Exemplo ilustrativo: Auditoria em Tempo Real" });
+const auditCard = () => screen.getByRole("figure", { name: "Auditoria em Tempo Real" });
 
 describe("ResponsibleAi", () => {
   it("presents the AI as institutional governance, citing the source instead of promising no hallucinations", () => {
@@ -34,7 +34,6 @@ describe("ResponsibleAi", () => {
     expect(within(card).getByText(EXCERPT)).toBeInTheDocument();
     expect(within(card).getByText("Edital_SP_Item_8.4.pdf • pág. 31")).toBeInTheDocument();
     expect(within(card).getByText("Não encontrado no edital")).toBeInTheDocument();
-    expect(within(card).getByText("Exemplo ilustrativo")).toBeInTheDocument();
   });
 
   it("types the clause one character at a time and pops the source chip only after the last one", () => {

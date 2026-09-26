@@ -11,8 +11,7 @@ describe("ProposalHighlight", () => {
 
   it("simulates the pricing step as an illustrative window instead of a screenshot", () => {
     render(<ProposalHighlight />);
-    const window = screen.getByRole("figure", { name: "Exemplo ilustrativo: Precificação inteligente" });
-    expect(window).toHaveTextContent("Exemplo ilustrativo");
+    const window = screen.getByRole("figure", { name: "Precificação inteligente" });
     expect(screen.queryByRole("img")).not.toBeInTheDocument();
     expect(screen.queryByRole("progressbar")).not.toBeInTheDocument();
   });

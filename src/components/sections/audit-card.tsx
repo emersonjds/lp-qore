@@ -55,6 +55,5 @@ export const AuditCard = () => (
         </div>
       </li>
     </ul>
-    <figcaption className="mt-4 text-right text-caption text-muted-foreground">Exemplo ilustrativo</figcaption>
   </figure>
 );

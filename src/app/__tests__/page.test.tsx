@@ -51,4 +51,9 @@ describe("HomePage", () => {
       .filter((href) => href.startsWith("/#"))
       .forEach((href) => expect(container.querySelector(href.slice(1))).not.toBeNull());
   });
+
+  it("shows the simulated screens without any example seal, in text or accessible names", () => {
+    const { container } = render(<HomePage />);
+    expect(container.innerHTML).not.toMatch(/exemplo/i);
+  });
 });

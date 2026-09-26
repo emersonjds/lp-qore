@@ -144,7 +144,7 @@ export const responsibleAiContent: { eyebrow: string; title: string; description
 };
 
 export const auditExample = {
-  label: "Exemplo ilustrativo: Auditoria em Tempo Real",
+  label: "Auditoria em Tempo Real",
   title: "Auditoria em Tempo Real",
   caption: "Cada trecho com a página de origem",
   excerptLabel: "Trecho extraído:",

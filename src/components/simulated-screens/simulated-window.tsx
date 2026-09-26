@@ -21,8 +21,5 @@ export const SimulatedWindow = ({ title, label, badge, className, children }: Si
       {badge}
     </div>
     {children}
-    <figcaption className="bg-surface-low px-4 py-1.5 text-right text-caption text-muted-foreground">
-      Exemplo ilustrativo
-    </figcaption>
   </figure>
 );

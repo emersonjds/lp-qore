@@ -16,10 +16,9 @@ export const Documents = () => (
         <p className="mt-3 text-body-lg text-muted-foreground">{documentsContent.description}</p>
       </div>
       <div data-reveal data-certificates className="relative mx-auto w-full max-w-md">
-        <DocumentsScreen label="Exemplo ilustrativo: Documentos" />
+        <DocumentsScreen label="Documentos" />
         <div className="relative mt-4 sm:ml-8 sm:w-72">
-          <p className="mb-2 text-caption text-muted-foreground">Exemplo</p>
-          <ul aria-label="Exemplo de verificação de certidões" className="flex flex-col gap-2">
+          <ul aria-label="Verificação de certidões" className="flex flex-col gap-2">
             {documentsContent.certificateChecks.map((check, index) => (
               <li
                 key={check.name}

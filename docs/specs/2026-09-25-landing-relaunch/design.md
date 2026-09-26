@@ -35,7 +35,7 @@ A LP continua em repositório separado (`qore.com.br`), e o painel fica em `app.
 | Dados da empresa | Razão social, CNPJ, fundadores, contato e DPO ainda **não existem** (SPA-478). Nenhum placeholder visível ("Nome do Cofundador", "00.000.000/0001-00"). Quem somos mostra só a missão; o rodapé não tem dados legais |
 | Privacidade | A página `/privacidade` explica a finalidade do formulário, os dados coletados, a base legal (consentimento), a retenção e os direitos do titular. A identificação do controlador vem de `siteConfig.legal`; enquanto estiver vazia, a seção diz que os dados do controlador serão publicados nesta página. **Publicar a LP em produção exige preencher `siteConfig.legal`**, item de go-live |
 | Imagens | Export estático sem otimizador. As screenshots do painel são geradas uma vez, a partir do `qore-web` com os dados de demonstração, e convertidas para AVIF e WebP com `sharp` (devDependency, script em `scripts/`). Servidas com `<picture>`, `width`/`height` explícitos e `loading="lazy"`, exceto acima da dobra |
-| Honestidade | As telas de produto são capturas reais do painel (qore-web, dados de demonstração) e não levam selo, por decisão do owner em 25/09/2026; mockups desenhados de tela não são usados. Nenhum número aparece como afirmação da empresa. A "Taxa de vitória" do painel do gestor real (calculada sobre os dados de demonstração) é permitida, a pedido do owner. Painéis que o SPA-426 lista como fabricados (itens do edital, média histórica, recomendação Go/No-Go, concorrentes) não aparecem |
+| Honestidade | As telas de produto são simuladas em HTML/CSS com dados de demonstração e não levam selo ("Exemplo ilustrativo", "Exemplo" ou similar), por decisão do owner em 26/09/2026. Nenhuma afirmação de resultado aparece fora das telas, a palavra "piloto" não entra na copy e nenhum dado jurídico é inventado. Nenhum número aparece como afirmação da empresa. A "Taxa de vitória" do painel do gestor real (calculada sobre os dados de demonstração) é permitida, a pedido do owner. Painéis que o SPA-426 lista como fabricados (itens do edital, média histórica, recomendação Go/No-Go, concorrentes) não aparecem |
 
 ## Seções (ordem, conteúdo e animação)
 
@@ -51,7 +51,7 @@ A copy base está no SPA-474, adaptada à referência do Stitch.
    - Eyebrow "Disponível para São Paulo" e o H1 "A IA lê o edital. **Você decide.**".
    - Subtítulo: "Encontre licitações de São Paulo pelo seu CNPJ, entenda o edital com um resumo de IA que cita a página de origem e monte sua proposta com segurança."
    - CTAs "Fale com a gente" e "Ver como funciona", com o microcopy "Sem cadastro e sem cartão".
-   - À direita, um card HTML/CSS "Resumo Inteligente Qore" com os trechos citados ("pág. 12") e o selo "Tela ilustrativa".
+   - À direita, um card HTML/CSS "Resumo Inteligente Qore" com os trechos citados ("pág. 12"), sem selo.
    - **Só CSS** (entrada com `@keyframes` em `opacity`/`transform`, respeitando `prefers-reduced-motion`). O LCP é o H1.
 3. **Problema.** Três cards sem números: editais espalhados em vários portais; 80 páginas lidas na véspera; proposta desclassificada por preço ou documento faltando. Reveal com CSS e um IntersectionObserver.
 4. **Como funciona.**
@@ -60,7 +60,7 @@ A copy base está no SPA-474, adaptada à referência do Stitch.
    - Carregado com `import()` quando a seção se aproxima da viewport.
 5. **Conheça a plataforma.**
    - Abas: Painel do gestor, Radar, Busca, Precificação e Calendário.
-   - Screenshot real do painel com legenda e selo "Tela ilustrativa".
+   - Tela simulada do painel com legenda, sem selo.
    - No desktop, a troca de tela usa **GSAP** (pin com crossfade); no mobile, abas simples.
    - Imagens AVIF/WebP carregadas sob demanda.
 6. **IA com responsabilidade.**
@@ -69,7 +69,7 @@ A copy base está no SPA-474, adaptada à referência do Stitch.
    - O arquivo de animação é autoral e versionado em `public/animations/`.
 7. **Para cada função.**
    - Toggle Visão do gestor | Visão do analista com **Motion** (`LazyMotion` + `domAnimation`).
-   - Cada visão mostra um mini-painel com o selo "Exemplo ilustrativo". Os valores dali não são afirmações da empresa.
+   - Cada visão mostra um mini-painel sem selo. Os valores dali não são afirmações da empresa.
 8. **Cobertura.** "Começamos por São Paulo…" com o mapa de SP em SVG (reaproveitando o traçado do `stitch-reference.html`) e o convite "Atua em outro estado? Deixe seu contato". Hover sutil só com CSS.
 9. **Quem somos.** Parágrafo de missão, sem nomes nem fotos.
 10. **FAQ.** Cinco perguntas (SPA-474) em `<details>`/`<summary>`, com a animação de abertura em CSS. O JSON-LD `FAQPage` sai do mesmo `config/faq.ts`.

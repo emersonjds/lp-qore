@@ -56,7 +56,6 @@ describe("PlatformTourTabs", () => {
     render(<PlatformTourTabs tabs={platformTabs} />);
     const panel = screen.getByRole("tabpanel", { name: label, hidden: true });
     const window = within(panel).getByRole("figure", { hidden: true });
-    expect(window).toHaveTextContent("Exemplo ilustrativo");
     expect(within(window).getByRole("heading", { name: heading, hidden: true })).toBeInTheDocument();
   });
 
