@@ -24,11 +24,11 @@ const HomePage = () => (
     <Hero />
     <Problem />
     <HowItWorks />
+    <PlatformTour />
     <Features />
     <ProposalHighlight />
     <CtaBanner {...ctaBanners.afterFeatures} />
     <Documents />
-    <PlatformTour />
     <Personas />
     <Audience />
     <TimeSaved />

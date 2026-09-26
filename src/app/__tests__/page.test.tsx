@@ -4,17 +4,17 @@ import { footerNavigation, primaryNavigation } from "@/config/navigation";
 import HomePage from "../page";
 
 describe("HomePage", () => {
-  it("orders the sections as decided by the owner", () => {
+  it("tells the sales story in the Stitch order, with the platform right after how it works", () => {
     const { container } = render(<HomePage />);
     const sectionIds = [...container.querySelectorAll("main > section[id]")].map((section) => section.id);
     expect(sectionIds).toEqual([
       "inicio",
       "problema",
       "como-funciona",
+      "plataforma",
       "funcionalidades",
       "proposta",
       "documentos",
-      "plataforma",
       "funcoes",
       "para-quem-e",
       "resultados",
