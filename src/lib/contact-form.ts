@@ -32,6 +32,8 @@ export const CONTACT_FORM_NAME = "contato";
 export const CONTACT_SUBMIT_ERROR =
   "Não conseguimos enviar seu contato agora. Verifique a conexão e tente de novo em alguns minutos.";
 
+export const isValidEmail = (value: string): boolean => EMAIL_PATTERN.test(value.trim());
+
 const isOneOf = (options: readonly string[], value: string): boolean => options.includes(value);
 
 export const validateContactForm = (values: ContactFormValues): ContactFormErrors => {
@@ -40,7 +42,7 @@ export const validateContactForm = (values: ContactFormValues): ContactFormError
 
   if (values.name.trim().length < 2) errors.name = "Informe seu nome.";
   if (!email) errors.email = "Informe seu e-mail.";
-  else if (!EMAIL_PATTERN.test(email)) errors.email = "Informe um e-mail válido, como nome@empresa.com.br.";
+  else if (!isValidEmail(email)) errors.email = "Informe um e-mail válido, como nome@empresa.com.br.";
   if (!values.phone.trim()) errors.phone = "Informe seu telefone ou WhatsApp.";
   else if (!isValidBrazilianPhone(values.phone)) errors.phone = "Informe um telefone com DDD, como (11) 98765-4321.";
   if (!isOneOf(contactRoles, values.role)) errors.role = "Escolha o seu cargo.";
@@ -72,21 +74,26 @@ export const encodeContactSubmission = (values: ContactFormValues): string =>
 
 type SubmitContactResult = { status: "success" } | { status: "error"; message: string };
 
-export const submitContact = async (
-  values: ContactFormValues,
-  fetcher: typeof fetch = fetch,
-): Promise<SubmitContactResult> => {
+export const postNetlifyForm = async (body: string, fetcher: typeof fetch = fetch): Promise<boolean> => {
   try {
     const response = await fetcher("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encodeContactSubmission(values),
+      body,
     });
-    return response.ok ? { status: "success" } : { status: "error", message: CONTACT_SUBMIT_ERROR };
+    return response.ok;
   } catch {
-    return { status: "error", message: CONTACT_SUBMIT_ERROR };
+    return false;
   }
 };
+
+export const submitContact = async (
+  values: ContactFormValues,
+  fetcher: typeof fetch = fetch,
+): Promise<SubmitContactResult> =>
+  (await postNetlifyForm(encodeContactSubmission(values), fetcher))
+    ? { status: "success" }
+    : { status: "error", message: CONTACT_SUBMIT_ERROR };
 
 export const buildSuccessMessage = (name: string): string =>
   `Recebemos seu contato, ${name.trim()}. Vamos falar com você pelo e-mail ou WhatsApp informado.`;

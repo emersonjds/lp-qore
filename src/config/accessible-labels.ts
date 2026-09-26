@@ -13,4 +13,5 @@ export const accessibleLabels = {
   personaChoice: "Escolha a função",
   platformScreens: "Telas da plataforma",
   stepPrefix: "Passo",
+  radarPreview: "Prévia das licitações abertas",
 } as const;
