@@ -13,7 +13,7 @@ export interface ContactFormValues {
   consent: boolean;
 }
 
-export type ContactFieldName = "name" | "email" | "phone" | "role" | "companySize" | "monthlyTenders" | "consent";
+type ContactFieldName = "name" | "email" | "phone" | "role" | "companySize" | "monthlyTenders" | "consent";
 
 export type ContactFormErrors = Partial<Record<ContactFieldName, string>>;
 
@@ -70,7 +70,7 @@ export const encodeContactSubmission = (values: ContactFormValues): string =>
     "bot-field": "",
   }).toString();
 
-export type SubmitContactResult = { status: "success" } | { status: "error"; message: string };
+type SubmitContactResult = { status: "success" } | { status: "error"; message: string };
 
 export const submitContact = async (
   values: ContactFormValues,

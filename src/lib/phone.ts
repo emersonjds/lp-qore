@@ -1,4 +1,4 @@
-export const extractDigits = (value: string): string => value.replace(/\D/g, "");
+const extractDigits = (value: string): string => value.replace(/\D/g, "");
 
 export const formatBrazilianPhone = (value: string): string => {
   const digits = extractDigits(value).slice(0, 11);

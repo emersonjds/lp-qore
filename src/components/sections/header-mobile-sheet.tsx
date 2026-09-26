@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/
 import { CONTACT_SPECIALIST_LABEL } from "@/config/navigation";
 import type { NavLink } from "@/types";
 
-export interface HeaderMobileSheetProps {
+interface HeaderMobileSheetProps {
   links: readonly NavLink[];
   contactHref: string;
   isOpen: boolean;

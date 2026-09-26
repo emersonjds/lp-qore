@@ -28,7 +28,7 @@ const ScreenHeading = ({ title, description, aside }: { title: string; descripti
   </div>
 );
 
-export const ManagerOverviewScreen = ({ label }: ScreenProps) => (
+const ManagerOverviewScreen = ({ label }: ScreenProps) => (
   <SimulatedWindow title={managerOverviewScreen.windowTitle} label={label}>
     <div className="flex flex-col gap-6 p-4 md:p-8">
       <ScreenHeading
@@ -114,7 +114,7 @@ export const ManagerOverviewScreen = ({ label }: ScreenProps) => (
   </SimulatedWindow>
 );
 
-export const RadarScreen = ({ label }: ScreenProps) => (
+const RadarScreen = ({ label }: ScreenProps) => (
   <SimulatedWindow title={radarScreen.windowTitle} label={label}>
     <div className="flex flex-col gap-4 p-4 md:p-8">
       <ScreenHeading
@@ -171,7 +171,7 @@ export const RadarScreen = ({ label }: ScreenProps) => (
   </SimulatedWindow>
 );
 
-export const SummaryScreen = ({ label }: ScreenProps) => (
+const SummaryScreen = ({ label }: ScreenProps) => (
   <SimulatedWindow title={summaryScreen.windowTitle} label={label}>
     <div className="flex flex-col gap-4 p-4 md:p-8">
       <ScreenHeading title={summaryScreen.title} description={summaryScreen.description} />
@@ -229,7 +229,7 @@ const milestoneTone = {
   session: { card: "bg-primary-fixed/40", step: "text-primary-deep", date: "text-primary" },
 } as const;
 
-export const CalendarScreen = ({ label }: ScreenProps) => (
+const CalendarScreen = ({ label }: ScreenProps) => (
   <SimulatedWindow title={calendarScreen.windowTitle} label={label}>
     <div className="flex flex-col gap-4 p-4 md:p-8">
       <ScreenHeading title={calendarScreen.title} description={calendarScreen.description} />

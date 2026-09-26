@@ -4,7 +4,7 @@ interface LogoMarkProps {
   className?: string;
 }
 
-export const LogoMark = ({ className }: LogoMarkProps) => (
+const LogoMark = ({ className }: LogoMarkProps) => (
   <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" className={cn("size-8", className)}>
     <rect width="48" height="48" rx="12" fill="#047857" />
     <circle cx="23" cy="24" r="10" fill="none" stroke="#ffffff" strokeWidth="5" />
