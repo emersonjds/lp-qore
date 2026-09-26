@@ -64,6 +64,15 @@ describe("PersonaToggle", () => {
     expect(screen.getByText("Visual do gestor")).not.toBe(before);
   });
 
+  it("collapses the inactive view on phones so the taller view leaves no blank gap", async () => {
+    renderToggle();
+    await userEvent.click(screen.getByRole("button", { name: "Gestor de licitações" }));
+    expect(screen.getByRole("article", { name: "Seu dia sem planilha nem PDF de 80 páginas", hidden: true })).toHaveClass(
+      "max-md:hidden",
+    );
+    expect(screen.getByRole("article", { name: "Visão da operação inteira em uma tela" })).not.toHaveClass("max-md:hidden");
+  });
+
   it("crossfades between the two views with opacity and a short lift", async () => {
     renderToggle();
     await userEvent.click(screen.getByRole("button", { name: "Gestor de licitações" }));

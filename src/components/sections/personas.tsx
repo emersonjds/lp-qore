@@ -18,7 +18,7 @@ const KpiCards = ({ kpis }: { kpis: Persona["kpis"] }) => (
       {kpis.map((kpi) => (
         <li key={kpi.label} data-role-kpi className="flex flex-col justify-between rounded-xl bg-card p-6 shadow-sm">
           <div>
-            <span data-kpi-label className="text-label-sm text-muted-foreground">
+            <span data-kpi-label className="block text-label-sm text-muted-foreground">
               {kpi.label}
             </span>
             {kpi.isCounted ? (

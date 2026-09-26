@@ -58,7 +58,7 @@ export const PersonaToggle = ({ heading, personas }: PersonaToggleProps) => {
               className={cn(
                 "flex min-w-0 flex-col gap-8 transition-[opacity,translate,visibility] duration-300 ease-out",
                 isEnhanced && "col-start-1 row-start-1",
-                isEnhanced && !isActive && "invisible translate-y-2 opacity-0",
+                isEnhanced && !isActive && "invisible translate-y-2 opacity-0 max-md:hidden",
               )}
             >
               <div key={isActive ? `${persona.id}-active` : persona.id}>{persona.visual}</div>
