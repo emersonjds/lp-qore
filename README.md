@@ -35,7 +35,6 @@ O Lighthouse CI grava os relatórios em `.lighthouseci/` (fora do git). O Playwr
 
 - **Mapa do Brasil (IBGE):** `pnpm map:generate` baixa a malha de UFs da API de malhas do IBGE e reescreve `src/config/brazil-map.ts`. Precisa de rede.
 - **Marca:** `pnpm brand:assets` gera `public/og.png` (1200×630) e `src/app/apple-icon.png` a partir do logo.
-- **Capturas do painel:** com o qore-web na branch `developer` rodando `npm run dev` (porta 3000), `pnpm screenshots:capture` salva as telas em `docs/design/screenshots/` (referência para as telas simuladas; não entram no build). `QORE_WEB_URL` muda a origem.
 - **Fontes:** Inter (pesos 400–600) e Hanken Grotesk (600–700) são servidas pelo próprio site a partir de `src/app/fonts/` (licença SIL OFL 1.1 em `Inter-OFL.txt` e `HankenGrotesk-OFL.txt`); o build não depende do Google Fonts. As originais (woff2 variável, subconjunto latino do Google Fonts) ficam em `assets/fonts/`. Para regerar, com [uv](https://docs.astral.sh/uv/) instalado (o fonttools não entra no `package.json`):
 
   ```bash

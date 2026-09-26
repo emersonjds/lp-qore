@@ -19,6 +19,15 @@ describe("source content", () => {
     expect(offenders).toEqual([]);
   });
 
+  it("keeps no panel screenshots nor their capture script", () => {
+    const root = process.cwd();
+    expect(existsSync(join(root, "docs", "design", "screenshots"))).toBe(false);
+    expect(existsSync(join(root, "scripts", "capture-screenshots.mjs"))).toBe(false);
+    expect(readFileSync(join(root, "package.json"), "utf8")).not.toContain("screenshots:capture");
+    expect(readFileSync(join(root, "netlify.toml"), "utf8")).not.toContain("/screenshots/");
+    expect(readFileSync(join(root, "README.md"), "utf8")).not.toContain("screenshots");
+  });
+
   it("has no /login route", () => {
     expect(existsSync(join(SOURCE_DIRECTORY, "app", "login"))).toBe(false);
   });

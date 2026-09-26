@@ -10,7 +10,6 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "screenshots:capture": "node scripts/capture-screenshots.mjs",
     "map:generate": "node scripts/generate-brazil-map.mjs",
     "brand:assets": "node scripts/generate-brand-assets.mjs",
     "test:export": "vitest run --config vitest.export.config.ts",
