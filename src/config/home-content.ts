@@ -53,9 +53,11 @@ export const heroContent = {
   secondaryAction: "Ver a plataforma",
 } as const;
 
-export const problemContent: { eyebrow: string; title: string; items: readonly ProblemCard[] } = {
+export const problemContent: { eyebrow: string; title: string; description: string; items: readonly ProblemCard[] } = {
   eyebrow: "O desafio da contratação pública",
-  title: "Os gargalos de quem disputa licitações todos os dias",
+  title: "Onde a licitação se perde: portal, edital e prazo",
+  description:
+    "Edital em portal que ninguém abriu, 80 páginas lidas na véspera, proposta desclassificada por preço ou certidão vencida.",
   items: [
     {
       icon: LayoutGrid,
@@ -88,8 +90,9 @@ export const howItWorksContent: {
   steps: readonly HowItWorksStep[];
 } = {
   eyebrow: "Fluxo integrado",
-  title: "Como funciona",
-  description: "Três etapas conectam a sua empresa aos editais certos, com a decisão sempre nas mãos da sua equipe.",
+  title: "Do CNPJ à proposta em três etapas",
+  description:
+    "Informe o CNPJ, receba o radar e responda com o edital resumido e a proposta encaminhada. A decisão continua com a sua equipe.",
   steps: [
     {
       number: "01",
@@ -110,6 +113,12 @@ export const howItWorksContent: {
   ],
 };
 
+export const platformContent = {
+  eyebrow: "Recursos e módulos",
+  title: "Uma tela para cada etapa da licitação",
+  description: "Painel do gestor, radar, resumo com IA, precificação e calendário, todos com os mesmos dados da empresa.",
+} as const;
+
 export const platformTabs: readonly PlatformTab[] = [
   { id: "painel", label: "Painel do gestor" },
   { id: "radar", label: "Radar de oportunidades" },
@@ -120,9 +129,9 @@ export const platformTabs: readonly PlatformTab[] = [
 
 export const responsibleAiContent: { eyebrow: string; title: string; description: string; commitments: readonly IconCard[] } = {
   eyebrow: "Governança e transparência",
-  title: "IA com responsabilidade institucional",
+  title: "IA que mostra a fonte e deixa a decisão com você",
   description:
-    "Controle e transparência para o time de licitação: fonte citada em cada ponto, nenhuma ação automática e cada resumo rastreável até o edital.",
+    "Cada ponto cita a página do edital, o que o edital não informa aparece como lacuna e o envio ao portal é sempre da sua empresa.",
   commitments: [
     {
       icon: Quote,
@@ -160,9 +169,16 @@ export const auditExample = {
   missingAction: "Sugestão: pedir esclarecimento",
 } as const;
 
-export const personasContent: { eyebrow: string; title: string; personas: readonly [Persona, Persona] } = {
+export const personasContent: {
+  eyebrow: string;
+  title: string;
+  description: string;
+  personas: readonly [Persona, Persona];
+} = {
   eyebrow: "Interface sob medida",
-  title: "Construído para cada função na equipe de licitações",
+  title: "Uma visão para o analista, outra para o gestor",
+  description:
+    "O analista trabalha a fila do dia; o gestor acompanha valor ganho, taxa de vitória e prazos da equipe.",
   personas: [
     {
       id: "manager",
@@ -360,7 +376,7 @@ export const coverageContent: {
   eyebrow: "Território de atuação",
   title: "Todo o estado de São Paulo, da capital ao interior",
   description:
-    "Licitações dos 645 municípios paulistas, do governo do estado, de autarquias e empresas públicas, reunidas dos principais portais.",
+    "Os 645 municípios paulistas e os órgãos do estado no mesmo radar.",
   mapCaption: "Os 645 municípios paulistas cobertos.",
   clusters: [
     {
@@ -418,9 +434,9 @@ export const aboutContent = {
 
 export const contactContent = {
   eyebrow: "Diagnóstico sem compromisso",
-  title: "Descubra quais licitações de São Paulo a sua empresa pode vencer",
+  title: "Veja as licitações abertas para o seu CNPJ",
   description:
-    "Leva 1 minuto. Um especialista cruza o seu CNPJ com os editais abertos em São Paulo e apresenta as oportunidades do seu segmento.",
+    "Conte o porte da empresa e quantas licitações disputa por mês. A equipe da Qore retorna com uma demonstração no seu cenário.",
   highlights: [
     "Radar montado a partir do CNPJ da sua empresa",
     "Editais abertos em São Paulo no seu segmento",

@@ -8,11 +8,17 @@ const EXCERPT = "“Exige-se índice de liquidez corrente superior a 1,25.”";
 const auditCard = () => screen.getByRole("figure", { name: "Auditoria em Tempo Real" });
 
 describe("ResponsibleAi", () => {
+  it("positions the section with the approved heading and lead", () => {
+    render(<ResponsibleAi />);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("IA que mostra a fonte e deixa a decisão com você");
+    expect(
+      screen.getByText("Cada ponto cita a página do edital, o que o edital não informa aparece como lacuna e o envio ao portal é sempre da sua empresa."),
+    ).toBeInTheDocument();
+  });
+
   it("presents the AI as institutional governance, citing the source instead of promising no hallucinations", () => {
     const { container } = render(<ResponsibleAi />);
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("IA com responsabilidade institucional");
     expect(screen.getByText("Governança e transparência")).toBeInTheDocument();
-    expect(screen.getByText(/fonte citada em cada ponto/i)).toBeInTheDocument();
     expect(container.textContent).not.toMatch(/alucina|100%/i);
   });
 

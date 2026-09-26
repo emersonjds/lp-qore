@@ -3,6 +3,14 @@ import { describe, expect, it } from "vitest";
 import { HowItWorks } from "../how-it-works";
 
 describe("HowItWorks", () => {
+  it("positions the section with the approved heading and lead", () => {
+    render(<HowItWorks />);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Do CNPJ à proposta em três etapas");
+    expect(
+      screen.getByText("Informe o CNPJ, receba o radar e responda com o edital resumido e a proposta encaminhada. A decisão continua com a sua equipe."),
+    ).toBeInTheDocument();
+  });
+
   it("lists the three steps in order", () => {
     render(<HowItWorks />);
     const steps = within(screen.getByRole("list")).getAllByRole("listitem");

@@ -77,6 +77,7 @@ export const Personas = () => {
             <h2 id="personas-title" className="mt-2 max-w-3xl text-headline-lg-mobile md:text-headline-lg">
               {personasContent.title}
             </h2>
+            <p className="mt-3 max-w-2xl text-body-lg text-muted-foreground">{personasContent.description}</p>
           </div>
         }
         personas={[toView(first), toView(second)]}

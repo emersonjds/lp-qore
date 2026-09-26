@@ -3,15 +3,17 @@ import { describe, expect, it } from "vitest";
 import { Integrations } from "../integrations";
 
 describe("Integrations", () => {
+  it("positions the section with the approved heading and lead", () => {
+    render(<Integrations />);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("PNCP, BEC/SP e mais seis portais em um só radar");
+    expect(
+      screen.getByText("Compras.gov.br, BLL, BNC, Licitações-e, Portal de Compras Públicas e Licitar Digital também entram na busca."),
+    ).toBeInTheDocument();
+  });
+
   it("anchors at #integracoes with the owner's title", () => {
     const { container } = render(<Integrations />);
     expect(container.querySelector("section#integracoes")).not.toBeNull();
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
-      "Os maiores portais de compras públicas em um só lugar",
-    );
-    expect(
-      screen.getByText("Licitações de órgãos estaduais e municipais de São Paulo, dos principais portais, em um só lugar."),
-    ).toBeInTheDocument();
   });
 
   it("names the tender portals as text", () => {

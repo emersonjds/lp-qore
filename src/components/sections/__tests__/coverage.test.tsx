@@ -3,16 +3,19 @@ import { describe, expect, it } from "vitest";
 import { Coverage } from "../coverage";
 
 describe("Coverage", () => {
+  it("positions the section with the approved heading and lead", () => {
+    render(<Coverage />);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Todo o estado de São Paulo, da capital ao interior");
+    expect(
+      screen.getByText("Os 645 municípios paulistas e os órgãos do estado no mesmo radar."),
+    ).toBeInTheDocument();
+  });
+
   it("covers the whole state of São Paulo", () => {
     render(<Coverage />);
     expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
       "Todo o estado de São Paulo, da capital ao interior",
     );
-    expect(
-      screen.getByText(
-        "Licitações dos 645 municípios paulistas, do governo do estado, de autarquias e empresas públicas, reunidas dos principais portais.",
-      ),
-    ).toBeInTheDocument();
   });
 
   it("frames the section as the Stitch service territory and captions the map with the covered municipalities", () => {

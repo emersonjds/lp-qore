@@ -4,6 +4,14 @@ import { faqItems } from "@/config/faq";
 import { Faq } from "../faq";
 
 describe("Faq", () => {
+  it("positions the section with the approved heading and lead", () => {
+    render(<Faq />);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Perguntas frequentes");
+    expect(
+      screen.getByText("O que a Qore faz, o que ela não faz e como começar."),
+    ).toBeInTheDocument();
+  });
+
   it("renders the six questions as native disclosure widgets", () => {
     const { container } = render(<Faq />);
     const disclosures = container.querySelectorAll("details");
