@@ -3,7 +3,8 @@
     "collect": {
       "staticDistDir": "./out",
       "autodiscoverUrlBlocklist": ["/404.html", "/_not-found.html"],
-      "numberOfRuns": 3
+      "numberOfRuns": 3,
+      "settings": { "chromeFlags": "--headless=new --no-sandbox" }
     },
     "assert": {
       "assertions": {
