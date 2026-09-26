@@ -32,6 +32,6 @@ describe("netlify.toml", () => {
   });
 
   it("points the site URL at the Netlify address until the own domain is live", () => {
-    expect(netlifyConfig).toContain('NEXT_PUBLIC_SITE_URL = "https://qoreapp.netlify.app"');
+    expect(netlifyConfig).toContain('NEXT_PUBLIC_SITE_URL = "https://qorelicitacoes.netlify.app"');
   });
 });
