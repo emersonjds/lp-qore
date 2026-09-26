@@ -2,6 +2,9 @@ import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { footerNavigation, primaryNavigation } from "@/config/navigation";
 import HomePage from "../page";
+import PrivacyPage from "../privacidade/page";
+
+const MASCULINE_BRAND = /\b(o|ao|do|no|pelo) Qore\b/i;
 
 describe("HomePage", () => {
   it("tells the sales story in the Stitch order, with the platform right after how it works", () => {
@@ -55,5 +58,15 @@ describe("HomePage", () => {
   it("shows the simulated screens without any example seal, in text or accessible names", () => {
     const { container } = render(<HomePage />);
     expect(container.innerHTML).not.toMatch(/exemplo/i);
+  });
+});
+
+describe("brand gender", () => {
+  it.each([
+    ["home", HomePage],
+    ["privacy", PrivacyPage],
+  ])("always calls the brand \"a Qore\" on the %s page", (_page, Page) => {
+    const { container } = render(<Page />);
+    expect(container.innerHTML).not.toMatch(MASCULINE_BRAND);
   });
 });

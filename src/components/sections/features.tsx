@@ -8,7 +8,7 @@ export const Features = () => (
       {featuresContent.title}
     </h2>
     <p className="mt-3 max-w-2xl text-body-lg text-muted-foreground">{featuresContent.description}</p>
-    <ul aria-label="Funcionalidades do Qore" className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <ul aria-label="Funcionalidades da Qore" className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {features.map(({ icon: Icon, title, description }) => (
         <li
           key={title}

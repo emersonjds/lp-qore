@@ -1,6 +1,6 @@
 # Qore — landing page
 
-Landing do Qore para São Paulo. Next.js 15 (export estático) publicado no Netlify.
+Landing da Qore para São Paulo. Next.js 15 (export estático) publicado no Netlify.
 
 ```bash
 pnpm install

@@ -13,7 +13,7 @@ describe("Features", () => {
 
   it("lists the twelve features in the decided order", () => {
     render(<Features />);
-    const list = screen.getByRole("list", { name: "Funcionalidades do Qore" });
+    const list = screen.getByRole("list", { name: "Funcionalidades da Qore" });
     expect(within(list).getAllByRole("heading", { level: 3 }).map((heading) => heading.textContent)).toEqual([
       "Cadastro pelo CNPJ",
       "Radar de oportunidades",
@@ -37,7 +37,7 @@ describe("Features", () => {
 
   it("lays the grid out as one column on mobile, two at md and three at lg", () => {
     render(<Features />);
-    expect(screen.getByRole("list", { name: "Funcionalidades do Qore" })).toHaveClass(
+    expect(screen.getByRole("list", { name: "Funcionalidades da Qore" })).toHaveClass(
       "grid-cols-1",
       "md:grid-cols-2",
       "lg:grid-cols-3",

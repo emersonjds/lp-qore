@@ -41,6 +41,10 @@ describe("exported HTML", () => {
     expect(uncovered).toEqual([]);
   });
 
+  it.each(["index.html", "privacidade.html"])("calls the brand \"a Qore\" in %s, metadata included", (file) => {
+    expect(readOut(file)).not.toMatch(/\b(o|ao|do|no|pelo) Qore\b/i);
+  });
+
   it("ships the Netlify form in static HTML", () => {
     const home = readOut("index.html");
     expect(home).toContain('name="contato"');

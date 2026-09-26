@@ -237,7 +237,7 @@ export const ContactForm = () => {
           />
           <label htmlFor="contact-consent" className="flex min-h-11 items-center text-label-md text-foreground">
             <span>
-              Autorizo o Qore a usar meus dados para responder este contato, conforme a{" "}
+              Autorizo a Qore a usar meus dados para responder este contato, conforme a{" "}
               <a href="/privacidade" className="font-medium text-primary underline underline-offset-4">
                 Política de Privacidade
               </a>

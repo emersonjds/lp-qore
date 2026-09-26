@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade",
-  description: "Como o Qore usa os dados enviados pelo formulário Fale Conosco.",
+  description: "Como a Qore usa os dados enviados pelo formulário Fale Conosco.",
   alternates: { canonical: "/privacidade" },
 };
 
@@ -19,7 +19,7 @@ const PrivacyPage = () => (
 
       <h2 className={SECTION_TITLE_CLASS}>Para que usamos seus dados</h2>
       <p>
-        Usamos os dados do formulário Fale Conosco apenas para responder o seu contato e apresentar o Qore. Não vendemos seus dados nem os usamos para publicidade.
+        Usamos os dados do formulário Fale Conosco apenas para responder o seu contato e apresentar a Qore. Não vendemos seus dados nem os usamos para publicidade.
       </p>
 
       <h2 className={SECTION_TITLE_CLASS}>Quais dados coletamos</h2>

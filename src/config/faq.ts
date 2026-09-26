@@ -7,14 +7,14 @@ export const faqItems: readonly FAQItem[] = [
       "Não. A IA resume o edital e aponta a página de origem de cada ponto para você conferir no texto oficial. Quando algo não está no edital, ela avisa que não encontrou.",
   },
   {
-    question: "Quais licitações o Qore cobre?",
+    question: "Quais licitações a Qore cobre?",
     answer:
       "Órgãos estaduais e municipais de São Paulo, publicados nos principais portais. Outros estados em breve.",
   },
   {
-    question: "O Qore envia a proposta ao portal?",
+    question: "A Qore envia a proposta ao portal?",
     answer:
-      "Não. O Qore ajuda a entender o edital e a montar a proposta. O envio ao portal de compras e os lances na sessão continuam com a sua empresa.",
+      "Não. A Qore ajuda a entender o edital e a montar a proposta. O envio ao portal de compras e os lances na sessão continuam com a sua empresa.",
   },
   {
     question: "Como a proposta fica pronta?",

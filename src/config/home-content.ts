@@ -88,7 +88,7 @@ export const howItWorksContent: {
     {
       number: "01",
       title: "Informe o CNPJ",
-      description: "A partir do CNPJ, o Qore identifica o que a sua empresa fornece e monta o perfil de busca.",
+      description: "A partir do CNPJ, a Qore identifica o que a sua empresa fornece e monta o perfil de busca.",
     },
     {
       number: "02",
@@ -137,7 +137,7 @@ export const responsibleAiContent: { eyebrow: string; title: string; description
     {
       icon: PenLine,
       title: "Você envia a proposta, não a IA",
-      description: "O Qore não envia proposta nem dá lance. O envio ao portal e a decisão final continuam com a sua empresa.",
+      description: "A Qore não envia proposta nem dá lance. O envio ao portal e a decisão final continuam com a sua empresa.",
     },
   ],
 };
@@ -407,7 +407,7 @@ export const aboutContent = {
   eyebrow: "Quem somos",
   title: "Licitação pública ao alcance de quem hoje fica de fora",
   mission:
-    "O Qore nasceu para tornar a licitação pública acessível às empresas que hoje ficam de fora por falta de tempo e de estrutura. Começamos por São Paulo, ouvindo quem disputa licitações no dia a dia.",
+    "A Qore nasceu para tornar a licitação pública acessível às empresas que hoje ficam de fora por falta de tempo e de estrutura. Começamos por São Paulo, ouvindo quem disputa licitações no dia a dia.",
 } as const;
 
 export const contactContent = {
