@@ -7,25 +7,15 @@ import PrivacyPage from "../privacidade/page";
 const MASCULINE_BRAND = /\b(o|ao|do|no|pelo) Qore\b/i;
 
 describe("HomePage", () => {
-  it("tells the sales story in the Stitch order, with the platform right after how it works", () => {
+  it("keeps the home to seven sections: hook, radar, flow, platform, audience, FAQ and contact", () => {
     const { container } = render(<HomePage />);
     const sectionIds = [...container.querySelectorAll("main > section[id]")].map((section) => section.id);
     expect(sectionIds).toEqual([
       "inicio",
       "radar",
-      "problema",
       "como-funciona",
       "plataforma",
-      "funcionalidades",
-      "proposta",
-      "documentos",
-      "funcoes",
       "para-quem-e",
-      "resultados",
-      "integracoes",
-      "ia-responsavel",
-      "cobertura",
-      "quem-somos",
       "faq",
       "contato",
     ]);
@@ -36,16 +26,7 @@ describe("HomePage", () => {
     const lowSections = [...container.querySelectorAll("main > section[id]")]
       .filter((section) => section.classList.contains("bg-surface-low"))
       .map((section) => section.id);
-    expect(lowSections).toEqual([
-      "problema",
-      "plataforma",
-      "documentos",
-      "para-quem-e",
-      "integracoes",
-      "ia-responsavel",
-      "quem-somos",
-      "contato",
-    ]);
+    expect(lowSections).toEqual(["plataforma", "faq"]);
   });
 
   it("points every menu and footer anchor to a real section", () => {

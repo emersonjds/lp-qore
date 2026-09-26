@@ -56,7 +56,7 @@ describe("rendered landing page", () => {
     await page.goto(baseUrl);
     await expect(page.getByText("Resumo Inteligente Qore").first().isVisible()).resolves.toBe(true);
     await expect(page.locator("#plataforma figure").count()).resolves.toBe(5);
-    await expect(page.getByText("Seu dia sem planilha nem PDF de 80 páginas").isVisible()).resolves.toBe(true);
+    await expect(page.getByRole("button", { name: "Ver licitações abertas" }).isVisible()).resolves.toBe(true);
     await expect(page.getByRole("button", { name: "Solicitar demonstração" }).isVisible()).resolves.toBe(true);
     await context.close();
   });

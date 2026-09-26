@@ -1,10 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
-import { ctaBanners } from "@/config/home-content";
 import { Audience } from "../audience";
+import { CnpjRadar } from "../cnpj-radar";
 import { Contact } from "../contact";
-import { CtaBanner } from "../cta-banner";
 import { Header } from "../header";
 import { Hero } from "../hero";
 import { MobileCtaBar } from "../mobile-cta-bar";
@@ -18,8 +17,7 @@ describe("Primary CTAs", () => {
       <>
         <Header />
         <Hero />
-        <CtaBanner {...ctaBanners.afterFeatures} />
-        <CtaBanner {...ctaBanners.afterIntegrations} />
+        <CnpjRadar />
         <Audience />
         <Contact />
         <MobileCtaBar />
@@ -32,8 +30,7 @@ describe("Primary CTAs", () => {
       expect.arrayContaining([
         "header",
         "hero-primary",
-        "after-features",
-        "after-integrations",
+        "radar-search",
         "audience",
         "contact-submit",
         "mobile-sticky",

@@ -4,7 +4,7 @@ import { contactContent } from "@/config/home-content";
 import { ContactForm } from "./contact-form";
 
 export const Contact = () => (
-  <SectionWrapper id="contato" aria-labelledby="contact-title" className="bg-surface-low">
+  <SectionWrapper id="contato" aria-labelledby="contact-title">
     <div className="grid items-start gap-12 lg:grid-cols-12">
       <div className="flex flex-col gap-6 lg:col-span-5">
         <div>

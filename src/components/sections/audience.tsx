@@ -5,7 +5,7 @@ import { CONTACT_HREF } from "@/config/navigation";
 import { accessibleLabels } from "@/config/accessible-labels";
 
 export const Audience = () => (
-  <SectionWrapper id="para-quem-e" aria-labelledby="audience-title" className="bg-surface-low">
+  <SectionWrapper id="para-quem-e" aria-labelledby="audience-title">
     <p className="text-label-sm uppercase tracking-wider text-primary">{audienceContent.eyebrow}</p>
     <h2 id="audience-title" className="mt-2 max-w-3xl text-headline-lg-mobile md:text-headline-lg">
       {audienceContent.title}

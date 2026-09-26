@@ -25,17 +25,6 @@ export interface IconCard {
   description: string;
 }
 
-export interface ProblemCard extends IconCard {
-  footnote: string;
-}
-
-export interface MarketNumber {
-  value: string;
-  label: string;
-  source: string;
-  date: string;
-}
-
 export interface HowItWorksStep {
   number: string;
   title: string;
@@ -48,46 +37,3 @@ export interface PlatformTab {
   id: PlatformScreenId;
   label: string;
 }
-
-export interface RoleKpi {
-  label: string;
-  value: string;
-  isCounted: boolean;
-  caption: string;
-  footnote: string;
-  tone: "neutral" | "positive" | "urgent";
-}
-
-export interface Persona {
-  id: "analyst" | "manager";
-  toggleLabel: string;
-  title: string;
-  kpis: readonly RoleKpi[];
-  features: readonly IconCard[];
-}
-
-export interface CoverageRegion {
-  name: string;
-  cities?: string;
-}
-
-export interface CoverageCluster {
-  name: string;
-  regions: readonly CoverageRegion[];
-}
-
-export interface MapHub {
-  name: string;
-  longitude: number;
-  latitude: number;
-}
-
-export interface Testimonial {
-  quote: string;
-  name: string;
-  role: string;
-  company: string;
-  logoSrc?: string;
-  authorizedAt: string;
-}
-

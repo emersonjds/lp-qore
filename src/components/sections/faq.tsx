@@ -4,7 +4,7 @@ import { faqContent, faqItems } from "@/config/faq";
 import { CONTACT_HREF } from "@/config/navigation";
 
 export const Faq = () => (
-  <SectionWrapper id="faq" aria-labelledby="faq-title">
+  <SectionWrapper id="faq" aria-labelledby="faq-title" className="bg-surface-low">
     <div className="mb-12 max-w-2xl">
       <p className="text-label-sm uppercase tracking-wider text-primary">{faqContent.eyebrow}</p>
       <h2 id="faq-title" className="mt-2 text-headline-lg-mobile md:text-headline-lg">
