@@ -38,8 +38,8 @@ export const heroContent = {
   titleEmphasis: "Você decide.",
   subtitle:
     "Encontre licitações de São Paulo pelo seu CNPJ, entenda o edital com um resumo de IA que cita a página de origem e monte sua proposta com segurança.",
-  microcopy: "Sem cadastro e sem cartão",
-  primaryAction: "Quero ver a Qore com as minhas licitações",
+  trustPoints: ["Citação direta de artigos e páginas", "Alinhado à Lei 14.133/2021"],
+  primaryAction: "Quero assinar a Qore",
   secondaryAction: "Ver como funciona",
 } as const;
 

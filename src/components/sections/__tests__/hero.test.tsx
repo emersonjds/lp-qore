@@ -1,27 +1,32 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { Hero } from "../hero";
 
+const splitView = () => screen.getByRole("figure", { name: /Exemplo ilustrativo/ });
+
 describe("Hero", () => {
-  it("states the slogan as the only level-one heading", () => {
+  it("states the slogan as the only level-one heading, never animated", () => {
     render(<Hero />);
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("A IA lê o edital. Você decide.");
+    const heading = screen.getByRole("heading", { level: 1 });
+    expect(heading).toHaveTextContent("A IA lê o edital. Você decide.");
+    expect(heading.className).not.toMatch(/animate/);
   });
 
-  it("offers contact and how-it-works actions without signup", () => {
+  it("invites to subscribe and to see how it works", () => {
     render(<Hero />);
-    const primary = screen.getByRole("link", { name: "Quero ver a Qore com as minhas licitações" });
+    const primary = screen.getByRole("link", { name: "Quero assinar a Qore" });
     expect(primary).toHaveAttribute("href", "/#contato");
     expect(primary).toHaveAttribute("data-cta", "hero-primary");
     const secondary = screen.getByRole("link", { name: "Ver como funciona" });
     expect(secondary).toHaveAttribute("href", "/#como-funciona");
     expect(secondary).toHaveAttribute("data-cta", "hero-secondary");
-    expect(screen.getByText("Sem cadastro e sem cartão")).toBeInTheDocument();
   });
 
-  it("says the product is available in São Paulo", () => {
+  it("says the product is available in São Paulo and backs it with honest trust points", () => {
     render(<Hero />);
     expect(screen.getByText("Disponível para São Paulo")).toBeInTheDocument();
+    expect(screen.getByText("Citação direta de artigos e páginas")).toBeInTheDocument();
+    expect(screen.getByText("Alinhado à Lei 14.133/2021")).toBeInTheDocument();
   });
 
   it("gives the sticky mobile bar a hero to watch", () => {
@@ -29,32 +34,37 @@ describe("Hero", () => {
     expect(container.querySelector("section#inicio")).not.toBeNull();
   });
 
-  it("shows the real manager dashboard screenshot without an illustrative seal", () => {
+  it("simulates the edital next to the Qore summary instead of a real screenshot", () => {
     render(<Hero />);
-    const frame = screen.getByRole("figure", { name: /Painel do gestor/ });
-    expect(frame).not.toHaveTextContent("Tela ilustrativa");
-    const image = screen.getByRole("img", { name: /Painel do gestor/ });
-    expect(image).toHaveAttribute("src", "/screenshots/manager-dashboard-1280.webp");
-    expect(image).toHaveAttribute("width", "1280");
-    expect(image).toHaveAttribute("height", "800");
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    const figure = splitView();
+    expect(figure).toHaveTextContent("Edital PE nº 104/2026 — Secretaria da Saúde - SP");
+    expect(figure).toHaveTextContent("Documento original (PDF)");
+    expect(figure).toHaveTextContent("Resumo Inteligente Qore");
+    expect(figure).toHaveTextContent("Alerta de risco");
   });
 
-  it("loads the screenshot eagerly without competing with the heading for priority", () => {
-    render(<Hero />);
-    const image = screen.getByRole("img", { name: /Painel do gestor/ });
-    expect(image).toHaveAttribute("loading", "eager");
-    expect(image).not.toHaveAttribute("fetchpriority");
+  it("cites the page of every summary item", () => {
+    const { container } = render(<Hero />);
+    const chips = [...container.querySelectorAll("[data-page-chip]")].map((chip) => chip.textContent);
+    expect(chips).toEqual(["pág. 12, item 4.2", "pág. 18, item 7.1", "pág. 24, item 9.3", "pág. 8"]);
   });
 
-  it("keeps no drawn mock of the product", () => {
+  it("counts the example compatibility up inside the simulated screen", () => {
     render(<Hero />);
-    expect(screen.queryByText("Resumo Inteligente Qore")).not.toBeInTheDocument();
+    const badge = within(splitView()).getByText("Compatibilidade", { exact: false });
+    expect(badge.querySelector("[data-count-up]")).toHaveTextContent("96%");
   });
 
-  it("sets the dashboard over a decorative emerald glow", () => {
+  it("fades the simulated screen in so it never becomes the largest paint", () => {
+    const { container } = render(<Hero />);
+    expect(container.querySelector("[data-split-view]")).toHaveClass("animate-hero-enter");
+  });
+
+  it("sets the simulated screen over a decorative emerald glow", () => {
     const { container } = render(<Hero />);
     const glow = container.querySelector("[data-hero-glow]");
     expect(glow).toHaveAttribute("aria-hidden", "true");
-    expect(glow?.parentElement).toContainElement(screen.getByRole("figure", { name: "Painel do gestor" }));
+    expect(glow?.parentElement).toContainElement(splitView());
   });
 });
