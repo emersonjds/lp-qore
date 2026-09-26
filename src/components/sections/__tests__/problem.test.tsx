@@ -27,4 +27,11 @@ describe("Problem", () => {
       "~174 mileditais publicados por mês no BrasilFonte: PNCP, 26/07/2026",
     ]);
   });
+
+  it("counts each market number up when it comes into view", () => {
+    render(<Problem />);
+    screen.getAllByTestId("market-number").forEach((number) => {
+      expect(number.querySelector("[data-count-up]")).not.toBeNull();
+    });
+  });
 });

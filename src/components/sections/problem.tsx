@@ -1,4 +1,5 @@
 import { SectionWrapper } from "@/components/layout/section-wrapper";
+import { CountUp } from "@/components/motion/count-up";
 import { problemContent } from "@/config/home-content";
 import { marketNumbers } from "@/config/market-numbers";
 
@@ -16,7 +17,7 @@ export const Problem = () => (
           className="rounded-lg border border-primary-tint-strong bg-card p-5"
         >
           <p className="font-display text-headline-lg-mobile text-foreground tabular-nums md:text-headline-lg">
-            {marketNumber.value}
+            <CountUp value={marketNumber.value} />
           </p>
           <p className="mt-1 text-body-md text-foreground">{marketNumber.label}</p>
           <p className="mt-2 text-caption text-muted-foreground">
