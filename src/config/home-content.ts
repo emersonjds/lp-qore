@@ -4,12 +4,12 @@ import {
   Landmark,
   Users,
   BadgeCheck,
+  BookOpenText,
+  CircleX,
+  LayoutGrid,
   CalendarClock,
   ChartPie,
   FileCheck2,
-  Files,
-  FileSearch,
-  FileX,
   Gauge,
   ListChecks,
   Quote,
@@ -30,6 +30,7 @@ import type {
   MapHub,
   Persona,
   PlatformTab,
+  ProblemCard,
 } from "@/types";
 
 export const heroContent = {
@@ -43,25 +44,28 @@ export const heroContent = {
   secondaryAction: "Ver como funciona",
 } as const;
 
-export const problemContent: { eyebrow: string; title: string; items: readonly IconCard[] } = {
-  eyebrow: "O desafio",
+export const problemContent: { eyebrow: string; title: string; items: readonly ProblemCard[] } = {
+  eyebrow: "O desafio da contratação pública",
   title: "Os gargalos de quem disputa licitações todos os dias",
   items: [
     {
-      icon: Files,
+      icon: LayoutGrid,
       title: "Editais espalhados em vários portais",
+      footnote: "Perda recorrente de janelas de impugnação",
       description:
         "Prefeituras, secretarias e autarquias publicam em portais diferentes. Acompanhar todos à mão toma o dia e ainda deixa oportunidade passar.",
     },
     {
-      icon: FileSearch,
+      icon: BookOpenText,
       title: "80 páginas lidas na véspera do prazo",
+      footnote: "Fadiga decisória e omissões técnicas críticas",
       description:
         "O edital chega com anexos longos, e a cláusula que elimina a sua empresa costuma estar no meio deles, lida às pressas.",
     },
     {
-      icon: FileX,
+      icon: CircleX,
       title: "Proposta desclassificada por preço ou documento faltando",
+      footnote: "Desperdício de tempo investido pela equipe",
       description:
         "Uma certidão vencida ou um preço fora da faixa aceitável derruba semanas de trabalho da equipe.",
     },

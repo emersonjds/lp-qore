@@ -25,6 +25,10 @@ export interface IconCard {
   description: string;
 }
 
+export interface ProblemCard extends IconCard {
+  footnote: string;
+}
+
 export interface MarketNumber {
   value: string;
   label: string;

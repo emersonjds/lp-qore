@@ -19,6 +19,17 @@ describe("Problem", () => {
     ]);
   });
 
+  it("closes each pain with its consequence as a red footnote", () => {
+    render(<Problem />);
+    const footnotes = [...document.querySelectorAll("[data-problem-footnote]")];
+    expect(footnotes.map((footnote) => footnote.textContent)).toEqual([
+      "Perda recorrente de janelas de impugnação",
+      "Fadiga decisória e omissões técnicas críticas",
+      "Desperdício de tempo investido pela equipe",
+    ]);
+    footnotes.forEach((footnote) => expect(footnote.querySelector("svg")).toHaveClass("text-destructive-text"));
+  });
+
   it("shows each market number with its source and date", () => {
     render(<Problem />);
     const numbers = screen.getAllByTestId("market-number");
