@@ -23,4 +23,13 @@ describe("ProposalHighlight", () => {
     expect(screen.queryByRole("progressbar")).not.toBeInTheDocument();
     expect(screen.queryByText("Exemplo ilustrativo")).not.toBeInTheDocument();
   });
+
+  it("overlays a progress chip that fills to 80% and then shows only the price is missing", () => {
+    const { container } = render(<ProposalHighlight />);
+    const overlay = container.querySelector("[data-proposal-progress]");
+    expect(overlay).toHaveAttribute("data-reveal");
+    expect(overlay).toHaveTextContent("Proposta 80% pronta");
+    expect(overlay?.querySelector("[data-progress-fill]")).toHaveClass("w-4/5");
+    expect(container.querySelector("[data-proposal-progress] ~ [data-missing-chip]")).toHaveTextContent("Falta só o preço");
+  });
 });

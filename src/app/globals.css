@@ -197,6 +197,37 @@
   }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-enabled [data-proposal-progress]:not([data-revealed]) [data-progress-fill] {
+    transform: scaleX(0);
+  }
+
+  .reveal-enabled [data-proposal-progress]:not([data-revealed]) ~ [data-missing-chip] {
+    opacity: 0;
+  }
+
+  [data-proposal-progress][data-revealed] [data-progress-fill] {
+    animation: grow-x 1400ms cubic-bezier(0.33, 1, 0.68, 1) 200ms backwards;
+  }
+
+  [data-proposal-progress][data-revealed] ~ [data-missing-chip] {
+    animation: pop-in 500ms cubic-bezier(0.34, 1.56, 0.64, 1) 1700ms backwards;
+  }
+
+  @keyframes grow-x {
+    from {
+      transform: scaleX(0);
+    }
+  }
+
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: scale(0.6) translateY(6px);
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
