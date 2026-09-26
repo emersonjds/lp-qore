@@ -156,13 +156,118 @@ export const auditExample = {
 } as const;
 
 export const personasContent: { eyebrow: string; title: string; personas: readonly [Persona, Persona] } = {
-  eyebrow: "Para cada função",
-  title: "Feito para quem prepara a proposta e para quem decide",
+  eyebrow: "Interface sob medida",
+  title: "Construído para cada função na equipe de licitações",
   personas: [
     {
+      id: "manager",
+      toggleLabel: "Visão do Gestor",
+      title: "Visão da operação inteira em uma tela",
+      kpis: [
+        {
+          label: "Valor ganho acumulado",
+          value: "R$ 4,2M",
+          isCounted: true,
+          caption: "Contratos ganhos em 2026",
+          footnote: "8 pregões com contrato assinado",
+          tone: "positive",
+        },
+        {
+          label: "Taxa de vitória em sessões",
+          value: "34,8%",
+          isCounted: true,
+          caption: "Sessões encerradas no período",
+          footnote: "23 de 66 sessões disputadas",
+          tone: "neutral",
+        },
+        {
+          label: "Funil por órgão comprador",
+          value: "Campinas e Santos",
+          isCounted: false,
+          caption: "Órgãos com mais adjudicações da equipe",
+          footnote: "Ciclo médio de 28 dias",
+          tone: "neutral",
+        },
+        {
+          label: "Produtividade do time",
+          value: "Mais editais triados",
+          isCounted: false,
+          caption: "Com a mesma equipe técnica",
+          footnote: "Leitura guiada pelo resumo citado",
+          tone: "neutral",
+        },
+      ],
+      features: [
+        {
+          icon: Gauge,
+          title: "Painel do gestor",
+          description: "Valor ganho, licitações ganhas, taxa de vitória e valor em disputa.",
+        },
+        {
+          icon: CalendarClock,
+          title: "Calendário do mês",
+          description: "Sessões e prazos de todas as licitações da equipe.",
+        },
+        {
+          icon: ChartPie,
+          title: "Distribuição por modalidade",
+          description: "Onde a equipe está disputando: pregão, concorrência, dispensa.",
+        },
+        {
+          icon: UsersRound,
+          title: "Ritmo da equipe",
+          description: "O andamento de cada analista, sem pedir relatório.",
+        },
+        {
+          icon: UserCog,
+          title: "Papéis e permissões",
+          description: "Administrador, Gestor e Analista, cada um com o acesso certo.",
+        },
+        {
+          icon: BadgeCheck,
+          title: "Aprovação de propostas",
+          description: "Nenhuma proposta sai sem a sua revisão antes do envio.",
+        },
+      ],
+    },
+    {
       id: "analyst",
-      toggleLabel: "Analista de licitações",
+      toggleLabel: "Visão do Analista",
       title: "Seu dia sem planilha nem PDF de 80 páginas",
+      kpis: [
+        {
+          label: "Fila de prioridades do dia",
+          value: "3 editais",
+          isCounted: true,
+          caption: "1 com prazo de impugnação hoje",
+          footnote: "Urgente: DAEE até 18h",
+          tone: "urgent",
+        },
+        {
+          label: "Checklist de certidões",
+          value: "Todas válidas",
+          isCounted: false,
+          caption: "CND Federal, CRF do FGTS e CNDT",
+          footnote: "Próximo vencimento em 12 dias",
+          tone: "neutral",
+        },
+        {
+          label: "Alerta de preço",
+          value: "Item 3 abaixo da referência",
+          isCounted: false,
+          caption: "Pregão 041/2026 • Prefeitura de Santos",
+          footnote: "Revise antes de enviar",
+          tone: "urgent",
+        },
+        {
+          label: "Proposta em montagem",
+          value: "80% pronta",
+          isCounted: true,
+          caption: "Falta só o preço dos itens",
+          footnote: "Segue para aprovação do gestor",
+          tone: "positive",
+        },
+      ],
       features: [
         {
           icon: Radar,
@@ -198,43 +303,6 @@ export const personasContent: { eyebrow: string; title: string; personas: readon
           icon: ListChecks,
           title: "Checklist de habilitação",
           description: "Os documentos exigidos, com as certidões já conferidas.",
-        },
-      ],
-    },
-    {
-      id: "manager",
-      toggleLabel: "Gestor de licitações",
-      title: "Visão da operação inteira em uma tela",
-      features: [
-        {
-          icon: Gauge,
-          title: "Painel do gestor",
-          description: "Valor ganho, licitações ganhas, taxa de vitória e valor em disputa.",
-        },
-        {
-          icon: CalendarClock,
-          title: "Calendário do mês",
-          description: "Sessões e prazos de todas as licitações da equipe.",
-        },
-        {
-          icon: ChartPie,
-          title: "Distribuição por modalidade",
-          description: "Onde a equipe está disputando: pregão, concorrência, dispensa.",
-        },
-        {
-          icon: UsersRound,
-          title: "Ritmo da equipe",
-          description: "O andamento de cada analista, sem pedir relatório.",
-        },
-        {
-          icon: UserCog,
-          title: "Papéis e permissões",
-          description: "Administrador, Gestor e Analista, cada um com o acesso certo.",
-        },
-        {
-          icon: BadgeCheck,
-          title: "Aprovação de propostas",
-          description: "Nenhuma proposta sai sem a sua revisão antes do envio.",
         },
       ],
     },

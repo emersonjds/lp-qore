@@ -57,6 +57,13 @@ describe("PersonaToggle", () => {
     expect(html).toContain("Visão da operação inteira em uma tela");
   });
 
+  it("remounts a view's visual when it becomes active so its numbers count up again", async () => {
+    renderToggle();
+    const before = screen.getByText("Visual do gestor");
+    await userEvent.click(screen.getByRole("button", { name: "Gestor de licitações" }));
+    expect(screen.getByText("Visual do gestor")).not.toBe(before);
+  });
+
   it("crossfades between the two views with opacity and a short lift", async () => {
     renderToggle();
     await userEvent.click(screen.getByRole("button", { name: "Gestor de licitações" }));

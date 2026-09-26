@@ -49,10 +49,20 @@ export interface PlatformTab {
   label: string;
 }
 
+export interface RoleKpi {
+  label: string;
+  value: string;
+  isCounted: boolean;
+  caption: string;
+  footnote: string;
+  tone: "neutral" | "positive" | "urgent";
+}
+
 export interface Persona {
   id: "analyst" | "manager";
   toggleLabel: string;
   title: string;
+  kpis: readonly RoleKpi[];
   features: readonly IconCard[];
 }
 
