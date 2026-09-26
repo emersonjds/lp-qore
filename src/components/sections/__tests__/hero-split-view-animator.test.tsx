@@ -32,6 +32,19 @@ describe("Hero split view animation", () => {
     );
   });
 
+  it("never fades text: chips and the risk alert reveal by scale only, so contrast holds on every frame", () => {
+    const { animate } = installAnimateMock({ finishes: false });
+    const { container } = render(<Hero />);
+    act(() => IntersectionObserverMock.trigger(markerOf(container), true));
+
+    const textElements = new Set<unknown>(container.querySelectorAll("[data-page-chip], [data-risk-alert]"));
+    const textKeyframes = animate.mock.calls
+      .filter((_, index) => textElements.has(animate.mock.contexts[index]))
+      .flatMap(([keyframes]) => keyframes);
+    expect(textKeyframes.length).toBeGreaterThan(0);
+    textKeyframes.forEach((frame) => expect(frame).not.toHaveProperty("opacity"));
+  });
+
   it("runs one infinite loop per element with no delays, so the browser can composite every effect", () => {
     const { animate } = installAnimateMock({ finishes: false });
     const { container } = render(<Hero />);
