@@ -13,6 +13,4 @@ export const accessibleLabels = {
   personaChoice: "Escolha a função",
   platformScreens: "Telas da plataforma",
   stepPrefix: "Passo",
-  before: "Antes: ",
-  withQore: "Com a Qore: ",
 } as const;

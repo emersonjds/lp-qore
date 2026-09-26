@@ -462,13 +462,22 @@ export const ctaBanners = {
 } as const;
 
 export const timeSavedContent = {
-  eyebrow: "Resultados",
-  title: "Tempo que volta para a equipe",
-  description: "O trabalho repetitivo sai da mesa da equipe, e sobra tempo para decidir e disputar mais.",
+  eyebrow: "Antes e depois",
+  title: "Menos tempo caçando edital, mais tempo ganhando licitação",
+  description:
+    "A Qore assume o trabalho braçal da licitação. Sua equipe fica com o que decide contrato: estratégia, preço e relacionamento com o órgão.",
+  beforeLabel: "Sem a Qore",
+  afterLabel: "Com a Qore",
   comparisons: [
-    { task: "Leitura do edital", before: "Horas de leitura", after: "Minutos, com o resumo citado" },
-    { task: "Busca de oportunidades", before: "Vários portais abertos", after: "Um radar só" },
-    { task: "Montagem da proposta", before: "Do zero", after: "Cerca de 80% pronta" },
-    { task: "Certidões", before: "Conferência manual", after: "Alerta antes de vencer" },
+    { task: "Encontrar editais", before: "Oito portais abertos todo dia", after: "Um radar filtrado pelo seu CNPJ" },
+    { task: "Ler o edital", before: "Horas no PDF, na véspera do prazo", after: "Resumo em minutos, com a página citada" },
+    {
+      task: "Montar a proposta",
+      before: "Planilha e documento do zero",
+      after: "Proposta cerca de 80% pronta, com a sua marca",
+    },
+    { task: "Certidões", before: "Conferência manual e susto na habilitação", after: "Aviso antes de cada certidão vencer" },
+    { task: "Prazos", before: "Datas espalhadas em e-mails e agendas", after: "Um calendário para a equipe inteira" },
+    { task: "Gestão", before: "Resultado só no fim do mês", after: "Valor ganho e taxa de vitória sempre no painel" },
   ],
 } as const;
