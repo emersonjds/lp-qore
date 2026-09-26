@@ -2,6 +2,7 @@ import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { heroContent, platformTabs } from "@/config/home-content";
 import { CONTACT_HREF, HOW_IT_WORKS_HREF } from "@/config/navigation";
+import { HeroParallax } from "./hero-parallax";
 import { PanelScreenshot } from "./panel-screenshot";
 
 const managerDashboard = platformTabs.find((tab) => tab.image === "manager-dashboard");
@@ -35,14 +36,23 @@ export const Hero = () => (
         <p className="text-label-md text-muted-foreground">{heroContent.microcopy}</p>
       </div>
       {managerDashboard && (
-        <PanelScreenshot
-          title={managerDashboard.label}
-          image={managerDashboard.image}
-          alt={managerDashboard.alt}
-          sizes="(min-width: 1024px) 36rem, 100vw"
-          loading="eager"
-          className="animate-hero-enter w-full lg:max-w-xl lg:justify-self-end"
-        />
+        <div className="relative isolate w-full lg:max-w-xl lg:justify-self-end">
+          <div
+            aria-hidden="true"
+            data-hero-glow
+            className="absolute -inset-4 -z-10 rounded-[2rem] bg-primary-light/60 opacity-75 blur-3xl md:-inset-10"
+          />
+          <HeroParallax>
+            <PanelScreenshot
+              title={managerDashboard.label}
+              image={managerDashboard.image}
+              alt={managerDashboard.alt}
+              sizes="(min-width: 1024px) 36rem, 100vw"
+              loading="eager"
+              className="animate-hero-enter w-full"
+            />
+          </HeroParallax>
+        </div>
       )}
     </Container>
   </section>

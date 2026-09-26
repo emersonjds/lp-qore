@@ -30,7 +30,7 @@ describe("motion styles", () => {
     expect(properties.filter((property) => property !== "opacity" && property !== "transform")).toEqual([]);
   });
 
-  it.each(["[data-proposal-progress][data-revealed]", "[data-certificates][data-revealed]", "[data-before-after][data-revealed] [data-after]::before", "[data-coverage-map][data-revealed]"])(
+  it.each(["[data-proposal-progress][data-revealed]", "[data-certificates][data-revealed]", "[data-before-after][data-revealed] [data-after]::before", "[data-coverage-map][data-revealed]", "[data-hero-glow]"])(
     "runs the %s entrance only for users who accept motion",
     (selector) => {
       expect(motionAllowedBlocks).toContain(selector);

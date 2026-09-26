@@ -50,4 +50,11 @@ describe("Hero", () => {
     render(<Hero />);
     expect(screen.queryByText("Resumo Inteligente Qore")).not.toBeInTheDocument();
   });
+
+  it("sets the dashboard over a decorative emerald glow", () => {
+    const { container } = render(<Hero />);
+    const glow = container.querySelector("[data-hero-glow]");
+    expect(glow).toHaveAttribute("aria-hidden", "true");
+    expect(glow?.parentElement).toContainElement(screen.getByRole("figure", { name: "Painel do gestor" }));
+  });
 });
