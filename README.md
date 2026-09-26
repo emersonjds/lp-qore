@@ -101,7 +101,7 @@ src/
 │   └── globals.css         # Tokens do design system e animações em CSS
 ├── components/
 │   ├── sections/           # Uma seção da página por arquivo (hero, FAQ, contato…)
-│   ├── simulated-screens/  # Telas simuladas do produto (HTML, sem screenshots)
+│   ├── simulated-screens/  # Telas simuladas do produto (HTML, sem capturas de tela)
 │   ├── motion/             # Componentes de animação (contagem de números etc.)
 │   ├── layout/             # Container, wrappers de seção, observers
 │   ├── privacy/            # Blocos da página de privacidade
