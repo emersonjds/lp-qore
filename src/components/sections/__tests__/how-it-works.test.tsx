@@ -13,10 +13,19 @@ describe("HowItWorks", () => {
     ]);
   });
 
-  it("draws the connecting line fully without JavaScript", () => {
+  it("connects the steps with a desktop-only line drawn fully without JavaScript", () => {
     const { container } = render(<HowItWorks />);
     const lines = container.querySelectorAll("[data-step-line]");
-    expect(lines).toHaveLength(2);
-    lines.forEach((line) => expect(line).toHaveAttribute("aria-hidden", "true"));
+    expect(lines).toHaveLength(1);
+    expect(lines[0]).toHaveAttribute("aria-hidden", "true");
+    expect(lines[0]).toHaveClass("hidden", "md:block");
+  });
+
+  it("highlights the first step badge like the Stitch flow", () => {
+    const { container } = render(<HowItWorks />);
+    const badges = [...container.querySelectorAll("[data-step-badge]")];
+    expect(badges.map((badge) => badge.textContent)).toEqual(["01", "02", "03"]);
+    expect(badges[0]).toHaveClass("bg-primary", "text-primary-foreground");
+    badges.slice(1).forEach((badge) => expect(badge).toHaveClass("bg-surface-container-high", "text-primary"));
   });
 });

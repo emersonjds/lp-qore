@@ -23,13 +23,13 @@ const approachSection = (container: HTMLElement) => {
 };
 
 describe("HowItWorks line animation", () => {
-  it("scrubs both lines with transforms once the section is near", async () => {
+  it("scrubs the line with a transform once the section is near", async () => {
     fakeGsap.fromTo.mockClear();
     const { container } = render(<HowItWorks />);
     approachSection(container);
-    await waitFor(() => expect(fakeGsap.fromTo).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(fakeGsap.fromTo).toHaveBeenCalledTimes(1));
     const fromStates = fakeGsap.fromTo.mock.calls.map((call) => call[1]);
-    expect(fromStates).toEqual([{ scaleX: 0 }, { scaleY: 0 }]);
+    expect(fromStates).toEqual([{ scaleX: 0 }]);
   });
 
   it("does nothing when the user prefers reduced motion", async () => {

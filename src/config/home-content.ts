@@ -78,9 +78,9 @@ export const howItWorksContent: {
   description: string;
   steps: readonly HowItWorksStep[];
 } = {
-  eyebrow: "Como funciona",
-  title: "Três passos, com você no controle",
-  description: "Do CNPJ à proposta, a decisão continua com a sua equipe.",
+  eyebrow: "Fluxo integrado",
+  title: "Como funciona",
+  description: "Três etapas conectam a sua empresa aos editais certos, com a decisão sempre nas mãos da sua equipe.",
   steps: [
     {
       number: "01",
