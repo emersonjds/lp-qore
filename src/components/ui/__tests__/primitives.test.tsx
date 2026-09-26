@@ -18,6 +18,22 @@ describe("Button", () => {
     render(<Button size="icon" aria-label="Abrir menu" />);
     expect(screen.getByRole("button", { name: "Abrir menu" })).toHaveClass("size-11");
   });
+
+  it.each(["default", "sm", "lg", "icon"] as const)("keeps white text and its type size on primary at size %s", (size) => {
+    render(<Button size={size}>Primário</Button>);
+    const button = screen.getByRole("button", { name: "Primário" });
+    expect(button).toHaveClass("bg-primary", "text-primary-foreground");
+    expect(button.className).toMatch(/text-(label-md|body-md)/);
+  });
+
+  it("keeps white text when an instance adds type and alignment classes", () => {
+    render(
+      <Button size="lg" className="text-center">
+        Enviar
+      </Button>,
+    );
+    expect(screen.getByRole("button", { name: "Enviar" })).toHaveClass("text-primary-foreground", "text-body-md", "text-center");
+  });
 });
 
 describe("Input", () => {
