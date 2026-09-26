@@ -10,6 +10,7 @@ export const Audience = () => (
     <h2 id="audience-title" className="mt-2 max-w-3xl text-headline-lg-mobile md:text-headline-lg">
       {audienceContent.title}
     </h2>
+    <p className="mt-3 max-w-2xl text-body-lg text-muted-foreground">{audienceContent.description}</p>
     <ul aria-label={accessibleLabels.audienceList} className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
       {audienceContent.audiences.map(({ icon: Icon, title, description }) => (
         <li key={title} data-reveal className="flex flex-col gap-3 rounded-xl bg-card p-6 shadow-sm">

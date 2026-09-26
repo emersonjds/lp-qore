@@ -333,36 +333,40 @@ export const personasContent: {
 export const audienceContent: {
   eyebrow: string;
   title: string;
+  description: string;
   audiences: readonly IconCard[];
   actionLabel: string;
 } = {
   eyebrow: "Para quem é",
-  title: "A Qore se encaixa na sua operação",
+  title: "Para cada lado da licitação em São Paulo",
+  description:
+    "Fornecedoras, equipes de licitação, consultorias e órgãos públicos usam a mesma base de editais, preços e prazos.",
   audiences: [
     {
       icon: Building2,
       title: "Empresas fornecedoras",
       description:
-        "Da PME à grande empresa: radar de oportunidades, proposta cerca de 80% pronta e certidões em dia.",
+        "Da PME à grande empresa: radar pelo CNPJ, proposta cerca de 80% pronta e certidões sempre em dia.",
     },
     {
       icon: Briefcase,
       title: "Consultores e assessorias de licitação",
       description:
-        "Vários CNPJs em uma só conta (Modo Consultor), com uma proposta por cliente e a marca de cada um.",
+        "Vários CNPJs em uma só conta, com uma proposta por cliente e a marca de cada um.",
     },
     {
       icon: Users,
       title: "Equipes de licitação",
-      description: "Papéis de Analista e Gestor, aprovação de propostas e painel do gestor.",
+      description: "Analista e gestor com visões próprias, aprovação de propostas e prazos da equipe em um painel.",
     },
     {
       icon: Landmark,
       title: "Prefeituras e órgãos públicos",
-      description: "Visão do mercado fornecedor da região e dos preços praticados em licitações semelhantes.",
+      description:
+        "Pesquisa de preços a partir de licitações semelhantes e visão dos fornecedores ativos na região, para editais mais bem estimados.",
     },
   ],
-  actionLabel: "Fale com a gente sobre o seu caso",
+  actionLabel: "Falar com um especialista sobre o meu caso",
 };
 
 export const coverageContent: {
