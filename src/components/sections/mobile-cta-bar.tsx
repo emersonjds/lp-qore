@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { CONTACT_HREF } from "@/config/navigation";
+import { CONTACT_HREF, SUBSCRIBE_LABEL } from "@/config/navigation";
 import { cn } from "@/lib/utils";
 
 export const MobileCtaBar = () => {
@@ -29,7 +29,7 @@ export const MobileCtaBar = () => {
 
   return (
     <aside
-      aria-label="Fale com a gente"
+      aria-label={SUBSCRIBE_LABEL}
       data-mobile-cta
       data-visible={isVisible}
       inert={!isVisible}
@@ -40,7 +40,7 @@ export const MobileCtaBar = () => {
     >
       <Button asChild size="lg" className="w-full">
         <a href={CONTACT_HREF} data-cta="mobile-sticky">
-          Fale com a gente
+          {SUBSCRIBE_LABEL}
         </a>
       </Button>
     </aside>

@@ -427,12 +427,12 @@ export const ctaBanners = {
   afterFeatures: {
     location: "after-features",
     title: "Sua próxima proposta pode sair 80% pronta",
-    actionLabel: "Falar com um especialista",
+    actionLabel: "Começar agora",
   },
   afterIntegrations: {
     location: "after-integrations",
-    title: "Veja os editais de SP compatíveis com o seu CNPJ",
-    actionLabel: "Quero uma demonstração",
+    title: "Licitações de São Paulo que combinam com o que a sua empresa vende",
+    actionLabel: "Assine e receba o radar do seu CNPJ",
   },
 } as const;
 

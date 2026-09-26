@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import { ctaBanners } from "@/config/home-content";
 import { CtaBanner } from "../cta-banner";
 
 describe("CtaBanner", () => {
@@ -15,5 +16,19 @@ describe("CtaBanner", () => {
     const action = screen.getByRole("link", { name: "Falar com um especialista" });
     expect(action).toHaveAttribute("href", "/#contato");
     expect(action).toHaveAttribute("data-cta", "after-features");
+  });
+
+  it("invites to start and to subscribe for the CNPJ radar", () => {
+    render(
+      <>
+        <CtaBanner {...ctaBanners.afterFeatures} />
+        <CtaBanner {...ctaBanners.afterIntegrations} />
+      </>,
+    );
+    expect(screen.getByRole("link", { name: "Começar agora" })).toHaveAttribute("data-cta", "after-features");
+    expect(screen.getByRole("link", { name: "Assine e receba o radar do seu CNPJ" })).toHaveAttribute(
+      "data-cta",
+      "after-integrations",
+    );
   });
 });
