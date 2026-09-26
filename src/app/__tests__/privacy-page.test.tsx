@@ -16,4 +16,10 @@ describe("PrivacyPage", () => {
     expect(collected).toHaveTextContent("Porte da empresa");
     expect(collected).toHaveTextContent("Licitações por mês");
   });
+
+  it("names BrasilAPI and PNCP as the services the free radar queries with the typed CNPJ", () => {
+    const { container } = render(<PrivacyPage />);
+    expect(container.textContent).toContain("BrasilAPI");
+    expect(container.textContent).toContain("PNCP");
+  });
 });

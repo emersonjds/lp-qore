@@ -29,6 +29,7 @@ const PrivacyPage = () => (
         ))}
       </ul>
       <p>{collectedData.processor}</p>
+      <p>{collectedData.radar}</p>
 
       <h2 className={SECTION_TITLE_CLASS}>{legalBasis.title}</h2>
       <p>{legalBasis.text}</p>

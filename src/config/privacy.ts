@@ -20,6 +20,8 @@ export const privacyContent = {
         "Mensagem, se você escrever",
       ],
       processor: "O envio é processado pelo Netlify, serviço que hospeda este site.",
+      radar:
+        "No radar grátis, o CNPJ digitado é consultado direto do seu navegador na BrasilAPI (dados públicos da Receita Federal) e no PNCP (Portal Nacional de Contratações Públicas). Se você pedir a lista completa, recebemos nome, e-mail, CNPJ, atividade da empresa e quantas licitações combinaram.",
     },
     legalBasis: {
       title: "Base legal",
