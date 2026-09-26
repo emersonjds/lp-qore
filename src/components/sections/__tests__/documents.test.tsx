@@ -23,4 +23,19 @@ describe("Documents", () => {
     render(<Documents />);
     expect(screen.queryByRole("list", { name: "Certidões da empresa" })).not.toBeInTheDocument();
   });
+
+  it("flips example certificate chips from checking to their status in sequence", () => {
+    const { container } = render(<Documents />);
+    const checks = screen.getByRole("list", { name: "Exemplo de verificação de certidões" });
+    expect(checks.closest("[data-certificates]")).toHaveAttribute("data-reveal");
+    const chips = [...checks.querySelectorAll("li")];
+    expect(chips.map((chip) => chip.querySelector("[data-status-final]")?.textContent)).toEqual([
+      "Válida",
+      "Válida",
+      "Vence em 12 dias",
+    ]);
+    expect(chips.map((chip) => chip.style.getPropertyValue("--order"))).toEqual(["0", "1", "2"]);
+    chips.forEach((chip) => expect(chip.querySelector("[data-status-pending]")).toHaveAttribute("aria-hidden", "true"));
+    expect(container).toHaveTextContent("Exemplo");
+  });
 });
