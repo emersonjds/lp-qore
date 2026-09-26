@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { SUBSCRIBE_LABEL } from "@/config/navigation";
 import type { NavLink } from "@/types";
 
 interface HeaderMobileMenuProps {
@@ -42,7 +43,7 @@ export const HeaderMobileMenu = ({ links, contactHref }: HeaderMobileMenuProps) 
         </nav>
         <Button asChild size="lg" className="mt-auto w-full">
           <a href={contactHref} onClick={close} data-cta="mobile-menu">
-            Fale com a gente
+            {SUBSCRIBE_LABEL}
           </a>
         </Button>
       </SheetContent>

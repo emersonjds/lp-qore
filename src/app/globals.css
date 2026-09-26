@@ -8,11 +8,11 @@
 
 @theme {
   --color-background: #f8f9ff;
-  --color-foreground: #0f172a;
+  --color-foreground: #0b1c30;
   --color-card: #ffffff;
-  --color-card-foreground: #0f172a;
+  --color-card-foreground: #0b1c30;
   --color-popover: #ffffff;
-  --color-popover-foreground: #0f172a;
+  --color-popover-foreground: #0b1c30;
   --color-primary: #047857;
   --color-primary-hover: #065f46;
   --color-primary-foreground: #ffffff;
@@ -20,11 +20,11 @@
   --color-primary-tint-strong: #d1fae5;
   --color-primary-light: #34d399;
   --color-secondary: #eff4ff;
-  --color-secondary-foreground: #0f172a;
+  --color-secondary-foreground: #0b1c30;
   --color-muted: #eff4ff;
   --color-muted-foreground: #475569;
   --color-accent: #f1f5f9;
-  --color-accent-foreground: #0f172a;
+  --color-accent-foreground: #0b1c30;
   --color-destructive: #e11d48;
   --color-destructive-text: #be123c;
   --color-destructive-tint: #fff1f2;
@@ -35,6 +35,10 @@
   --color-input: #cbd5e1;
   --color-ring: #047857;
   --color-surface-low: #eff4ff;
+  --color-surface-container: #e5eeff;
+  --color-surface-container-high: #dce9ff;
+  --color-primary-fixed: #97f5cc;
+  --color-primary-deep: #005d42;
 
   --text-headline-xl: 2.5rem;
   --text-headline-xl--line-height: 3rem;

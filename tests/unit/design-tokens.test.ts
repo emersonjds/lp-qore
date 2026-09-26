@@ -11,6 +11,15 @@ describe("globals.css", () => {
     expect(stylesheet).toContain("--color-primary-hover: #065f46;");
   });
 
+  it("declares the Stitch surface ladder used for section alternation and simulated screens", () => {
+    expect(stylesheet).toContain("--color-foreground: #0b1c30;");
+    expect(stylesheet).toContain("--color-surface-low: #eff4ff;");
+    expect(stylesheet).toContain("--color-surface-container: #e5eeff;");
+    expect(stylesheet).toContain("--color-surface-container-high: #dce9ff;");
+    expect(stylesheet).toContain("--color-primary-fixed: #97f5cc;");
+    expect(stylesheet).toContain("--color-primary-deep: #005d42;");
+  });
+
   it("declares the display font token", () => {
     expect(stylesheet).toContain("--font-display: var(--font-hanken-grotesk)");
   });
