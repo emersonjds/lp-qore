@@ -42,12 +42,18 @@ describe("Footer", () => {
     expect(screen.getByText("Razão Social de Teste · CNPJ CNPJ-DE-TESTE · Cidade de Teste/SP")).toBeInTheDocument();
   });
 
+  it("sits on the Stitch surface-low band", () => {
+    const { container } = render(<Footer year={2026} />);
+    expect(container.querySelector("footer")).toHaveClass("bg-surface-low");
+  });
+
   it("links only to real destinations", () => {
     render(<Footer year={2026} />);
     const navigation = screen.getByRole("navigation", { name: "Rodapé" });
     const hrefs = within(navigation).getAllByRole("link").map((link) => link.getAttribute("href"));
     expect(hrefs).toEqual([
       "/#como-funciona",
+      "/#plataforma",
       "/#funcionalidades",
       "/#integracoes",
       "/#ia-responsavel",

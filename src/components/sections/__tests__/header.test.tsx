@@ -10,6 +10,7 @@ describe("Header", () => {
     expect(within(navigation).getByRole("link", { name: "Como funciona" })).toHaveAttribute("href", "/#como-funciona");
     expect(within(navigation).getAllByRole("link").map((link) => [link.textContent, link.getAttribute("href")])).toEqual([
       ["Como funciona", "/#como-funciona"],
+      ["Plataforma", "/#plataforma"],
       ["Funcionalidades", "/#funcionalidades"],
       ["Integrações", "/#integracoes"],
       ["IA responsável", "/#ia-responsavel"],
