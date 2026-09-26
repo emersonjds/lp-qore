@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { TimeSaved } from "../time-saved";
 
 const ROWS = [
+  ["Oportunidades", "Descobertas quando o prazo já fechou", "Avisadas no dia da publicação"],
   ["Encontrar editais", "Oito portais abertos todo dia", "Um radar filtrado pelo seu CNPJ"],
   ["Ler o edital", "Horas no PDF, na véspera do prazo", "Resumo em minutos, com a página citada"],
   ["Montar a proposta", "Planilha e documento do zero", "Proposta cerca de 80% pronta, com a sua marca"],
@@ -17,16 +18,16 @@ describe("TimeSaved", () => {
     expect(container.querySelector("section#resultados")).not.toBeNull();
     expect(screen.getByText("Antes e depois")).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
-      "Menos tempo caçando edital, mais tempo ganhando licitação",
+      "Quem tem processo ganha contrato. Quem não tem, perde prazo.",
     );
     expect(
       screen.getByText(
-        "A Qore assume o trabalho braçal da licitação. Sua equipe fica com o que decide contrato: estratégia, preço e relacionamento com o órgão.",
+        "São 7.650 pregões eletrônicos em São Paulo a cada 30 dias. Ninguém lê isso na mão: a Qore filtra, resume e prepara a proposta para a sua equipe disputar mais e melhor.",
       ),
     ).toBeInTheDocument();
   });
 
-  it("compares six steps without and with the Qore, row by row", () => {
+  it("compares seven steps without and with the Qore, row by row", () => {
     const { container } = render(<TimeSaved />);
     const rows = [...container.querySelectorAll("[data-before-after]")];
     expect(
@@ -43,22 +44,22 @@ describe("TimeSaved", () => {
     const labels = [...container.querySelectorAll("[data-before-after] [data-column-label]")].map(
       (label) => label.textContent,
     );
-    expect(labels).toEqual(Array.from({ length: 6 }, () => ["Sem a Qore", "Com a Qore"]).flat());
+    expect(labels).toEqual(Array.from({ length: 7 }, () => ["Sem a Qore", "Com a Qore"]).flat());
     const header = container.querySelector("[data-column-header]");
     expect(header).toHaveClass("hidden", "md:grid");
     expect(header).toHaveTextContent("Sem a QoreCom a Qore");
   });
 
-  it("invents no number other than the approved 80%", () => {
+  it("invents no number other than the sourced 7.650 and the approved 80%", () => {
     const { container } = render(<TimeSaved />);
-    const numbers = container.textContent?.match(/\d+/g) ?? [];
-    expect(numbers).toEqual(["80"]);
+    const numbers = container.textContent?.match(/\d+(?:\.\d{3})*/g) ?? [];
+    expect(numbers).toEqual(["7.650", "30", "80"]);
   });
 
   it("slides each row in turn and highlights the Qore side", () => {
     const { container } = render(<TimeSaved />);
     const rows = [...container.querySelectorAll<HTMLElement>("[data-before-after]")];
     rows.forEach((row) => expect(row).toHaveAttribute("data-reveal"));
-    expect(rows.map((row) => row.style.getPropertyValue("--order"))).toEqual(["0", "1", "2", "3", "4", "5"]);
+    expect(rows.map((row) => row.style.getPropertyValue("--order"))).toEqual(["0", "1", "2", "3", "4", "5", "6"]);
   });
 });

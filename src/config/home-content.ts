@@ -451,24 +451,27 @@ export const contactContent = {
 export const ctaBanners = {
   afterFeatures: {
     location: "after-features",
-    title: "Sua próxima proposta pode sair cerca de 80% pronta",
-    actionLabel: "Agendar demonstração",
+    title: "O Estado de São Paulo compra R$ 33 bilhões por ano. Veja quanto disso combina com o seu CNPJ.",
+    source: "Fonte: Portal de Compras do Governo de SP",
+    actionLabel: "Ver as licitações do meu CNPJ",
   },
   afterIntegrations: {
     location: "after-integrations",
-    title: "Licitações de São Paulo que combinam com o que a sua empresa vende",
-    actionLabel: "Ver as licitações do meu CNPJ",
+    title: "Pequenos negócios venderam R$ 42,4 bilhões ao governo em 2022. A Qore coloca a sua empresa nessa conta.",
+    source: "Fonte: Agência Sebrae de Notícias, 2023",
+    actionLabel: "Agendar demonstração",
   },
 } as const;
 
 export const timeSavedContent = {
   eyebrow: "Antes e depois",
-  title: "Menos tempo caçando edital, mais tempo ganhando licitação",
+  title: "Quem tem processo ganha contrato. Quem não tem, perde prazo.",
   description:
-    "A Qore assume o trabalho braçal da licitação. Sua equipe fica com o que decide contrato: estratégia, preço e relacionamento com o órgão.",
+    "São 7.650 pregões eletrônicos em São Paulo a cada 30 dias. Ninguém lê isso na mão: a Qore filtra, resume e prepara a proposta para a sua equipe disputar mais e melhor.",
   beforeLabel: "Sem a Qore",
   afterLabel: "Com a Qore",
   comparisons: [
+    { task: "Oportunidades", before: "Descobertas quando o prazo já fechou", after: "Avisadas no dia da publicação" },
     { task: "Encontrar editais", before: "Oito portais abertos todo dia", after: "Um radar filtrado pelo seu CNPJ" },
     { task: "Ler o edital", before: "Horas no PDF, na véspera do prazo", after: "Resumo em minutos, com a página citada" },
     {

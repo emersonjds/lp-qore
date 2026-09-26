@@ -136,7 +136,7 @@ Nenhum texto fica escrito dentro dos componentes: **toda a copy vive em `src/con
 | `faq.ts` | Perguntas frequentes (alimenta também o JSON-LD `FAQPage`) |
 | `integrations.ts` | Portais e órgãos citados na seção de integrações |
 | `documents.ts` | Certidões da seção de documentos |
-| `market-numbers.ts` | Números do mercado (PNCP), **sempre com fonte e data** |
+| `market-numbers.ts` | Números do mercado (PNCP, Governo de SP, Sebrae, IPEA), **sempre com fonte e data** |
 | `contact-form.ts` | Rótulos, opções (cargo, porte, licitações por mês) e mensagens do formulário |
 | `privacy.ts` | Texto da política de privacidade |
 | `navigation.ts` | Menu, rodapé e rótulo dos CTAs |
@@ -270,7 +270,7 @@ git push origin main                 # publica
 - [ ] **Dados legais:** preencher `siteConfig.legal` em `src/config/site.ts` (razão social, CNPJ, cidade/UF, e-mail de contato e encarregado de dados). Enquanto estiverem vazios, o rodapé não mostra CNPJ e a política de privacidade exibe um aviso no lugar dos dados do controlador. **Não publique em produção sem isso.**
 - [ ] **Domínio:** apontar o DNS de `qore.com.br` para o Netlify, ativar HTTPS e trocar `NEXT_PUBLIC_SITE_URL` em `netlify.toml` (hoje `https://qoreapp.netlify.app`, provisório) para `https://qore.com.br`.
 - [ ] **Formulário:** notificações do Netlify Forms configuradas e testadas com um envio real.
-- [ ] **Números do mercado:** revisar os dados do PNCP em `market-numbers.ts` e atualizar a data da consulta.
+- [ ] **Números do mercado:** revisar os números de `market-numbers.ts` e dos banners seguindo [`market-data.md`](docs/specs/2026-09-25-landing-relaunch/market-data.md) (fonte, URL e como refazer a consulta ao PNCP).
 - [ ] **`pnpm verify`** verde no commit publicado.
 
 A retenção dos dados de contato é de 12 meses, já definida e publicada na política de privacidade.

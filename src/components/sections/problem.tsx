@@ -2,7 +2,7 @@ import { CircleAlert } from "lucide-react";
 import { SectionWrapper } from "@/components/layout/section-wrapper";
 import { CountUp } from "@/components/motion/count-up";
 import { problemContent } from "@/config/home-content";
-import { marketNumbers } from "@/config/market-numbers";
+import { marketNumbers, marketNumbersTitle } from "@/config/market-numbers";
 
 export const Problem = () => (
   <SectionWrapper id="problema" aria-labelledby="problem-title" className="bg-surface-low">
@@ -28,10 +28,11 @@ export const Problem = () => (
         </li>
       ))}
     </ul>
-    <div className="mt-6 grid gap-6 sm:grid-cols-2">
+    <h3 className="mt-12 max-w-3xl text-headline-sm text-foreground">{marketNumbersTitle}</h3>
+    <div className="mt-6 grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
       {marketNumbers.map((marketNumber) => (
-        <div key={marketNumber.label} data-testid="market-number" className="rounded-lg bg-card p-6 shadow-sm">
-          <p className="font-display text-headline-lg-mobile text-foreground tabular-nums md:text-headline-lg">
+        <div key={marketNumber.label} data-testid="market-number" className="min-w-0 rounded-lg bg-card p-4 shadow-sm md:p-6">
+          <p className="font-display text-headline-sm text-foreground tabular-nums md:text-headline-md">
             <CountUp value={marketNumber.value} />
           </p>
           <p className="mt-1 text-body-md text-foreground">{marketNumber.label}</p>
