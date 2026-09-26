@@ -52,13 +52,11 @@ describe("Footer", () => {
     const navigation = screen.getByRole("navigation", { name: "Rodapé" });
     const hrefs = within(navigation).getAllByRole("link").map((link) => link.getAttribute("href"));
     expect(hrefs).toEqual([
+      "/#radar",
       "/#como-funciona",
       "/#plataforma",
-      "/#funcionalidades",
-      "/#integracoes",
-      "/#ia-responsavel",
-      "/#faq",
       "/#para-quem-e",
+      "/#faq",
       "/#contato",
       "/privacidade",
     ]);

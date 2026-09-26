@@ -15,7 +15,7 @@ describe("Faq", () => {
   it("renders the six questions as native disclosure widgets", () => {
     const { container } = render(<Faq />);
     const disclosures = container.querySelectorAll("details");
-    expect(disclosures).toHaveLength(6);
+    expect(disclosures).toHaveLength(5);
     expect([...container.querySelectorAll("summary")].map((summary) => summary.textContent)).toEqual(
       faqItems.map((item) => item.question),
     );

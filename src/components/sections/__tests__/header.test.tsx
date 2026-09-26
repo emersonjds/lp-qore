@@ -9,11 +9,10 @@ describe("Header", () => {
     const navigation = screen.getByRole("navigation", { name: "Principal" });
     expect(within(navigation).getByRole("link", { name: "Como funciona" })).toHaveAttribute("href", "/#como-funciona");
     expect(within(navigation).getAllByRole("link").map((link) => [link.textContent, link.getAttribute("href")])).toEqual([
+      ["Radar grátis", "/#radar"],
       ["Como funciona", "/#como-funciona"],
       ["Plataforma", "/#plataforma"],
-      ["Funcionalidades", "/#funcionalidades"],
-      ["Integrações", "/#integracoes"],
-      ["IA responsável", "/#ia-responsavel"],
+      ["Para quem é", "/#para-quem-e"],
       ["FAQ", "/#faq"],
     ]);
     expect(screen.getByRole("link", { name: "Fale com um especialista" })).toHaveAttribute("href", "/#contato");

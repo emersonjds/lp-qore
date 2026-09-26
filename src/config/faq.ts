@@ -22,11 +22,6 @@ export const faqItems: readonly FAQItem[] = [
       "A plataforma liga os dados da empresa, do edital e da habilitação, e a proposta chega cerca de 80% pronta. Você preenche os preços e revisa. O documento final sai com o logo da sua empresa ou, sem logo, com um modelo padrão profissional.",
   },
   {
-    question: "Como funciona o alerta de preço inexequível?",
-    answer:
-      "A plataforma compara o seu preço com o valor de referência do edital e sinaliza risco quando ele fica muito abaixo. Para obras e serviços de engenharia, a Lei 14.133/2021 (art. 59, §4º) considera inexequível a proposta abaixo de 75% do valor orçado pela administração. É um sinal para você revisar, não uma garantia.",
-  },
-  {
     question: "Quanto custa?",
     answer:
       "O valor varia conforme o porte da empresa e o volume de licitações. Na demonstração, um especialista apresenta o plano certo para a sua operação.",
