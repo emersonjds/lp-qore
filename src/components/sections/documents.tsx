@@ -1,10 +1,9 @@
 import { CircleCheck, Clock, LoaderCircle } from "lucide-react";
 import { SectionWrapper } from "@/components/layout/section-wrapper";
+import { DocumentsScreen } from "@/components/simulated-screens/platform-screens";
 import { documentsContent } from "@/config/documents";
-import { mobileScreenshots } from "@/config/screenshots";
 import { staggerStyle } from "@/lib/stagger-style";
 import { cn } from "@/lib/utils";
-import { PanelScreenshot } from "./panel-screenshot";
 
 export const Documents = () => (
   <SectionWrapper id="documentos" aria-labelledby="documents-title" className="bg-surface-low">
@@ -17,8 +16,8 @@ export const Documents = () => (
         <p className="mt-3 text-body-lg text-muted-foreground">{documentsContent.description}</p>
       </div>
       <div data-reveal data-certificates className="relative mx-auto w-full max-w-md">
-        <PanelScreenshot device="mobile" sizes="18rem" {...mobileScreenshots.documents} />
-        <div className="mt-6 sm:absolute sm:bottom-28 sm:-left-4 sm:mt-0 sm:w-64">
+        <DocumentsScreen label="Exemplo ilustrativo: Documentos" />
+        <div className="relative mt-4 sm:ml-8 sm:w-72">
           <p className="mb-2 text-caption text-muted-foreground">Exemplo</p>
           <ul aria-label="Exemplo de verificação de certidões" className="flex flex-col gap-2">
             {documentsContent.certificateChecks.map((check, index) => (

@@ -1,5 +1,5 @@
 /*
- * Captures the real qore-web panel for the landing page (public/screenshots/).
+ * Captures the real qore-web panel for the landing page (docs/design/screenshots/, reference for the simulated screens; not shipped in the build).
  *
  * Prerequisites: qore-web on branch `developer`, `npm run dev` running there (MSW demo data is on by
  * default). The onboarding cookie `qore_onboarding_done=1` is set here, as in qore-web/tests/e2e/manager-dashboard.spec.ts.
@@ -18,7 +18,7 @@ import sharp from "sharp";
 
 const baseUrl = process.env.QORE_WEB_URL ?? "http://localhost:3000";
 const rawDirectory = process.env.SCREENSHOTS_RAW_DIRECTORY;
-const outputDirectory = fileURLToPath(new URL("../public/screenshots/", import.meta.url));
+const outputDirectory = fileURLToPath(new URL("../docs/design/screenshots/", import.meta.url));
 const DEVICE_SCALE_FACTOR = 2;
 const FABRICATED_PANEL_TERMS = /go\/no-go|média histórica|concorrentes|todo o Brasil|SP e RS|Demais estados/i;
 const DEV_OVERLAY_STYLE = "nextjs-portal, .tsqd-parent-container { display: none !important; }";

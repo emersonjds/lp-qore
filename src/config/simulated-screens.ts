@@ -151,3 +151,14 @@ export const calendarScreen = {
     { step: "4. Abertura dos lances", date: "18/03", note: "Sessão pública às 09h00 na BEC/SP.", tone: "session" },
   ],
 } as const;
+
+export const documentsScreen = {
+  windowTitle: "Qore • Documentos",
+  title: "Certidões da empresa",
+  counts: [
+    { label: "Válidas", value: "12", tone: "bg-primary-tint text-primary" },
+    { label: "Vencendo", value: "2", tone: "bg-warning-tint text-warning-text" },
+    { label: "Vencidas", value: "1", tone: "bg-destructive-tint text-destructive-text" },
+    { label: "Pendentes", value: "3", tone: "bg-surface-low text-muted-foreground" },
+  ],
+} as const;

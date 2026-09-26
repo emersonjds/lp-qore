@@ -10,7 +10,7 @@ interface SimulatedWindowProps {
 }
 
 export const SimulatedWindow = ({ title, label, badge, className, children }: SimulatedWindowProps) => (
-  <figure aria-label={label} className={cn("relative overflow-hidden rounded-lg bg-card shadow-lg", className)}>
+  <figure aria-label={label} className={cn("@container relative overflow-hidden rounded-lg bg-card shadow-lg", className)}>
     <div className="flex items-center justify-between gap-3 bg-surface-low px-4 py-3">
       <span aria-hidden="true" className="flex shrink-0 gap-2">
         <span className="size-3 rounded-full bg-rose-400" />

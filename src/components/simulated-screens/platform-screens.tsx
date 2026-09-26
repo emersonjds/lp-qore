@@ -3,6 +3,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { CountUp } from "@/components/motion/count-up";
 import {
   calendarScreen,
+  documentsScreen,
   managerOverviewScreen,
   pricingScreen,
   radarScreen,
@@ -120,7 +121,7 @@ export const RadarScreen = ({ label }: ScreenProps) => (
         title={radarScreen.title}
         aside={<span className="shrink-0 text-caption text-muted-foreground">{radarScreen.updatedAt}</span>}
       />
-      <ul className="flex flex-col gap-3 md:hidden">
+      <ul className="flex flex-col gap-3 @3xl:hidden">
         {radarScreen.rows.map((row) => (
           <li key={row.agency} className="rounded-md bg-surface-low p-3">
             <p className="flex items-start justify-between gap-2 text-label-md font-semibold text-foreground">
@@ -137,7 +138,7 @@ export const RadarScreen = ({ label }: ScreenProps) => (
           </li>
         ))}
       </ul>
-      <table className="hidden w-full text-left text-body-md md:table">
+      <table className="hidden w-full text-left text-body-md @3xl:table">
         <thead className="bg-surface-low text-label-sm uppercase text-muted-foreground">
           <tr>
             {radarScreen.columns.map((column, index) => (
@@ -249,6 +250,22 @@ export const CalendarScreen = ({ label }: ScreenProps) => (
           );
         })}
       </ol>
+    </div>
+  </SimulatedWindow>
+);
+
+export const DocumentsScreen = ({ label }: ScreenProps) => (
+  <SimulatedWindow title={documentsScreen.windowTitle} label={label}>
+    <div className="flex flex-col gap-4 p-4 md:p-6">
+      <p className="font-display text-title-md text-foreground">{documentsScreen.title}</p>
+      <ul className="grid grid-cols-2 gap-3">
+        {documentsScreen.counts.map((count) => (
+          <li key={count.label} className={cn("rounded-md p-4", count.tone)}>
+            <span className="block font-display text-headline-md">{count.value}</span>
+            <span className="text-label-sm">{count.label}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   </SimulatedWindow>
 );

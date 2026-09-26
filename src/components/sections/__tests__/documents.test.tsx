@@ -10,13 +10,13 @@ describe("Documents", () => {
     expect(screen.getByText(/avisa antes de vencer/)).toBeInTheDocument();
   });
 
-  it("shows the real documents screen on a phone without an illustrative seal", () => {
+  it("simulates the documents screen as an illustrative window instead of a screenshot", () => {
     render(<Documents />);
-    expect(screen.getByRole("figure", { name: "Documentos" })).not.toHaveTextContent("Tela ilustrativa");
-    expect(screen.getByRole("img", { name: /Tela de documentos/ })).toHaveAttribute(
-      "src",
-      "/screenshots/documents-mobile-780.webp",
-    );
+    const window = screen.getByRole("figure", { name: "Exemplo ilustrativo: Documentos" });
+    expect(window).toHaveTextContent("Exemplo ilustrativo");
+    expect(window).toHaveTextContent("Válidas");
+    expect(window).toHaveTextContent("Vencendo");
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
   });
 
   it("keeps no drawn mock of the certificate list", () => {

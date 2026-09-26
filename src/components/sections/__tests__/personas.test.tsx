@@ -16,25 +16,13 @@ describe("Personas", () => {
     expect(managerFeatures).toContain("Aprovação de propostas");
   });
 
-  it("frames a real phone screen for each role, without an illustrative seal", () => {
+  it("simulates a screen for each role instead of a screenshot", () => {
     render(<Personas />);
     const analyst = screen.getByRole("article", { name: "Seu dia sem planilha nem PDF de 80 páginas" });
-    expect(within(analyst).getByRole("img", { name: /Radar de licitações/ })).toHaveAttribute(
-      "src",
-      "/screenshots/radar-mobile-780.webp",
-    );
+    expect(within(analyst).getByRole("figure", { name: "Exemplo ilustrativo: Radar de oportunidades" })).toBeInTheDocument();
     const manager = screen.getByRole("article", { name: "Visão da operação inteira em uma tela" });
-    expect(within(manager).getByRole("img", { name: /Painel do gestor/ })).toHaveAttribute(
-      "src",
-      "/screenshots/manager-dashboard-mobile-780.webp",
-    );
-    expect(screen.queryByText("Tela ilustrativa")).not.toBeInTheDocument();
-  });
-
-  it("keeps no drawn mini panels", () => {
-    const { container } = render(<Personas />);
-    expect(container.querySelector("[data-match-score]")).toBeNull();
-    expect(screen.queryByText("Exemplo ilustrativo")).not.toBeInTheDocument();
+    expect(within(manager).getByRole("figure", { name: "Exemplo ilustrativo: Painel do gestor" })).toBeInTheDocument();
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
   });
 
   it("shows the analyst an example match chip that counts up to 87%", () => {
