@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { platformTabs } from "@/config/home-content";
 import { REDUCED_MOTION_QUERY } from "@/lib/motion-preferences";
 import { IntersectionObserverMock, installMatchMediaMock } from "@/test-utils/browser-mocks";
@@ -25,10 +25,21 @@ const finishProgress = (container: HTMLElement) => {
 
 const selectedTab = () => screen.getAllByRole("tab").find((tab) => tab.getAttribute("aria-selected") === "true")?.textContent;
 
+const clickWithMouse = (tab: HTMLElement) => {
+  fireEvent.pointerDown(tab);
+  fireEvent.mouseDown(tab);
+  act(() => tab.focus());
+  fireEvent.click(tab);
+};
+
 const setVisibility = (state: DocumentVisibilityState) => {
   Object.defineProperty(document, "visibilityState", { configurable: true, value: state });
   document.dispatchEvent(new Event("visibilitychange"));
 };
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 describe("PlatformTourTabs auto-advance", () => {
   it("advances to the next screen each time the active tab progress fills, wrapping at the end", () => {
@@ -45,15 +56,55 @@ describe("PlatformTourTabs auto-advance", () => {
     });
   });
 
-  it("pauses while the pointer rests on the tour or focus is inside it", () => {
+  it("draws the countdown as a 3px primary bar under the active tab, filled by scaling on the x axis", () => {
     setVisibility("visible");
     const { container } = render(<PlatformTourTabs tabs={platformTabs} />);
     setOnScreen(container, true);
-    fireEvent.pointerEnter(tourOf(container));
-    expect(progress(container)).toHaveStyle({ animationPlayState: "paused" });
-    fireEvent.pointerLeave(tourOf(container));
+    const bar = progress(container);
+    expect(bar).toHaveClass("animate-tab-progress", "h-[3px]", "bg-primary", "origin-left", "-bottom-2");
+    expect(bar?.closest("[role=tab]")).not.toHaveClass("overflow-hidden");
+  });
+
+  it("crossfades the incoming screen with a slight rise and replays its count-ups and bars", () => {
+    setVisibility("visible");
+    const { container } = render(<PlatformTourTabs tabs={platformTabs} />);
+    setOnScreen(container, true);
+    const managerPanel = screen.getByRole("tabpanel", { name: "Painel do gestor" });
+    const firstCounter = managerPanel.querySelector("[data-count-up]");
+    finishProgress(container);
+    expect(managerPanel).toHaveClass("opacity-0", "translate-y-3");
+    expect(managerPanel.className).toMatch(/transition-\[opacity,translate,visibility\]/);
+    expect(screen.getByRole("tabpanel", { name: "Radar de oportunidades" })).not.toHaveClass("opacity-0", "translate-y-3");
+    platformTabs.slice(1).forEach(() => finishProgress(container));
+    expect(managerPanel).toHaveAttribute("data-screen-active");
+    const replayedCounter = managerPanel.querySelector("[data-count-up]");
+    expect(replayedCounter).not.toBeNull();
+    expect(replayedCounter).not.toBe(firstCounter);
+    expect(managerPanel.querySelectorAll("[data-bar]")).toHaveLength(3);
+  });
+
+  it("pauses only while the pointer rests on the tab list, not on the screens", () => {
+    setVisibility("visible");
+    const { container } = render(<PlatformTourTabs tabs={platformTabs} />);
+    setOnScreen(container, true);
+    const panels = container.querySelector("[data-tour-panels]");
+    if (!panels) throw new Error("panels missing");
+    fireEvent.pointerEnter(panels);
     expect(progress(container)).toHaveStyle({ animationPlayState: "running" });
-    act(() => screen.getByRole("tab", { name: "Painel do gestor" }).focus());
+    fireEvent.pointerLeave(panels);
+    fireEvent.pointerEnter(screen.getByRole("tablist"));
+    expect(progress(container)).toHaveStyle({ animationPlayState: "paused" });
+    fireEvent.pointerLeave(screen.getByRole("tablist"));
+    expect(progress(container)).toHaveStyle({ animationPlayState: "running" });
+  });
+
+  it("pauses while a tab holds keyboard focus", async () => {
+    setVisibility("visible");
+    const user = userEvent.setup();
+    const { container } = render(<PlatformTourTabs tabs={platformTabs} />);
+    setOnScreen(container, true);
+    await user.tab();
+    expect(screen.getByRole("tab", { name: "Painel do gestor" })).toHaveFocus();
     expect(progress(container)).toHaveStyle({ animationPlayState: "paused" });
     act(() => screen.getByRole("tab", { name: "Painel do gestor" }).blur());
     expect(progress(container)).toHaveStyle({ animationPlayState: "running" });
@@ -71,13 +122,20 @@ describe("PlatformTourTabs auto-advance", () => {
     expect(progress(container)).toHaveStyle({ animationPlayState: "paused" });
   });
 
-  it("stops for good once the visitor picks a tab", async () => {
+  it("resumes auto-advance from the picked tab after 10 s without interaction", () => {
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout"] });
     setVisibility("visible");
-    const user = userEvent.setup();
     const { container } = render(<PlatformTourTabs tabs={platformTabs} />);
     setOnScreen(container, true);
-    await user.click(screen.getByRole("tab", { name: "Calendário de prazos" }));
+    clickWithMouse(screen.getByRole("tab", { name: "Resumo do edital com IA" }));
     expect(progress(container)).toBeNull();
+    act(() => vi.advanceTimersByTime(6000));
+    clickWithMouse(screen.getByRole("tab", { name: "Calendário de prazos" }));
+    act(() => vi.advanceTimersByTime(9999));
+    expect(progress(container)).toBeNull();
+    act(() => vi.advanceTimersByTime(1));
+    expect(progress(container)?.closest("[role=tab]")).toHaveTextContent("Calendário de prazos");
+    expect(progress(container)).toHaveStyle({ animationPlayState: "running" });
   });
 
   it("never auto-advances when the user prefers reduced motion", () => {
@@ -86,9 +144,10 @@ describe("PlatformTourTabs auto-advance", () => {
     const { container } = render(<PlatformTourTabs tabs={platformTabs} />);
     setOnScreen(container, true);
     expect(progress(container)).toBeNull();
+    expect(selectedTab()).toBe("Painel do gestor");
   });
 
-  it("swipes between screens on touch devices and stops auto-advance", () => {
+  it("swipes between screens on touch devices and holds auto-advance", () => {
     setVisibility("visible");
     const { container } = render(<PlatformTourTabs tabs={platformTabs} />);
     setOnScreen(container, true);

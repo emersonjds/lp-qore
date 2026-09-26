@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import type { PlatformTab } from "@/types";
 
 const SWIPE_DISTANCE = 48;
+const RESUME_AFTER_MILLISECONDS = 10_000;
 
 interface PlatformTourTabsProps {
   tabs: readonly PlatformTab[];
@@ -20,6 +21,8 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
   const [isPageVisible, setIsPageVisible] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [isHeldByVisitor, setIsHeldByVisitor] = useState(false);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const baseId = useId();
   const tourRef = useRef<HTMLDivElement>(null);
@@ -44,8 +47,12 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
     };
   }, [isAutoplayAllowed]);
 
+  useEffect(() => () => clearTimeout(resumeTimeoutRef.current), []);
+
   const selectByVisitor = (index: number) => {
-    setIsAutoplayAllowed(false);
+    setIsHeldByVisitor(true);
+    clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => setIsHeldByVisitor(false), RESUME_AFTER_MILLISECONDS);
     setActiveIndex((index + tabs.length) % tabs.length);
   };
 
@@ -77,21 +84,21 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
     tabRefs.current[nextIndex]?.focus();
   };
 
-  const showsProgress = isEnhanced && isAutoplayAllowed && isOnScreen !== null;
+  const showsProgress = isEnhanced && isAutoplayAllowed && !isHeldByVisitor && isOnScreen !== null;
   const isProgressRunning = Boolean(isOnScreen) && isPageVisible && !isHovered && !isFocused;
 
   return (
     <div
       ref={tourRef}
       data-platform-tour
-      onPointerEnter={() => setIsHovered(true)}
-      onPointerLeave={() => setIsHovered(false)}
-      onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
     >
       <div
         role="tablist"
         aria-label="Telas da plataforma"
+        onPointerEnter={() => setIsHovered(true)}
+        onPointerLeave={() => setIsHovered(false)}
+        onFocus={(event) => setIsFocused(event.target.matches(":focus-visible"))}
+        onBlur={() => setIsFocused(false)}
         className={cn("-mx-4 flex gap-2 overflow-x-auto px-4 pb-4 md:mx-0 md:px-0", !isEnhanced && "hidden")}
       >
         {tabs.map((tab, index) => (
@@ -109,7 +116,7 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
             onClick={() => selectByVisitor(index)}
             onKeyDown={(event) => handleKeyDown(event, index)}
             className={cn(
-              "relative min-h-11 shrink-0 overflow-hidden rounded-md px-4 py-2 text-label-md shadow-sm",
+              "relative min-h-11 shrink-0 rounded-md px-4 py-2 text-label-md shadow-sm",
               index === activeIndex ? "bg-primary text-primary-foreground" : "bg-card text-foreground hover:bg-surface-container",
             )}
           >
@@ -121,7 +128,7 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
                 data-tab-progress
                 onAnimationEnd={() => setActiveIndex((current) => (current + 1) % tabs.length)}
                 style={{ animationPlayState: isProgressRunning ? "running" : "paused" }}
-                className="animate-tab-progress absolute inset-x-0 bottom-0 h-0.5 origin-left bg-primary-foreground/80"
+                className="animate-tab-progress absolute inset-x-1 -bottom-2 h-[3px] origin-left rounded-full bg-primary"
               />
             )}
           </button>
@@ -144,9 +151,9 @@ export const PlatformTourTabs = ({ tabs }: PlatformTourTabsProps) => {
               aria-labelledby={isEnhanced ? `${baseId}-tab-${tab.id}` : undefined}
               data-screen-active={isActive ? "" : undefined}
               className={cn(
-                "min-w-0 transition-[opacity,scale,visibility] duration-500 ease-out motion-reduce:transition-none",
+                "min-w-0 transition-[opacity,translate,visibility] duration-500 ease-out motion-reduce:transition-none",
                 isEnhanced && "col-start-1 row-start-1",
-                isEnhanced && !isActive && "invisible scale-[0.98] opacity-0",
+                isEnhanced && !isActive && "invisible translate-y-3 opacity-0",
               )}
             >
               {!isEnhanced && <p className="mb-3 font-display text-title-md text-foreground">{tab.label}</p>}
