@@ -56,13 +56,13 @@ const startLoop = ({ frame, traveler, clause, firstCard, chips, alert }: CyclePa
     easing: EASE_OUT,
   }));
 
-  const revealLoop = (start: number, duration: number, hidden: Keyframe, shown: Keyframe, easing: string): Keyframe[] => [
-    { ...hidden, offset: 0 },
-    { ...hidden, offset: at(start), easing },
-    { ...shown, offset: at(start + duration) },
-    { ...shown, offset: at(fadeOutStart), easing: EASE_OUT },
-    { ...shown, opacity: 0, offset: at(fadeOutStart + FADE_OUT_MS) },
-    { ...shown, opacity: 0, offset: 1 },
+  const revealLoop = (start: number, duration: number, hidden: string, shown: string, easing: string): Keyframe[] => [
+    { transform: hidden, offset: 0 },
+    { transform: hidden, offset: at(start), easing },
+    { transform: shown, offset: at(start + duration) },
+    { transform: shown, offset: at(fadeOutStart), easing: EASE_OUT },
+    { transform: hidden, offset: at(fadeOutStart + FADE_OUT_MS) },
+    { transform: hidden, offset: 1 },
   ];
 
   return [
@@ -80,18 +80,12 @@ const startLoop = ({ frame, traveler, clause, firstCard, chips, alert }: CyclePa
     ),
     ...chips.map((chip, index) =>
       chip.animate(
-        revealLoop(
-          chipsStart + index * CHIP_STAGGER_MS,
-          CHIP_MS,
-          { opacity: 0, transform: "scale(0.4)" },
-          { opacity: 1, transform: "scale(1)" },
-          EASE_BACK_OUT,
-        ),
+        revealLoop(chipsStart + index * CHIP_STAGGER_MS, CHIP_MS, "scale(0)", "scale(1)", EASE_BACK_OUT),
         loop,
       ),
     ),
     alert.animate(
-      revealLoop(alertStart, ALERT_MS, { opacity: 0, transform: "translateX(24px)" }, { opacity: 1, transform: "none" }, EASE_OUT),
+      revealLoop(alertStart, ALERT_MS, "translateX(24px) scaleY(0)", "none", EASE_OUT),
       loop,
     ),
   ];

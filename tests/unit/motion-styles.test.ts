@@ -30,7 +30,25 @@ describe("motion styles", () => {
     expect(properties.filter((property) => property !== "opacity" && property !== "transform")).toEqual([]);
   });
 
-  it.each(["[data-proposal-progress][data-revealed]", "[data-certificates][data-revealed]", "[data-before-after][data-revealed] [data-after]::before", "[data-coverage-map][data-revealed]", "[data-hero-glow]", '[data-slot="button"][data-variant="default"]:hover::after', "[data-mobile-cta]", "[data-motion-label]", '[data-cta="hero-primary"]', "[data-screen-active] [data-bar]", "[data-screen-active] [data-day-lit]", "[data-audit-card][data-revealed] [data-typed-char]", "[data-audit-card][data-revealed] [data-source-chip]", "[data-hero-rotator]"])(
+  it.each(["line-cycle", "pop-in", "label-in"])("reveals text in %s by movement only, so contrast holds on every frame", (name) => {
+    const [block] = blocksOf(new RegExp(`@keyframes ${name}\\s*`, "g"));
+    expect(block).toBeDefined();
+    expect(block).not.toMatch(/opacity/);
+  });
+
+  it("clips the rotating hero lines instead of fading them", () => {
+    const [block] = blocksOf(/\[data-hero-rotator\]\s*(?=\{)/g);
+    expect(block).toMatch(/overflow:\s*hidden/);
+  });
+
+  it.each(["data-proposal-progress", "data-certificates", "data-before-after", "data-coverage-map", "data-audit-card", "data-hub-ring", "coverage-hub"])(
+    "carries no styles for the removed %s section",
+    (selector) => {
+      expect(stylesheet).not.toContain(selector);
+    },
+  );
+
+  it.each(["[data-hero-glow]", '[data-slot="button"][data-variant="default"]:hover::after', "[data-mobile-cta]", "[data-motion-label]", '[data-cta="hero-primary"]', "[data-screen-active] [data-bar]", "[data-screen-active] [data-day-lit]", "[data-hero-rotator]"])(
     "runs the %s entrance only for users who accept motion",
     (selector) => {
       expect(motionAllowedBlocks).toContain(selector);

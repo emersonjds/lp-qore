@@ -35,5 +35,6 @@ describe("HowItWorks", () => {
     expect(badges.map((badge) => badge.textContent)).toEqual(["01", "02", "03"]);
     expect(badges[0]).toHaveClass("bg-primary", "text-primary-foreground");
     badges.slice(1).forEach((badge) => expect(badge).toHaveClass("bg-surface-container-high", "text-primary"));
+    badges.forEach((badge) => expect(badge.className).not.toMatch(/transition-colors/));
   });
 });
