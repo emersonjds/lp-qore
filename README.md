@@ -32,7 +32,7 @@ Site institucional da **Qore**, plataforma de licitações públicas com IA para
 | --- | --- |
 | Framework | Next.js 15 (App Router) com `output: "export"`: o build gera um site 100% estático em `out/` |
 | UI | React 19, Tailwind CSS 4 (tokens em `src/app/globals.css`), primitivos shadcn/ui sobre Radix, ícones `lucide-react` |
-| Animação | GSAP + ScrollTrigger carregados sob demanda (`import()` quando a seção se aproxima da tela), mais animações em CSS. Só `transform` e `opacity`, respeitando `prefers-reduced-motion` |
+| Animação | Web Animations API nativa (zero biblioteca), disparada por `IntersectionObserver`, mais animações em CSS. Só `transform` e `opacity`, respeitando `prefers-reduced-motion` |
 | Fontes | Inter e Hanken Grotesk servidas pelo próprio site (`next/font/local`), em subconjunto para português |
 | Linguagem | TypeScript em modo estrito |
 | Testes | Vitest + Testing Library (unidade e componentes), Playwright (checagens do HTML exportado), Lighthouse CI |

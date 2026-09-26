@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useNearViewport } from "@/hooks/use-near-viewport";
-import { loadScrollTrigger } from "@/lib/load-scroll-trigger";
 import { prefersReducedMotion } from "@/lib/motion-preferences";
+
+const STEP_DURATION_MS = 800;
+const SECTION_VISIBLE_MARGIN = "0px 0px -40% 0px";
 
 const progressStopAt = (track: HTMLElement, badge: HTMLElement, step: number, stepCount: number): number => {
   const line = track.getBoundingClientRect();
@@ -19,41 +20,52 @@ interface HowItWorksLineAnimatorProps {
 
 export const HowItWorksLineAnimator = ({ sectionId }: HowItWorksLineAnimatorProps) => {
   const markerRef = useRef<HTMLSpanElement>(null);
-  const isNear = useNearViewport(markerRef);
 
   useEffect(() => {
-    if (!isNear || prefersReducedMotion()) return;
+    const marker = markerRef.current;
     const section = document.getElementById(sectionId);
-    if (!section) return;
+    if (!marker || !section || prefersReducedMotion()) return;
+
+    const track = section.querySelector<HTMLElement>("[data-step-line]");
+    const progress = section.querySelector<HTMLElement>("[data-step-progress]");
+    const badges = [...section.querySelectorAll<HTMLElement>("[data-step-badge]")];
+    if (!track || !progress || badges.length < 2) return;
 
     let isCancelled = false;
-    let revert = () => {};
+    const animations: Animation[] = [];
 
-    void loadScrollTrigger().then(({ gsap }) => {
-      if (isCancelled) return;
-      const context = gsap.context(() => {
-        const track = section.querySelector<HTMLElement>("[data-step-line]");
-        const progress = section.querySelector<HTMLElement>("[data-step-progress]");
-        const badges = [...section.querySelectorAll<HTMLElement>("[data-step-badge]")];
-        if (!track || !progress || badges.length < 2) return;
-        gsap.set(progress, { scaleX: 0 });
-        const timeline = gsap.timeline({ scrollTrigger: { trigger: section, start: "top 60%", once: true } });
-        badges.slice(1).forEach((badge, index) => {
-          timeline
-            .to(progress, { scaleX: progressStopAt(track, badge, index + 1, badges.length), duration: 0.8, ease: "power1.inOut" })
-            .call(() => {
-              badge.dataset.active = "true";
-            });
-        });
-      }, section);
-      revert = () => context.revert();
-    });
+    const play = async () => {
+      let currentStop = 0;
+      for (const [index, badge] of badges.slice(1).entries()) {
+        const nextStop = progressStopAt(track, badge, index + 1, badges.length);
+        const animation = progress.animate(
+          [{ transform: `scaleX(${currentStop})` }, { transform: `scaleX(${nextStop})` }],
+          { duration: STEP_DURATION_MS, easing: "ease-in-out", fill: "forwards" },
+        );
+        animations.push(animation);
+        await animation.finished;
+        if (isCancelled) return;
+        badge.dataset.active = "true";
+        currentStop = nextStop;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        observer.disconnect();
+        void play();
+      },
+      { rootMargin: SECTION_VISIBLE_MARGIN },
+    );
+    observer.observe(marker);
 
     return () => {
       isCancelled = true;
-      revert();
+      observer.disconnect();
+      animations.forEach((animation) => animation.cancel());
     };
-  }, [isNear, sectionId]);
+  }, [sectionId]);
 
   return <span ref={markerRef} data-line-marker aria-hidden="true" className="pointer-events-none absolute inset-0" />;
 };

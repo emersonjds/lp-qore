@@ -71,3 +71,26 @@ export const installMatchMediaMock = (matchingQueries: readonly string[]) => {
     }),
   );
 };
+
+export interface FakeAnimation {
+  finished: Promise<void>;
+  pause: ReturnType<typeof vi.fn>;
+  play: ReturnType<typeof vi.fn>;
+  cancel: ReturnType<typeof vi.fn>;
+}
+
+export const installAnimateMock = ({ finishes }: { finishes: boolean }) => {
+  const animations: FakeAnimation[] = [];
+  const animate = vi.fn<(keyframes: Keyframe[], options?: KeyframeAnimationOptions) => FakeAnimation>(() => {
+    const animation: FakeAnimation = {
+      finished: finishes ? Promise.resolve() : new Promise<void>(() => {}),
+      pause: vi.fn(),
+      play: vi.fn(),
+      cancel: vi.fn(),
+    };
+    animations.push(animation);
+    return animation;
+  });
+  Object.defineProperty(Element.prototype, "animate", { configurable: true, writable: true, value: animate });
+  return { animate, animations };
+};
