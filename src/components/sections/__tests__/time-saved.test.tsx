@@ -27,4 +27,11 @@ describe("TimeSaved", () => {
     const numbers = container.textContent?.match(/\d+/g) ?? [];
     expect(numbers).toEqual(["80"]);
   });
+
+  it("slides each row in turn and highlights the Qore side", () => {
+    const { container } = render(<TimeSaved />);
+    const rows = [...container.querySelectorAll<HTMLElement>("[data-before-after]")];
+    rows.forEach((row) => expect(row).toHaveAttribute("data-reveal"));
+    expect(rows.map((row) => row.style.getPropertyValue("--order"))).toEqual(["0", "1", "2", "3"]);
+  });
 });

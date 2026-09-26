@@ -234,6 +234,22 @@
     animation: pop-in 450ms cubic-bezier(0.34, 1.56, 0.64, 1) calc(1000ms + var(--order) * 700ms) backwards;
   }
 
+  [data-before-after] {
+    transition-delay: calc(var(--order) * 120ms);
+  }
+
+  .reveal-enabled [data-before-after]:not([data-revealed]) {
+    transform: translateX(-32px);
+  }
+
+  .reveal-enabled [data-before-after]:not([data-revealed]) [data-after]::before {
+    transform: scaleX(0);
+  }
+
+  [data-before-after][data-revealed] [data-after]::before {
+    animation: grow-x 700ms cubic-bezier(0.33, 1, 0.68, 1) calc(var(--order) * 120ms + 450ms) backwards;
+  }
+
   @keyframes fade-out {
     from {
       opacity: 1;
