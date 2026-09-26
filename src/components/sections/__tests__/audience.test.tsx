@@ -25,7 +25,7 @@ describe("Audience", () => {
     ).toEqual([
       [
         "Empresas fornecedoras",
-        "Da PME à grande empresa: radar pelo CNPJ, proposta cerca de 80% pronta e certidões sempre em dia.",
+        "Do MEI à grande empresa: radar pelo CNPJ, proposta cerca de 80% pronta e certidões sempre em dia.",
       ],
       [
         "Consultores e assessorias de licitação",

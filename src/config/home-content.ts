@@ -89,7 +89,7 @@ export const audienceContent: {
       icon: Building2,
       title: "Empresas fornecedoras",
       description:
-        "Da PME à grande empresa: radar pelo CNPJ, proposta cerca de 80% pronta e certidões sempre em dia.",
+        "Do MEI à grande empresa: radar pelo CNPJ, proposta cerca de 80% pronta e certidões sempre em dia.",
     },
     {
       icon: Briefcase,
