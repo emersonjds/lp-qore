@@ -7,6 +7,13 @@ import baseline from "./initial-js-baseline.json";
 
 const OUT_DIRECTORY = join(process.cwd(), "out");
 const APP_JAVASCRIPT_BUDGET_BYTES = 90 * 1024;
+const SUBSET_FONT_CHARACTERS = /^[\u0020-\u007e\u00a0-\u00ff\u2013\u2014\u2018-\u201a\u201c-\u201e\u2022\u2026\s]*$/;
+
+const readVisibleText = (html: string) =>
+  html
+    .replace(/<script[\s\S]*?<\/script>/g, "")
+    .replace(/<style[\s\S]*?<\/style>/g, "")
+    .replace(/<[^>]+>/g, " ");
 
 const listHtmlFiles = (): string[] =>
   readdirSync(OUT_DIRECTORY, { recursive: true, withFileTypes: true })
@@ -25,6 +32,13 @@ describe("exported HTML", () => {
       readFileSync(file, "utf8").toLowerCase().includes(term.toLowerCase()),
     );
     expect(offenders).toEqual([]);
+  });
+
+  it("only uses characters the subset fonts cover", () => {
+    const uncovered = listHtmlFiles().flatMap((file) =>
+      [...new Set(readVisibleText(readFileSync(file, "utf8")))].filter((character) => !SUBSET_FONT_CHARACTERS.test(character)),
+    );
+    expect(uncovered).toEqual([]);
   });
 
   it("ships the Netlify form in static HTML", () => {

@@ -36,7 +36,20 @@ O Lighthouse CI grava os relatórios em `.lighthouseci/` (fora do git). O Playwr
 - **Mapa do Brasil (IBGE):** `pnpm map:generate` baixa a malha de UFs da API de malhas do IBGE e reescreve `src/config/brazil-map.ts`. Precisa de rede.
 - **Marca:** `pnpm brand:assets` gera `public/og.png` (1200×630) e `src/app/apple-icon.png` a partir do logo.
 - **Capturas do painel:** com o qore-web na branch `developer` rodando `npm run dev` (porta 3000), `pnpm screenshots:capture` salva as telas em `docs/design/screenshots/` (referência para as telas simuladas; não entram no build). `QORE_WEB_URL` muda a origem.
-- **Fontes:** Inter e Hanken Grotesk ficam em `src/app/fonts/` (subconjunto latino, woff2 variável) e são servidas pelo próprio site; o build não depende do Google Fonts.
+- **Fontes:** Inter (pesos 400–600) e Hanken Grotesk (600–700) são servidas pelo próprio site a partir de `src/app/fonts/` (licença SIL OFL 1.1 em `Inter-OFL.txt` e `HankenGrotesk-OFL.txt`); o build não depende do Google Fonts. As originais (woff2 variável, subconjunto latino do Google Fonts) ficam em `assets/fonts/`. Para regerar, com [uv](https://docs.astral.sh/uv/) instalado (o fonttools não entra no `package.json`):
+
+  ```bash
+  UNICODES="U+0020-007E,U+00A0-00FF,U+2013-2014,U+2018-201A,U+201C-201E,U+2022,U+2026"
+  FEATURES="kern,liga,calt,ccmp,locl,mark,mkmk,tnum"
+  subset () {
+    uvx --from fonttools --with brotli fonttools varLib.instancer "assets/fonts/$1.woff2" "wght=$2" -o "/tmp/$1.ttf" -q
+    uvx --from fonttools --with brotli pyftsubset "/tmp/$1.ttf" --unicodes="$UNICODES" --layout-features="$FEATURES" --flavor=woff2 --output-file="src/app/fonts/$1.woff2"
+  }
+  subset inter-latin 400:600
+  subset hanken-grotesk-latin 600:700
+  ```
+
+  O intervalo de caracteres cobre português; `pnpm test:export` falha se o HTML exportado usar um caractere fora dele (amplie `UNICODES` e o teste juntos).
 
 ## Netlify Forms
 
