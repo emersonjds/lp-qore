@@ -26,6 +26,7 @@ describe("Primary CTAs", () => {
       </>,
     );
     await user.click(screen.getByRole("button", { name: "Abrir menu" }));
+    await screen.findByRole("dialog");
     const primaryButtons = [...document.body.querySelectorAll('[data-slot="button"][data-variant="default"]')];
     expect(primaryButtons.map((button) => button.getAttribute("data-cta"))).toEqual(
       expect.arrayContaining([

@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import dynamic from "next/dynamic";
+import { useRef, useState } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { SUBSCRIBE_LABEL } from "@/config/navigation";
 import type { NavLink } from "@/types";
+
+const HeaderMobileSheet = dynamic(() => import("./header-mobile-sheet").then((module) => module.HeaderMobileSheet), {
+  ssr: false,
+});
 
 interface HeaderMobileMenuProps {
   links: readonly NavLink[];
@@ -13,40 +16,38 @@ interface HeaderMobileMenuProps {
 }
 
 export const HeaderMobileMenu = ({ links, contactHref }: HeaderMobileMenuProps) => {
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const close = () => setIsOpen(false);
+  const [hasOpened, setHasOpened] = useState(false);
+
+  const open = () => {
+    setHasOpened(true);
+    setIsOpen(true);
+  };
 
   return (
-    <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Abrir menu">
-          <Menu aria-hidden="true" className="size-6" />
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="right" className="w-[min(20rem,85vw)] p-6">
-        <SheetTitle className="font-display text-title-md">Menu</SheetTitle>
-        <SheetDescription className="sr-only">Navegação principal do site</SheetDescription>
-        <nav aria-label="Principal no celular">
-          <ul className="flex flex-col gap-1">
-            {links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={close}
-                  className="flex min-h-11 items-center rounded-md px-3 text-body-md text-foreground hover:bg-accent"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <Button asChild size="lg" className="mt-auto w-full">
-          <a href={contactHref} onClick={close} data-cta="mobile-menu">
-            {SUBSCRIBE_LABEL}
-          </a>
-        </Button>
-      </SheetContent>
-    </Sheet>
+    <>
+      <Button
+        ref={triggerRef}
+        variant="ghost"
+        size="icon"
+        className="lg:hidden"
+        aria-label="Abrir menu"
+        aria-haspopup="dialog"
+        aria-expanded={isOpen}
+        onClick={open}
+      >
+        <Menu aria-hidden="true" className="size-6" />
+      </Button>
+      {hasOpened && (
+        <HeaderMobileSheet
+          links={links}
+          contactHref={contactHref}
+          isOpen={isOpen}
+          onOpenChange={setIsOpen}
+          triggerRef={triggerRef}
+        />
+      )}
+    </>
   );
 };

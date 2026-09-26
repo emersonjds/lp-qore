@@ -72,4 +72,11 @@ describe("exported HTML", () => {
     expect(initialCode).not.toContain("GreenSock");
     expect(initialCode).not.toContain("scrollerProxy");
   });
+
+  it("loads the mobile menu dialog only when it is opened", () => {
+    const { files } = measureInitialJavaScript(OUT_DIRECTORY);
+    const initialCode = files.map((file) => readFileSync(join(OUT_DIRECTORY, file), "utf8")).join("\n");
+    expect(initialCode).not.toContain("FocusScope");
+    expect(initialCode).not.toContain("RemoveScroll");
+  });
 });

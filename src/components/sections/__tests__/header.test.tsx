@@ -32,16 +32,27 @@ describe("Header", () => {
     const user = userEvent.setup();
     render(<Header />);
     await user.click(screen.getByRole("button", { name: "Abrir menu" }));
-    const dialog = screen.getByRole("dialog");
+    const dialog = await screen.findByRole("dialog");
     await user.click(within(dialog).getByRole("link", { name: "Como funciona" }));
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("returns focus to the menu button when the menu closes", async () => {
+    const user = userEvent.setup();
+    render(<Header />);
+    const trigger = screen.getByRole("button", { name: "Abrir menu" });
+    await user.click(trigger);
+    await screen.findByRole("dialog");
+    await user.keyboard("{Escape}");
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(trigger).toHaveFocus();
   });
 
   it("labels the menu close button in Portuguese", async () => {
     const user = userEvent.setup();
     render(<Header />);
     await user.click(screen.getByRole("button", { name: "Abrir menu" }));
-    expect(screen.getByRole("button", { name: "Fechar" })).toHaveClass("size-11");
+    expect(await screen.findByRole("button", { name: "Fechar" })).toHaveClass("size-11");
   });
 });
 
@@ -50,7 +61,7 @@ describe("Header subscribe call to action", () => {
     const user = userEvent.setup();
     render(<Header />);
     await user.click(screen.getByRole("button", { name: "Abrir menu" }));
-    const link = within(screen.getByRole("dialog")).getByRole("link", { name: "Assinar a Qore" });
+    const link = within(await screen.findByRole("dialog")).getByRole("link", { name: "Assinar a Qore" });
     expect(link).toHaveAttribute("href", "/#contato");
     expect(link).toHaveAttribute("data-cta", "mobile-menu");
   });

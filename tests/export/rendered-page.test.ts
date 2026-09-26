@@ -74,6 +74,15 @@ describe("rendered landing page", () => {
     await page.close();
   });
 
+  it("opens the mobile menu on demand", async () => {
+    const page = await browser.newPage({ viewport: { width: 375, height: 812 } });
+    await page.goto(baseUrl);
+    await page.getByRole("tab").first().waitFor({ state: "attached", timeout: 10_000 });
+    await page.getByRole("button", { name: "Abrir menu" }).click();
+    await page.getByRole("dialog").getByRole("link", { name: "Como funciona" }).waitFor({ state: "visible", timeout: 10_000 });
+    await page.close();
+  });
+
   it("opens and closes an FAQ answer natively", async () => {
     const page = await browser.newPage();
     await page.goto(baseUrl);
