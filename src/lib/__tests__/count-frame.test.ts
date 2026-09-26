@@ -26,6 +26,13 @@ describe("formatCountFrame", () => {
     expect(formatCountFrame("34,8%", 1)).toBe("34,8%");
   });
 
+  it("counts only the first number of the market figures and keeps the words static", () => {
+    expect(formatCountFrame("7.650", 0.5)).toBe("3.825");
+    expect(formatCountFrame("R$ 33 bi", 0)).toBe("R$ 0 bi");
+    expect(formatCountFrame("R$ 42,4 bi", 0.5)).toBe("R$ 21,2 bi");
+    expect(formatCountFrame("12% do PIB", 0.5)).toBe("6% do PIB");
+  });
+
   it("leaves text without a number untouched", () => {
     expect(formatCountFrame("Válida", 0.3)).toBe("Válida");
   });
