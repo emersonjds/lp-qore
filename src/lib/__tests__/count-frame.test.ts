@@ -17,6 +17,15 @@ describe("formatCountFrame", () => {
     expect(formatCountFrame("87%", 0)).toBe("0%");
   });
 
+  it("counts decimal values with the Brazilian comma and keeps the decimal places", () => {
+    expect(formatCountFrame("R$ 4,2M", 0)).toBe("R$ 0,0M");
+    expect(formatCountFrame("R$ 4,2M", 0.5)).toBe("R$ 2,1M");
+    expect(formatCountFrame("R$ 4,2M", 1)).toBe("R$ 4,2M");
+    expect(formatCountFrame("34,8%", 0)).toBe("0,0%");
+    expect(formatCountFrame("34,8%", 0.5)).toBe("17,4%");
+    expect(formatCountFrame("34,8%", 1)).toBe("34,8%");
+  });
+
   it("leaves text without a number untouched", () => {
     expect(formatCountFrame("Válida", 0.3)).toBe("Válida");
   });
