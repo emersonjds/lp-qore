@@ -27,6 +27,16 @@ beforeAll(() => {
 });
 
 describe("exported HTML", () => {
+  it("inlines the stylesheet with font URLs that resolve from any page", () => {
+    listHtmlFiles().forEach((file) => {
+      const html = readFileSync(file, "utf8");
+      expect(html).not.toContain('rel="stylesheet"');
+      const styles = html.match(/<style\b[^>]*>[\s\S]*?<\/style>/g) ?? [];
+      styles.forEach((style) => expect(style).not.toContain("url(../media/"));
+    });
+    expect(readOut("index.html")).toContain("url(/_next/static/media/");
+  });
+
   it("ships no legacy polyfills to the Baseline browsers the site targets", () => {
     const chunkDirectory = join(OUT_DIRECTORY, "_next", "static", "chunks");
     const polyfilled = readdirSync(chunkDirectory, { recursive: true, withFileTypes: true })

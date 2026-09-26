@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  experimental: {
+    inlineCss: true,
+  },
   turbopack: {
     resolveAlias: {
       "../build/polyfills/polyfill-module": "./src/lib/shims/empty-module.ts",
