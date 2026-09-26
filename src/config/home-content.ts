@@ -43,7 +43,7 @@ export const heroContent = {
   trustPoints: [
     { icon: ShieldCheck, label: "Alinhado à Lei 14.133/2021" },
   ],
-  primaryAction: "Quero assinar a Qore",
+  primaryAction: "Quero uma demonstração",
   secondaryAction: "Ver como funciona",
 } as const;
 
@@ -137,7 +137,7 @@ export const responsibleAiContent: { eyebrow: string; title: string; description
     {
       icon: PenLine,
       title: "Você envia a proposta, não a IA",
-      description: "O Qore não envia proposta nem dá lance. O envio ao portal e a assinatura continuam com a sua empresa.",
+      description: "O Qore não envia proposta nem dá lance. O envio ao portal e a decisão final continuam com a sua empresa.",
     },
   ],
 };
@@ -411,10 +411,10 @@ export const aboutContent = {
 } as const;
 
 export const contactContent = {
-  eyebrow: "Assinatura",
-  title: "Assine a Qore e veja suas licitações",
+  eyebrow: "Demonstração",
+  title: "Veja a Qore com as licitações da sua empresa",
   description:
-    "Conte um pouco sobre a sua empresa e mostramos as licitações abertas em São Paulo para o seu segmento. Respondemos pelo e-mail ou WhatsApp que você informar.",
+    "Conte um pouco sobre a sua empresa e um especialista mostra as licitações abertas em São Paulo para o seu segmento.",
   highlights: [
     "Radar montado a partir do CNPJ da sua empresa",
     "Editais abertos em São Paulo no seu segmento",
@@ -425,13 +425,13 @@ export const contactContent = {
 export const ctaBanners = {
   afterFeatures: {
     location: "after-features",
-    title: "Sua próxima proposta pode sair 80% pronta",
-    actionLabel: "Começar agora",
+    title: "Sua próxima proposta pode sair cerca de 80% pronta",
+    actionLabel: "Agendar demonstração",
   },
   afterIntegrations: {
     location: "after-integrations",
     title: "Licitações de São Paulo que combinam com o que a sua empresa vende",
-    actionLabel: "Assine e receba o radar do seu CNPJ",
+    actionLabel: "Ver as licitações do meu CNPJ",
   },
 } as const;
 

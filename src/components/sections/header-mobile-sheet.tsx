@@ -3,7 +3,7 @@
 import type { RefObject } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet";
-import { SUBSCRIBE_LABEL } from "@/config/navigation";
+import { CONTACT_SPECIALIST_LABEL } from "@/config/navigation";
 import type { NavLink } from "@/types";
 
 export interface HeaderMobileSheetProps {
@@ -46,7 +46,7 @@ export const HeaderMobileSheet = ({ links, contactHref, isOpen, onOpenChange, tr
         </nav>
         <Button asChild size="lg" className="mt-auto w-full">
           <a href={contactHref} onClick={close} data-cta="mobile-menu">
-            {SUBSCRIBE_LABEL}
+            {CONTACT_SPECIALIST_LABEL}
           </a>
         </Button>
       </SheetContent>

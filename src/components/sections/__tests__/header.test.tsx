@@ -16,15 +16,15 @@ describe("Header", () => {
       ["IA responsável", "/#ia-responsavel"],
       ["FAQ", "/#faq"],
     ]);
-    expect(screen.getByRole("link", { name: "Assinar a Qore" })).toHaveAttribute("href", "/#contato");
-    expect(screen.getByRole("link", { name: "Assinar a Qore" })).toHaveAttribute("data-cta", "header");
+    expect(screen.getByRole("link", { name: "Fale com um especialista" })).toHaveAttribute("href", "/#contato");
+    expect(screen.getByRole("link", { name: "Fale com um especialista" })).toHaveAttribute("data-cta", "header");
   });
 
   it("switches between the desktop nav with CTA and the mobile menu at the same breakpoint", () => {
     render(<Header />);
     expect(screen.getByRole("navigation", { name: "Principal" })).toHaveClass("hidden", "lg:block");
-    expect(screen.getByRole("link", { name: "Assinar a Qore" })).toHaveClass("hidden", "lg:inline-flex");
-    expect(screen.getByRole("link", { name: "Assinar a Qore" })).not.toHaveClass("md:inline-flex");
+    expect(screen.getByRole("link", { name: "Fale com um especialista" })).toHaveClass("hidden", "lg:inline-flex");
+    expect(screen.getByRole("link", { name: "Fale com um especialista" })).not.toHaveClass("md:inline-flex");
     expect(screen.getByRole("button", { name: "Abrir menu" })).toHaveClass("lg:hidden");
   });
 
@@ -56,12 +56,12 @@ describe("Header", () => {
   });
 });
 
-describe("Header subscribe call to action", () => {
-  it("invites to subscribe from the mobile menu too", async () => {
+describe("Header specialist call to action", () => {
+  it("invites to talk to a specialist from the mobile menu too", async () => {
     const user = userEvent.setup();
     render(<Header />);
     await user.click(screen.getByRole("button", { name: "Abrir menu" }));
-    const link = within(await screen.findByRole("dialog")).getByRole("link", { name: "Assinar a Qore" });
+    const link = within(await screen.findByRole("dialog")).getByRole("link", { name: "Fale com um especialista" });
     expect(link).toHaveAttribute("href", "/#contato");
     expect(link).toHaveAttribute("data-cta", "mobile-menu");
   });

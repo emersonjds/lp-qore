@@ -10,4 +10,7 @@ export const FORBIDDEN_TERMS: readonly string[] = [
   "BNCP",
   "00.000.000",
   "piloto",
+  "assine",
+  "assinar",
+  "assinatura",
 ];

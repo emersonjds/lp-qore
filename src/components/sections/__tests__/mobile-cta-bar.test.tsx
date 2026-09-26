@@ -19,7 +19,7 @@ const trigger = (id: string, isIntersecting: boolean) => {
   act(() => IntersectionObserverMock.trigger(target, isIntersecting));
 };
 
-const bar = () => screen.getByRole("complementary", { name: "Assinar a Qore", hidden: true });
+const bar = () => screen.getByRole("complementary", { name: "Fale com um especialista", hidden: true });
 
 describe("MobileCtaBar", () => {
   it("starts hidden and out of the tab order", () => {
@@ -34,7 +34,7 @@ describe("MobileCtaBar", () => {
     trigger("contato", false);
     expect(bar()).toHaveAttribute("data-visible", "true");
     expect(bar()).not.toHaveAttribute("inert");
-    const link = screen.getByRole("link", { name: "Assinar a Qore" });
+    const link = screen.getByRole("link", { name: "Fale com um especialista" });
     expect(link).toHaveAttribute("href", "/#contato");
     expect(link).toHaveAttribute("data-cta", "mobile-sticky");
   });

@@ -12,9 +12,9 @@ describe("Hero", () => {
     expect(heading.className).not.toMatch(/animate/);
   });
 
-  it("invites to subscribe and to see how it works", () => {
+  it("invites to a demo and to see how it works", () => {
     render(<Hero />);
-    const primary = screen.getByRole("link", { name: "Quero assinar a Qore" });
+    const primary = screen.getByRole("link", { name: "Quero uma demonstração" });
     expect(primary).toHaveAttribute("href", "/#contato");
     expect(primary).toHaveAttribute("data-cta", "hero-primary");
     const secondary = screen.getByRole("link", { name: "Ver como funciona" });

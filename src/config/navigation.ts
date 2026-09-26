@@ -2,7 +2,7 @@ import type { NavLink } from "@/types";
 
 export const CONTACT_HREF = "/#contato";
 export const HOW_IT_WORKS_HREF = "/#como-funciona";
-export const SUBSCRIBE_LABEL = "Assinar a Qore";
+export const CONTACT_SPECIALIST_LABEL = "Fale com um especialista";
 
 export const primaryNavigation: readonly NavLink[] = [
   { label: "Como funciona", href: HOW_IT_WORKS_HREF },

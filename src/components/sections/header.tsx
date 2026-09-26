@@ -3,7 +3,7 @@ import { Container } from "@/components/layout/container";
 import { ScrollStateObserver } from "@/components/layout/scroll-state-observer";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
-import { CONTACT_HREF, primaryNavigation, SUBSCRIBE_LABEL } from "@/config/navigation";
+import { CONTACT_HREF, primaryNavigation, CONTACT_SPECIALIST_LABEL } from "@/config/navigation";
 import { HeaderMobileMenu } from "./header-mobile-menu";
 
 export const Header = () => (
@@ -31,7 +31,7 @@ export const Header = () => (
         <div className="flex items-center gap-2">
           <Button asChild className="hidden lg:inline-flex">
             <a href={CONTACT_HREF} data-cta="header">
-              {SUBSCRIBE_LABEL}
+              {CONTACT_SPECIALIST_LABEL}
             </a>
           </Button>
           <HeaderMobileMenu links={primaryNavigation} contactHref={CONTACT_HREF} />

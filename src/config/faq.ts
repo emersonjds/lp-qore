@@ -29,6 +29,6 @@ export const faqItems: readonly FAQItem[] = [
   {
     question: "Quanto custa?",
     answer:
-      "A assinatura varia conforme o porte da empresa e o volume de licitações. Deixe seu contato e montamos a assinatura certa para a sua operação.",
+      "O valor varia conforme o porte da empresa e o volume de licitações. Na demonstração, um especialista apresenta o plano certo para a sua operação.",
   },
 ];

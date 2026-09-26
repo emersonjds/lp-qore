@@ -28,19 +28,16 @@ describe("ContactForm", () => {
 
   it("reassures under the button and tags the submit as the final CTA", () => {
     render(<ContactForm />);
-    expect(screen.getByText("Resposta em horário comercial.")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Quero assinar" })).toHaveAttribute(
+    expect(screen.getByText("Um especialista entra em contato em horário comercial.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Solicitar demonstração" })).toHaveAttribute(
       "data-cta",
       "contact-submit",
     );
   });
 
-  it("offers a sales conversation as a secondary path that jumps to the message field", () => {
+  it("offers no secondary sales link, only the demo request", () => {
     render(<ContactForm />);
-    expect(screen.getByRole("link", { name: "Prefere falar com vendas? Deixe uma mensagem" })).toHaveAttribute(
-      "href",
-      "#contact-message",
-    );
+    expect(screen.queryByRole("link", { name: /vendas/ })).not.toBeInTheDocument();
   });
 
   it("keeps consent unchecked by default", () => {
@@ -52,7 +49,7 @@ describe("ContactForm", () => {
   it("shows every error and focuses the first invalid field", async () => {
     const user = userEvent.setup();
     render(<ContactForm />);
-    await user.click(screen.getByRole("button", { name: "Quero assinar" }));
+    await user.click(screen.getByRole("button", { name: "Solicitar demonstração" }));
     expect(screen.getByText("Informe seu nome.")).toBeInTheDocument();
     expect(screen.getByText("Escolha o seu cargo.")).toBeInTheDocument();
     expect(screen.getByLabelText(/Nome/)).toHaveFocus();
@@ -74,7 +71,7 @@ describe("ContactForm", () => {
     const user = userEvent.setup();
     render(<ContactForm />);
     await fillValidForm(user);
-    await user.click(screen.getByRole("button", { name: "Quero assinar" }));
+    await user.click(screen.getByRole("button", { name: "Solicitar demonstração" }));
     await waitFor(() =>
       expect(screen.getByRole("status")).toHaveTextContent(
         "Recebemos seu contato, Maria Souza. Vamos falar com você pelo e-mail ou WhatsApp informado.",
@@ -89,7 +86,7 @@ describe("ContactForm", () => {
     const user = userEvent.setup();
     render(<ContactForm />);
     await fillValidForm(user);
-    await user.click(screen.getByRole("button", { name: "Quero assinar" }));
+    await user.click(screen.getByRole("button", { name: "Solicitar demonstração" }));
     await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent(CONTACT_SUBMIT_ERROR));
   });
 });

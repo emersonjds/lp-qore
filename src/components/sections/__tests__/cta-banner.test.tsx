@@ -8,25 +8,25 @@ describe("CtaBanner", () => {
     render(
       <CtaBanner
         location="after-features"
-        title="Sua próxima proposta pode sair 80% pronta"
+        title="Sua próxima proposta pode sair cerca de 80% pronta"
         actionLabel="Falar com um especialista"
       />,
     );
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Sua próxima proposta pode sair 80% pronta");
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Sua próxima proposta pode sair cerca de 80% pronta");
     const action = screen.getByRole("link", { name: "Falar com um especialista" });
     expect(action).toHaveAttribute("href", "/#contato");
     expect(action).toHaveAttribute("data-cta", "after-features");
   });
 
-  it("invites to start and to subscribe for the CNPJ radar", () => {
+  it("invites to book a demo and to see the tenders of the CNPJ", () => {
     render(
       <>
         <CtaBanner {...ctaBanners.afterFeatures} />
         <CtaBanner {...ctaBanners.afterIntegrations} />
       </>,
     );
-    expect(screen.getByRole("link", { name: "Começar agora" })).toHaveAttribute("data-cta", "after-features");
-    expect(screen.getByRole("link", { name: "Assine e receba o radar do seu CNPJ" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Agendar demonstração" })).toHaveAttribute("data-cta", "after-features");
+    expect(screen.getByRole("link", { name: "Ver as licitações do meu CNPJ" })).toHaveAttribute(
       "data-cta",
       "after-integrations",
     );

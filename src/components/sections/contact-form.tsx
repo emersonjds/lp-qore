@@ -246,13 +246,9 @@ export const ContactForm = () => {
       </div>
 
       <ContactSubmitButton status={status} />
-      <p className="-mt-2 text-center text-caption text-muted-foreground">Resposta em horário comercial.</p>
-      <a
-        href="#contact-message"
-        className="mx-auto inline-flex min-h-11 items-center text-label-md font-medium text-primary underline underline-offset-4"
-      >
-        Prefere falar com vendas? Deixe uma mensagem
-      </a>
+      <p className="-mt-2 text-center text-caption text-muted-foreground">
+        Um especialista entra em contato em horário comercial.
+      </p>
       <p role="status" aria-live="polite" className="min-h-6 text-body-md text-foreground">
         {feedback}
       </p>
