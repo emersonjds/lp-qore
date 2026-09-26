@@ -83,7 +83,6 @@ Todas as execuções de navegador rodam em modo headless.
 | `pnpm lhci` | Lighthouse CI em mobile e desktop, com as notas mínimas da seção de qualidade |
 | `pnpm verify` | Roda tudo em ordem: lint, typecheck, cobertura, build, `test:export` e `lhci`. **Deve passar antes de publicar** |
 | `pnpm brand:assets` | Regera a imagem de compartilhamento e o ícone da Apple |
-| `pnpm map:generate` | Regera o mapa do Brasil a partir da malha oficial do IBGE |
 
 ---
 
@@ -111,7 +110,7 @@ src/
 ├── lib/                    # Lógica pura: validação do formulário, telefone, URLs, SEO
 ├── test-utils/             # Mocks e utilitários de teste
 └── types/                  # Tipos compartilhados
-scripts/                    # Geração de mapa e ativos de marca, medição de JS
+scripts/                    # Geração de ativos de marca, medição de JS
 tests/
 ├── unit/                   # Testes de configuração do projeto (tokens, Netlify, conteúdo)
 └── export/                 # Testes que rodam sobre o HTML exportado em out/
@@ -130,18 +129,14 @@ Nenhum texto fica escrito dentro dos componentes: **toda a copy vive em `src/con
 
 | Arquivo | Conteúdo |
 | --- | --- |
-| `home-content.ts` | Hero, problema, como funciona, IA responsável, cobertura, quem somos, banners de CTA, seção de contato |
-| `features.ts` | Cards de funcionalidades e o destaque da proposta |
+| `home-content.ts` | Hero, como funciona, abas da plataforma, para quem é, seção de contato |
+| `cnpj-radar.ts` | Textos do radar grátis por CNPJ (consulta Receita + PNCP e captura o lead no formulário `radar`) |
 | `simulated-screens.ts` | Dados exibidos nas telas simuladas (hero, abas da plataforma, visões de gestor e analista) |
 | `faq.ts` | Perguntas frequentes (alimenta também o JSON-LD `FAQPage`) |
-| `integrations.ts` | Portais e órgãos citados na seção de integrações |
-| `documents.ts` | Certidões da seção de documentos |
-| `market-numbers.ts` | Números do mercado (PNCP, Governo de SP, Sebrae, IPEA), **sempre com fonte e data** |
 | `contact-form.ts` | Rótulos, opções (cargo, porte, licitações por mês) e mensagens do formulário |
 | `privacy.ts` | Texto da política de privacidade |
 | `navigation.ts` | Menu, rodapé e rótulo dos CTAs |
 | `site.ts` | Nome, URL, descrição e **dados legais** da empresa |
-| `testimonials.ts` | Depoimentos de clientes. **Lista vazia = seção oculta** |
 | `accessible-labels.ts` | Textos lidos por leitores de tela |
 
 Regras de conteúdo, verificadas por teste:
@@ -208,14 +203,6 @@ Não há segredos no projeto: o site é estático e o formulário é tratado pel
 
 ## Regerar ativos
 
-### Mapa do Brasil (IBGE)
-
-```bash
-pnpm map:generate
-```
-
-Baixa a malha oficial de UFs da [API de malhas do IBGE](https://servicodados.ibge.gov.br/api/docs/malhas) e reescreve `src/config/brazil-map.ts`. Precisa de internet e só deve ser rodado se a malha mudar. O arquivo gerado é versionado.
-
 ### Imagem de compartilhamento e ícone
 
 ```bash
@@ -270,7 +257,6 @@ git push origin main                 # publica
 - [ ] **Dados legais:** preencher `siteConfig.legal` em `src/config/site.ts` (razão social, CNPJ, cidade/UF, e-mail de contato e encarregado de dados). Enquanto estiverem vazios, o rodapé não mostra CNPJ e a política de privacidade exibe um aviso no lugar dos dados do controlador. **Não publique em produção sem isso.**
 - [ ] **Domínio:** apontar o DNS de `qore.com.br` para o Netlify, ativar HTTPS e trocar `NEXT_PUBLIC_SITE_URL` em `netlify.toml` (hoje `https://qoreapp.netlify.app`, provisório) para `https://qore.com.br`.
 - [ ] **Formulário:** notificações do Netlify Forms configuradas e testadas com um envio real.
-- [ ] **Números do mercado:** revisar os números de `market-numbers.ts` e dos banners seguindo [`market-data.md`](docs/specs/2026-09-25-landing-relaunch/market-data.md) (fonte, URL e como refazer a consulta ao PNCP).
 - [ ] **`pnpm verify`** verde no commit publicado.
 
 A retenção dos dados de contato é de 12 meses, já definida e publicada na política de privacidade.
