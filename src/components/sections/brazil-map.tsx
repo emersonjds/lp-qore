@@ -16,7 +16,7 @@ const toMapPoint = (longitude: number, latitude: number) => ({
 });
 
 export const BrazilMap = () => (
-  <figure data-reveal data-coverage-map className="rounded-lg bg-surface-low p-6">
+  <figure data-reveal data-coverage-map className="rounded-xl bg-surface-low/70 p-6">
     <svg viewBox={BRAZIL_MAP.viewBox} role="img" aria-labelledby="brazil-map-title" className="h-auto w-full">
       <title id="brazil-map-title">
         Mapa do Brasil com o estado de São Paulo em destaque e os polos São Paulo, Campinas, Santos, Ribeirão Preto e
@@ -77,6 +77,9 @@ export const BrazilMap = () => (
         Em breve
       </li>
     </ul>
-    <figcaption className="mt-2 text-center text-caption text-muted-foreground">Fonte da malha: IBGE.</figcaption>
+    <figcaption className="mt-3 text-center text-caption text-muted-foreground">
+      <span className="block text-label-md font-semibold text-foreground">{coverageContent.mapCaption}</span>
+      <span>Fonte da malha: IBGE.</span>
+    </figcaption>
   </figure>
 );

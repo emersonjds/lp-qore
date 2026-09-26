@@ -348,13 +348,15 @@ export const coverageContent: {
   eyebrow: string;
   title: string;
   description: string;
+  mapCaption: string;
   clusters: readonly CoverageCluster[];
   hubs: readonly MapHub[];
 } = {
-  eyebrow: "Cobertura",
+  eyebrow: "Território de atuação",
   title: "Todo o estado de São Paulo, da capital ao interior",
   description:
     "Licitações dos 645 municípios paulistas, do governo do estado, de autarquias e empresas públicas, reunidas dos principais portais.",
+  mapCaption: "Os 645 municípios paulistas cobertos.",
   clusters: [
     {
       name: "Capital e litoral",

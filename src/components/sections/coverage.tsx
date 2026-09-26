@@ -18,7 +18,7 @@ const RegionList = ({ regions }: { regions: readonly CoverageRegion[] }) => (
 
 export const Coverage = () => (
   <SectionWrapper id="cobertura" aria-labelledby="coverage-title">
-    <div className="rounded-lg bg-card p-6 shadow-md md:p-12">
+    <div className="rounded-xl bg-card p-6 shadow-md md:p-12">
       <div className="grid items-center gap-10 lg:grid-cols-2">
         <div className="min-w-0">
           <p className="text-label-sm uppercase tracking-wider text-primary">{coverageContent.eyebrow}</p>
@@ -39,7 +39,7 @@ export const Coverage = () => (
       </div>
       <div data-testid="coverage-clusters-desktop" className="mt-10 hidden gap-4 md:grid md:grid-cols-2 lg:grid-cols-4">
         {coverageContent.clusters.map((cluster) => (
-          <section key={cluster.name} className="rounded-md bg-surface-low p-4">
+          <section key={cluster.name} className="rounded-lg bg-surface-low p-4">
             <h3 className="mb-3 text-label-md font-semibold text-primary">{cluster.name}</h3>
             <RegionList regions={cluster.regions} />
           </section>
@@ -47,7 +47,7 @@ export const Coverage = () => (
       </div>
       <div data-testid="coverage-clusters-mobile" className="mt-8 flex flex-col gap-2 md:hidden">
         {coverageContent.clusters.map((cluster, index) => (
-          <details key={cluster.name} open={index === 0} className="group rounded-md bg-surface-low px-4">
+          <details key={cluster.name} open={index === 0} className="group rounded-lg bg-surface-low px-4">
             <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between text-label-md font-semibold text-primary [&::-webkit-details-marker]:hidden">
               {cluster.name}
               <ChevronDown aria-hidden="true" className="size-4 transition-transform group-open:rotate-180" />

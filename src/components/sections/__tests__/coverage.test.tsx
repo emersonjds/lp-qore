@@ -15,6 +15,13 @@ describe("Coverage", () => {
     ).toBeInTheDocument();
   });
 
+  it("frames the section as the Stitch service territory and captions the map with the covered municipalities", () => {
+    const { container } = render(<Coverage />);
+    expect(screen.getByText("Território de atuação")).toBeInTheDocument();
+    const map = container.querySelector("[data-coverage-map]");
+    expect(map).toHaveTextContent("Os 645 municípios paulistas cobertos.");
+  });
+
   it("lists the 16 administrative regions in 4 cluster cards on desktop", () => {
     render(<Coverage />);
     const clusters = within(screen.getByTestId("coverage-clusters-desktop")).getAllByRole("heading", { level: 3 });
