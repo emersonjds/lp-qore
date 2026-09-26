@@ -16,7 +16,7 @@ describe("buildRootMetadata", () => {
 
   it("titles pages with the positioning title, not the slogan, and a template", () => {
     expect(metadata.title).toEqual({
-      default: "Qore | Licitações de São Paulo, do radar à proposta",
+      default: "Qore | Licitações, do radar à proposta pronta",
       template: "%s | Qore",
     });
   });

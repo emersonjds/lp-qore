@@ -11,8 +11,8 @@ import type {
 } from "@/types";
 
 export const heroContent = {
-  eyebrow: "Para quem vende ao governo em São Paulo",
-  titleLead: "Licitações de São Paulo,",
+  eyebrow: "Para quem vende ao governo",
+  titleLead: "Licitações,",
   titleEmphasis: "do radar à proposta pronta.",
   subtitle:
     "A Qore encontra os editais que combinam com o seu CNPJ, resume cada um citando a página, entrega a proposta cerca de 80% pronta e avisa antes de uma certidão vencer.",
