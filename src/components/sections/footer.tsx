@@ -2,7 +2,7 @@ import { Container } from "@/components/layout/container";
 import { Logo } from "@/components/ui/logo";
 import { footerNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
-import { isLegalIdentityComplete } from "@/lib/legal";
+import { hasFooterLegalLine } from "@/lib/legal";
 import type { LegalIdentity } from "@/types";
 
 interface FooterProps {
@@ -18,7 +18,7 @@ export const Footer = ({ year = new Date().getFullYear(), legal = siteConfig.leg
         <p className="text-caption text-muted-foreground">
           © {year} {siteConfig.name}. Todos os direitos reservados.
         </p>
-        {isLegalIdentityComplete(legal) ? (
+        {hasFooterLegalLine(legal) ? (
           <p className="text-caption text-muted-foreground">
             {legal.companyName} · CNPJ {legal.taxId} · {legal.city}/{legal.state}
           </p>

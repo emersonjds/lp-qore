@@ -32,6 +32,11 @@ describe("Footer", () => {
     expect(container.textContent).not.toMatch(/CNPJ/);
   });
 
+  it("shows the legal line with only company name, CNPJ, city and state filled", () => {
+    render(<Footer year={2026} legal={{ ...completeLegal, contactEmail: "", dataProtectionOfficer: "" }} />);
+    expect(screen.getByText("Razão Social de Teste · CNPJ CNPJ-DE-TESTE · Cidade de Teste/SP")).toBeInTheDocument();
+  });
+
   it("shows the company name, CNPJ and city once the legal data is complete", () => {
     render(<Footer year={2026} legal={completeLegal} />);
     expect(screen.getByText("Razão Social de Teste · CNPJ CNPJ-DE-TESTE · Cidade de Teste/SP")).toBeInTheDocument();
