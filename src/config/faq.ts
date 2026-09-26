@@ -22,9 +22,9 @@ export const faqItems: readonly FAQItem[] = [
       "A plataforma liga os dados da empresa, do edital e da habilitação, e a proposta chega cerca de 80% pronta. Você preenche os preços e revisa. O documento final sai com o logo da sua empresa ou, sem logo, com um modelo padrão profissional.",
   },
   {
-    question: "Quanto custa?",
+    question: "Sou MEI, posso usar a Qore?",
     answer:
-      "O valor varia conforme o porte da empresa e o volume de licitações. Na demonstração, um especialista apresenta o plano certo para a sua operação.",
+      "Pode. O MEI tem os benefícios de micro e pequena empresa nas licitações (LC 123/2006, aplicada pela Lei 14.133): itens de até R$ 80 mil são exclusivos para ME, EPP e MEI, e há preferência no desempate. Atenção ao limite de faturamento do MEI, de R$ 81 mil por ano: na demonstração, um especialista ajuda a focar nos editais de valor compatível.",
   },
 ];
 

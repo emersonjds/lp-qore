@@ -12,7 +12,7 @@ describe("Faq", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders the six questions as native disclosure widgets", () => {
+  it("renders the five questions as native disclosure widgets", () => {
     const { container } = render(<Faq />);
     const disclosures = container.querySelectorAll("details");
     expect(disclosures).toHaveLength(5);
@@ -21,11 +21,14 @@ describe("Faq", () => {
     );
   });
 
-  it("opens with the Stitch eyebrow and answers the price question through the demo", () => {
+  it("opens with the Stitch eyebrow and answers whether a MEI can use the Qore", () => {
     render(<Faq />);
     expect(screen.getByText("Tire suas dúvidas")).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Perguntas frequentes");
-    expect(screen.getByText(/O valor varia conforme o porte da empresa/)).toBeInTheDocument();
+    expect(screen.getByText("Sou MEI, posso usar a Qore?")).toBeInTheDocument();
+    expect(screen.getByText(/itens de até R\$ 80 mil são exclusivos para ME, EPP e MEI/)).toBeInTheDocument();
+    expect(screen.getByText(/limite de faturamento do MEI, de R\$ 81 mil por ano/)).toBeInTheDocument();
+    expect(screen.queryByText("Quanto custa?")).not.toBeInTheDocument();
   });
 
   it("explains how the proposal gets about 80% ready", () => {
