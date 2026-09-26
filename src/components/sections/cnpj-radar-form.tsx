@@ -214,11 +214,11 @@ export const CnpjRadarForm = () => {
   return (
     <div className="flex flex-col gap-6">
       <NetlifyDetectionForm />
-      <form noValidate onSubmit={handleSearch} className="flex flex-col gap-3 sm:flex-row sm:items-start">
-        <div className="flex flex-1 flex-col gap-1">
-          <label htmlFor="radar-cnpj" className="text-label-md text-foreground">
-            {cnpjRadarCopy.cnpjLabel}
-          </label>
+      <form noValidate onSubmit={handleSearch} className="flex flex-col gap-1">
+        <label htmlFor="radar-cnpj" className="text-label-md text-foreground">
+          {cnpjRadarCopy.cnpjLabel}
+        </label>
+        <div className="flex flex-col gap-3 sm:flex-row">
           <Input
             id="radar-cnpj"
             inputMode="numeric"
@@ -228,14 +228,15 @@ export const CnpjRadarForm = () => {
             onChange={(event) => setCnpj(formatCnpj(event.target.value))}
             aria-invalid={Boolean(error)}
             aria-describedby={error ? "radar-cnpj-error" : undefined}
+            className="sm:flex-1"
           />
-          <p id="radar-cnpj-error" role="alert" className="min-h-5 text-caption text-destructive-text">
-            {error}
-          </p>
+          <Button type="submit" data-cta="radar-search" disabled={isSearching}>
+            {isSearching ? cnpjRadarCopy.search.searching : cnpjRadarCopy.search.idle}
+          </Button>
         </div>
-        <Button type="submit" size="lg" data-cta="radar-search" disabled={isSearching} className="sm:mt-7">
-          {isSearching ? cnpjRadarCopy.search.searching : cnpjRadarCopy.search.idle}
-        </Button>
+        <p id="radar-cnpj-error" role="alert" className="min-h-5 text-caption text-destructive-text">
+          {error}
+        </p>
       </form>
       {result && <RadarResultPanel key={cnpj} cnpj={cnpj} result={result} />}
     </div>
