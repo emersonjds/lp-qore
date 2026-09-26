@@ -1,11 +1,24 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useNearViewport } from "@/hooks/use-near-viewport";
-import { loadScrollTrigger } from "@/lib/load-scroll-trigger";
 import { prefersReducedMotion } from "@/lib/motion-preferences";
 
 const TRAVELER_RADIUS = 6;
+const EASE_OUT = "cubic-bezier(0.215, 0.61, 0.355, 1)";
+const EASE_IN_OUT = "cubic-bezier(0.455, 0.03, 0.515, 0.955)";
+const EASE_BACK_OUT = "cubic-bezier(0.34, 1.56, 0.64, 1)";
+const CLAUSE_PULSE_START = 400;
+const CLAUSE_PULSE_MS = 350;
+const CLAUSE_PULSES = 4;
+const TRAVEL_MS = 900;
+const TRAVELER_FADE_MS = 200;
+const CHIP_MS = 400;
+const CHIP_STAGGER_MS = 300;
+const ALERT_DELAY_MS = 200;
+const ALERT_MS = 600;
+const HOLD_MS = 3500;
+const FADE_OUT_MS = 500;
+const CYCLE_GAP_MS = 1200;
 
 const pointOf = (frame: HTMLElement, element: Element, side: "start" | "end") => {
   const frameBox = frame.getBoundingClientRect();
@@ -14,80 +27,108 @@ const pointOf = (frame: HTMLElement, element: Element, side: "start" | "end") =>
   return { x: x - frameBox.left - TRAVELER_RADIUS, y: box.top + box.height / 2 - frameBox.top - TRAVELER_RADIUS };
 };
 
+const translate = ({ x, y }: { x: number; y: number }, scale: number) => `translate(${x}px, ${y}px) scale(${scale})`;
+
+interface CycleParts {
+  frame: HTMLElement;
+  traveler: HTMLElement;
+  clause: Element;
+  firstCard: Element;
+  chips: readonly Element[];
+  alert: Element;
+}
+
+const startCycle = ({ frame, traveler, clause, firstCard, chips, alert }: CycleParts): Animation[] => {
+  const travelStart = CLAUSE_PULSE_START + CLAUSE_PULSE_MS * CLAUSE_PULSES;
+  const chipsStart = travelStart + TRAVEL_MS + TRAVELER_FADE_MS / 2;
+  const alertStart = chipsStart + Math.max(chips.length - 1, 0) * CHIP_STAGGER_MS + CHIP_MS + ALERT_DELAY_MS;
+  const fadeOutStart = alertStart + ALERT_MS + HOLD_MS;
+  const from = pointOf(frame, clause, "end");
+  const to = pointOf(frame, firstCard, "start");
+
+  const hiddenChip = { opacity: 0, transform: "scale(0.4)" };
+  const shownChip = { opacity: 1, transform: "scale(1)" };
+  const hiddenAlert = { opacity: 0, transform: "translateX(24px)" };
+  const shownAlert = { opacity: 1, transform: "none" };
+  const cycleEnd = fadeOutStart + FADE_OUT_MS + CYCLE_GAP_MS;
+  const timed = (delay: number, duration: number) => ({ delay, duration, endDelay: cycleEnd - delay - duration, fill: "both" as const });
+
+  return [
+    clause.animate([{ transform: "scale(1)" }, { transform: "scale(1.03)" }], {
+      delay: CLAUSE_PULSE_START,
+      duration: CLAUSE_PULSE_MS,
+      iterations: CLAUSE_PULSES,
+      direction: "alternate",
+      easing: EASE_OUT,
+    }),
+    traveler.animate(
+      [
+        { opacity: 0, transform: translate(from, 1), offset: 0 },
+        { opacity: 1, transform: translate(from, 1), offset: 0.01 },
+        { opacity: 1, transform: translate(to, 1), offset: TRAVEL_MS / (TRAVEL_MS + TRAVELER_FADE_MS), easing: EASE_IN_OUT },
+        { opacity: 0, transform: translate(to, 0.4), offset: 1 },
+      ],
+      timed(travelStart, TRAVEL_MS + TRAVELER_FADE_MS),
+    ),
+    ...chips.flatMap((chip, index) => [
+      chip.animate([hiddenChip, shownChip], { ...timed(chipsStart + index * CHIP_STAGGER_MS, CHIP_MS), easing: EASE_BACK_OUT, endDelay: 0, fill: "backwards" }),
+      chip.animate([shownChip, { opacity: 0, transform: "scale(1)" }], { ...timed(fadeOutStart, FADE_OUT_MS), fill: "forwards" }),
+    ]),
+    alert.animate([hiddenAlert, shownAlert], { ...timed(alertStart, ALERT_MS), easing: EASE_OUT, endDelay: 0, fill: "backwards" }),
+    alert.animate([shownAlert, { opacity: 0, transform: "none" }], { ...timed(fadeOutStart, FADE_OUT_MS), fill: "forwards" }),
+  ];
+};
+
 export const HeroSplitViewAnimator = () => {
   const markerRef = useRef<HTMLSpanElement>(null);
   const travelerRef = useRef<HTMLSpanElement>(null);
-  const isNear = useNearViewport(markerRef, "200px 0px");
 
   useEffect(() => {
-    const frame = markerRef.current?.closest<HTMLElement>("figure");
+    const marker = markerRef.current;
+    const frame = marker?.closest<HTMLElement>("figure");
     const traveler = travelerRef.current;
-    if (!isNear || !frame || !traveler || prefersReducedMotion()) return;
+    if (!marker || !frame || !traveler || prefersReducedMotion()) return;
 
-    let isCancelled = false;
-    let revert = () => {};
+    const clause = frame.querySelector("[data-source-clause]");
+    const firstCard = frame.querySelector("[data-summary-card]");
+    const alert = frame.querySelector("[data-risk-alert]");
+    if (!clause || !firstCard || !alert) return;
+    const parts: CycleParts = { frame, traveler, clause, firstCard, chips: [...frame.querySelectorAll("[data-page-chip]")], alert };
 
-    void loadScrollTrigger().then(({ gsap, ScrollTrigger }) => {
-      if (isCancelled) return;
-      const clause = frame.querySelector("[data-source-clause]");
-      const firstCard = frame.querySelector("[data-summary-card]");
-      const chips = [...frame.querySelectorAll("[data-page-chip]")];
-      const alert = frame.querySelector("[data-risk-alert]");
-      if (!clause || !firstCard || !alert) return;
+    let animations: Animation[] = [];
+    let isOnScreen = false;
+    let isDisposed = false;
 
-      const context = gsap.context(() => {
-        const timeline = gsap.timeline({ repeat: -1, repeatDelay: 1.2, paused: true, defaults: { ease: "power2.out" } });
-        timeline
-          .set(chips, { opacity: 0, scale: 0.4 })
-          .set(alert, { opacity: 0, x: 24 })
-          .set(traveler, { opacity: 0 })
-          .to(clause, { scale: 1.03, duration: 0.35, yoyo: true, repeat: 3, delay: 0.4 })
-          .set(traveler, {
-            x: () => pointOf(frame, clause, "end").x,
-            y: () => pointOf(frame, clause, "end").y,
-            opacity: 1,
-            scale: 1,
-          })
-          .to(traveler, {
-            x: () => pointOf(frame, firstCard, "start").x,
-            y: () => pointOf(frame, firstCard, "start").y,
-            duration: 0.9,
-            ease: "power2.inOut",
-          })
-          .to(traveler, { opacity: 0, scale: 0.4, duration: 0.2 });
+    const run = () => {
+      animations = startCycle(parts);
+      const last = animations.at(-1);
+      void last?.finished.then(() => {
+        if (isDisposed || last !== animations.at(-1)) return;
+        animations.forEach((animation) => animation.cancel());
+        run();
+      });
+    };
 
-        chips.forEach((chip) => {
-          timeline.to(chip, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2.5)" }, "-=0.1");
-        });
+    const sync = () => {
+      const shouldPlay = isOnScreen && document.visibilityState === "visible";
+      if (shouldPlay && animations.length === 0) run();
+      else animations.forEach((animation) => (shouldPlay ? animation.play() : animation.pause()));
+    };
 
-        timeline
-          .to(alert, { opacity: 1, x: 0, duration: 0.6, delay: 0.2 })
-          .to([...chips, alert], { opacity: 0, duration: 0.5, delay: 3.5 });
-
-        let isOnScreen = false;
-        const sync = () => (isOnScreen && document.visibilityState === "visible" ? timeline.play() : timeline.pause());
-
-        ScrollTrigger.create({
-          trigger: frame,
-          start: "top bottom",
-          end: "bottom top",
-          onToggle: (self: { isActive: boolean }) => {
-            isOnScreen = self.isActive;
-            sync();
-          },
-        });
-
-        document.addEventListener("visibilitychange", sync);
-        return () => document.removeEventListener("visibilitychange", sync);
-      }, frame);
-      revert = () => context.revert();
+    const observer = new IntersectionObserver(([entry]) => {
+      isOnScreen = Boolean(entry?.isIntersecting);
+      sync();
     });
+    observer.observe(marker);
+    document.addEventListener("visibilitychange", sync);
 
     return () => {
-      isCancelled = true;
-      revert();
+      isDisposed = true;
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", sync);
+      animations.forEach((animation) => animation.cancel());
     };
-  }, [isNear]);
+  }, []);
 
   return (
     <>
