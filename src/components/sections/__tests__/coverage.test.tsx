@@ -130,4 +130,17 @@ describe("Coverage", () => {
     const { container } = render(<Coverage />);
     expect(container.textContent).not.toMatch(/municípios paulistas monitorados/);
   });
+
+  it("fades the states in on first view, then lights São Paulo and pulses the hubs once", () => {
+    const { container } = render(<Coverage />);
+    const map = container.querySelector("[data-coverage-map]");
+    expect(map).toHaveAttribute("data-reveal");
+    const states = [...container.querySelectorAll<SVGPathElement>("path[data-uf]")];
+    expect(states.every((state) => state.style.getPropertyValue("--order") !== "")).toBe(true);
+    const saoPaulo = container.querySelector('path[data-uf="35"]');
+    expect(container.querySelector("path[data-sp-glow]")?.getAttribute("d")).toBe(saoPaulo?.getAttribute("d"));
+    expect(container.querySelectorAll("circle[data-hub-ring]")).toHaveLength(
+      container.querySelectorAll("circle.coverage-hub").length,
+    );
+  });
 });

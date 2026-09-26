@@ -163,6 +163,12 @@
     opacity: 0;
   }
 
+  [data-hub-ring] {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
   .coverage-hub {
     transform-box: fill-box;
     transform-origin: center;
@@ -248,6 +254,69 @@
 
   [data-before-after][data-revealed] [data-after]::before {
     animation: grow-x 700ms cubic-bezier(0.33, 1, 0.68, 1) calc(var(--order) * 120ms + 450ms) backwards;
+  }
+
+  .reveal-enabled [data-coverage-map]:not([data-revealed]) :is([data-uf], [data-sp-glow], .coverage-hub) {
+    opacity: 0;
+  }
+
+  [data-coverage-map][data-revealed] [data-uf] {
+    animation: fade-in 450ms ease-out calc(var(--order) * 35ms) backwards;
+  }
+
+  [data-coverage-map][data-revealed] [data-uf="35"] {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation:
+      fade-in 450ms ease-out 950ms backwards,
+      sp-pop 900ms cubic-bezier(0.34, 1.56, 0.64, 1) 1150ms backwards;
+  }
+
+  [data-coverage-map][data-revealed] [data-sp-glow] {
+    animation: fade-in 900ms ease-out 1200ms backwards;
+  }
+
+  [data-coverage-map][data-revealed] .coverage-hub {
+    animation:
+      fade-in 300ms ease-out 1500ms backwards,
+      hub-pulse 600ms ease-in-out 1900ms backwards;
+  }
+
+  [data-coverage-map][data-revealed] [data-hub-ring] {
+    animation: hub-ring 1300ms cubic-bezier(0.2, 0.8, 0.2, 1) 1900ms backwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes sp-pop {
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes hub-pulse {
+    50% {
+      transform: scale(1.7);
+    }
+  }
+
+  @keyframes hub-ring {
+    0% {
+      opacity: 0;
+      transform: scale(1);
+    }
+    1% {
+      opacity: 0.9;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(4.5);
+    }
   }
 
   @keyframes fade-out {
