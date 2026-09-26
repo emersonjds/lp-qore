@@ -61,6 +61,19 @@ describe("rendered landing page", () => {
     await context.close();
   });
 
+  it("hydrates the islands after the first paint", async () => {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+    const errors: string[] = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    page.on("console", (message) => {
+      if (message.type() === "error") errors.push(message.text());
+    });
+    await page.goto(baseUrl);
+    await page.getByRole("tab").first().waitFor({ state: "visible", timeout: 10_000 });
+    expect(errors).toEqual([]);
+    await page.close();
+  });
+
   it("opens and closes an FAQ answer natively", async () => {
     const page = await browser.newPage();
     await page.goto(baseUrl);
