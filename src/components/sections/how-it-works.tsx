@@ -29,7 +29,7 @@ export const HowItWorks = () => (
               aria-hidden="true"
               data-step-badge
               className={cn(
-                "mb-6 flex size-14 items-center justify-center rounded-full font-display text-headline-sm tabular-nums",
+                "mb-6 flex size-14 items-center justify-center rounded-full font-display text-headline-sm font-bold tabular-nums",
                 index === 0 ? "bg-primary text-primary-foreground shadow-md" : "bg-surface-container-high text-primary shadow-sm",
               )}
             >

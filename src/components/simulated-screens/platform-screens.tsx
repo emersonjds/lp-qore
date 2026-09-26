@@ -94,7 +94,7 @@ export const ManagerOverviewScreen = ({ label }: ScreenProps) => (
                   sessions === 2 && "bg-primary font-bold text-primary-foreground",
                   sessions === 1 && "bg-primary-fixed/50 font-bold text-foreground",
                   sessions === 0 && "bg-card text-foreground",
-                  sessions < 0 && "bg-surface-container/50 text-muted-foreground/60",
+                  sessions < 0 && "bg-surface-container/50 text-muted-foreground",
                 )}
               >
                 {day}
