@@ -27,6 +27,15 @@ beforeAll(() => {
 });
 
 describe("exported HTML", () => {
+  it("ships no legacy polyfills to the Baseline browsers the site targets", () => {
+    const chunkDirectory = join(OUT_DIRECTORY, "_next", "static", "chunks");
+    const polyfilled = readdirSync(chunkDirectory, { recursive: true, withFileTypes: true })
+      .filter((entry) => entry.isFile() && entry.name.endsWith(".js"))
+      .filter((entry) => readFileSync(join(entry.parentPath, entry.name), "utf8").includes("String.prototype.trimStart=String.prototype.trimLeft"))
+      .map((entry) => entry.name);
+    expect(polyfilled).toEqual([]);
+  });
+
   it.each(FORBIDDEN_TERMS)("never mentions %s", (term) => {
     const offenders = listHtmlFiles().filter((file) =>
       readFileSync(file, "utf8").toLowerCase().includes(term.toLowerCase()),
