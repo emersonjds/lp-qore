@@ -20,6 +20,11 @@ export const HowItWorks = () => (
         data-step-line
         className="absolute top-7 right-12 left-12 hidden h-0.5 origin-left bg-surface-container-high md:block"
       />
+      <div
+        aria-hidden="true"
+        data-step-progress
+        className="absolute top-7 right-12 left-12 hidden h-0.5 origin-left scale-x-0 bg-primary md:block"
+      />
       <ol className="relative grid gap-8 md:grid-cols-3">
         {howItWorksContent.steps.map((step, index) => (
           <li
@@ -29,9 +34,12 @@ export const HowItWorks = () => (
             <span
               aria-hidden="true"
               data-step-badge
+              data-active={index === 0}
               className={cn(
-                "mb-6 flex size-14 items-center justify-center rounded-full font-display text-headline-sm font-bold tabular-nums",
-                index === 0 ? "bg-primary text-primary-foreground shadow-md" : "bg-surface-container-high text-primary shadow-sm",
+                "mb-6 flex size-14 items-center justify-center rounded-full font-display text-headline-sm font-bold tabular-nums transition-colors duration-500",
+                index === 0
+                  ? "bg-primary text-primary-foreground shadow-md"
+                  : "bg-surface-container-high text-primary shadow-sm data-[active=true]:bg-primary data-[active=true]:text-primary-foreground data-[active=true]:shadow-md",
               )}
             >
               {step.number}

@@ -5,6 +5,14 @@ import { useNearViewport } from "@/hooks/use-near-viewport";
 import { loadScrollTrigger } from "@/lib/load-scroll-trigger";
 import { prefersReducedMotion } from "@/lib/motion-preferences";
 
+const progressStopAt = (track: HTMLElement, badge: HTMLElement, step: number, stepCount: number): number => {
+  const line = track.getBoundingClientRect();
+  const target = badge.getBoundingClientRect();
+  if (line.width === 0) return step / (stepCount - 1);
+  const badgeCenter = target.left + target.width / 2 - line.left;
+  return Math.min(1, Math.max(0, badgeCenter / line.width));
+};
+
 interface HowItWorksLineAnimatorProps {
   sectionId: string;
 }
@@ -24,13 +32,19 @@ export const HowItWorksLineAnimator = ({ sectionId }: HowItWorksLineAnimatorProp
     void loadScrollTrigger().then(({ gsap }) => {
       if (isCancelled) return;
       const context = gsap.context(() => {
-        const line = section.querySelector("[data-step-line]");
-        if (!line) return;
-        gsap.fromTo(
-          line,
-          { scaleX: 0 },
-          { scaleX: 1, ease: "none", scrollTrigger: { trigger: section, start: "top 75%", end: "bottom 60%", scrub: true } },
-        );
+        const track = section.querySelector<HTMLElement>("[data-step-line]");
+        const progress = section.querySelector<HTMLElement>("[data-step-progress]");
+        const badges = [...section.querySelectorAll<HTMLElement>("[data-step-badge]")];
+        if (!track || !progress || badges.length < 2) return;
+        gsap.set(progress, { scaleX: 0 });
+        const timeline = gsap.timeline({ scrollTrigger: { trigger: section, start: "top 60%", once: true } });
+        badges.slice(1).forEach((badge, index) => {
+          timeline
+            .to(progress, { scaleX: progressStopAt(track, badge, index + 1, badges.length), duration: 0.8, ease: "power1.inOut" })
+            .call(() => {
+              badge.dataset.active = "true";
+            });
+        });
       }, section);
       revert = () => context.revert();
     });
