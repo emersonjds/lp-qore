@@ -5,6 +5,7 @@
 [build.environment]
   NODE_VERSION = "22"
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  NEXT_PUBLIC_SITE_URL = "https://qoreapp.netlify.app"
 
 [[headers]]
   for = "/_next/static/*"

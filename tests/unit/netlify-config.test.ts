@@ -30,4 +30,8 @@ describe("netlify.toml", () => {
     expect(netlifyConfig).toContain('X-Content-Type-Options = "nosniff"');
     expect(netlifyConfig).toContain('Referrer-Policy = "strict-origin-when-cross-origin"');
   });
+
+  it("points the site URL at the Netlify address until the own domain is live", () => {
+    expect(netlifyConfig).toContain('NEXT_PUBLIC_SITE_URL = "https://qoreapp.netlify.app"');
+  });
 });
