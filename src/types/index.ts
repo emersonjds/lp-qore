@@ -53,7 +53,12 @@ export interface Persona {
 
 export interface CoverageRegion {
   name: string;
-  cities: string;
+  cities?: string;
+}
+
+export interface CoverageCluster {
+  name: string;
+  regions: readonly CoverageRegion[];
 }
 
 export interface MapHub {

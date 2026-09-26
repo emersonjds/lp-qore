@@ -20,7 +20,7 @@ import {
   UsersRound,
 } from "lucide-react";
 import type {
-  CoverageRegion,
+  CoverageCluster,
   HowItWorksStep,
   IconCard,
   MapHub,
@@ -250,18 +250,50 @@ export const coverageContent: {
   eyebrow: string;
   title: string;
   description: string;
-  regions: readonly CoverageRegion[];
+  clusters: readonly CoverageCluster[];
   hubs: readonly MapHub[];
 } = {
   eyebrow: "Cobertura",
-  title: "Começamos por São Paulo",
+  title: "Todo o estado de São Paulo, da capital ao interior",
   description:
-    "Licitações de órgãos estaduais e municipais de São Paulo, dos principais portais, em um só lugar. Outros estados em breve.",
-  regions: [
-    { name: "Grande São Paulo", cities: "Capital, Guarulhos, ABC" },
-    { name: "Região de Campinas", cities: "Campinas, Americana, Sumaré" },
-    { name: "Vale do Paraíba", cities: "São José dos Campos, Taubaté" },
-    { name: "Interior e Litoral", cities: "Ribeirão Preto, Santos, Sorocaba" },
+    "Licitações dos 645 municípios paulistas, do governo do estado, de autarquias e empresas públicas, reunidas dos principais portais.",
+  clusters: [
+    {
+      name: "Capital e litoral",
+      regions: [
+        { name: "Metropolitana de São Paulo", cities: "Capital, Guarulhos, ABC, Osasco" },
+        { name: "Baixada Santista", cities: "Santos, Guarujá, Praia Grande" },
+        { name: "Registro" },
+      ],
+    },
+    {
+      name: "Campinas e leste",
+      regions: [
+        { name: "Campinas", cities: "Americana, Jundiaí, Piracicaba" },
+        { name: "São José dos Campos", cities: "Taubaté, Jacareí" },
+      ],
+    },
+    {
+      name: "Sul e centro",
+      regions: [
+        { name: "Sorocaba" },
+        { name: "Itapeva" },
+        { name: "Bauru" },
+        { name: "Central", cities: "Araraquara, São Carlos" },
+      ],
+    },
+    {
+      name: "Norte e oeste",
+      regions: [
+        { name: "Ribeirão Preto" },
+        { name: "Franca" },
+        { name: "Barretos" },
+        { name: "São José do Rio Preto" },
+        { name: "Araçatuba" },
+        { name: "Presidente Prudente" },
+        { name: "Marília" },
+      ],
+    },
   ],
   hubs: [
     { name: "São Paulo", longitude: -46.6333, latitude: -23.5505 },

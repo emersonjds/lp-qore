@@ -1,11 +1,43 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { Coverage } from "../coverage";
 
 describe("Coverage", () => {
-  it("says coverage starts in São Paulo only", () => {
+  it("covers the whole state of São Paulo", () => {
     render(<Coverage />);
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Começamos por São Paulo");
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
+      "Todo o estado de São Paulo, da capital ao interior",
+    );
+    expect(
+      screen.getByText(
+        "Licitações dos 645 municípios paulistas, do governo do estado, de autarquias e empresas públicas, reunidas dos principais portais.",
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it("lists the 16 administrative regions in 4 cluster cards on desktop", () => {
+    render(<Coverage />);
+    const clusters = within(screen.getByTestId("coverage-clusters-desktop")).getAllByRole("heading", { level: 3 });
+    expect(clusters.map((cluster) => cluster.textContent)).toEqual([
+      "Capital e litoral",
+      "Campinas e leste",
+      "Sul e centro",
+      "Norte e oeste",
+    ]);
+    const regions = within(screen.getByTestId("coverage-clusters-desktop")).getAllByTestId("coverage-region");
+    expect(regions).toHaveLength(16);
+    expect(regions[0]).toHaveTextContent("Metropolitana de São Paulo");
+    expect(regions[0]).toHaveTextContent("Capital, Guarulhos, ABC, Osasco");
+    expect(regions.at(-1)).toHaveTextContent("Marília");
+  });
+
+  it("folds each cluster into a native disclosure on mobile with the first one open", () => {
+    const { container } = render(<Coverage />);
+    const disclosures = [...container.querySelectorAll('[data-testid="coverage-clusters-mobile"] details')];
+    expect(disclosures).toHaveLength(4);
+    expect(disclosures.map((disclosure) => disclosure.hasAttribute("open"))).toEqual([true, false, false, false]);
+    expect(disclosures[3].querySelector("summary")).toHaveTextContent("Norte e oeste");
+    expect(within(screen.getByTestId("coverage-clusters-mobile")).getAllByTestId("coverage-region")).toHaveLength(16);
   });
 
   it("invites companies from other states to leave a contact", () => {
