@@ -1,7 +1,7 @@
 import { SectionWrapper } from "@/components/layout/section-wrapper";
 import { coverageContent } from "@/config/home-content";
 import { CONTACT_HREF } from "@/config/navigation";
-import { SaoPauloMap } from "./sao-paulo-map";
+import { BrazilMap } from "./brazil-map";
 
 export const Coverage = () => (
   <SectionWrapper id="cobertura" aria-labelledby="coverage-title">
@@ -27,7 +27,7 @@ export const Coverage = () => (
           </a>
         </p>
       </div>
-      <SaoPauloMap />
+      <BrazilMap />
     </div>
   </SectionWrapper>
 );

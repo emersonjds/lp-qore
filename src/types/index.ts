@@ -58,12 +58,8 @@ export interface CoverageRegion {
 
 export interface MapHub {
   name: string;
-  centerX: number;
-  centerY: number;
-  radius: number;
-  labelX: number;
-  labelY: number;
-  labelAnchor: "start" | "end";
+  longitude: number;
+  latitude: number;
 }
 
 export interface Testimonial {

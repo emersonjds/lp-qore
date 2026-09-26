@@ -264,11 +264,11 @@ export const coverageContent: {
     { name: "Interior e Litoral", cities: "Ribeirão Preto, Santos, Sorocaba" },
   ],
   hubs: [
-    { name: "São Paulo", centerX: 260, centerY: 190, radius: 6, labelX: 272, labelY: 194, labelAnchor: "start" },
-    { name: "Campinas", centerX: 230, centerY: 160, radius: 5, labelX: 222, labelY: 152, labelAnchor: "end" },
-    { name: "Santos", centerX: 275, centerY: 215, radius: 4, labelX: 285, labelY: 222, labelAnchor: "start" },
-    { name: "Ribeirão Preto", centerX: 190, centerY: 90, radius: 4, labelX: 182, labelY: 86, labelAnchor: "end" },
-    { name: "S. José dos Campos", centerX: 295, centerY: 170, radius: 4, labelX: 395, labelY: 160, labelAnchor: "end" },
+    { name: "São Paulo", longitude: -46.6333, latitude: -23.5505 },
+    { name: "Campinas", longitude: -47.0626, latitude: -22.9056 },
+    { name: "Santos", longitude: -46.3336, latitude: -23.9608 },
+    { name: "Ribeirão Preto", longitude: -47.8103, latitude: -21.1775 },
+    { name: "São José dos Campos", longitude: -45.8872, latitude: -23.1791 },
   ],
 };
 
