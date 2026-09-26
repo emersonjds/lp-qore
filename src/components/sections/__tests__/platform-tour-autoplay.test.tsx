@@ -65,7 +65,7 @@ describe("PlatformTourTabs auto-advance", () => {
     expect(bar?.closest("[role=tab]")).not.toHaveClass("overflow-hidden");
   });
 
-  it("crossfades the incoming screen with a slight rise and replays its count-ups and bars", () => {
+  it("swaps in the incoming screen with a slight rise, never a partial fade, and replays its count-ups and bars", () => {
     setVisibility("visible");
     const { container } = render(<PlatformTourTabs tabs={platformTabs} />);
     setOnScreen(container, true);
@@ -73,7 +73,8 @@ describe("PlatformTourTabs auto-advance", () => {
     const firstCounter = managerPanel.querySelector("[data-count-up]");
     finishProgress(container);
     expect(managerPanel).toHaveClass("opacity-0", "translate-y-3");
-    expect(managerPanel.className).toMatch(/transition-\[opacity,translate\] /);
+    expect(managerPanel.className).toMatch(/transition-\[translate\] /);
+    expect(managerPanel.className).not.toMatch(/transition-\[[^\]]*opacity/);
     expect(managerPanel.className).not.toMatch(/visibility|invisible/);
     expect(managerPanel).toHaveAttribute("inert");
     expect(screen.getByRole("tabpanel", { name: "Radar de oportunidades" })).not.toHaveClass("opacity-0", "translate-y-3");
