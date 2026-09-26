@@ -36,7 +36,7 @@ export const HowItWorks = () => (
               data-step-badge
               data-active={index === 0}
               className={cn(
-                "mb-6 flex size-14 items-center justify-center rounded-full font-display text-headline-sm font-bold tabular-nums transition-colors duration-500",
+                "mb-6 flex size-14 items-center justify-center rounded-full font-display text-headline-sm font-bold tabular-nums",
                 index === 0
                   ? "bg-primary text-primary-foreground shadow-md"
                   : "bg-surface-container-high text-primary shadow-sm data-[active=true]:bg-primary data-[active=true]:text-primary-foreground data-[active=true]:shadow-md",
