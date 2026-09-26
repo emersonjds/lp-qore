@@ -1,8 +1,10 @@
 import { SectionWrapper } from "@/components/layout/section-wrapper";
 import { howItWorksContent } from "@/config/home-content";
+import { HowItWorksLineAnimator } from "./how-it-works-line-animator";
 
 export const HowItWorks = () => (
   <SectionWrapper id="como-funciona" aria-labelledby="how-it-works-title" className="relative">
+    <HowItWorksLineAnimator sectionId="como-funciona" />
     <p className="text-label-sm uppercase text-primary">{howItWorksContent.eyebrow}</p>
     <h2 id="how-it-works-title" className="mt-2 text-headline-lg-mobile md:text-headline-lg">
       {howItWorksContent.title}
@@ -12,7 +14,7 @@ export const HowItWorks = () => (
       <div
         aria-hidden="true"
         data-step-line="horizontal"
-        className="absolute top-6 left-6 hidden h-0.5 w-[calc(100%-3rem)] origin-left bg-primary md:block"
+        className="absolute top-6 left-6 hidden h-0.5 w-[calc(66.667%+1.333rem)] origin-left bg-primary md:block"
       />
       <div
         aria-hidden="true"
