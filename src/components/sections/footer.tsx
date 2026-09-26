@@ -15,10 +15,12 @@ export const Footer = ({ year = new Date().getFullYear(), legal = siteConfig.leg
   <footer className="bg-surface-low">
     <Container className="flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between">
       <div className="flex flex-col gap-2">
-        <Logo />
-        <p className="text-caption text-muted-foreground">
-          © {year} {siteConfig.name}. Todos os direitos reservados.
-        </p>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <Logo />
+          <p className="text-caption text-muted-foreground">
+            © {year} {siteConfig.name}. Todos os direitos reservados.
+          </p>
+        </div>
         {hasFooterLegalLine(legal) ? (
           <p className="text-caption text-muted-foreground">
             {legal.companyName} · CNPJ {legal.taxId} · {legal.city}/{legal.state}
