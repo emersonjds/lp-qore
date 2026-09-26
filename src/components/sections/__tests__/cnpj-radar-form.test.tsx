@@ -51,7 +51,8 @@ describe("CnpjRadarForm", () => {
     const html = renderToString(<CnpjRadarForm />);
     expect(html).toContain('name="radar"');
     expect(html).toContain('data-netlify="true"');
-    for (const field of ["name", "email", "cnpj", "companyName", "activity", "matchCount", "consent"]) {
+    expect(html).not.toContain('name="companyName"');
+    for (const field of ["name", "email", "cnpj", "activity", "matchCount", "consent"]) {
       expect(html).toContain(`name="${field}"`);
     }
   });
@@ -114,12 +115,12 @@ describe("CnpjRadarForm", () => {
     await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent(/Pronto, Maria Souza/));
     const leadCall = fetcher.mock.calls.find(([url]) => url === "/");
     const body = new URLSearchParams(String(leadCall?.[1]?.body));
+    expect(body.has("companyName")).toBe(false);
     expect(Object.fromEntries(body)).toMatchObject({
       "form-name": "radar",
       name: "Maria Souza",
       email: "maria@empresa.com.br",
       cnpj: "33.000.167/0001-01",
-      companyName: "LIMPA TUDO SERVICOS LTDA",
       matchCount: "1",
     });
   });

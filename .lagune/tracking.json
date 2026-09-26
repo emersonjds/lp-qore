@@ -1,0 +1,36 @@
+{
+  "name": "lagune",
+  "entries": [
+    {
+      "name": "Missing Content-Security-Policy",
+      "paths": [
+        "netlify.toml",
+        "tests/unit/netlify-config.test.ts",
+        "tests/export/content-security-policy.test.ts",
+        "tests/export/static-server.ts"
+      ]
+    },
+    {
+      "name": "Public lead forms rely only on a honeypot",
+      "paths": [
+        "src/components/sections/contact-form.tsx",
+        "src/lib/cnpj-radar.ts",
+        "src/lib/contact-form.ts"
+      ]
+    },
+    {
+      "name": "Radar sends the CNPJ to third parties not named in the privacy policy",
+      "paths": [
+        "src/lib/cnpj-radar.ts",
+        "src/config/privacy.ts"
+      ]
+    },
+    {
+      "name": "Radar lead stores the company name returned by the Receita lookup",
+      "paths": [
+        "src/components/sections/cnpj-radar-form.tsx",
+        "src/lib/cnpj-radar.ts"
+      ]
+    }
+  ]
+}

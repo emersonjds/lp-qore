@@ -25,3 +25,4 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://brasilapi.com.br https://pncp.gov.br; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"

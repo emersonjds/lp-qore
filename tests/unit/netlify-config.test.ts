@@ -31,6 +31,26 @@ describe("netlify.toml", () => {
     expect(netlifyConfig).toContain('Referrer-Policy = "strict-origin-when-cross-origin"');
   });
 
+  it("sends a Content-Security-Policy scoped to what the page loads", () => {
+    const policy = /Content-Security-Policy = "([^"\n]*)"/.exec(netlifyConfig)?.[1] ?? "";
+    const directives = new Map(
+      policy.split(";").map((directive) => {
+        const [name = "", ...sources] = directive.trim().split(/\s+/);
+        return [name, sources.join(" ")] as const;
+      }),
+    );
+    expect(directives.get("default-src")).toBe("'self'");
+    expect(directives.get("script-src")).toBe("'self' 'unsafe-inline'");
+    expect(directives.get("style-src")).toBe("'self' 'unsafe-inline'");
+    expect(directives.get("font-src")).toBe("'self'");
+    expect(directives.get("img-src")).toBe("'self' data:");
+    expect(directives.get("connect-src")).toBe("'self' https://brasilapi.com.br https://pncp.gov.br");
+    expect(directives.get("form-action")).toBe("'self'");
+    expect(directives.get("frame-ancestors")).toBe("'none'");
+    expect(directives.get("base-uri")).toBe("'self'");
+    expect(directives.get("object-src")).toBe("'none'");
+  });
+
   it("points the site URL at the Netlify address until the own domain is live", () => {
     expect(netlifyConfig).toContain('NEXT_PUBLIC_SITE_URL = "https://qorelicitacoes.netlify.app"');
   });

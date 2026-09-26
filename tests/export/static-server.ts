@@ -25,16 +25,19 @@ const resolveFile = (root: string, urlPath: string): string | undefined => {
   return candidates.find((candidate) => candidate.startsWith(root) && existsSync(candidate) && statSync(candidate).isFile());
 };
 
-export const startStaticServer = (root: string): Promise<{ url: string; server: Server }> =>
+export const startStaticServer = (
+  root: string,
+  extraHeaders: Readonly<Record<string, string>> = {},
+): Promise<{ url: string; server: Server }> =>
   new Promise((resolve) => {
     const server = createServer((request, response) => {
       const file = resolveFile(root, request.url ?? "/");
       if (!file) {
-        response.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
+        response.writeHead(404, { ...extraHeaders, "Content-Type": "text/html; charset=utf-8" });
         response.end(readFileSync(join(root, "404.html")));
         return;
       }
-      response.writeHead(200, { "Content-Type": CONTENT_TYPES[extname(file)] ?? "application/octet-stream" });
+      response.writeHead(200, { ...extraHeaders, "Content-Type": CONTENT_TYPES[extname(file)] ?? "application/octet-stream" });
       response.end(readFileSync(file));
     });
     server.listen(0, () => {

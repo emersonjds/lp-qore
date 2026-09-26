@@ -124,13 +124,12 @@ describe("runRadar", () => {
 });
 
 describe("encodeRadarLead", () => {
-  it("sends the lead with the company context to the radar Netlify form", () => {
+  it("sends the lead with the CNPJ and activity but never the registered company name", () => {
     const body = new URLSearchParams(
       encodeRadarLead({
         name: " Maria ",
         email: " maria@empresa.com.br ",
         cnpj: "12.345.678/0001-95",
-        companyName: "LIMPA TUDO SERVICOS LTDA",
         activity: "Limpeza em prédios e em domicílios",
         matchCount: 4,
       }),
@@ -140,7 +139,6 @@ describe("encodeRadarLead", () => {
       name: "Maria",
       email: "maria@empresa.com.br",
       cnpj: "12.345.678/0001-95",
-      companyName: "LIMPA TUDO SERVICOS LTDA",
       activity: "Limpeza em prédios e em domicílios",
       matchCount: "4",
       consent: "sim",
