@@ -164,6 +164,32 @@ export const responsibleAiContent: { eyebrow: string; title: string; description
   ],
 };
 
+export const aiReadingExample = {
+  label: "Exemplo ilustrativo: trecho do edital e resumo da IA",
+  documentTitle: "Edital de pregão eletrônico",
+  summaryTitle: "Resumo da IA",
+  excerpts: [
+    {
+      label: "Objeto:",
+      text: "aquisição de material de escritório para as unidades da Secretaria.",
+      page: 12,
+      summary: "Compra de material de escritório",
+    },
+    {
+      label: "Prazo da proposta:",
+      text: "as propostas serão recebidas até as 9h do dia da sessão pública.",
+      page: 31,
+      summary: "Enviar a proposta até as 9h do dia da sessão",
+    },
+    {
+      label: "Habilitação:",
+      text: "certidões de regularidade fiscal e trabalhista válidas na data da sessão.",
+      page: 44,
+      summary: "Certidões fiscal e trabalhista válidas na sessão",
+    },
+  ],
+} as const;
+
 export const personasContent: { eyebrow: string; title: string; personas: readonly [Persona, Persona] } = {
   eyebrow: "Para cada função",
   title: "Feito para quem prepara a proposta e para quem decide",
